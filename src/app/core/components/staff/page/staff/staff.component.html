@@ -1,0 +1,90 @@
+<main class="mt-5 pt-3">
+    <div class="container-fluid">
+
+        <!-- Top Bar -->
+        <div class="d-flex justify-content-between mt-2">
+            <div class="row">
+                <div class="title-page col-md-12 fw-bold fs-3">
+                    <i class="fa fa-users"></i> <span class="mx-1" translate="staff.staff"></span>
+                </div>
+            </div>
+
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item active" aria-current="page" translate="staff.staff"></li>
+                </ol>
+            </nav>
+        </div>
+
+
+        <div class="row">
+            <div class="col-xl-10 col-sm-12 mx-auto">
+                <div class="card">
+                    <div class="card-header bg-primary fw-bold text-white flex-between">
+                        <div>
+                            <span translate="staff.staff"></span>
+                            <div class="spinner-border spinner-border-sm mx-2" role="status" *ngIf="loading">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </div>
+                        <div>
+                            <button class="btn btn-success text-white" (click)="onCreate()">
+                                <i class="fas fa-user-plus"></i>&nbsp;<span translate="commons.new"></span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th translate="staff.fullname"></th>
+                                    <th translate="staff.email"></th>
+                                    <th translate="staff.department"></th>
+                                    <th translate="staff.occupation"></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let s of staff">
+                                    <td>{{s.fullName}}</td>
+                                    <td>{{s.email}}</td>
+                                    <td>{{s.department.branch.name}} - {{s.department.name}}</td>
+                                    <td>{{s.occupation.name}}</td>
+                                    <td>
+                                        <i title="{{'commons.actions' | translate}}"
+                                            class="fas fa-chevron-circle-down link" [id]="s.id"
+                                            data-bs-toggle="dropdown"></i>
+                                        <ul class="dropdown-menu dropdown-menu-end">
+                                            <li (click)="onUpdate(s)"class="link-spin">
+                                                <a class="dropdown-item">
+                                                    <i class="fas fa-pen"></i>&nbsp;
+                                                    <span translate="commons.edit"></span>
+                                                </a>
+                                            </li>
+                                            <div>
+                                                <li>
+                                                    <hr class="dropdown-divider">
+                                                </li>
+                                                <li (click)="confirmDelete(s)" class="link-spin">
+                                                    <a class="dropdown-item">
+                                                        <i class="fas fa-trash text-danger"></i>&nbsp;<span
+                                                            translate="commons.delete"></span>
+                                                    </a>
+                                                </li>
+                                            </div>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr *ngIf="staff.length === 0 && !loading">
+                                    <td class="text-center" colspan="5" translate="commons.noData"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <app-paginator *ngIf="paginator" [route]="'staff'" [paginator]="paginator"></app-paginator>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>

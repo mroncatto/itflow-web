@@ -1,0 +1,221 @@
+{
+    "login": {
+        "about": "Information technology service management",
+        "forgetPwd": "Forgot password? Recover Password",
+        "placeholder.username": "Your username",
+        "placeholder.password": "Your password"
+    },
+    "profile": {
+        "profile": "Profile",
+        "joinDate": "Join Date: ",
+        "lastLogin": "Last Login: ",
+        "userInfo": "User info",
+        "editProfile": "Edit Profile",
+        "fullname": "Full name: ",
+        "username": "Username: ",
+        "email": "Email:",
+        "updateInfo": "Update User Info",
+        "saveProfile": "Save Profile",
+        "updatePassword": "Update Password",
+        "oldPassword": "Old Password: ",
+        "oldPassword.placeholder": "Enter your current password, minimum 6 characters",
+        "password": "Password: ",
+        "password.placeholder": "Enter your new password, minimum 6 characters",
+        "repeatPassword": "Repeat password: ",
+        "repeatPassword.placeholder": "Repeat your new password",
+        "changePassword": "Change Password"
+    },
+    "menu": {
+        "noNotification": "No notification",
+        "profile": " Profile",
+        "logout": " Logout",
+        "dashboard": "Dashboard",
+        "helpdesk": "Helpdesk",
+        "staff": "Staff",
+        "companies": "Companies",
+        "branches": "Branches",
+        "departments": "Departments",
+        "manage": "Manage",
+        "usersAccount": "Users Account",
+        "interface": "Interface",
+        "darkMode": "Dark Mode"
+    },
+    "users": {
+        "users": "Users",
+        "user": "User",
+        "fullname": "Full name",
+        "fullname.placeholder": "Enter the user's full name.",
+        "username": "Username",
+        "username.placeholder": "Enter a valid username, without spaces or symbols.",
+        "email": "Email",
+        "email.placeholder": "Enter a valid email",
+        "lastLogin": "Last Login",
+        "show": "Show user",
+        "state": "State",
+        "active": "Active",
+        "active.placeholder": "It's an active account ?",
+        "locked": "Locked",
+        "unlocked": "Unlocked",
+        "unlocked.placeholder": "It's an unlocked account ?",
+        "resetPassword": "Reset Password",
+        "lock": "Lock",
+        "unlock": "Unlock",
+        "selectRole": "Select a role",
+        "neverLogged": "Never logged in",
+        "staff": "Staff",
+        "selectStaff": "Select a employee"
+    },
+    "staff": {
+        "staff": "Staff",
+        "fullname": "Full name",
+        "email": "Email",
+        "department": "Department",
+        "selectDepartment": "Select a Department",
+        "occupation": "Occupation",
+        "selectOccupation": "Select a Occupation"
+    },
+    "company": {
+        "companies": "Companies",
+        "company": "Company",
+        "name.placeholder": "Company name",
+        "document.placeholder": "Document number",
+        "selectCompany": "Select a Company"
+    },
+    "branch": {
+        "name.placeholder": "Branch name",
+        "branches": "Branches",
+        "branch": "Branch"
+    },
+    "department": {
+        "departments": "Departments",
+        "department": "Department",
+        "name.placeholder": "Department name",
+        "selectBranch": "Select a branch",
+        "branch": "Branch"
+    },
+    "occupation": {
+        "role": "Role",
+        "name.placeholder": "Occupation name"
+    },
+    "api": {
+        "error": {
+            "undefined": "Internal Server Error",
+            "unknown": "Internal Server Error",
+            "INTERNAL SERVER ERROR": "Internal Server Error",
+            "UNAUTHORIZED": "Unauthorized",
+            "DATABASE ERROR": "Database Error",
+            "FORBIDDEN": "Forbidden",
+            "INVALID PASSWORD": "Invalid Password",
+            "BAD CREDENTIALS": "Bad Credentials",
+            "UNSUCCESSFUL AUTHENTICATION": "Unsuccessful Authentication",
+            "METHOD NOT ALLOWED": "Method not allowed"
+        },
+        "warning": {
+            "NOT_FOUND": "Not Found",
+            "Not Found": "Not Found",
+            "No message available": "Unknown error",
+            "USER NOT FOUND": "User not found",
+            "BAD_REQUEST": "Bad Request",
+            "ALL FIELDS ARE REQUIRED": "All fields are required",
+            "INVALID FORMAT EMAIL": "Invalid Email Format",
+            "USER ALREADY EXISTS WITH THIS EMAIL": "User already exists with this email",
+            "USER ALREADY EXISTS WITH THIS USERNAME": "User already exists with this username",
+            "THE USERNAME FIELD IS REQUIRED": "The username field is required"
+        }
+    },
+    "app": {
+        "warning": {
+            "sessionExpired": "Session expired",
+            "loginRequired": "Please login again",
+            "badRequest": "Bad Request",
+            "fillFieldsRequired": "Fill in the required fields"
+        },
+        "success": {
+            "created": "Successfully created",
+            "updated": "Successfully updated",
+            "deleted": "Successfully deleted",
+            "userCreated": "The account was created, the login data was sent to the user's email"
+        },
+        "info": {
+            "welcome": "Welcome",
+            "authenticated": "Successfully Authenticated",
+            "passwordChanged": "Password was changed",
+            "profileChanged": "Profile was changed",
+            "userDisabled": "The user account was disabled!",
+            "successfully": "Successfully",
+            "created": "Successfully created",
+            "updated": "Successfully changed",
+            "deleted": "Successfully deleted",
+            "disabled": "Successfully disabled",
+            "userBlocked": "The account has been locked",
+            "userUnBlocked": "The account has been unlocked",
+            "passwordReseted": "A new password has been generated and sent to the user's mail",
+            "userRoleUpdated": "User roles have been updated",
+            "staffDeleted": "Employee was deleted"
+        }
+    },
+    "forms": {
+        "passwordMatch": "Passwords do not match",
+        "pattern": "Invalid Pattern",
+        "email": "You must provide a valid email",
+        "required": "This field is required",
+        "minlength": "Minimum {{n}} characters required",
+        "maxlength": "Maximum {{n}} characters allowed",
+        "min": "Minimum allowed value is {{n}}",
+        "max": "Maximum allowed value is {{n}}",
+        "invalidField": "Invalid field"
+    },
+    "commons": {
+        "open": "Open",
+        "edit": "Edit",
+        "delete": "Delete",
+        "active": "Active",
+        "inactive": "Inactive",
+        "disable": "Disable",
+        "cancel": "Cancel",
+        "remove": "Remove",
+        "yes": "Yes",
+        "no": "No",
+        "actions": "Actions",
+        "save": "Save",
+        "close": "Close",
+        "new": "New",
+        "noData": "No records",
+        "register": "Register",
+        "optional": "Optional",
+        "name": "Name",
+        "document": "Document"
+    },
+    "modal": {
+        "warning": "Warning",
+        "disable": "Are you sure you want to disable it? This change cannot be reversed",
+        "delete": "Are you sure you want to delete <b>{{record}}</b> ? This change cannot be reversed",
+        "update": "Update {{name}}",
+        "user": {
+            "disable": "Are you sure you want to disable the <b>{{record}}</b> user account?? This change cannot be reversed",
+            "lock": "Are you sure you want to lock the <b>{{record}}</b> account?",
+            "resetPassword": "Are you sure you want to reset the user's password?",
+            "new": "New User",
+            "update": "Update user <b>{{record}}</b>"
+        },
+        "staff": {
+            "new": "Register employee"
+        },
+        "company": {
+            "new": "New Company"
+        },
+        "department": {
+            "new": "New Department"
+        },
+        "branch": {
+            "new": "New Branch"
+        },
+        "occupation": {
+            "new": "New Occupation"
+        }
+    },
+    "paginator": {
+        "first": "First",
+        "last": "Last"
+    }
+}

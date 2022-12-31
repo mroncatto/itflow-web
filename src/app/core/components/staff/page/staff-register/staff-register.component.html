@@ -1,0 +1,30 @@
+<main class="mt-5 pt-3">
+    <div class="container-fluid">
+
+        <!-- Top Bar -->
+        <div class="d-flex justify-content-between mt-2">
+            <div class="row">
+                <div class="title-page col-md-12 fw-bold fs-3">
+                    <i class="fa fa-users"></i> <span class="mx-1" translate="staff.staff"></span>
+                </div>
+            </div>
+
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item active" aria-current="page" translate="staff.staff"></li>
+                </ol>
+            </nav>
+        </div>
+        <div class="row m-5">
+            <div class="col-md-4 col-xl-2 col-12">
+                <div id="list-example" class="list-group p-1">
+                    <a [ngClass]="{active: page==pages[0]}" class="list-group-item link"
+                        translate="staff.occupation"></a>
+                </div>
+            </div>
+            <div class="col-md-8 col-xl-10 col-12">
+                <app-occupation *ngIf="page==pages[0]"></app-occupation>
+            </div>
+        </div>
+    </div>
+</main>

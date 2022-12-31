@@ -1,0 +1,55 @@
+<div class="card">
+    <div class="card-header bg-primary fw-bold text-white flex-between">
+        <div>
+            <span translate="company.companies"></span>
+            <div class="spinner-border spinner-border-sm mx-2" role="status" *ngIf="loading">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+        <div>
+            <button class="btn btn-success text-white" (click)="onCreate()">
+                <i class="fas fa-user-plus"></i>&nbsp;<span translate="commons.new"></span>
+            </button>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table table-stripped">
+            <thead>
+                <th>#</th>
+                <th translate="commons.name"></th>
+                <th translate="commons.document"></th>
+                <th></th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let company of companies">
+                    <td>{{ company.id }}</td>
+                    <td>{{ company.name }}</td>
+                    <td>{{ company.document }}</td>
+                    <td>
+                        <i title="{{'commons.actions' | translate}}" class="fas fa-chevron-circle-down link" [id]="company.id"
+                            data-bs-toggle="dropdown"></i>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li class="link-spin">
+                                <a (click)="onUpdate(company)" class="dropdown-item">
+                                    <i class="fas fa-pen"></i>&nbsp;
+                                    <span translate="commons.edit"></span>
+                                </a>
+                            </li>
+                            <div>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li class="link-spin">
+                                    <a (click)="confirmDelete(company)" class="dropdown-item">
+                                        <i class="fas fa-trash text-danger"></i>&nbsp;<span
+                                            translate="commons.delete"></span>
+                                    </a>
+                                </li>
+                            </div>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

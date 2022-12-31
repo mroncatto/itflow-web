@@ -1,0 +1,36 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <h5 *ngIf="!department" class="modal-title" translate="modal.department.new"></h5>
+        <h5 *ngIf="department" class="modal-title" [translateParams]="{name: department.name}" translate="modal.update"></h5>
+    </div>
+    <form [formGroup]="dptoForm" (ngSubmit)="save()">
+        <div class="modal-body">
+            <div class="mb-3">
+                <label for="name" translate="commons.name"></label>
+                <input autocomplete="off" type="text" formControlName="name" id="name" class="form-control"
+                    placeholder="{{'department.name.placeholder' | translate}}">
+                <app-validation-field [form]="dptoForm" [field]="'name'"></app-validation-field>
+            </div>
+
+            <div class="mb-3">
+                <label for="branch" translate="department.branch"></label>
+                <div class="d-flex gap-2">
+                    <select formControlName="branch" id="branch" [compareWith]="compareWith" class="form-select">
+                        <option translate="department.selectBranch" disabled selected value=""></option>
+                        <option *ngFor="let b of branchs" [ngValue]="b">{{b.company.name}}-{{b.name}}</option>
+                    </select>
+                    <button type="button" [disabled]="loading || !mainView" title="{{'commons.register' | translate}}" class="btn btn-primary"><i
+                            class="fas fa-folder-plus"></i></button>
+                </div>
+                <app-validation-field [form]="dptoForm" [field]="'department'"></app-validation-field>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button [disabled]="loading" type="button" class="btn btn-outline-danger" (click)="closeModal()"
+                translate="commons.cancel"></button>
+            <button [disabled]="loading" type="submit" class="btn btn-success" translate="commons.save">
+                <i *ngIf="loading" class="fas fa-spinner fa-pulse mx-1"></i>
+            </button>
+        </div>
+    </form>
+</div>

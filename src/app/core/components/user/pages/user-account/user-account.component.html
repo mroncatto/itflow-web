@@ -1,0 +1,125 @@
+<main class="mt-5 pt-3">
+    <div class="container-fluid">
+
+        <!-- Top Bar -->
+        <div class="d-flex justify-content-between mt-2">
+            <div class="row">
+                <div class="title-page col-md-12 fw-bold fs-3">
+                    <i class="fa fa-user-shield"></i> <span class="mx-1" translate="users.users"></span>
+                </div>
+            </div>
+
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item active" aria-current="page" translate="users.users"></li>
+                </ol>
+            </nav>
+        </div>
+
+
+        <div class="row">
+            <div class="col-xl-10 col-sm-12 mx-auto">
+                <div class="card">
+                    <div class="card-header bg-primary fw-bold text-white flex-between">
+                        <div>
+                            <span translate="users.users"></span>
+                            <div class="spinner-border spinner-border-sm mx-2" role="status" *ngIf="loading">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </div>
+                        <div>
+                            <button (click)="onCreate()" class="btn btn-success text-white">
+                                <i class="fas fa-user-plus"></i>&nbsp;<span translate="commons.new"></span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th translate="users.fullname"></th>
+                                    <th translate="users.username"></th>
+                                    <th translate="users.email"></th>
+                                    <th translate="users.lastLogin"></th>
+                                    <th translate="users.state"></th>
+                                    <th translate="users.locked"></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let u of users">
+                                    <td [title]="'users.show' | translate" class="link"
+                                        (click)="onShowUser(u)">{{u.fullName}}</td>
+                                    <td>{{u.username}}</td>
+                                    <td>{{u.email}}</td>
+                                    <td>{{u.lastLoginDate | date:'medium' }}</td>
+                                    <td>
+                                        <span *ngIf="u.active" class="badge bg-success"
+                                            translate="commons.active"></span>
+                                        <span *ngIf="!u.active" class="badge bg-danger"
+                                            translate="commons.inactive"></span>
+                                    </td>
+                                    <td>
+                                        <span *ngIf="u.nonLocked" class="badge bg-success"
+                                            translate="commons.no"></span>
+                                        <span *ngIf="!u.nonLocked" class="badge bg-danger"
+                                            translate="commons.yes"></span>
+                                    </td>
+                                    <td>
+                                        <i title="{{'commons.actions' | translate}}"
+                                            class="fas fa-chevron-circle-down link" [id]="u.username"
+                                            data-bs-toggle="dropdown"></i>
+                                        <ul class="dropdown-menu dropdown-menu-end">
+                                            <li><a (click)="onShowUser(u)" class="dropdown-item link-spin">
+                                                    <i class="fas fa-eye"></i>&nbsp;
+                                                    <span translate="commons.open"></span>
+                                                </a>
+                                            </li>
+                                            <li *ngIf="u.active && !isYourAccount(u)" class="link-spin">
+                                                <a (click)="onUpdate(u)" class="dropdown-item">
+                                                    <i class="fas fa-pen"></i>&nbsp;
+                                                    <span translate="commons.edit"></span>
+                                                </a>
+                                            </li>
+                                            <div *ngIf="u.active && !isYourAccount(u)">
+                                                <li>
+                                                    <hr class="dropdown-divider">
+                                                </li>
+                                                <li class="link-spin">
+                                                    <a (click)="confirmResetPassword(u)" class="dropdown-item">
+                                                        <i class="fas fa-key"></i>&nbsp;
+                                                        <span translate="users.resetPassword"></span>
+                                                    </a>
+                                                </li>
+                                                <li *ngIf="u.nonLocked" class="link-spin">
+                                                    <a (click)="confirmLockUnLockUser(u)" class="dropdown-item">
+                                                        <i class="fas fa-user-lock text-primary"></i>&nbsp;<span
+                                                            translate="users.lock"></span>
+                                                    </a>
+                                                </li>
+                                                <li *ngIf="!u.nonLocked" class="link-spin">
+                                                    <a (click)="confirmLockUnLockUser(u)" class="dropdown-item">
+                                                        <i class="fas fa-user-check text-success"></i>&nbsp;<span
+                                                            translate="users.unlock"></span>
+                                                    </a>
+                                                </li>
+                                                <li class="link-spin">
+                                                    <a (click)="confirmDisable(u)" class="dropdown-item">
+                                                        <i class="fas fa-user-times text-danger"></i>&nbsp;<span
+                                                            translate="commons.disable"></span>
+                                                    </a>
+                                                </li>
+                                            </div>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <app-paginator *ngIf="paginator" [route]="'users'" [paginator]="paginator"></app-paginator>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>

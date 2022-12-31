@@ -1,0 +1,23 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <h5 *ngIf="!occupation" class="modal-title" translate="modal.occupation.new"></h5>
+        <h5 *ngIf="occupation" class="modal-title" [translateParams]="{name: occupation.name}" translate="modal.update"></h5>
+    </div>
+    <form [formGroup]="occupationForm" (ngSubmit)="save()">
+        <div class="modal-body">
+            <div class="mb-3">
+                <label for="name" translate="commons.name"></label>
+                <input autocomplete="off" type="text" formControlName="name" id="name" class="form-control"
+                    placeholder="{{'occupation.name.placeholder' | translate}}">
+                <app-validation-field [form]="occupationForm" [field]="'name'"></app-validation-field>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button [disabled]="loading" type="button" class="btn btn-outline-danger" (click)="closeModal()"
+                translate="commons.cancel"></button>
+            <button [disabled]="loading" type="submit" class="btn btn-success" translate="commons.save">
+                <i *ngIf="loading" class="fas fa-spinner fa-pulse mx-1"></i>
+            </button>
+        </div>
+    </form>
+</div>
