@@ -17,6 +17,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { StaffModule } from './core/components/staff/staff.module';
 import { CompanyModule } from './core/components/company/company.module';
+import { DefaultRoutingModule } from './core/shared/router/default-routing.module';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { CompanyModule } from './core/components/company/company.module';
     UserModule,
     StaffModule,
     CompanyModule,
-    DashboardModule
+    DashboardModule,
+    DefaultRoutingModule // It should always be the last route module to be imported
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true }

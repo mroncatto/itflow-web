@@ -108,7 +108,8 @@
             "INVALID PASSWORD": "Senha inválida",
             "BAD CREDENTIALS": "Credenciais inválidas",
             "UNSUCCESSFUL AUTHENTICATION": "Autenticação malsucedida",
-            "METHOD NOT ALLOWED": "Método não permitido"
+            "METHOD NOT ALLOWED": "Método não permitido",
+            "USER ACCOUNT IS LOCKED": "Sua conta está bloqueada"
         },
         "warning": {
             "NOT_FOUND": "Não encontrado",

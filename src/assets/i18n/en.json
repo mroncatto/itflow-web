@@ -108,7 +108,8 @@
             "INVALID PASSWORD": "Invalid Password",
             "BAD CREDENTIALS": "Bad Credentials",
             "UNSUCCESSFUL AUTHENTICATION": "Unsuccessful Authentication",
-            "METHOD NOT ALLOWED": "Method not allowed"
+            "METHOD NOT ALLOWED": "Method not allowed",
+            "USER ACCOUNT IS LOCKED": "User account is locked"
         },
         "warning": {
             "NOT_FOUND": "Not Found",
