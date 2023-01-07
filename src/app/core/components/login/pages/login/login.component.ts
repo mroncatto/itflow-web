@@ -49,11 +49,10 @@ export class LoginComponent implements OnInit {
   }
 
   private readUrlParam(): void {
-    //TODO: Preparar para usar urls com parametros!!!
     this.activatedRouter.queryParams.subscribe(
       query => {
         if (query['redirect']) {
-          this.redirect = query['redirect'];
+          this.redirect = this.removeQueries(query['redirect']);
         }
       }
     ).unsubscribe();
@@ -65,9 +64,19 @@ export class LoginComponent implements OnInit {
       password: ['', Validators.required]
     });
   }
+
   private onAuthenticate(): void {
     this.loginService.saveCredentials(this.authentication);
-    this.loginService.navigate(this.redirect ? this.redirect : 'dashboard');
+    if (this.authentication.user.password_expired) {
+      this.loginService.onWarning("attention", "passwordExpired");
+      this.loginService.navigate('profile');
+    } else {
+      this.loginService.navigate(this.redirect ? this.redirect : 'dashboard');
+    }
+  }
+
+  private removeQueries(url: string): string {
+    return url.split('?')[0];
   }
 
 }

@@ -36,8 +36,12 @@ export class AbstractService {
     this.formBuilder = injector.get(FormBuilder);
   }
 
+  // ------------------ Lists --------------------------------
+  sortById(list: any[]): any[] {
+    return list.sort((a, b) => a.id < b.id ? 1 : -1);
+  }
+
   // ------------------ Router --------------------------------
-  //TODO: Criar interface para parametros dinamicos
   navigate(url: string, redirect: string = '', ...params: string[]): void {
     if (redirect && redirect.length > 0 && redirect !== '/login') {
       this.router.navigate([url], { queryParams: { redirect: redirect.replace('/', '') } });
@@ -71,7 +75,7 @@ export class AbstractService {
   callModal(template: any, mainView?: boolean, model?: any): Subject<any> {
     const bsModalRef: BsModalRef = this.modalService.show(template, { backdrop: 'static' });
     bsModalRef.content.mainView = mainView;
-    if(model) bsModalRef.content?.payload(model);
+    if (model) bsModalRef.content?.payload(model);
     return (<any>bsModalRef.content).result;
   }
 

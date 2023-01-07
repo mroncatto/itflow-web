@@ -12,6 +12,7 @@ export interface IUser {
     joinDate: Date;
     active: boolean;
     nonLocked: boolean;
+    password_expired: boolean;
     staff: IStaff;
     role: IRole[];
 }
@@ -27,11 +28,12 @@ export class User implements IUser {
     joinDate: Date;
     active: boolean;
     nonLocked: boolean;
+    password_expired: boolean;
     staff: IStaff;
     role: Role[];
 
     constructor(fullName: string, avatar: string, email:string,username:string, password:string, 
-        lastLoginDate: Date, joinDate: Date, active: boolean, nonLocked: boolean, staff: Staff, role: Role[]){
+        lastLoginDate: Date, joinDate: Date, active: boolean, nonLocked: boolean, password_expired: boolean, staff: Staff, role: Role[]){
         this.fullName = fullName;
         this.avatar = avatar;
         this.email = email;
@@ -41,6 +43,7 @@ export class User implements IUser {
         this.joinDate = joinDate;
         this.active = active;
         this.nonLocked = nonLocked;
+        this.password_expired = password_expired;
         this.staff = staff;
         this.role = role;
     }

@@ -40,7 +40,6 @@
                             <div class="roles" *ngIf="user.role.length > 0">
                                 <span class="badge bg-info">{{getUserRole()}}</span>
                             </div>
-                            <!-- TODO: Criar modulo calificacao -->
                             <!-- <div class="calification">
                                 <i class="fas fa-star text-warning"></i>
                                 <i class="fas fa-star text-warning"></i>
@@ -73,12 +72,17 @@
                                     <span><span class="fw-bold" translate="profile.username"></span> {{user.username}}</span>
                                     <span><span class="fw-bold" translate="profile.email"></span> {{user.email}}</span>
                                 </div>
-                                <!-- TODO: Entity -->
+                                
+                                <!-- Staff -->
+                                <div *ngIf="user.staff" class="user-properties d-flex flex-column align-self-start">
+                                    <span><span class="fw-bold" translate="staff.occupation"></span>: {{user.staff.occupation.name}}</span>
+                                    <span><span class="fw-bold" translate="department.department"></span>: {{user.staff.department.name}}</span>
+                                </div>
                             </div>
                             <ng-template #updating>
                                 <div class="form-cancel flex-end mb-2">
                                     <button class="btn btn-outline-secondary"
-                                        (click)="updateMode = false" translate="profile.cancel"></button>
+                                        (click)="updateMode = false" translate="commons.cancel"></button>
                                 </div>
                                 <hr>
                                 <h5 translate="profile.updateInfo"></h5>

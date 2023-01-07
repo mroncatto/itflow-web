@@ -127,9 +127,11 @@
     "app": {
         "warning": {
             "sessionExpired": "Session expired",
+            "attention": "Attention",
             "loginRequired": "Please login again",
             "badRequest": "Bad Request",
-            "fillFieldsRequired": "Fill in the required fields"
+            "fillFieldsRequired": "Fill in the required fields",
+            "passwordExpired": "Your password has expired, please set a new password!"
         },
         "success": {
             "created": "Successfully created",

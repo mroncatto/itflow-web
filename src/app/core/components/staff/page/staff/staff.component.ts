@@ -37,10 +37,7 @@ export class StaffComponent implements OnInit, OnDestroy {
     this.sub.push(
       this.service.getStaff(page)
         .pipe(
-          tap(response => {
-            response.content = (response.content as IStaff[]).sort((a, b) => a.id < b.id ? 1 : -1);
-            // TODO: Optimizar: Criar metodo abstracto para tratar paginator
-          })
+          tap(res => res.content = this.service.sortById(res.content))
         )
         .subscribe({
           next: (data) => {

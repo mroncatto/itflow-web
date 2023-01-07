@@ -49,10 +49,7 @@ export class UserAccountComponent implements OnInit, OnDestroy {
     this.sub.push(
       this.service.getUsers(page)
         .pipe(
-          tap(response => {
-            response.content = (response.content as IUser[]).sort((a, b) => a.id < b.id ? 1 : -1);
-            // TODO: Optimizar
-          })
+          tap(res => res.content = this.service.sortById(res.content))
         )
         .subscribe({
           next: (data) => {
