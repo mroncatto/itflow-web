@@ -1,5 +1,5 @@
 import { Injectable, Injector } from '@angular/core';
-import { AbstractControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, UntypedFormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { Observable, Subject } from 'rxjs';
 import { IPaginator } from 'src/app/core/shared/commons/model/paginator';
@@ -75,7 +75,7 @@ export class UserService extends AbstractService {
   }
 
   // ===================== FormGroups ======================
-  getUserForm(user?: IUser): FormGroup {
+  getUserForm(user?: IUser): UntypedFormGroup {
     return this.formBuilder.group({
       fullName: ['', UserValidation.fullName()],
       email: ['', UserValidation.email()],
@@ -97,14 +97,14 @@ export class UserService extends AbstractService {
     });
   }
 
-  getProfileForm(user: IUser): FormGroup {
+  getProfileForm(user: IUser): UntypedFormGroup {
     return this.formBuilder.group({
       fullName: [user.fullName, UserValidation.fullName()],
       email: [user.email, UserValidation.email()]
     })
   }
 
-  getPasswordForm(): FormGroup {
+  getPasswordForm(): UntypedFormGroup {
     return this.formBuilder.group({
       oldPassword: ['', UserValidation.required()],
       newPassword: ['', UserValidation.password()],

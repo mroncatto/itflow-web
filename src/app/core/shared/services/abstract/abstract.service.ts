@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable, Injector } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { UntypedFormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Subject } from 'rxjs';
@@ -23,7 +23,7 @@ export class AbstractService {
   protected http: HttpClient;
   protected modalService: BsModalService;
   alertService: AlertService;
-  formBuilder: FormBuilder;
+  formBuilder: UntypedFormBuilder;
 
   readonly API_URL = environment.API_URL;
   constructor(injector: Injector) {
@@ -33,7 +33,7 @@ export class AbstractService {
     this.modalService = injector.get(BsModalService);
     this.authService = injector.get(AuthenticationService);
     this.http = injector.get(HttpClient);
-    this.formBuilder = injector.get(FormBuilder);
+    this.formBuilder = injector.get(UntypedFormBuilder);
   }
 
   // ------------------ Lists --------------------------------

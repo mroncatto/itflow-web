@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { UntypedFormControl, Validators } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { Subscription } from 'rxjs';
 import { IRole } from '../../../../model/role';
@@ -15,7 +15,7 @@ export class UserAccountShowComponent implements OnInit {
 
   user!: IUser;
   roles: IRole[] = [];
-  roleControl = new FormControl("", Validators.required);
+  roleControl = new UntypedFormControl("", Validators.required);
   loading: boolean = false;
   private sub: Subscription[] = [];
 

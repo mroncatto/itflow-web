@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { EMPTY, Subject, Subscription, switchMap, take } from 'rxjs';
 import { IStaff, Staff } from 'src/app/core/components/staff/model/staff';
@@ -20,7 +20,7 @@ export class UserAccountFormComponent extends AbstractUser implements OnInit, On
   user!: IUser;
   staff: Staff[] = [];
   result!: Subject<IUser>;
-  userForm!: FormGroup;
+  userForm!: UntypedFormGroup;
 
   constructor(
     private modal: BsModalRef,

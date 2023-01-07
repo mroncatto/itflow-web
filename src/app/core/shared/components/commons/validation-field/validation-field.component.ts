@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 import { ValidationService } from '../../../services/validation/validation.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { ValidationService } from '../../../services/validation/validation.servi
 })
 export class ValidationFieldComponent {
 
-  @Input() form!: FormGroup;
+  @Input() form!: UntypedFormGroup;
   @Input() field!: string;
   constructor(private validationService: ValidationService) {}
 

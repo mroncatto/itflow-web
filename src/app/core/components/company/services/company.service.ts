@@ -1,5 +1,5 @@
 import { Injectable, Injector, TemplateRef } from '@angular/core';
-import { FormGroup, Validators } from '@angular/forms';
+import { UntypedFormGroup, Validators } from '@angular/forms';
 import { Observable, Subject, switchMap, take } from 'rxjs';
 import { AbstractValidation } from 'src/app/core/shared/commons/validation/abstract-validation';
 import { AbstractService } from 'src/app/core/shared/services/abstract/abstract.service';
@@ -81,7 +81,7 @@ export class CompanyService extends AbstractService {
   }
 
   // ===================== FormGroups ======================
-  getDepartmentForm(depto?: IDepartment): FormGroup {
+  getDepartmentForm(depto?: IDepartment): UntypedFormGroup {
     return this.formBuilder.group({
       id: [depto ? depto.id : ''],
       name: [depto ? depto.name : '', AbstractValidation.description(5)],
@@ -89,7 +89,7 @@ export class CompanyService extends AbstractService {
     });
   }
 
-  getCompanyForm(company?: ICompany): FormGroup {
+  getCompanyForm(company?: ICompany): UntypedFormGroup {
     return this.formBuilder.group({
       id: [company ? company.id : ''],
       name: [company ? company.name : '', AbstractValidation.description(5)],
@@ -98,7 +98,7 @@ export class CompanyService extends AbstractService {
     });
   }
 
-  getBranchForm(branch?: IBranch): FormGroup {
+  getBranchForm(branch?: IBranch): UntypedFormGroup {
     return this.formBuilder.group({
       id: [branch ? branch.id : ''],
       name: [branch ? branch.name : '', AbstractValidation.description(5)],

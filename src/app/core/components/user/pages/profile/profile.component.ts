@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { IUser, User } from '../../model/user';
 import { UserService } from '../../services/user.service';
@@ -16,8 +16,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
   private sub: Subscription[] = [];
   updateMode: boolean = false;
   loadingMode: boolean = false;
-  userForm!: FormGroup;
-  passwordForm!: FormGroup;
+  userForm!: UntypedFormGroup;
+  passwordForm!: UntypedFormGroup;
   showPassword: boolean = false;
 
   constructor(private userService: UserService) { }

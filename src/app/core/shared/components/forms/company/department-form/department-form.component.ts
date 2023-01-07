@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
-import { FormGroup, Validators } from '@angular/forms';
+import { UntypedFormGroup, Validators } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { Subject } from 'rxjs';
 import { IBranch } from 'src/app/core/components/company/model/branch';
@@ -19,7 +19,7 @@ export class DepartmentFormComponent extends AbstractDepartment implements OnIni
   result!: Subject<IDepartment>;
   department!: IDepartment;
   branchs: IBranch[] = [];
-  dptoForm!: FormGroup;
+  dptoForm!: UntypedFormGroup;
   mainView: boolean = false;
 
   constructor(

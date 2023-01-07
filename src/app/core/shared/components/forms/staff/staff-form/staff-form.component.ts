@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { Subject } from 'rxjs';
 import { IDepartment } from 'src/app/core/components/company/model/department';
@@ -20,7 +20,7 @@ export class StaffFormComponent extends AbstractStaff implements OnInit, OnDestr
 
   result!: Subject<IStaff>;
   staff!: IStaff;
-  staffForm!: FormGroup;
+  staffForm!: UntypedFormGroup;
   mainView: boolean = false;
   departments: IDepartment[] = [];
   occupations: Occupation[] = [];

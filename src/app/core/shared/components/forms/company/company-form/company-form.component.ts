@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { Subject } from 'rxjs';
 import { CompanyService } from 'src/app/core/components/company/services/company.service';
@@ -17,7 +17,7 @@ export class CompanyFormComponent extends AbstractCompany implements OnInit, OnD
 
   result!: Subject<ICompany>;
   company!: ICompany;
-  companyForm!: FormGroup;
+  companyForm!: UntypedFormGroup;
 
   constructor(
     private modal: BsModalRef,

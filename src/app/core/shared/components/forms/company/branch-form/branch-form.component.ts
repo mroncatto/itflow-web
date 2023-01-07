@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { Subject } from 'rxjs';
 import { IBranch } from 'src/app/core/components/company/model/branch';
@@ -17,7 +17,7 @@ import { IAbstractModelForms } from 'src/app/core/shared/abstracts/interface/abs
 export class BranchFormComponent extends AbstractBranch implements OnInit, OnDestroy, IAbstractModelForms<IBranch> {
 
   result!: Subject<IBranch>;
-  branchForm!: FormGroup;
+  branchForm!: UntypedFormGroup;
   branch!: IBranch;
   companies: ICompany[] = [];
 

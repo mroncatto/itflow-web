@@ -1,5 +1,5 @@
 import { Injectable, Injector } from '@angular/core';
-import { FormGroup, Validators } from '@angular/forms';
+import { UntypedFormGroup, Validators } from '@angular/forms';
 import { Observable, Subject } from 'rxjs';
 import { IPaginator } from 'src/app/core/shared/commons/model/paginator';
 import { AbstractValidation } from 'src/app/core/shared/commons/validation/abstract-validation';
@@ -69,7 +69,7 @@ export class StaffService extends AbstractService {
   }
 
   // ===================== FormGroups ======================
-  getStaffForm(staff?: IStaff): FormGroup {
+  getStaffForm(staff?: IStaff): UntypedFormGroup {
     return this.formBuilder.group({
       id: [staff ? staff.id : ''],
       fullName: [staff ? staff.fullName : '', StaffValidation.fullName()],
@@ -80,7 +80,7 @@ export class StaffService extends AbstractService {
     })
   }
 
-  getOccupationForm(occupation?: IOccupation): FormGroup {
+  getOccupationForm(occupation?: IOccupation): UntypedFormGroup {
     return this.formBuilder.group({
       id: [occupation ? occupation.id : ''],
       name: [occupation ? occupation.name : '', AbstractValidation.description(5)],

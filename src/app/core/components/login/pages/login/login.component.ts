@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, Validators } from '@angular/forms';
+import { UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { IAuthResponse } from '../../../user/model/auth-response';
 import { LoginService } from '../../services/login.service';
@@ -11,7 +11,7 @@ import { LoginService } from '../../services/login.service';
 })
 export class LoginComponent implements OnInit {
 
-  loginForm!: FormGroup;
+  loginForm!: UntypedFormGroup;
   authentication!: IAuthResponse;
   private redirect!: string;
   loading: boolean = false;

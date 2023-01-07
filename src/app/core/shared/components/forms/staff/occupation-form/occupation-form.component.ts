@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { Subject } from 'rxjs';
 import { IOccupation } from 'src/app/core/components/staff/model/occupation';
@@ -18,7 +18,7 @@ export class OccupationFormComponent extends AbstractOccupation implements OnIni
 
   result!: Subject<IOccupation>;
   occupation!: IOccupation;
-  occupationForm!: FormGroup;
+  occupationForm!: UntypedFormGroup;
   mainView: boolean = false;
 
   constructor(
