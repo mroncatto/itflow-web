@@ -6,22 +6,8 @@ import { ProfileComponent } from '../pages/profile/profile.component';
 import { UserAccountComponent } from '../pages/user-account/user-account.component';
 
 const routes: Routes = [
-  {
-    path: '', canActivate: [AuthenticationGuard], children: [
-      { path: 'profile', component: ProfileComponent },
-      {
-        path: 'users', canActivate: [AuthorizationGuard],
-        children: [
-          {
-            path: '', component: UserAccountComponent
-          },
-          {
-            path: 'page/:page', component: UserAccountComponent
-          }
-        ]
-      },
-    ]
-  }
+  { path: 'profile', component: ProfileComponent },
+  { path: '', component: UserAccountComponent },
 ];
 
 @NgModule({

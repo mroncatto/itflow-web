@@ -19,8 +19,8 @@ import { UserAccountShowComponent } from './pages/user-account/modal/user-accoun
   ],
   imports: [
     CommonModule,
-    ReactiveFormsModule,
     UserRoutingModule,
+    ReactiveFormsModule,
     TranslateModule,
     SharedModule
   ]

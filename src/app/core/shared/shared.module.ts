@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ValidationFieldComponent } from './components/commons/validation-field/validation-field.component';
-import { MenuComponent } from './components/menu/menu/menu.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AppRoutingModule } from 'src/app/app-routing.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { ConfirmComponent } from './components/modal/confirm/confirm.component';
 import { PaginatorComponent } from './components/commons/paginator/paginator.component';
@@ -17,7 +15,6 @@ import { BranchFormComponent } from './components/forms/company/branch-form/bran
 @NgModule({
   declarations: [
     ValidationFieldComponent,
-    MenuComponent,
     ConfirmComponent,
     StaffFormComponent,
     PaginatorComponent,
@@ -30,13 +27,11 @@ import { BranchFormComponent } from './components/forms/company/branch-form/bran
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    TranslateModule,
-    AppRoutingModule,
+    TranslateModule
     
   ],
   exports: [
     ValidationFieldComponent,
-    MenuComponent,
     ConfirmComponent,
     StaffFormComponent,
     PaginatorComponent,

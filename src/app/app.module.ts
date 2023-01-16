@@ -4,24 +4,21 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { UserModule } from './core/components/user/user.module';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { LoginModule } from './core/components/login/login.module';
-import { DashboardModule } from './core/components/dashboard/dashboard.module';
 import { SharedModule } from './core/shared/shared.module';
 import { AuthenticationInterceptor } from './core/middlewares/authentication.interceptor';
 
 import localeEn from '@angular/common/locales/en';
 import localeEs from '@angular/common/locales/es';
 import localePt from '@angular/common/locales/pt';
+
 import { registerLocaleData } from '@angular/common';
 import { ToastrModule } from 'ngx-toastr';
 import { ModalModule } from 'ngx-bootstrap/modal';
-import { StaffModule } from './core/components/staff/staff.module';
-import { CompanyModule } from './core/components/company/company.module';
-import { DefaultRoutingModule } from './core/shared/router/default-routing.module';
+import { MenuComponent } from './core/shared/components/menu/menu/menu.component';
+import { FormsModule } from '@angular/forms';
 
 registerLocaleData(localeEn, 'en-US');
 registerLocaleData(localeEs, 'es-PY');
@@ -29,10 +26,12 @@ registerLocaleData(localePt, 'pt-BR');
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
@@ -46,12 +45,6 @@ registerLocaleData(localePt, 'pt-BR');
     ToastrModule.forRoot(),
     ModalModule.forRoot(),
     SharedModule,
-    LoginModule,
-    UserModule,
-    StaffModule,
-    CompanyModule,
-    DashboardModule,
-    DefaultRoutingModule // It should always be the last route module to be imported
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true }
