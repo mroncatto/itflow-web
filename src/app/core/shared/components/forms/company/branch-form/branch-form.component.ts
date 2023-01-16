@@ -42,7 +42,7 @@ export class BranchFormComponent extends AbstractBranch implements OnInit, OnDes
     this.sub.push(
       this.service.getCompanies().subscribe({
         next: (data) => this.companies = data,
-        error: (err) => this.service.onHttpError(err)
+        error: (err) => this.onError(err)
       })
     );
   }

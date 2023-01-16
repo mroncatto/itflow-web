@@ -1,222 +1,221 @@
 {
-    "login": {
-        "about": "Gestão de serviços de tecnologia da informação",
-        "forgetPwd": "Esqueceu a senha? Recuperar senha",
-        "placeholder.username": "Seu nome de usuário",
-        "placeholder.password": "Sua senha"
-    },
-    "profile": {
-        "profile": "Perfil",
-        "joinDate": "Data de inscrição: ",
-        "lastLogin": "Último Login: ",
-        "userInfo": "Informação de usuário",
-        "editProfile": "Editar Perfil",
-        "fullname": "Nome completo: ",
-        "username": "Nome de usuário: ",
-        "email": "Email:",
-        "updateInfo": "Atualizar informações do usuário",
-        "saveProfile": "Salvar perfil",
-        "updatePassword": "Atualizar senha",
-        "oldPassword": "Senha Antiga: ",
-        "oldPassword.placeholder": "Digite sua senha atual, mínimo 6 caracteres",
-        "password": "Senha: ",
-        "password.placeholder": "Digite sua nova senha, mínimo 6 caracteres",
-        "repeatPassword": "Repita a senha: ",
-        "repeatPassword.placeholder": "Repita sua nova senha",
-        "changePassword": "Mudar senha"
-    },
-    "menu": {
-        "noNotification": "Não existem notificações",
-        "profile": " Perfil",
-        "logout": " Sair",
-        "dashboard": "Painel",
-        "helpdesk": "Helpdesk",
-        "staff": "Funcionários",
-        "companies": "Empresas",
-        "branches": "Sucursais",
-        "departments": "Filiais",
-        "manage": "Administrar",
-        "usersAccount": "Conta de usuários",
-        "interface": "Interface",
-        "darkMode": "Modo escuro"
-    },
-    "users": {
-        "users": "Usuários",
-        "user": "Usuário",
-        "fullname": "Nome completo",
-        "fullname.placeholder": "Digite o nome completo do usuário.",
-        "username": "Nome de usuário",
-        "username.placeholder": "Digite um nome de usuário válido, sem espaços ou símbolos.",
-        "email": "Email",
-        "email.placeholder": "Entre com um email válido",
-        "lastLogin": "Último Login",
-        "show": "Mostrar usuário",
-        "state": "Estado",
-        "active": "Ativo",
-        "active.placeholder": "É uma conta ativa?",
-        "locked": "Bloqueado",
-        "unlocked": "Desbloqueado",
-        "unlocked.placeholder": "É uma conta desbloqueada?",
-        "resetPassword": "Redefinir senha",
-        "lock": "Bloquear",
-        "unlock": "Desbloquear",
-        "selectRole": "Selecione uma função",
-        "neverLogged": "Nunca fez login",
-        "staff": "Funcionários",
-        "selectStaff": "Selecione um funcionário"
-    },
-    "staff": {
-        "staff": "Funcionários",
-        "fullname": "Nome completo",
-        "email": "Email",
-        "department": "Filial",
-        "selectDepartment": "Selecione uma filial",
-        "occupation": "Cargo",
-        "selectOccupation": "Selecione um Cargo"
-    },
-    "company": {
-        "companies": "Empresas",
-        "company": "Empresa",
-        "name.placeholder": "Nome da empresa",
-        "document.placeholder": "Número de documento",
-        "selectCompany": "Selecione uma empresa"
-    },
-    "branch": {
-        "name.placeholder": "Noma da sucursal",
-        "branches": "Sucursais",
-        "branch": "Sucursal"
-    },
-    "department": {
-        "departments": "Filiais",
-        "department": "Filial",
-        "name.placeholder": "Nombe da filial",
-        "selectBranch": "Selecione uma sucursal",
-        "branch": "Sucursal"
-    },
-    "occupation":{
-        "role": "Cargo",
-        "name.placeholder": "Nome do cargo"
-    },
-    "api": {
-        "error": {
-            "undefined": "Erro interno do servidor",
-            "unknown": "Erro interno do servidor",
-            "INTERNAL SERVER ERROR": "Erro interno do servidor",
-            "UNAUTHORIZED": "Não autorizado",
-            "DATABASE ERROR": "Erro de banco de dados",
-            "FORBIDDEN": "Não permitido",
-            "INVALID PASSWORD": "Senha inválida",
-            "BAD CREDENTIALS": "Credenciais inválidas",
-            "UNSUCCESSFUL AUTHENTICATION": "Autenticação malsucedida",
-            "METHOD NOT ALLOWED": "Método não permitido",
-            "USER ACCOUNT IS LOCKED": "Sua conta está bloqueada"
-        },
-        "warning": {
-            "NOT_FOUND": "Não encontrado",
-            "Not Found": "Não encontrado",
-            "No message available": "Erro desconhecido",
-            "USER NOT FOUND": "Usuário não encontrado",
-            "BAD_REQUEST": "Dados inválidos",
-            "ALL FIELDS ARE REQUIRED": "Todos os campos são necessários",
-            "INVALID FORMAT EMAIL": "Formato de email inválido",
-            "USER ALREADY EXISTS WITH THIS EMAIL": "Já existe um usuário com este email",
-            "USER ALREADY EXISTS WITH THIS USERNAME": "Já existe um usuário com este nome de usuario",
-            "THE USERNAME FIELD IS REQUIRED": "O campo nome de usuário é obrigatório"
-        }
-    },
-    "app": {
-        "warning": {
-            "sessionExpired": "Sessão expirada",
-            "loginRequired": "Por favor faça login novamente",
-            "badRequest": "Dados inválidos",
-            "fillFieldsRequired": "Complete os campos obrigatórios"
-        },
-        "success": {
-            "created": "Criado com sucesso",
-            "updated": "Alterado com sucesso",
-            "deleted": "Eliminado com sucesso",
-            "userCreated": "A conta foi criada, os dados de login foram enviados para o e-mail do usuário"
-        },
-        "info": {
-            "welcome": "Bem-vindo",
-            "authenticated": "Autenticado com sucesso",
-            "passwordChanged": "A senha foi alterada",
-            "profileChanged": "O perfil foi alterado",
-            "userDisabled": "A conta de usuário foi desativada!",
-            "successfully": "Sucesso",
-            "created": "Criado com sucesso",
-            "updated": "Alterado com sucesso",
-            "deleted": "Eliminado com sucesso",
-            "disabled": "Desativado com sucesso",
-            "userBlocked": "A conta foi bloqueada",
-            "userUnBlocked": "A conta foi desbloqueada",
-            "passwordReseted": "Uma nova senha foi gerada e enviada para o e-mail do usuário",
-            "userRoleUpdated": "As funções do usuário foram atualizadas",
-            "staffDeleted": "O funcionários foi elimiado"
-        }
-    },
-    "forms": {
-        "passwordMatch": "As senhas não coincidem",
-        "pattern": "Padrão inválido",
-        "email": "Você deve inserir um e-mail valido",
-        "required": "Este campo é obrigatório",
-        "minlength": "Mínimo {{n}} caracteres necessários",
-        "maxlength": "Máximo {{n}} caracteres permitidos",
-        "min": "Valor mínimo permitido é {{n}}",
-        "max": "Valor máximo permitido é {{n}}",
-        "invalidField": "Campo inválido"
-    },
-    "commons": {
-        "open": "Abrir",
-        "edit": "Editar",
-        "delete": "Eliminar",
-        "active": "Ativo",
-        "inactive": "Inativo",
-        "disable": "Desativar",
-        "cancel": "Cancelar",
-        "remove": "Remover",
-        "yes": "Sim",
-        "no": "Não",
-        "actions": "Ações",
-        "save": "Salvar",
-        "close": "Fechar",
-        "new": "Novo",
-        "noData": "Sem registros",
-        "register": "Registro",
-        "optional": "Opcional",
-        "name": "Nome",
-        "document": "Documento"
-    },
-    "modal": {
-        "warning": "Aviso",
-        "disable": "Tem certeza de que deseja desativá-lo? Essa alteração não pode ser revertida",
-        "delete": "Tem certeza de que deseja desativar <b>{{record}}</b> ? Essa alteração não pode ser revertida",
-        "update": "Alterar {{name}}",
-        "user": {
-            "disable": "Tem certeza de que deseja desativar a conta de <b>{{record}}</b>? Essa alteração não pode ser revertida",
-            "lock": "Tem certeza de que deseja bloquear a conta de <b>{{record}}</b>?",
-            "resetPassword": "Tem certeza de que deseja redefinir a senha do usuário?",
-            "new": "Novo usuário",
-            "update": "Atualizar usuário <b>{{record}}</b>"
-        },
-        "staff": {
-            "new": "Registrar funcionário"
-        },
-        "company": {
-            "new": "Nova Empresa"
-        },
-        "department": {
-            "new": "Nova Filial"
-        },
-        "branch": {
-            "new": "Nova Filial"
-        },
-        "occupation": {
-            "new": "Novo Cargo"
-        }
-    },
-    "paginator": {
-        "first": "Inicio",
-        "last": "Final"
-    }
+	"alert": {
+		"error": {
+			"BAD CREDENTIALS": "Credenciais inválidas",
+			"DATABASE ERROR": "Erro de banco de dados",
+			"FORBIDDEN": "Não permitido",
+			"INTERNAL SERVER ERROR": "Erro interno do servidor",
+			"INVALID PASSWORD": "Senha inválida",
+			"METHOD NOT ALLOWED": "Método não permitido",
+			"UNAUTHORIZED": "Não autorizado",
+			"UNSUCCESSFUL AUTHENTICATION": "Autenticação malsucedida",
+			"USER ACCOUNT IS LOCKED": "Sua conta está bloqueada",
+			"undefined": "Erro interno do servidor",
+			"unknown": "Erro interno do servidor"
+		},
+		"info": {
+			"authenticated": "Autenticado com sucesso",
+			"created": "Criado com sucesso",
+			"deleted": "Eliminado com sucesso",
+			"disabled": "Desativado com sucesso",
+			"passwordChanged": "A senha foi alterada",
+			"passwordReseted": "Uma nova senha foi gerada e enviada para o e-mail do usuário",
+			"profileChanged": "O perfil foi alterado",
+			"staffDeleted": "O funcionários foi elimiado",
+			"successfully": "Sucesso",
+			"updated": "Alterado com sucesso",
+			"userBlocked": "A conta foi bloqueada",
+			"userDisabled": "A conta de usuário foi desativada!",
+			"userRoleUpdated": "As funções do usuário foram atualizadas",
+			"userUnBlocked": "A conta foi desbloqueada",
+			"welcome": "Bem-vindo"
+		},
+		"success": {
+			"created": "Criado com sucesso",
+			"deleted": "Eliminado com sucesso",
+			"updated": "Alterado com sucesso",
+			"userCreated": "A conta foi criada, os dados de login foram enviados para o e-mail do usuário"
+		},
+		"warning": {
+			"ALL FIELDS ARE REQUIRED": "Todos os campos são necessários",
+			"BAD_REQUEST": "Dados inválidos",
+			"INVALID FORMAT EMAIL": "Formato de email inválido",
+			"NOT_FOUND": "Não encontrado",
+			"No message available": "Erro desconhecido",
+			"Not Found": "Não encontrado",
+			"THE USERNAME FIELD IS REQUIRED": "O campo nome de usuário é obrigatório",
+			"USER ALREADY EXISTS WITH THIS EMAIL": "Já existe um usuário com este email",
+			"USER ALREADY EXISTS WITH THIS USERNAME": "Já existe um usuário com este nome de usuario",
+			"USER NOT FOUND": "Usuário não encontrado",
+			"attention": "Atenção",
+			"badRequest": "Dados inválidos",
+			"canActivatedDenied": "Acesso negado, você não tem permissão para acessar esta página",
+			"fillFieldsRequired": "Complete os campos obrigatórios",
+			"loginRequired": "Por favor faça login novamente",
+			"passwordExpired": "Sua senha expirou, defina uma nova senha!",
+			"sessionExpired": "Sessão expirada"
+		}
+	},
+	"branch": {
+		"branch": "Sucursal",
+		"branches": "Sucursais",
+		"name.placeholder": "Noma da sucursal"
+	},
+	"commons": {
+		"actions": "Ações",
+		"active": "Ativo",
+		"cancel": "Cancelar",
+		"close": "Fechar",
+		"delete": "Eliminar",
+		"disable": "Desativar",
+		"document": "Documento",
+		"edit": "Editar",
+		"inactive": "Inativo",
+		"name": "Nome",
+		"new": "Novo",
+		"no": "Não",
+		"noData": "Sem registros",
+		"open": "Abrir",
+		"optional": "Opcional",
+		"register": "Registro",
+		"remove": "Remover",
+		"save": "Salvar",
+		"yes": "Sim"
+	},
+	"company": {
+		"companies": "Empresas",
+		"company": "Empresa",
+		"document.placeholder": "Número de documento",
+		"name.placeholder": "Nome da empresa",
+		"selectCompany": "Selecione uma empresa"
+	},
+	"department": {
+		"branch": "Sucursal",
+		"department": "Filial",
+		"departments": "Filiais",
+		"name.placeholder": "Nombe da filial",
+		"selectBranch": "Selecione uma sucursal"
+	},
+	"forms": {
+		"email": "Você deve inserir um e-mail valido",
+		"invalidField": "Campo inválido",
+		"max": "Valor máximo permitido é {{n}}",
+		"maxlength": "Máximo {{n}} caracteres permitidos",
+		"min": "Valor mínimo permitido é {{n}}",
+		"minlength": "Mínimo {{n}} caracteres necessários",
+		"passwordMatch": "As senhas não coincidem",
+		"pattern": "Padrão inválido",
+		"required": "Este campo é obrigatório"
+	},
+	"login": {
+		"about": "Gestão de serviços de tecnologia da informação",
+		"forgetPwd": "Esqueceu a senha? Recuperar senha",
+		"placeholder.password": "Sua senha",
+		"placeholder.username": "Seu nome de usuário"
+	},
+	"menu": {
+		"branches": "Sucursais",
+		"companies": "Empresas",
+		"darkMode": "Modo escuro",
+		"dashboard": "Painel",
+		"departments": "Filiais",
+		"helpdesk": "Helpdesk",
+		"interface": "Interface",
+		"logout": " Sair",
+		"manage": "Administrar",
+		"noNotification": "Não existem notificações",
+		"profile": " Perfil",
+		"staff": "Funcionários",
+		"usersAccount": "Conta de usuários"
+	},
+	"modal": {
+		"branch": {
+			"new": "Nova Filial"
+		},
+		"company": {
+			"new": "Nova Empresa"
+		},
+		"delete": "Tem certeza de que deseja desativar <b>{{record}}</b> ? Essa alteração não pode ser revertida",
+		"department": {
+			"new": "Nova Filial"
+		},
+		"disable": "Tem certeza de que deseja desativá-lo? Essa alteração não pode ser revertida",
+		"occupation": {
+			"new": "Novo Cargo"
+		},
+		"staff": {
+			"new": "Registrar funcionário"
+		},
+		"update": "Alterar {{name}}",
+		"user": {
+			"disable": "Tem certeza de que deseja desativar a conta de <b>{{record}}</b>? Essa alteração não pode ser revertida",
+			"lock": "Tem certeza de que deseja bloquear a conta de <b>{{record}}</b>?",
+			"new": "Novo usuário",
+			"resetPassword": "Tem certeza de que deseja redefinir a senha do usuário?",
+			"update": "Atualizar usuário <b>{{record}}</b>"
+		},
+		"warning": "Aviso"
+	},
+	"occupation": {
+		"name.placeholder": "Nome do cargo",
+		"role": "Cargo"
+	},
+	"paginator": {
+		"first": "Inicio",
+		"last": "Final"
+	},
+	"profile": {
+		"changePassword": "Mudar senha",
+		"editProfile": "Editar Perfil",
+		"email": "Email:",
+		"fullname": "Nome completo: ",
+		"joinDate": "Data de inscrição: ",
+		"lastLogin": "Último Login: ",
+		"oldPassword": "Senha Antiga: ",
+		"oldPassword.placeholder": "Digite sua senha atual, mínimo 6 caracteres",
+		"password": "Senha: ",
+		"password.placeholder": "Digite sua nova senha, mínimo 6 caracteres",
+		"profile": "Perfil",
+		"repeatPassword": "Repita a senha: ",
+		"repeatPassword.placeholder": "Repita sua nova senha",
+		"saveProfile": "Salvar perfil",
+		"updateInfo": "Atualizar informações do usuário",
+		"updatePassword": "Atualizar senha",
+		"userInfo": "Informação de usuário",
+		"username": "Nome de usuário: "
+	},
+	"staff": {
+		"department": "Filial",
+		"email": "Email",
+		"fullname": "Nome completo",
+		"occupation": "Cargo",
+		"selectDepartment": "Selecione uma filial",
+		"selectOccupation": "Selecione um Cargo",
+		"staff": "Funcionários"
+	},
+	"users": {
+		"active": "Ativo",
+		"active.placeholder": "É uma conta ativa?",
+		"email": "Email",
+		"email.placeholder": "Entre com um email válido",
+		"fullname": "Nome completo",
+		"fullname.placeholder": "Digite o nome completo do usuário.",
+		"lastLogin": "Último Login",
+		"lock": "Bloquear",
+		"locked": "Bloqueado",
+		"neverLogged": "Nunca fez login",
+		"resetPassword": "Redefinir senha",
+		"selectRole": "Selecione uma função",
+		"selectStaff": "Selecione um funcionário",
+		"show": "Mostrar usuário",
+		"staff": "Funcionários",
+		"state": "Estado",
+		"unlock": "Desbloquear",
+		"unlocked": "Desbloqueado",
+		"unlocked.placeholder": "É uma conta desbloqueada?",
+		"user": "Usuário",
+		"username": "Nome de usuário",
+		"username.placeholder": "Digite um nome de usuário válido, sem espaços ou símbolos.",
+		"users": "Usuários"
+	}
 }

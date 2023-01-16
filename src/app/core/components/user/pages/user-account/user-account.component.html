@@ -28,7 +28,7 @@
                             </div>
                         </div>
                         <div>
-                            <button (click)="onCreate()" class="btn btn-success text-white">
+                            <button *ngIf="canCreateUsers()" (click)="onCreate()" class="btn btn-success text-white">
                                 <i class="fas fa-user-plus"></i>&nbsp;<span translate="commons.new"></span>
                             </button>
                         </div>
@@ -43,7 +43,7 @@
                                     <th translate="users.lastLogin"></th>
                                     <th translate="users.state"></th>
                                     <th translate="users.locked"></th>
-                                    <th></th>
+                                    <th *ngIf="canUpdateUsers()"></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -65,7 +65,7 @@
                                         <span *ngIf="!u.nonLocked" class="badge bg-danger"
                                             translate="commons.yes"></span>
                                     </td>
-                                    <td>
+                                    <td *ngIf="canUpdateUsers()">
                                         <i title="{{'commons.actions' | translate}}"
                                             class="fas fa-chevron-circle-down link" [id]="u.username"
                                             data-bs-toggle="dropdown"></i>
@@ -103,7 +103,7 @@
                                                             translate="users.unlock"></span>
                                                     </a>
                                                 </li>
-                                                <li class="link-spin">
+                                                <li class="link-spin" *ngIf="canDeleteUsers()">
                                                     <a (click)="confirmDisable(u)" class="dropdown-item">
                                                         <i class="fas fa-user-times text-danger"></i>&nbsp;<span
                                                             translate="commons.disable"></span>

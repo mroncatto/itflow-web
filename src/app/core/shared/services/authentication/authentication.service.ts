@@ -1,6 +1,7 @@
 import { EventEmitter, Injectable, Output } from '@angular/core';
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { BehaviorSubject } from 'rxjs';
+import { Roles } from 'src/app/core/components/user/enum/role.enum';
 import { IAuthResponse } from 'src/app/core/components/user/model/auth-response';
 import { User } from 'src/app/core/components/user/model/user';
 
@@ -26,12 +27,18 @@ export class AuthenticationService {
 
   async removeCredentials(): Promise<void> {
     sessionStorage.clear();
-    this.loggedIn.next(false); 
+    this.loggedIn.next(false);
   }
 
   getUserFromSessionStorage(): User | null {
     const user = sessionStorage.getItem('user') as string;
     return JSON.parse(user);
+  }
+
+  getRolesFromToken(): Roles[] {
+    const token = this.getTokenFromSessionStorage();
+    if(token !== null) return this.tokenHelper.decodeToken(token).credentials as Roles[];
+    return [];
   }
 
   isTokenExpired(): boolean {
@@ -41,7 +48,7 @@ export class AuthenticationService {
   }
 
   existsToken(): boolean {
-    return this.getTokenFromSessionStorage() !== null; 
+    return this.getTokenFromSessionStorage() !== null;
   }
 
   getTokenFromSessionStorage(): string | null {
@@ -54,5 +61,18 @@ export class AuthenticationService {
 
   private setUserToSessionStorage(user: User): void {
     sessionStorage.setItem('user', JSON.stringify(user));
+  }
+
+  hasRole(role: Roles): boolean {
+    const roles = this.getRolesFromToken();
+    return roles.includes(role);
+  }
+
+  hasAnyRole(...listRole : Roles[]): boolean {
+    const roles = this.getRolesFromToken();
+    for(let rol of roles){
+      if(listRole.includes(rol)) return true;
+    }
+    return false;
   }
 }

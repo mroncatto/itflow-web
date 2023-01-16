@@ -55,7 +55,7 @@ export class UserAccountFormComponent extends AbstractUser implements OnInit, On
         this.sub.push(
           this.service.updateUser(this.userForm.getRawValue()).subscribe({
             next: (data) => this.onSave(data),
-            error: (err) => this.service.onHttpError(err)
+            error: (err) => this.onError(err)
           })
         )
       } else {
@@ -92,7 +92,7 @@ export class UserAccountFormComponent extends AbstractUser implements OnInit, On
     this.sub.push(
       this.staffService.getAllStaff().subscribe({
         next: (data) => this.staff = data.filter(s => (!s.user) || this.isCurrentUser(s.user)),
-        error: (err) => this.service.onHttpError(err)
+        error: (err) => this.onError(err)
       })
     )
   }
@@ -106,7 +106,7 @@ export class UserAccountFormComponent extends AbstractUser implements OnInit, On
     this.sub.push(
       this.staffService.getModalStaff(false, this.userForm.value as IStaff).subscribe({
         next: (data) => this.afterCreateStaff(data),
-        error: (err) => this.service.onHttpError(err)
+        error: (err) => this.onError(err)
       })
     )
   }

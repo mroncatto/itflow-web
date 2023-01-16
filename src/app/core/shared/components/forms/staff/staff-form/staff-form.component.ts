@@ -58,14 +58,14 @@ export class StaffFormComponent extends AbstractStaff implements OnInit, OnDestr
         this.sub.push(
           this.service.updateStaff(this.staffForm.value as IStaff).subscribe({
             next: (data) => this.onSave(data),
-            error: (err) => this.service.onHttpError(err)
+            error: (err) => this.onError(err)
           })
         )
       } else {
         this.sub.push(
           this.service.createStaff(this.staffForm.value as IStaff).subscribe({
             next: (data) => this.onSave(data),
-            error: (err) => this.service.onHttpError(err)
+            error: (err) => this.onError(err)
           })
         )
       }
@@ -93,7 +93,7 @@ export class StaffFormComponent extends AbstractStaff implements OnInit, OnDestr
     this.sub.push(
       this.service.getOccupation().subscribe({
         next: (data) => this.occupations = data,
-        error: (err) => this.service.onHttpError(err)
+        error: (err) => this.onError(err)
       })
     );
   }
@@ -102,7 +102,7 @@ export class StaffFormComponent extends AbstractStaff implements OnInit, OnDestr
     this.sub.push(
       this.companyService.getDepartments().subscribe({
         next: (data) => this.departments = data,
-        error: (err) => this.service.onHttpError(err)
+        error: (err) => this.onError(err)
       })
     );
   }
@@ -112,7 +112,7 @@ export class StaffFormComponent extends AbstractStaff implements OnInit, OnDestr
     this.sub.push(
       this.companyService.getDptoModal(false).subscribe({
         next: (data) => this.onAfterCreateDepartment(data),
-        error: (err) => this.service.onHttpError(err)
+        error: (err) => this.onError(err)
       })
     );
   }
@@ -128,7 +128,7 @@ export class StaffFormComponent extends AbstractStaff implements OnInit, OnDestr
     this.sub.push(
       this.service.getModalOccupation(false).subscribe({
         next: (data) => this.onAfterCreateOccupation(data),
-        error: (err) => this.service.onHttpError(err)
+        error: (err) => this.onError(err)
       })
     )
   }

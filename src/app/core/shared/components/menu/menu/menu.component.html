@@ -27,23 +27,27 @@
                                 <i class="fas fa-building px-1"></i> <span translate="menu.companies"></span>
                             </a>
                             <ul class="dropdown-menu shadow navbar-submenu">
-                                <li [routerLink]="['company/register']" [queryParams]="{page: 'company'}"><a class="dropdown-item link" translate="menu.companies"></a></li>
-                                <li [routerLink]="['company/register']" [queryParams]="{page: 'branch'}"><a class="dropdown-item link" translate="menu.branches"></a></li>
-                                <li [routerLink]="['company/register']" [queryParams]="{page: 'department'}"><a class="dropdown-item link" translate="menu.departments"></a></li>
+                                <li [routerLink]="['company/register']" [queryParams]="{page: 'company'}"><a
+                                        class="dropdown-item link" translate="menu.companies"></a></li>
+                                <li [routerLink]="['company/register']" [queryParams]="{page: 'branch'}"><a
+                                        class="dropdown-item link" translate="menu.branches"></a></li>
+                                <li [routerLink]="['company/register']" [queryParams]="{page: 'department'}"><a
+                                        class="dropdown-item link" translate="menu.departments"></a></li>
                             </ul>
                         </li>
                         <li class="dropend">
                             <a class="dropdown-item dropdown-toggle link" data-bs-toggle="dropdown">
-                                <i class="fas fa-users px-1"></i>  <span translate="menu.staff"></span>
+                                <i class="fas fa-users px-1"></i> <span translate="menu.staff"></span>
                             </a>
                             <ul class="dropdown-menu shadow navbar-submenu">
-                                <li [routerLink]="['/staff/register']" [queryParams]="{page: 'occupation'}"><a class="dropdown-item link" translate="staff.occupation"></a></li>
+                                <li [routerLink]="['/staff/register']" [queryParams]="{page: 'occupation'}"><a
+                                        class="dropdown-item link" translate="staff.occupation"></a></li>
                             </ul>
                         </li>
                     </ul>
                 </li>
             </ul>
-            
+
             <div>
                 <ul class="navbar-nav mb-2 mb-lg-0 position-relative">
                     <li class="nav-item mx-3">
@@ -335,20 +339,22 @@
                     </div>
                 </li> -->
 
-                <li class="my-1">
-                    <hr class="dropdown-divider">
-                </li>
-                <li>
-                    <div class="text-muted small fw-bold text-uppercase px-3" translate="menu.manage"></div>
-                </li>
-                <li>
-                    <a [routerLink]="['/users']" routerLinkActive="active" class="nav-link px-3">
-                        <span class="me-2">
-                            <i class="fas fa-user-circle"></i>
-                        </span>
-                        <span translate="menu.usersAccount"></span>
-                    </a>
-                </li>
+                <section *ngIf="canOpenUsers()">
+                    <li class="my-1">
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li>
+                        <div class="text-muted small fw-bold text-uppercase px-3" translate="menu.manage"></div>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/users']" routerLinkActive="active" class="nav-link px-3">
+                            <span class="me-2">
+                                <i class="fas fa-user-circle"></i>
+                            </span>
+                            <span translate="menu.usersAccount"></span>
+                        </a>
+                    </li>
+                </section>
 
                 <li class="my-1">
                     <hr class="dropdown-divider">

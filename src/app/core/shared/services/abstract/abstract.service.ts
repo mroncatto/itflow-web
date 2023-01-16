@@ -4,8 +4,8 @@ import { UntypedFormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Subject } from 'rxjs';
+import { Roles } from 'src/app/core/components/user/enum/role.enum';
 import { environment } from 'src/environments/environment';
-import { ToastPosition } from '../../commons/enum/toastPosition.enum';
 import { ToastType } from '../../commons/enum/toastType.enum';
 import { ConfirmComponent } from '../../components/modal/confirm/confirm.component';
 import { AlertService } from '../alert/alert.service';
@@ -81,26 +81,26 @@ export class AbstractService {
 
   // ------------------ Toast Alerts --------------------------------
   onSuccess(title: string, message: string): void {
-    this.showAlert(this.translate(`app.success.${title}`), this.translate(`app.success.${message}`), ToastType.SUCCESS);
+    this.alertService.showAlert(this.translate(`alert.success.${title}`), this.translate(`alert.success.${message}`), ToastType.SUCCESS);
   }
 
   onWarning(title: string, message: string): void {
-    this.showAlert(this.translate(`app.warning.${title}`), this.translate(`app.warning.${message}`), ToastType.WARNING);
+    this.alertService.showAlert(this.translate(`alert.warning.${title}`), this.translate(`alert.warning.${message}`), ToastType.WARNING);
   }
 
   onInfo(title: string, message: string): void {
-    this.showAlert(this.translate(`app.info.${title}`), this.translate(`app.info.${message}`), ToastType.INFO);
+    this.alertService.showAlert(this.translate(`alert.info.${title}`), this.translate(`alert.info.${message}`), ToastType.INFO);
   }
 
   onError(title: string, message: string): void {
-    this.showAlert(this.translate(`app.info.${title}`), this.translate(`app.info.${message}`), ToastType.ERROR);
+    this.alertService.showAlert(this.translate(`alert.error.${title}`), this.translate(`alert.error.${message}`), ToastType.ERROR);
   }
 
   onHttpError(err: HttpErrorResponse): void {
     this.processHttpError(err);
   }
 
-  private processHttpError(err: HttpErrorResponse): void {
+  processHttpError(err: HttpErrorResponse): void {
     switch (err.status) {
       case 400:
         this.badRequestError(err.error);
@@ -123,15 +123,33 @@ export class AbstractService {
   }
 
   private badRequestError(err: any) {
-    const title = this.translateService.instant(`api.warning.${err?.error}`);
-    const msg = this.translateService.instant(`api.warning.${err?.message}`);
-    this.showAlert(title, (err.error === 'BAD_REQUEST') ? err.message : msg, ToastType.WARNING);
+    const title = this.translateService.instant(`alert.warning.${err?.error}`);
+    const msg = this.translateService.instant(`alert.warning.${err?.message}`);
+    this.alertService.showAlert(title, (err.error === 'BAD_REQUEST') ? err.message : msg, ToastType.WARNING);
   }
 
   private authenticationRequest(err: any) {
-    const title = this.translateService.instant(`api.error.${err?.error}`);
-    const msg = this.translateService.instant(`api.error.${err?.message}`);
-    this.showAlert(title, msg, ToastType.ERROR);
+    const title = this.translateService.instant(`alert.error.${err?.error}`);
+    const msg = this.translateService.instant(`alert.error.${err?.message}`);
+    this.alertService.showAlert(title, msg, ToastType.ERROR);
+  }
+
+  private notFound(err: any) {
+    const title = this.translateService.instant(`alert.warning.${err?.error}`);
+    const msg = this.translateService.instant(`alert.warning.${err?.message}`);
+    this.alertService.showAlert(title, msg, ToastType.WARNING);
+  }
+
+  private internalServerError(err: any) {
+    const title = this.translateService.instant(`alert.error.unknown`);
+    const msg = this.translateService.instant(`alert.error.${err?.message}`);
+    this.alertService.showAlert(title, msg, ToastType.ERROR);
+  }
+
+  private undefinedError() {
+    const title = this.translateService.instant(`alert.error.unknown`);
+    const msg = this.translateService.instant(`alert.error.unknown`);
+    this.alertService.showAlert(title, msg, ToastType.ERROR);
   }
 
   private unauthorized(err: any) {
@@ -140,47 +158,9 @@ export class AbstractService {
       this.router.navigate(['/login']);
       this.onWarning("sessionExpired", "loginRequired");
     } else {
-      const title = this.translateService.instant(`api.error.${err?.error}`);
-      const msg = this.translateService.instant(`api.error.UNAUTHORIZED`);
-      this.showAlert(title, msg, ToastType.ERROR);
-    }
-
-  }
-
-  private notFound(err: any) {
-    const title = this.translateService.instant(`api.warning.${err?.error}`);
-    const msg = this.translateService.instant(`api.warning.${err?.message}`);
-    this.showAlert(title, msg, ToastType.WARNING);
-  }
-
-  private internalServerError(err: any) {
-    const title = this.translateService.instant(`api.error.unknown`);
-    const msg = this.translateService.instant(`api.error.${err?.message}`);
-    this.showAlert(title, msg, ToastType.ERROR);
-  }
-
-  private undefinedError() {
-    const title = this.translateService.instant(`api.error.unknown`);
-    const msg = this.translateService.instant(`api.error.unknown`);
-    this.showAlert(title, msg, ToastType.ERROR);
-  }
-
-  private showAlert(title: string, msg: string, type: ToastType, position: ToastPosition = ToastPosition.TOP_RIGHT): void {
-    switch (type) {
-      case 'success':
-        this.alertService.success(title, msg, position);
-        break;
-      case 'warning':
-        this.alertService.warning(title, msg, position);
-        break;
-      case 'error':
-        this.alertService.error(title, msg, position);
-        break;
-      case 'info':
-        this.alertService.info(title, msg, position);
-        break;
-      default:
-        this.alertService.info(title, msg, position);
+      const title = this.translateService.instant(`alert.error.${err?.error}`);
+      const msg = this.translateService.instant(`alert.error.UNAUTHORIZED`);
+      this.alertService.showAlert(title, msg, ToastType.ERROR);
     }
   }
 
@@ -188,4 +168,35 @@ export class AbstractService {
   translate(value: string, param?: string): string {
     return this.translateService.instant(value, param)
   }
+
+  // ------------------ Security Policies Access -----------------
+  //-------------------------- USERS -----------------------------
+
+  canOpenUsers(): boolean {
+    return this.authService.hasAnyRole(Roles.ADMIN, Roles.MANAGER, Roles.COORDINATOR, Roles.HELPDESK, Roles.SUPPORT);
+  }
+
+  canCreateUsers(): boolean {
+    return this.authService.hasAnyRole(Roles.ADMIN);
+  }
+
+  canUpdateUsers(): boolean {
+    return this.authService.hasAnyRole(Roles.ADMIN, Roles.HELPDESK);
+  }
+
+  canDeleteUsers(): boolean {
+    return this.authService.hasAnyRole(Roles.ADMIN);
+  }
+
+  //-------------------------- Pages -----------------------------
+  canOpenPage(page: string): boolean {
+
+    switch (page) {
+      case "/users":
+        return this.canOpenUsers();
+    }
+
+    return false;
+  }
+
 }

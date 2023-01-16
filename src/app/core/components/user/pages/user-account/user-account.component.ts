@@ -2,7 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BsModalRef } from 'ngx-bootstrap/modal';
-import { EMPTY, Subscription, switchMap, take, tap } from 'rxjs';
+import { Subscription, tap } from 'rxjs';
 import { IPaginator } from 'src/app/core/shared/commons/model/paginator';
 import { IUser } from '../../model/user';
 import { UserService } from '../../services/user.service';
@@ -188,6 +188,18 @@ export class UserAccountComponent implements OnInit, OnDestroy {
       if (u.username === user.username) u = user
     })
     this.service.onInfo("successfully", "userDisabled");
+  }
+
+  canCreateUsers(): boolean {
+    return this.service.canCreateUsers();
+  }
+
+  canUpdateUsers(): boolean {
+    return this.service.canUpdateUsers();
+  }
+
+  canDeleteUsers(): boolean {
+    return this.service.canDeleteUsers();
   }
 
 }

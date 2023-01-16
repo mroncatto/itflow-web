@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { Roles } from 'src/app/core/components/user/enum/role.enum';
 import { IUser } from 'src/app/core/components/user/model/user';
 import { environment } from 'src/environments/environment';
 import { ILanguage } from '../../../commons/interface/language';
@@ -60,6 +61,10 @@ export class MenuComponent implements OnInit {
   private loadLang(): void {
     this.currentLang = this.menuService.getCurrentLang();
     this.languages = this.menuService.getLanguages();
+  }
+
+  canOpenUsers(): boolean {
+    return this.menuService.canOpenUsers();
   }
 
 }

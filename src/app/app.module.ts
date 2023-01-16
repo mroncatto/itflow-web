@@ -13,11 +13,19 @@ import { DashboardModule } from './core/components/dashboard/dashboard.module';
 import { SharedModule } from './core/shared/shared.module';
 import { AuthenticationInterceptor } from './core/middlewares/authentication.interceptor';
 
+import localeEn from '@angular/common/locales/en';
+import localeEs from '@angular/common/locales/es';
+import localePt from '@angular/common/locales/pt';
+import { registerLocaleData } from '@angular/common';
 import { ToastrModule } from 'ngx-toastr';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { StaffModule } from './core/components/staff/staff.module';
 import { CompanyModule } from './core/components/company/company.module';
 import { DefaultRoutingModule } from './core/shared/router/default-routing.module';
+
+registerLocaleData(localeEn, 'en-US');
+registerLocaleData(localeEs, 'es-PY');
+registerLocaleData(localePt, 'pt-BR');
 
 @NgModule({
   declarations: [

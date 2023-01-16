@@ -1,13 +1,16 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
 import { ILanguage } from '../../commons/interface/language';
+import { AbstractService } from '../abstract/abstract.service';
 import { TranslateConfigService } from '../translate/translate-config.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class MenuService {
+export class MenuService extends AbstractService {
 
-  constructor(private translateService: TranslateConfigService) { }
+  constructor(injector: Injector) {
+    super(injector);
+  }
 
   getCurrentLang(): string {
     return this.translateService.currentLanguage;
@@ -20,7 +23,7 @@ export class MenuService {
   onLoadTheme(): void {
     const selectedTheme = localStorage.getItem('selected-theme');
 
-    switch(selectedTheme){
+    switch (selectedTheme) {
       case 'dark':
         this.setDarkMode();
         break;
@@ -28,14 +31,14 @@ export class MenuService {
         this.setLightMode();
         break;
       default:
-          this.setLightMode();
+        this.setLightMode();
     }
   }
 
   onChangeTheme(): void {
     const selectedTheme = document.body.getAttribute('data-theme');
 
-    switch(selectedTheme){
+    switch (selectedTheme) {
       case 'dark':
         this.setLightMode();
         break;
@@ -43,7 +46,7 @@ export class MenuService {
         this.setDarkMode();
         break;
       default:
-          this.setDarkMode();
+        this.setDarkMode();
     }
   }
 
@@ -55,7 +58,7 @@ export class MenuService {
     const themeButton = document.getElementById('theme-button');
     themeButton?.classList['remove']('fa-toggle-off');
     themeButton?.classList['add']('fa-toggle-on');
-    document.body.setAttribute('data-theme','dark');
+    document.body.setAttribute('data-theme', 'dark');
     localStorage.setItem('selected-theme', 'dark');
   }
 
@@ -63,7 +66,7 @@ export class MenuService {
     const themeButton = document.getElementById('theme-button');
     themeButton?.classList['remove']('fa-toggle-on');
     themeButton?.classList['add']('fa-toggle-off');
-    document.body.setAttribute('data-theme','light');
+    document.body.setAttribute('data-theme', 'light');
     localStorage.setItem('selected-theme', 'light');
   }
 }

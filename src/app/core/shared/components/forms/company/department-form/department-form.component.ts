@@ -50,7 +50,7 @@ export class DepartmentFormComponent extends AbstractDepartment implements OnIni
     this.sub.push(
       this.service.getBranches().subscribe({
         next: (data) => this.branchs = data,
-        error: (err) => this.service.onHttpError(err)
+        error: (err) => this.onError(err)
       })
     )
   }
