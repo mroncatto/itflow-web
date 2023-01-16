@@ -17,7 +17,6 @@ import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
 import { ToastrModule } from 'ngx-toastr';
 import { ModalModule } from 'ngx-bootstrap/modal';
-import { MenuComponent } from './core/shared/components/menu/menu/menu.component';
 import { FormsModule } from '@angular/forms';
 
 registerLocaleData(localeEn, 'en-US');
@@ -26,8 +25,7 @@ registerLocaleData(localePt, 'pt-BR');
 
 @NgModule({
   declarations: [
-    AppComponent,
-    MenuComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
