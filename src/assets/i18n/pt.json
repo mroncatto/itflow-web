@@ -70,6 +70,7 @@
 		"disable": "Desativar",
 		"document": "Documento",
 		"edit": "Editar",
+		"email": "Email",
 		"inactive": "Inativo",
 		"name": "Nome",
 		"new": "Novo",
@@ -80,6 +81,7 @@
 		"register": "Registro",
 		"remove": "Remover",
 		"save": "Salvar",
+		"warning": "Aviso",
 		"yes": "Sim"
 	},
 	"company": {
@@ -90,7 +92,6 @@
 		"selectCompany": "Selecione uma empresa"
 	},
 	"department": {
-		"branch": "Sucursal",
 		"department": "Filial",
 		"departments": "Filiais",
 		"name.placeholder": "Nombe da filial",
@@ -153,11 +154,11 @@
 			"new": "Novo usuário",
 			"resetPassword": "Tem certeza de que deseja redefinir a senha do usuário?",
 			"update": "Atualizar usuário <b>{{record}}</b>"
-		},
-		"warning": "Aviso"
+		}
 	},
 	"occupation": {
 		"name.placeholder": "Nome do cargo",
+		"occupation": "Cargo",
 		"role": "Cargo"
 	},
 	"paginator": {
@@ -185,10 +186,7 @@
 		"username": "Nome de usuário: "
 	},
 	"staff": {
-		"department": "Filial",
-		"email": "Email",
 		"fullname": "Nome completo",
-		"occupation": "Cargo",
 		"selectDepartment": "Selecione uma filial",
 		"selectOccupation": "Selecione um Cargo",
 		"staff": "Funcionários"
@@ -196,7 +194,6 @@
 	"users": {
 		"active": "Ativo",
 		"active.placeholder": "É uma conta ativa?",
-		"email": "Email",
 		"email.placeholder": "Entre com um email válido",
 		"fullname": "Nome completo",
 		"fullname.placeholder": "Digite o nome completo do usuário.",

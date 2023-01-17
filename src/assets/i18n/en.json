@@ -70,6 +70,7 @@
 		"disable": "Disable",
 		"document": "Document",
 		"edit": "Edit",
+		"email": "Email",
 		"inactive": "Inactive",
 		"name": "Name",
 		"new": "New",
@@ -80,6 +81,7 @@
 		"register": "Register",
 		"remove": "Remove",
 		"save": "Save",
+		"warning": "Warning",
 		"yes": "Yes"
 	},
 	"company": {
@@ -90,7 +92,6 @@
 		"selectCompany": "Select a Company"
 	},
 	"department": {
-		"branch": "Branch",
 		"department": "Department",
 		"departments": "Departments",
 		"name.placeholder": "Department name",
@@ -153,11 +154,11 @@
 			"new": "New User",
 			"resetPassword": "Are you sure you want to reset the user's password?",
 			"update": "Update user <b>{{record}}</b>"
-		},
-		"warning": "Warning"
+		}
 	},
 	"occupation": {
 		"name.placeholder": "Occupation name",
+		"occupation": "Occupation",
 		"role": "Role"
 	},
 	"paginator": {
@@ -185,10 +186,7 @@
 		"username": "Username: "
 	},
 	"staff": {
-		"department": "Department",
-		"email": "Email",
 		"fullname": "Full name",
-		"occupation": "Occupation",
 		"selectDepartment": "Select a Department",
 		"selectOccupation": "Select a Occupation",
 		"staff": "Staff"
@@ -196,7 +194,6 @@
 	"users": {
 		"active": "Active",
 		"active.placeholder": "It's an active account ?",
-		"email": "Email",
 		"email.placeholder": "Enter a valid email",
 		"fullname": "Full name",
 		"fullname.placeholder": "Enter the user's full name.",
