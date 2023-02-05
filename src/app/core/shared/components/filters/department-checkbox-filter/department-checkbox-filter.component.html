@@ -7,7 +7,7 @@
     </span>
     <i *ngIf="loading;" class="fas fa-spin fa-spinner"></i>
 </a>
-<ul class="dropdown-menu p-2" aria-labelledby="userFilter" onclick="event.stopPropagation()">
+<ul class="dropdown-menu p-2" aria-labelledby="departmentFilter" onclick="event.stopPropagation()">
 
     <div class="input-group mb-2 mx-0">
         <input type="text" class="form-control form-control-sm focus-0" [maxLength]="30" [(ngModel)]="filterInput"
@@ -21,8 +21,8 @@
             <span *ngIf="itemList.length == 0" class="text-muted small" translate="commons.noData"></span>
             <li class="dropdown-item" *ngFor="let item of itemList">
                 <div class="form-check">
-                    <input class="link form-check-input" type="checkbox" [(ngModel)]="item.checked" [attr.id]="item.id" (change)="onChange(item)">
-                    <label class="link form-check-label" [ngClass]="{'fw-bold': item.checked}" [attr.for]="item.id">
+                    <input class="link form-check-input" type="checkbox" [(ngModel)]="item.checked" [attr.id]="'department-' + item.id" (change)="onChange(item)">
+                    <label class="link form-check-label" [ngClass]="{'fw-bold': item.checked}" [attr.for]="'department-' + item.id">
                         <small class="text-muted" [title]="item.branch.company.name">{{item.branch.name}}</small> - {{item.name}}
                     </label>
                 </div>
@@ -33,8 +33,8 @@
             <span *ngIf="filteredItemList.length == 0" class="text-muted small" translate="commons.noData"></span>
             <li class="dropdown-item" *ngFor="let item of filteredItemList">
                 <div class="form-check">
-                    <input class="link form-check-input" type="checkbox" [(ngModel)]="item.checked" [attr.id]="item.id" (change)="onChange(item, true)">
-                    <label class="link form-check-label" [ngClass]="{'fw-bold': item.checked}" [attr.for]="item.id">
+                    <input class="link form-check-input" type="checkbox" [(ngModel)]="item.checked" [attr.id]="'department-' + item.id" (change)="onChange(item, true)">
+                    <label class="link form-check-label" [ngClass]="{'fw-bold': item.checked}" [attr.for]="'department-' + item.id">
                         <small class="text-muted" [title]="item.branch.company.name">{{item.branch.name}}</small> - {{item.name}}
                     </label>
                 </div>

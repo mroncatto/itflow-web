@@ -92,9 +92,19 @@ export class StaffService extends AbstractService {
   getStaffFilter(filter: StaffFilter): string {
     let urlParams: string = "";
     let deparmentId: number[] = [];
+    let occupationId: number[] = [];
+
     filter.department.forEach(d => deparmentId.push(d.id));
+    filter.occupation.forEach(o => occupationId.push(o.id));
+
     if (filter.param.length > 0) urlParams = urlParams.concat("?filter=", filter.param);
-    if (deparmentId.length > 0) urlParams = urlParams.concat(urlParams.length > 0 ? "&departments=" : "?departments=", deparmentId.join(","));
+
+    if (deparmentId.length > 0) 
+    urlParams = urlParams.concat(urlParams.length > 0 ? "&departments=" : "?departments=", deparmentId.join(","));
+
+    if (occupationId.length > 0) 
+    urlParams = urlParams.concat(urlParams.length > 0 || deparmentId.length > 0 ? "&occupations=" : "?occupations=", occupationId.join(","));
+
     return urlParams;
   }
 

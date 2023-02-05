@@ -5,10 +5,13 @@ import { Subscription, tap } from 'rxjs';
 import { IAbstractComponentFilter } from 'src/app/core/shared/abstracts/interface/abstract-component-filter';
 import { IPaginator } from 'src/app/core/shared/commons/model/paginator';
 import { DepartmentCheckboxFilterComponent } from 'src/app/core/shared/components/filters/department-checkbox-filter/department-checkbox-filter.component';
+import { OccupationCheckboxFilterComponent } from 'src/app/core/shared/components/filters/occupation-checkbox-filter/occupation-checkbox-filter.component';
 import { SearchInputComponent } from 'src/app/core/shared/components/filters/search-input/search-input.component';
 import { IDepartmentFilter } from '../../../company/filter/department-filter';
 import { IBranch } from '../../../company/model/branch';
+import { IOccupationFilter } from '../../filter/occupation-filter';
 import { StaffFilter } from '../../filter/staff-filter';
+import { Occupation } from '../../model/occupation';
 import { IStaff } from '../../model/staff';
 import { StaffService } from '../../services/staff.service';
 
@@ -28,6 +31,7 @@ export class StaffComponent implements OnInit, OnDestroy, IAbstractComponentFilt
 
   @ViewChild(SearchInputComponent) searchFilterChild!: SearchInputComponent;
   @ViewChild(DepartmentCheckboxFilterComponent) departmentFilterChild!: DepartmentCheckboxFilterComponent;
+  @ViewChild(OccupationCheckboxFilterComponent) occupationFilterChild!: OccupationCheckboxFilterComponent;
 
   constructor(private service: StaffService, private activatedRoute: ActivatedRoute) { }
 
@@ -59,9 +63,16 @@ export class StaffComponent implements OnInit, OnDestroy, IAbstractComponentFilt
     this.getStaff();
   }
 
+  filterOccupation(data: IOccupationFilter[]): void {
+    this.filter.occupation = data;
+    this.loading = true;
+    this.getStaff();
+  }
+
   cleanFilter(): void {
     this.searchFilterChild.clearFilter();
     this.departmentFilterChild.clearSelection();
+    this.occupationFilterChild.clearSelection();
 
     if (this.filter.param.length > 0 || this.filter.department.length > 0) {
       this.filter.param = "";
