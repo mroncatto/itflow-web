@@ -1,9 +1,12 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { Subscription, tap } from 'rxjs';
+import { IAbstractComponentFilter } from 'src/app/core/shared/abstracts/interface/abstract-component-filter';
 import { IPaginator } from 'src/app/core/shared/commons/model/paginator';
+import { SearchInputComponent } from 'src/app/core/shared/components/filters/search-input/search-input.component';
+import { UserFilter } from '../../filter/user-filter';
 import { IUser } from '../../model/user';
 import { UserService } from '../../services/user.service';
 
@@ -11,7 +14,7 @@ import { UserService } from '../../services/user.service';
   templateUrl: './user-account.component.html',
   styleUrls: ['./user-account.component.css']
 })
-export class UserAccountComponent implements OnInit, OnDestroy {
+export class UserAccountComponent implements OnInit, OnDestroy, IAbstractComponentFilter {
 
   private sub: Subscription[] = [];
   users: IUser[] = [];
@@ -19,8 +22,12 @@ export class UserAccountComponent implements OnInit, OnDestroy {
   selectedUser: IUser | null = null;
   confirmModal!: BsModalRef;
   createUserModal!: BsModalRef;
-  loading: boolean = false;
+  loading: boolean = true;
   paginator!: IPaginator;
+  page: number = 0;
+  filter: UserFilter = new UserFilter();
+
+  @ViewChild(SearchInputComponent) filterChild!: SearchInputComponent;
 
   constructor(
     private service: UserService,
@@ -30,8 +37,9 @@ export class UserAccountComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.sub.push(
       this.activatedRoute.params.subscribe(params => {
-        const page: number = params['page'];
-        this.loadUsers(page);
+        const numPage: number = params['page'];
+        if (numPage !== null && numPage !== undefined) this.page = numPage;
+        this.loadUsers();
       })
     )
 
@@ -45,20 +53,40 @@ export class UserAccountComponent implements OnInit, OnDestroy {
     return this.service.getCurrentUser()?.username == user.username;
   }
 
-  private loadUsers(page: number = 0): void {
+  filterUsers(data: string): void {
+    if (data !== null && !this.loading) {
+      this.filter.param = data;
+      this.loading = true;
+      this.loadUsers()
+    };
+  }
+
+  cleanFilter(): void {
+    this.filterChild.clearFilter();
+
+    if (this.filter.param.length > 0) {
+      this.filter.param = "";
+      this.loading = true;
+      this.loadUsers();
+    }
+  }
+
+  private loadUsers(): void {
     this.sub.push(
-      this.service.getUsers(page)
+      this.service.getUsers(this.page, this.filter)
         .pipe(
           tap(res => res.content = this.service.sortById(res.content))
         )
         .subscribe({
           next: (data) => {
-            this.users = data.content,
-              this.paginator = data
+            this.users = data.content;
+            this.paginator = data;
+            this.loading = false;
           },
           error: (err) => {
             this.service.onHttpError(err);
             this.errorResponse = err;
+            this.loading = false;
           }
         })
     );

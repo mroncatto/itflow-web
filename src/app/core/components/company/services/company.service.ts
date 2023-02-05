@@ -85,7 +85,8 @@ export class CompanyService extends AbstractService {
     return this.formBuilder.group({
       id: [depto ? depto.id : ''],
       name: [depto ? depto.name : '', AbstractValidation.description(5)],
-      branch: [depto ? depto.branch : '', Validators.required]
+      branch: [depto ? depto.branch : '', Validators.required],
+      active: [true, Validators.required]
     });
   }
 

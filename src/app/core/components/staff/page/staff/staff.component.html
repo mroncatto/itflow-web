@@ -34,6 +34,12 @@
                         </div>
                     </div>
                     <div class="card-body">
+                        <div class="filter-list d-flex gap-2 mb-2">
+                            <app-search-input (onEnter)="filterStaff($event)"></app-search-input>
+                            <app-department-checkbox-filter (onSelect)="filterDepartment($event)"></app-department-checkbox-filter>
+                            <!-- <app-occupation-checkbox-filter></app-occupation-checkbox-filter> -->
+                            <button [disabled]="loading" class="btn btn-sm btn-primary focus-0" (click)="cleanFilter()" translate="commons.cleanFilter"></button>
+                        </div>
                         <table class="table table-striped">
                             <thead>
                                 <tr>

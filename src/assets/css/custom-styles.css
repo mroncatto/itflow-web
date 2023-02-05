@@ -24,10 +24,10 @@ body, button, div, i, html {
   --offcanvas-width: 270px;
   --topNavbarHeight: 56px;
   --text-badge: 10px;
-  --scrollbar-size: 0;
-  --scrollbar-color: #282A36;
-  --scrollbar-thumb-color: #282A36;
-  --scrollbar-thumb-hover-color: #282A36;
+  --scrollbar-size: 6px;
+  --scrollbar-color: hsla(231, 15%, 18%, 0.5);
+  --scrollbar-thumb-color: hsla(231, 69%, 51%, 0.5);
+  --scrollbar-thumb-hover-color: hsla(231, 70%, 62%, 0.5);
   --white-color: #FFF;
 }
 
@@ -313,6 +313,20 @@ body {
 
 .link-spin:hover {
   cursor: pointer;
+}
+
+.link-color-normal:hover {
+  color: var(--normal-text) !important;
+  transition-duration: 0.2s;
+}
+
+.focus-0 {
+  box-shadow: none !important;
+}
+
+.checkbox-filter-list {
+  height: 200px;
+  overflow-y: scroll;
 }
 
 /*=========== NAVBAR ======================

@@ -4,7 +4,9 @@ import { UntypedFormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Subject } from 'rxjs';
+import { StaffFilter } from 'src/app/core/components/staff/filter/staff-filter';
 import { Roles } from 'src/app/core/components/user/enum/role.enum';
+import { UserFilter } from 'src/app/core/components/user/filter/user-filter';
 import { environment } from 'src/environments/environment';
 import { ToastType } from '../../commons/enum/toastType.enum';
 import { ConfirmComponent } from '../../components/modal/confirm/confirm.component';
@@ -41,6 +43,9 @@ export class AbstractService {
     return list.sort((a, b) => a.id < b.id ? 1 : -1);
   }
 
+  sortByField(list: any[], field: string): any[] {
+    return list.sort((a, b) => a[field].localeCompare(b[field]));
+  }
   // ------------------ Router --------------------------------
   navigate(url: string, redirect: string = '', ...params: string[]): void {
     if (redirect && redirect.length > 0 && redirect !== '/login') {

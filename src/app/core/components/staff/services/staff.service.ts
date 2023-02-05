@@ -6,6 +6,7 @@ import { AbstractValidation } from 'src/app/core/shared/commons/validation/abstr
 import { OccupationFormComponent } from 'src/app/core/shared/components/forms/staff/occupation-form/occupation-form.component';
 import { StaffFormComponent } from 'src/app/core/shared/components/forms/staff/staff-form/staff-form.component';
 import { AbstractService } from 'src/app/core/shared/services/abstract/abstract.service';
+import { StaffFilter } from '../filter/staff-filter';
 import { IOccupation, Occupation } from '../model/occupation';
 import { IStaff, Staff } from '../model/staff';
 import { StaffValidation } from '../validation/staff-validation';
@@ -18,8 +19,8 @@ export class StaffService extends AbstractService {
   constructor(injector: Injector) { super(injector) }
 
   // ===================== Endpoints ======================
-  getStaff(page: number): Observable<IPaginator> {
-    return this.http.get<IPaginator>(`${this.API_URL}/staff/page/${page}`);
+  getStaff(page: number, filter: StaffFilter): Observable<IPaginator> {
+    return this.http.get<IPaginator>(`${this.API_URL}/staff/page/${page}${this.getStaffFilter(filter)}`);
   }
 
   getAllStaff(): Observable<Staff[]> {
@@ -86,6 +87,15 @@ export class StaffService extends AbstractService {
       name: [occupation ? occupation.name : '', AbstractValidation.description(5)],
       active: [true, Validators.required],
     });
+  }
+
+  getStaffFilter(filter: StaffFilter): string {
+    let urlParams: string = "";
+    let deparmentId: number[] = [];
+    filter.department.forEach(d => deparmentId.push(d.id));
+    if (filter.param.length > 0) urlParams = urlParams.concat("?filter=", filter.param);
+    if (deparmentId.length > 0) urlParams = urlParams.concat(urlParams.length > 0 ? "&departments=" : "?departments=", deparmentId.join(","));
+    return urlParams;
   }
 
 }

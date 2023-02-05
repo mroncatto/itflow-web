@@ -10,6 +10,9 @@ import { DepartmentFormComponent } from './components/forms/company/department-f
 import { OccupationFormComponent } from './components/forms/staff/occupation-form/occupation-form.component';
 import { StaffFormComponent } from './components/forms/staff/staff-form/staff-form.component';
 import { BranchFormComponent } from './components/forms/company/branch-form/branch-form.component';
+import { SearchInputComponent } from './components/filters/search-input/search-input.component';
+import { DepartmentCheckboxFilterComponent } from './components/filters/department-checkbox-filter/department-checkbox-filter.component';
+import { OccupationCheckboxFilterComponent } from './components/filters/occupation-checkbox-filter/occupation-checkbox-filter.component';
 
 
 @NgModule({
@@ -21,7 +24,10 @@ import { BranchFormComponent } from './components/forms/company/branch-form/bran
     DepartmentFormComponent,
     OccupationFormComponent,
     CompanyFormComponent,
-    BranchFormComponent
+    BranchFormComponent,
+    SearchInputComponent,
+    DepartmentCheckboxFilterComponent,
+    OccupationCheckboxFilterComponent
   ],
   imports: [
     CommonModule,
@@ -38,7 +44,10 @@ import { BranchFormComponent } from './components/forms/company/branch-form/bran
     DepartmentFormComponent,
     OccupationFormComponent,
     CompanyFormComponent,
-    BranchFormComponent
+    BranchFormComponent,
+    SearchInputComponent,
+    DepartmentCheckboxFilterComponent,
+    OccupationCheckboxFilterComponent
   ]
 })
 export class SharedModule { }

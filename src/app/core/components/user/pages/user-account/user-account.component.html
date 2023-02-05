@@ -34,6 +34,10 @@
                         </div>
                     </div>
                     <div class="card-body">
+                        <div class="filter-list d-flex gap-2">
+                            <app-search-input (onEnter)="filterUsers($event)"></app-search-input>
+                            <button [disabled]="loading" class="btn btn-sm btn-primary" (click)="cleanFilter()" translate="commons.cleanFilter"></button>
+                        </div>
                         <table class="table table-striped">
                             <thead>
                                 <tr>
@@ -112,6 +116,9 @@
                                             </div>
                                         </ul>
                                     </td>
+                                </tr>
+                                <tr *ngIf="users.length == 0">
+                                    <td colspan="6">No results</td>
                                 </tr>
                             </tbody>
                         </table>

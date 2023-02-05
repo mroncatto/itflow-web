@@ -1,8 +1,14 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription, tap } from 'rxjs';
+import { IAbstractComponentFilter } from 'src/app/core/shared/abstracts/interface/abstract-component-filter';
 import { IPaginator } from 'src/app/core/shared/commons/model/paginator';
+import { DepartmentCheckboxFilterComponent } from 'src/app/core/shared/components/filters/department-checkbox-filter/department-checkbox-filter.component';
+import { SearchInputComponent } from 'src/app/core/shared/components/filters/search-input/search-input.component';
+import { IDepartmentFilter } from '../../../company/filter/department-filter';
+import { IBranch } from '../../../company/model/branch';
+import { StaffFilter } from '../../filter/staff-filter';
 import { IStaff } from '../../model/staff';
 import { StaffService } from '../../services/staff.service';
 
@@ -10,21 +16,27 @@ import { StaffService } from '../../services/staff.service';
   templateUrl: './staff.component.html',
   styleUrls: ['./staff.component.css']
 })
-export class StaffComponent implements OnInit, OnDestroy {
+export class StaffComponent implements OnInit, OnDestroy, IAbstractComponentFilter {
 
   loading: boolean = true;
   staff: IStaff[] = [];
   errorResponse!: HttpErrorResponse;
   private sub: Subscription[] = [];
   paginator!: IPaginator;
+  page: number = 0;
+  filter: StaffFilter = new StaffFilter();
+
+  @ViewChild(SearchInputComponent) searchFilterChild!: SearchInputComponent;
+  @ViewChild(DepartmentCheckboxFilterComponent) departmentFilterChild!: DepartmentCheckboxFilterComponent;
 
   constructor(private service: StaffService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.sub.push(
       this.activatedRoute.params.subscribe(params => {
-        const page: number = params['page'];
-        this.getStaff(page);
+        const numPage: number = params['page'];
+        if (numPage !== null && numPage !== undefined) this.page = numPage;
+        this.getStaff();
       })
     )
   }
@@ -33,9 +45,35 @@ export class StaffComponent implements OnInit, OnDestroy {
     this.sub.forEach(sub => sub.unsubscribe());
   }
 
-  getStaff(page: number = 0): void {
+  filterStaff(data: string): void {
+    if (data !== null && !this.loading) {
+      this.filter.param = data;
+      this.loading = true;
+      this.getStaff();
+    };
+  }
+
+  filterDepartment(data: IDepartmentFilter[]): void {
+    this.filter.department = data;
+    this.loading = true;
+    this.getStaff();
+  }
+
+  cleanFilter(): void {
+    this.searchFilterChild.clearFilter();
+    this.departmentFilterChild.clearSelection();
+
+    if (this.filter.param.length > 0 || this.filter.department.length > 0) {
+      this.filter.param = "";
+      this.filter.department = [];
+      this.loading = true;
+      this.getStaff();
+    }
+  }
+
+  getStaff(): void {
     this.sub.push(
-      this.service.getStaff(page)
+      this.service.getStaff(this.page, this.filter)
         .pipe(
           tap(res => res.content = this.service.sortById(res.content))
         )

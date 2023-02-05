@@ -4,6 +4,7 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 import { Observable, Subject } from 'rxjs';
 import { IPaginator } from 'src/app/core/shared/commons/model/paginator';
 import { AbstractService } from 'src/app/core/shared/services/abstract/abstract.service';
+import { UserFilter } from '../filter/user-filter';
 import { IRole, Role } from '../model/role';
 import { IUser, User } from '../model/user';
 import { UserAccountFormComponent } from '../pages/user-account/modal/user-account-form/user-account-form.component';
@@ -38,8 +39,8 @@ export class UserService extends AbstractService {
     return this.authService.getUserFromSessionStorage() as IUser;
   }
 
-  getUsers(page: number): Observable<IPaginator> {
-    return this.http.get<IPaginator>(`${this.API_URL}/user/page/${page}`);
+  getUsers(page: number, filter: UserFilter): Observable<IPaginator> {
+    return this.http.get<IPaginator>(`${this.API_URL}/user/page/${page}${this.getUserFilter(filter)}`);
   }
 
   getAllUsers(): Observable<User[]> {
@@ -136,6 +137,12 @@ export class UserService extends AbstractService {
     const form: FormData = new FormData();
     form.append("username", username);
     return form;
+  }
+
+  getUserFilter(filter: UserFilter): string {
+    let urlParams: string = "";
+    if (filter.param.length > 0) urlParams = urlParams.concat("?filter=", filter.param);
+    return urlParams;
   }
 
 }
