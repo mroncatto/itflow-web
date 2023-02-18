@@ -1,12 +1,10 @@
-import { FormControl } from "@angular/forms";
-
-export interface IOccupation {
+export interface IDeviceCategory {
     readonly id: number;
     name: string;
     active: boolean;
 }
 
-export class Occupation implements IOccupation {
+export class DeviceCategory implements IDeviceCategory {
     id: number;
     name: string;
     active: boolean;
@@ -16,9 +14,4 @@ export class Occupation implements IOccupation {
         this.name = name;
         this.active = active;
     }
-}
-
-export interface OccupationForm {
-    name: FormControl<string>;
-    active: FormControl<boolean>;
 }

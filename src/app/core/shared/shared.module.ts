@@ -13,6 +13,10 @@ import { BranchFormComponent } from './components/forms/company/branch-form/bran
 import { SearchInputComponent } from './components/filters/search-input/search-input.component';
 import { DepartmentCheckboxFilterComponent } from './components/filters/department-checkbox-filter/department-checkbox-filter.component';
 import { OccupationCheckboxFilterComponent } from './components/filters/occupation-checkbox-filter/occupation-checkbox-filter.component';
+import { DeviceFormComponent } from './components/forms/device/device-form/device-form.component';
+import { NewDepartmentButtonComponent } from './components/quickform/new-department';
+import { NewOccupationButtonComponent } from './components/quickform/new-occupation';
+import { NewStaffButtonComponent } from './components/quickform/new-staff';
 
 
 @NgModule({
@@ -27,7 +31,11 @@ import { OccupationCheckboxFilterComponent } from './components/filters/occupati
     BranchFormComponent,
     SearchInputComponent,
     DepartmentCheckboxFilterComponent,
-    OccupationCheckboxFilterComponent
+    OccupationCheckboxFilterComponent,
+    DeviceFormComponent,
+    NewDepartmentButtonComponent,
+    NewOccupationButtonComponent,
+    NewStaffButtonComponent
   ],
   imports: [
     CommonModule,
@@ -47,7 +55,11 @@ import { OccupationCheckboxFilterComponent } from './components/filters/occupati
     BranchFormComponent,
     SearchInputComponent,
     DepartmentCheckboxFilterComponent,
-    OccupationCheckboxFilterComponent
+    OccupationCheckboxFilterComponent,
+    DeviceFormComponent,
+    NewDepartmentButtonComponent,
+    NewOccupationButtonComponent,
+    NewStaffButtonComponent
   ]
 })
 export class SharedModule { }

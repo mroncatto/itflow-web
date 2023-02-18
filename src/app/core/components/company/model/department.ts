@@ -1,3 +1,4 @@
+import { FormControl } from "@angular/forms";
 import { IBranch } from "./branch";
 
 export interface IDepartment {
@@ -20,4 +21,10 @@ export class Department implements IDepartment {
         this.active = active;
     }
     
+}
+
+export interface DepartmentForm {
+    name: FormControl<string>;
+    branch: FormControl<IBranch>;
+    active: FormControl<boolean>;
 }

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { IUser } from './core/components/user/model/user';
+import { MenuItem } from './core/shared/commons/interface/item-menu';
 import { ILanguage } from './core/shared/commons/interface/language';
 import { AuthenticationService } from './core/shared/services/authentication/authentication.service';
 import { MenuService } from './core/shared/services/menu/menu.service';
@@ -33,13 +34,21 @@ export class AppComponent {
     this.title.setTitle('ITFLOW');
   }
 
+  getMenu(): MenuItem[] {
+    return this.menuService.getMenuList();
+  }
+
   isLoggedIn(): Observable<boolean> {
     return this.authService.isLoggedIn;
   }
 
   ngOnInit(): void {
     this.menuService.onLoadTheme();
-    if (!this.user) this.loadUser();
+    if (!this.user) this.loadUser(); 
+  }
+
+  getIconTheme(): string {
+    return this.menuService.getIconTheme();
   }
 
   onChangeTheme(): void {

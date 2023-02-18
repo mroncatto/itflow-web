@@ -1,4 +1,5 @@
-import { ICompany } from "./company";
+import { FormControl } from "@angular/forms";
+import { Company, ICompany } from "./company";
 
 export interface IBranch {
     readonly id: number;
@@ -20,4 +21,10 @@ export class Branch implements IBranch {
         this.active = active;
     }
 
+}
+
+export interface BranchForm {
+    name: FormControl<string>;
+    company: FormControl<Company>;
+    active: FormControl<boolean>;
 }

@@ -60,12 +60,12 @@ export class StaffService extends AbstractService {
   }
 
   // ===================== Modals ======================
-  getModalStaff(mainView?: boolean, staff?: IStaff): Subject<IStaff> {
+  getStaffModal(mainView?: boolean, staff?: IStaff): Subject<IStaff> {
     return this.callModal(StaffFormComponent, mainView, staff);
   }
 
 
-  getModalOccupation(mainView: boolean, occupation?: IOccupation): Subject<IOccupation> {
+  getOccupationModal(mainView: boolean, occupation?: IOccupation): Subject<IOccupation> {
     return this.callModal(OccupationFormComponent, mainView, occupation);
   }
 

@@ -104,7 +104,7 @@ export class StaffComponent implements OnInit, OnDestroy, IAbstractComponentFilt
 
   onCreate(): void {
     this.sub.push(
-      this.service.getModalStaff(true).subscribe({
+      this.service.getStaffModal(true).subscribe({
         next: (data) => this.staff.push(data),
         error: (err) => this.service.onHttpError(err)
       })
@@ -113,7 +113,7 @@ export class StaffComponent implements OnInit, OnDestroy, IAbstractComponentFilt
 
   onUpdate(staff: IStaff): void {
     this.sub.push(
-      this.service.getModalStaff(true, staff).subscribe({
+      this.service.getStaffModal(true, staff).subscribe({
         next: (data) => this.afterUpdate(data),
         error: (err) => this.service.onHttpError(err)
       })

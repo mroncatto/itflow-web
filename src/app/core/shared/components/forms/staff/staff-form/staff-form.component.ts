@@ -1,12 +1,12 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { UntypedFormGroup } from '@angular/forms';
+import { FormGroup, UntypedFormGroup } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { Subject } from 'rxjs';
 import { IDepartment } from 'src/app/core/components/company/model/department';
 import { CompanyService } from 'src/app/core/components/company/services/company.service';
 import { IOccupation, Occupation } from 'src/app/core/components/staff/model/occupation';
-import { IStaff } from 'src/app/core/components/staff/model/staff';
+import { IStaff, StaffForm } from 'src/app/core/components/staff/model/staff';
 import { StaffService } from 'src/app/core/components/staff/services/staff.service';
 import { AbstractStaff } from 'src/app/core/shared/abstracts/abstract-staff';
 import { IAbstractModelForms } from 'src/app/core/shared/abstracts/interface/abstract-model-forms';
@@ -20,7 +20,7 @@ export class StaffFormComponent extends AbstractStaff implements OnInit, OnDestr
 
   result!: Subject<IStaff>;
   staff!: IStaff;
-  staffForm!: UntypedFormGroup;
+  staffForm!: FormGroup<StaffForm>;
   mainView: boolean = false;
   departments: IDepartment[] = [];
   occupations: Occupation[] = [];
@@ -107,33 +107,12 @@ export class StaffFormComponent extends AbstractStaff implements OnInit, OnDestr
     );
   }
 
-  // ============================= CREATE DPTO ============================
-  onCreateDepartment(): void {
-    this.sub.push(
-      this.companyService.getDptoModal(false).subscribe({
-        next: (data) => this.onAfterCreateDepartment(data),
-        error: (err) => this.onError(err)
-      })
-    );
+  onCreateDepartment(department: IDepartment): void {
+    this.departments.push(department);
+    this.staffForm.controls['department'].setValue(department);
   }
 
-  onAfterCreateDepartment(dpto: IDepartment): void {
-    this.departments.push(dpto);
-    this.staffForm.controls['department'].setValue(dpto);
-  }
-
-
-  // ============================= CREATE OCCUPATIONS ============================
-  onCreateOccupations(): void {
-    this.sub.push(
-      this.service.getModalOccupation(false).subscribe({
-        next: (data) => this.onAfterCreateOccupation(data),
-        error: (err) => this.onError(err)
-      })
-    )
-  }
-
-  onAfterCreateOccupation(occupation: IOccupation): void {
+  onCreateOccupation(occupation: IOccupation): void {
     this.occupations.push(occupation);
     this.staffForm.controls['occupation'].setValue(occupation);
   }

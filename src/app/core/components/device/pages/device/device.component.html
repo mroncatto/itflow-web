@@ -1,0 +1,113 @@
+<main class="mt-5 pt-3">
+    <div class="container-fluid">
+
+        <!-- Top Bar -->
+        <div class="d-flex justify-content-between mt-2">
+            <div class="row">
+                <div class="title-page col-md-12 fw-bold fs-3">
+                    <i class="fa fa-desktop"></i> <span class="mx-1" translate="device.devices"></span>
+                </div>
+            </div>
+
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item active" aria-current="page" translate="device.device"></li>
+                </ol>
+            </nav>
+        </div>
+
+        <div class="row">
+            <div class="col-xl-10 col-sm-12 mx-auto">
+                <div class="card">
+                    <div class="card-header bg-primary fw-bold text-white flex-between">
+                        <div>
+                            <span translate="device.devices"></span>
+                            <div class="spinner-border spinner-border-sm mx-2" role="status" *ngIf="loading">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </div>
+                        <div>
+                            <button class="btn btn-success text-white" (click)="onCreate()">
+                                <i class="fas fa-desktop"></i>&nbsp;<span translate="commons.new"></span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <!-- <div class="filter-list d-flex gap-2 mb-2">
+                            <app-search-input (onEnter)="filterStaff($event)"></app-search-input>
+                            <app-department-checkbox-filter (onSelect)="filterDepartment($event)"></app-department-checkbox-filter>
+                            <app-occupation-checkbox-filter (onSelect)="filterOccupation($event)"></app-occupation-checkbox-filter>
+                            <button [disabled]="loading" class="btn btn-sm btn-primary focus-0" (click)="cleanFilter()" translate="commons.cleanFilter"></button>
+                        </div> -->
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th># id</th>
+                                    <th translate="device.code"></th>
+                                    <th translate="device.tag"></th>
+                                    <th translate="device.hostname"></th>
+                                    <th translate="commons.category"></th>
+                                    <th translate="department.department"></th>
+                                    <th translate="commons.status"></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let device of devices">
+                                    <td>{{device.id}}</td>
+                                    <td>{{device.code}}</td>
+                                    <td>{{device.tag}}</td>
+                                    <td class="link fw-bold">{{device.hostname}}</td>
+                                    <td>{{device.deviceCategory.name}}</td>
+                                    <td>{{device.department.branch.name}} - {{device.department.name}}</td>
+                                    <td>
+                                        <span *ngIf="device.active" class="badge bg-success"
+                                            translate="commons.active"></span>
+                                        <span *ngIf="!device.active" class="badge bg-danger"
+                                            translate="commons.inactive"></span>
+                                    </td>
+                                    <td>
+                                        <i title="{{'commons.actions' | translate}}"
+                                            class="fas fa-chevron-circle-down link" [id]="device.id"
+                                            data-bs-toggle="dropdown"></i>
+                                        <ul class="dropdown-menu dropdown-menu-end">
+                                            <li class="link-spin">
+                                                <a class="dropdown-item">
+                                                    <i class="fas fa-eye"></i>&nbsp;
+                                                    <span translate="commons.open"></span>
+                                                </a>
+                                            </li>
+                                            <li (click)="onUpdate(device)" class="link-spin">
+                                                <a class="dropdown-item">
+                                                    <i class="fas fa-pen"></i>&nbsp;
+                                                    <span translate="commons.edit"></span>
+                                                </a>
+                                            </li>
+                                            <div>
+                                                <li>
+                                                    <hr class="dropdown-divider">
+                                                </li>
+                                                <li (click)="confirmDelete(device)" class="link-spin">
+                                                    <a class="dropdown-item">
+                                                        <i class="fas fa-trash text-danger"></i>&nbsp;<span
+                                                            translate="commons.delete"></span>
+                                                    </a>
+                                                </li>
+                                            </div>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr *ngIf="devices.length === 0 && !loading">
+                                    <td class="text-center" colspan="7" translate="commons.noData"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <app-paginator *ngIf="paginator" [route]="'staff'" [paginator]="paginator"></app-paginator>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</main>

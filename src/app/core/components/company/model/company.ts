@@ -1,3 +1,5 @@
+import { FormControl } from "@angular/forms";
+
 export interface ICompany {
     readonly id: number;
     name: string;
@@ -17,4 +19,10 @@ export class Company implements ICompany {
         this.document = document;
         this.active = active;
     }
+}
+
+export interface CompanyForm {
+    name: FormControl<string>;
+    document: FormControl<string>;
+    active: FormControl<boolean>;
 }

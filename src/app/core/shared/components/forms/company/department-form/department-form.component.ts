@@ -1,10 +1,10 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
-import { UntypedFormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { Subject } from 'rxjs';
 import { IBranch } from 'src/app/core/components/company/model/branch';
-import { IDepartment } from 'src/app/core/components/company/model/department';
+import { DepartmentForm, IDepartment } from 'src/app/core/components/company/model/department';
 import { CompanyService } from 'src/app/core/components/company/services/company.service';
 import { IAbstractModelForms } from 'src/app/core/shared/abstracts/interface/abstract-model-forms';
 import { AbstractDepartment } from '../../../../abstracts/abstract-department';
@@ -19,7 +19,7 @@ export class DepartmentFormComponent extends AbstractDepartment implements OnIni
   result!: Subject<IDepartment>;
   department!: IDepartment;
   branchs: IBranch[] = [];
-  dptoForm!: UntypedFormGroup;
+  dptoForm!: FormGroup<DepartmentForm>;
   mainView: boolean = false;
 
   constructor(
@@ -74,6 +74,7 @@ export class DepartmentFormComponent extends AbstractDepartment implements OnIni
         )
       }
     } else {
+      this.dptoForm.markAllAsTouched();
       this.service.onWarning("badRequest", "fillFieldsRequired");
     }
   }

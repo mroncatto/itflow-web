@@ -1,6 +1,7 @@
-import { IDepartment } from "../../company/model/department";
+import { FormControl } from "@angular/forms";
+import { Department, IDepartment } from "../../company/model/department";
 import { IUser, User } from "../../user/model/user";
-import { IOccupation } from "./occupation";
+import { IOccupation, Occupation } from "./occupation";
 
 export interface IStaff {
     id: string;
@@ -31,4 +32,12 @@ export class Staff implements IStaff {
         this.user = user;
         this.active = active;
     }
+}
+
+export interface StaffForm {
+    fullName: FormControl<string>;
+    email: FormControl<string>;
+    department: FormControl<Department>;
+    occupation: FormControl<Occupation>;
+    active: FormControl<boolean>;
 }

@@ -1,13 +1,13 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { UntypedFormGroup } from '@angular/forms';
+import { FormGroup, UntypedFormGroup } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { EMPTY, Subject, Subscription, switchMap, take } from 'rxjs';
 import { IStaff, Staff } from 'src/app/core/components/staff/model/staff';
 import { StaffService } from 'src/app/core/components/staff/services/staff.service';
 import { AbstractUser } from 'src/app/core/shared/abstracts/abstract-user';
 import { IAbstractModelForms } from 'src/app/core/shared/abstracts/interface/abstract-model-forms';
-import { IUser } from '../../../../model/user';
+import { IUser, UserForm } from '../../../../model/user';
 import { UserService } from '../../../../services/user.service';
 
 @Component({
@@ -20,7 +20,7 @@ export class UserAccountFormComponent extends AbstractUser implements OnInit, On
   user!: IUser;
   staff: Staff[] = [];
   result!: Subject<IUser>;
-  userForm!: UntypedFormGroup;
+  userForm!: FormGroup<UserForm>;
 
   constructor(
     private modal: BsModalRef,
@@ -35,9 +35,9 @@ export class UserAccountFormComponent extends AbstractUser implements OnInit, On
   }
 
   payload(user: IUser): void {
-    if(user) {
+    if (user) {
       this.user = user;
-      this.userForm.setValue(this.service.getUserFormValue(user));
+      this.userForm = this.service.getUserForm(user);
       this.userForm.controls['username'].disable();
       this.userForm.controls['active'].disable();
       this.userForm.controls['nonLocked'].disable();
@@ -53,7 +53,7 @@ export class UserAccountFormComponent extends AbstractUser implements OnInit, On
       this.loading = true;
       if (this.user && this.user?.username) {
         this.sub.push(
-          this.service.updateUser(this.userForm.getRawValue()).subscribe({
+          this.service.updateUser(this.userForm.getRawValue() as IUser).subscribe({
             next: (data) => this.onSave(data),
             error: (err) => this.onError(err)
           })
@@ -67,7 +67,7 @@ export class UserAccountFormComponent extends AbstractUser implements OnInit, On
         )
       }
     } else {
-      //this.userForm.markAsTouched(); FIXME: Works only on Angular 14
+      this.userForm.markAllAsTouched();
       this.service.onWarning("badRequest", "fillFieldsRequired");
     }
   }
@@ -102,16 +102,7 @@ export class UserAccountFormComponent extends AbstractUser implements OnInit, On
   }
 
 
-  onCreateStaff(): void {
-    this.sub.push(
-      this.staffService.getModalStaff(false, this.userForm.value as IStaff).subscribe({
-        next: (data) => this.afterCreateStaff(data),
-        error: (err) => this.onError(err)
-      })
-    )
-  }
-
-  private afterCreateStaff(staff: IStaff): void {
+  onCreateStaff(staff: IStaff): void {
     this.staff.push(staff);
     this.userForm.get('staff')?.setValue(staff);
   }

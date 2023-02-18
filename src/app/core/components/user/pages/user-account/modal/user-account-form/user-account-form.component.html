@@ -34,8 +34,7 @@
             </option>
             <option *ngFor="let s of staff" [ngValue]="s">{{s.fullName}}</option>
           </select>
-          <button (click)="onCreateStaff()" type="button" title="{{'commons.register' | translate}}"
-            class="btn btn-primary"><i class="fas fa-folder-plus"></i></button>
+          <btn-new-staff (onCreate)="onCreateStaff($event)" [submodal]="true"></btn-new-staff>
         </div>
         <app-validation-field [form]="userForm" [field]="'user'"></app-validation-field>
       </div>

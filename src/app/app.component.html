@@ -132,12 +132,45 @@
                         <span translate="menu.dashboard"></span>
                     </a>
                 </li>
-                <li class="my-1">
+                <!-- <li class="my-1">
                     <hr class="dropdown-divider">
-                </li>
-                <li>
+                </li> -->
+                <!-- <li>
                     <div class="text-muted small fw-bold text-uppercase px-3" translate="menu.helpdesk"></div>
+                </li> -->
+                <li *ngFor="let menu of getMenu()">
+                    <hr *ngIf="menu.isMenuDivider()" class="dropdown-divider">
+                    <div *ngIf="menu.isMenuDivider()" class="text-muted small fw-bold text-uppercase px-3" translate="{{menu._translate}}"></div> 
+                    <a *ngIf="menu.isMenu()" [routerLink]="[menu._routerLink]" routerLinkActive="active"
+                        class="nav-link px-3">
+                        <span class="me-2">
+                            <i class="fas" [ngClass]="menu._icon"></i>
+                        </span>
+                        <span translate="{{menu._translate}}"></span>
+                    </a>
+                    <a *ngIf="menu.isSubMenu()" class="nav-link px-3 sidebar-link" data-bs-toggle="collapse"
+                        [href]="'#' + menu._submenuId " role="button">
+                        <span class="me-2"><i class="fa fa-ethernet"></i></span>
+                        <span>Redes</span>
+                        <span class="right-icon ms-auto">
+                            <i class="fa fa-chevron-down"></i>
+                        </span>
+                    </a>
+                    <div *ngIf="menu.isSubMenu()" class="collapse" [id]="menu._submenuId">
+                        <div>
+                            <ul class="navbar-nav ps-3">
+                                <li *ngFor="let itemMenu of menu._submenu">
+                                    <a routerLink="[itemMenu._routerLink]" class="nav-link px-3">
+                                        <span class="me-2"><i class="fa" [ngClass]="itemMenu._icon"></i></span>
+                                        <span translate="{{itemMenu._translate}}"></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </li>
+
+                <!-- 
                 <li>
                     <a [routerLink]="['/staff']" routerLinkActive="active" class="nav-link px-3">
                         <span class="me-2">
@@ -145,7 +178,7 @@
                         </span>
                         <span translate="menu.staff"></span>
                     </a>
-                </li>
+                </li> -->
                 <!-- <li>
                     <a href="#" class="nav-link px-3">
                         <span class="me-2">
@@ -162,28 +195,27 @@
                         <span>Tareas</span>
                     </a>
                 </li>-->
-                <!-- 
-                <li class="my-1">
+
+                <!-- <li class="my-1">
                     <hr class="dropdown-divider">
                 </li>
                 <li>
-                    <div class="text-muted small fw-bold text-uppercase px-3" translate="Assets"></div>
+                    <div class="text-muted small fw-bold text-uppercase px-3" translate="menu.devices"></div>
                 </li> -->
 
-                <!-- Activos -->
+                <!-- Activos  -->
                 <!-- <li>
-                    <a [routerLink]="['/activos']" routerLinkActive="active" class="nav-link px-3">
+                    <a [routerLink]="['/device']" routerLinkActive="active" class="nav-link px-3">
                         <span class="me-2">
                             <i class="fas fa-desktop"></i>
                         </span>
-                        <span translate="menu.Assets"></span>
+                        <span translate="menu.devices"></span>
                     </a>
-                </li> -->
+                </li>  -->
 
                 <!-- Menu Activos -->
                 <!-- <li>
-                    <a class="nav-link px-3 sidebar-link" data-bs-toggle="collapse" href="#collapseRedes" role="button"
-                        aria-expanded="false" aria-controls="collapseRedes">
+                    <a class="nav-link px-3 sidebar-link" data-bs-toggle="collapse" href="#collapseRedes" role="button">
                         <span class="me-2"><i class="fa fa-ethernet"></i></span>
                         <span>Redes</span>
                         <span class="right-icon ms-auto">
@@ -220,7 +252,7 @@
                             </ul>
                         </div>
                     </div>
-                </li> -->
+                </li>  -->
 
                 <!-- Menu Energia -->
                 <!-- <li>
@@ -339,7 +371,7 @@
                     </div>
                 </li> -->
 
-                <section *ngIf="canOpenUsers()">
+                <!-- <section *ngIf="canOpenUsers()">
                     <li class="my-1">
                         <hr class="dropdown-divider">
                     </li>
@@ -354,7 +386,7 @@
                             <span translate="menu.usersAccount"></span>
                         </a>
                     </li>
-                </section>
+                </section> -->
 
                 <li class="my-1">
                     <hr class="dropdown-divider">
@@ -370,7 +402,7 @@
                         </span>
                         <span translate="menu.darkMode"></span>
                         <span class="right-icon ms-auto">
-                            <i id="theme-button" (click)="onChangeTheme()" class="fas fa-toggle-on p-1"></i>
+                            <i id="theme-button" (click)="onChangeTheme()" class="fas p-1" [ngClass]="getIconTheme()"></i>
                         </span>
                     </a>
                     <a class="nav-link px-3 switch-nav link">

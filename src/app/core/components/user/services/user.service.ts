@@ -1,12 +1,12 @@
 import { Injectable, Injector } from '@angular/core';
-import { AbstractControl, UntypedFormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, FormGroup, UntypedFormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { Observable, Subject } from 'rxjs';
 import { IPaginator } from 'src/app/core/shared/commons/model/paginator';
 import { AbstractService } from 'src/app/core/shared/services/abstract/abstract.service';
 import { UserFilter } from '../filter/user-filter';
 import { IRole, Role } from '../model/role';
-import { IUser, User } from '../model/user';
+import { IUser, User, UserForm } from '../model/user';
 import { UserAccountFormComponent } from '../pages/user-account/modal/user-account-form/user-account-form.component';
 import { UserAccountShowComponent } from '../pages/user-account/modal/user-account-show/user-account-show.component';
 import { UserValidation } from '../validation/user-validation';
@@ -76,26 +76,15 @@ export class UserService extends AbstractService {
   }
 
   // ===================== FormGroups ======================
-  getUserForm(user?: IUser): UntypedFormGroup {
+  getUserForm(user?: IUser): FormGroup<UserForm> {
     return this.formBuilder.group({
-      fullName: ['', UserValidation.fullName()],
-      email: ['', UserValidation.email()],
-      username: ['', UserValidation.username()],
-      staff: null,
-      active: [true],
-      nonLocked: [true]
+      fullName: [ user ? user.fullName : '', UserValidation.fullName()],
+      email: [ user ? user.email : '', UserValidation.email()],
+      username: [ user ? user.username : '', UserValidation.username()],
+      staff:  user ? user.staff : null,
+      active: [ user ? user.active : true],
+      nonLocked: [ user ? user.nonLocked : true]
     })
-  }
-
-  getUserFormValue(user: IUser): Object {
-    return ({
-      fullName: user.fullName,
-      email: user.email,
-      username: user.username,
-      staff: user.staff ? user.staff : null,
-      active: user.active,
-      nonLocked: user.nonLocked
-    });
   }
 
   getProfileForm(user: IUser): UntypedFormGroup {

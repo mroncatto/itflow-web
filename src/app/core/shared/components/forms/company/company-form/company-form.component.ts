@@ -1,10 +1,10 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { UntypedFormGroup } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { Subject } from 'rxjs';
 import { CompanyService } from 'src/app/core/components/company/services/company.service';
-import { ICompany } from '../../../../../components/company/model/company';
+import { CompanyForm, ICompany } from '../../../../../components/company/model/company';
 import { AbstractCompany } from '../../../../abstracts/abstract-company';
 import { IAbstractModelForms } from '../../../../abstracts/interface/abstract-model-forms';
 
@@ -17,7 +17,7 @@ export class CompanyFormComponent extends AbstractCompany implements OnInit, OnD
 
   result!: Subject<ICompany>;
   company!: ICompany;
-  companyForm!: UntypedFormGroup;
+  companyForm!: FormGroup<CompanyForm>;
 
   constructor(
     private modal: BsModalRef,
@@ -69,6 +69,7 @@ export class CompanyFormComponent extends AbstractCompany implements OnInit, OnD
         )
       }
     } else {
+      this.companyForm.markAllAsTouched();
       this.service.onWarning("badRequest", "fillFieldsRequired");
     }
   }

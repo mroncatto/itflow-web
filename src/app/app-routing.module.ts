@@ -11,9 +11,10 @@ const routes: Routes = [
       { path: 'users', loadChildren: () => import('./core/components/user/user.module').then(m => m.UserModule) },
       { path: 'staff', loadChildren: () => import('./core/components/staff/staff.module').then(m => m.StaffModule) },
       { path: 'company', loadChildren: () => import('./core/components/company/company.module').then(m => m.CompanyModule) },
+      { path: 'device', loadChildren: () => import('./core/components/device/device.module').then(m => m.DeviceModule) },
       { path: '**', pathMatch: 'full', redirectTo: 'dashboard' }
     ]
-  }
+  },
 ];
 
 @NgModule({

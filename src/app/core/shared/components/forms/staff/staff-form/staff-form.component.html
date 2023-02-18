@@ -22,12 +22,12 @@
             <div class="mb-3">
                 <label for="department" translate="department.department"></label>
                 <div class="d-flex gap-2">
-                    <select formControlName="department" id="department" [compareWith]="compareWith" class="form-select">
+                    <select formControlName="department" id="department" [compareWith]="compareWith"
+                        class="form-select">
                         <option translate="staff.selectDepartment" disabled selected value=""></option>
                         <option *ngFor="let d of departments" [ngValue]="d">{{d.branch.name}}-{{d.name}}</option>
                     </select>
-                    <button (click)="onCreateDepartment()" type="button" [disabled]="loading || !mainView" title="{{'commons.register' | translate}}" class="btn btn-primary"><i
-                            class="fas fa-folder-plus"></i></button>
+                    <btn-new-department (onCreate)="onCreateDepartment($event)" [submodal]="mainView"></btn-new-department>
                 </div>
                 <app-validation-field [form]="staffForm" [field]="'department'"></app-validation-field>
             </div>
@@ -35,12 +35,12 @@
             <div class="mb-3">
                 <label for="occupation" translate="occupation.occupation"></label>
                 <div class="d-flex gap-2">
-                    <select formControlName="occupation" id="occupation" [compareWith]="compareWith" class="form-select">
+                    <select formControlName="occupation" id="occupation" [compareWith]="compareWith"
+                        class="form-select">
                         <option translate="staff.selectOccupation" disabled selected value=""></option>
                         <option *ngFor="let o of occupations" [ngValue]="o">{{o.name}}</option>
                     </select>
-                    <button (click)="onCreateOccupations()" type="button" [disabled]="loading || !mainView" title="{{'commons.register' | translate}}" class="btn btn-primary"><i
-                            class="fas fa-folder-plus"></i></button>
+                    <btn-new-occupation (onCreate)="onCreateOccupation($event)" [submodal]="mainView"></btn-new-occupation>
                 </div>
                 <app-validation-field [form]="staffForm" [field]="'occupation'"></app-validation-field>
             </div>
