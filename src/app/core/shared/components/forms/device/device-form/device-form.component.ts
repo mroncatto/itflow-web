@@ -21,7 +21,6 @@ export class DeviceFormComponent extends AbstractDevice implements OnInit, OnDes
   result!: Subject<IDevice>;
   device!: IDevice;
   deviceForm!: FormGroup<DeviceForm>;
-  mainView: boolean = false;
   departments: IDepartment[] = [];
   categories: IDeviceCategory[] = [];
 
@@ -108,6 +107,16 @@ export class DeviceFormComponent extends AbstractDevice implements OnInit, OnDes
 
   closeModal() {
     this.modal.hide();
+  }
+
+  onCreateDepartment(department: IDepartment): void {
+    this.departments.push(department);
+    this.deviceForm.controls['department'].setValue(department);
+  }
+
+  onCreateCategory(deviceCategory: IDeviceCategory): void {
+    this.categories.push(deviceCategory);
+    this.deviceForm.controls['deviceCategory'].setValue(deviceCategory);
   }
 
 }

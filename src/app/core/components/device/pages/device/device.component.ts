@@ -39,7 +39,7 @@ export class DeviceComponent implements OnInit, OnDestroy {
     this.sub.push(
       this.service.getDevice(this.page)
         .pipe(
-          tap(res => res.content = this.service.sortById(res.content))
+          tap(res => res.content = this.service.sortByField(res.content, 'hostname'))
         )
         .subscribe({
           next: (data) => {
@@ -58,7 +58,7 @@ export class DeviceComponent implements OnInit, OnDestroy {
 
   onCreate(): void {
     this.sub.push(
-      this.service.getModalDevice(true).subscribe({
+      this.service.getDeviceModal().subscribe({
         next: (data) => this.devices.push(data),
         error: (err) => this.service.onHttpError(err)
       })
@@ -67,7 +67,7 @@ export class DeviceComponent implements OnInit, OnDestroy {
 
   onUpdate(device: IDevice): void {
     this.sub.push(
-      this.service.getModalDevice(true, device).subscribe({
+      this.service.getDeviceModal(device).subscribe({
         next: (data) => this.afterUpdate(data),
         error: (err) => this.service.onHttpError(err)
       })
@@ -81,7 +81,32 @@ export class DeviceComponent implements OnInit, OnDestroy {
   }
 
   confirmDelete(device: IDevice): void {
-
+    this.sub.push(
+      this.service.showConfirm('warning', 'delete', device.hostname).subscribe({
+        next: (confirm) => {
+          if (confirm) this.onDelete(device)
+        },
+        error: (err) => this.service.onHttpError(err)
+      })
+    )
   }
+
+  private onDelete(device: IDevice): void {
+    this.sub.push(
+      this.service.deleteDevice(device.id).subscribe({
+        next: () => this.afterDelete(device),
+        error: (err) => this.service.onHttpError(err)
+      })
+    )
+  }
+
+  private afterDelete(device: IDevice): void {
+    this.devices.forEach(d => {
+      if (d.id === device.id) d.active = false;
+    });
+    this.service.onInfo("successfully", "deviceDeleted");
+  }
+
+
 
 }

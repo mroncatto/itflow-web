@@ -69,7 +69,7 @@ export class OccupationComponent implements OnInit, OnDestroy {
 
   onCreate(): void {
     this.sub.push(
-      this.service.getOccupationModal(true).subscribe({
+      this.service.getOccupationModal().subscribe({
         next: (data) => this.onAfterCreate(data),
         error: (err) => this.service.onHttpError(err)
       })
@@ -82,7 +82,7 @@ export class OccupationComponent implements OnInit, OnDestroy {
 
   onUpdate(occupation: IOccupation): void {
     this.sub.push(
-      this.service.getOccupationModal(true, occupation).subscribe({
+      this.service.getOccupationModal(occupation).subscribe({
         next: (data) => this.onAfterUpdate(data),
         error: (err) => this.service.onHttpError(err)
       })

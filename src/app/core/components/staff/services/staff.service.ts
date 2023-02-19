@@ -9,6 +9,7 @@ import { AbstractService } from 'src/app/core/shared/services/abstract/abstract.
 import { StaffFilter } from '../filter/staff-filter';
 import { IOccupation, Occupation } from '../model/occupation';
 import { IStaff, Staff } from '../model/staff';
+import { OccupationValidation } from '../validation/occupation-validation';
 import { StaffValidation } from '../validation/staff-validation';
 
 @Injectable({
@@ -29,6 +30,10 @@ export class StaffService extends AbstractService {
 
   getOccupation(): Observable<Occupation[]> {
     return this.http.get<Occupation[]>(`${this.API_URL}/occupation`);
+  }
+
+  getOccupationUsingByStaff(): Observable<Occupation[]> {
+    return this.http.get<Occupation[]>(`${this.API_URL}/occupation/filter/staff`);
   }
 
   updateOccupation(occupation: Occupation): Observable<Occupation> {
@@ -60,13 +65,12 @@ export class StaffService extends AbstractService {
   }
 
   // ===================== Modals ======================
-  getStaffModal(mainView?: boolean, staff?: IStaff): Subject<IStaff> {
-    return this.callModal(StaffFormComponent, mainView, staff);
+  getStaffModal(staff?: IStaff): Subject<IStaff> {
+    return this.callModal(StaffFormComponent, staff);
   }
 
-
-  getOccupationModal(mainView: boolean, occupation?: IOccupation): Subject<IOccupation> {
-    return this.callModal(OccupationFormComponent, mainView, occupation);
+  getOccupationModal(occupation?: IOccupation): Subject<IOccupation> {
+    return this.callModal(OccupationFormComponent, occupation);
   }
 
   // ===================== FormGroups ======================
@@ -84,7 +88,7 @@ export class StaffService extends AbstractService {
   getOccupationForm(occupation?: IOccupation): UntypedFormGroup {
     return this.formBuilder.group({
       id: [occupation ? occupation.id : ''],
-      name: [occupation ? occupation.name : '', AbstractValidation.description(5)],
+      name: [occupation ? occupation.name : '', OccupationValidation.nameOccupation()],
       active: [true, Validators.required],
     });
   }

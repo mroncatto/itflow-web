@@ -34,7 +34,7 @@
             </option>
             <option *ngFor="let s of staff" [ngValue]="s">{{s.fullName}}</option>
           </select>
-          <btn-new-staff (onCreate)="onCreateStaff($event)" [submodal]="true"></btn-new-staff>
+          <btn-new-staff [loading]="loading" (onCreate)="onCreateStaff($event)"></btn-new-staff>
         </div>
         <app-validation-field [form]="userForm" [field]="'user'"></app-validation-field>
       </div>

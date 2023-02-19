@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { DeviceViewComponent } from '../pages/device-view/device-view.component';
 import { DeviceComponent } from '../pages/device/device.component';
 
 const routes: Routes = [
-  { path: '', component: DeviceComponent }
+  { path: '', component: DeviceComponent },
+  { path: ':id/view', component: DeviceViewComponent }
 ];
 
 @NgModule({

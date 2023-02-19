@@ -29,7 +29,7 @@ export class DepartmentCheckboxFilterComponent extends AbstractFilter<Department
     this.loading = true;
     this.clearData();
     this.sub.push(
-      this.service.getDepartments().subscribe({
+      this.service.getDepartmentsUsingByStaff().subscribe({
         next: (data) => this.onSuccess(data),
         error: (err) => this.loading = false
       })
@@ -61,6 +61,12 @@ export class DepartmentCheckboxFilterComponent extends AbstractFilter<Department
       this.filteredItemList = [];
       this.onSelect.emit([]);
     }
+  }
+
+  refershList(): void {
+    this.clearSelection();
+    this.records = [];
+    this.loadData();
   }
 
 }

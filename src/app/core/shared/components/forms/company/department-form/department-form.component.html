@@ -19,8 +19,7 @@
                         <option translate="department.selectBranch" disabled selected value=""></option>
                         <option *ngFor="let b of branchs" [ngValue]="b">{{b.company.name}}-{{b.name}}</option>
                     </select>
-                    <button type="button" [disabled]="loading || !mainView" title="{{'commons.register' | translate}}" class="btn btn-primary"><i
-                            class="fas fa-folder-plus"></i></button>
+                    <btn-new-branch [loading]="loading" (onCreate)="onCreateBranch($event)"></btn-new-branch>
                 </div>
                 <app-validation-field [form]="dptoForm" [field]="'department'"></app-validation-field>
             </div>

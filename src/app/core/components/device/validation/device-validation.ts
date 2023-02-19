@@ -8,10 +8,18 @@ export class DeviceValidation extends AbstractValidation {
     }
 
     static override description(): Validators[] {
-        return [Validators.minLength(5), Validators.maxLength(75), Validators.required];
+        return [Validators.maxLength(75)];
     }
 
     static serialNumber(): Validators[] {
         return [Validators.maxLength(45)];
+    }
+
+    static deviceCategory(): Validators[] {
+        return [Validators.required];
+    }
+
+    static department(): Validators[] {
+        return [Validators.required];
     }
 }

@@ -1,4 +1,4 @@
-import { ValidationErrors, ValidatorFn, Validators } from "@angular/forms";
+import { Validators } from "@angular/forms";
 
 export abstract class AbstractValidation {
 
@@ -10,7 +10,11 @@ export abstract class AbstractValidation {
         return [Validators.pattern("?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}")];
     }
 
-    static description(minLength: number): Validators[] {
-        return [Validators.required, Validators.minLength(minLength)];
+    static required(): Validators[]{
+        return [Validators.required];
+    }
+
+    protected static description(minLength: number, maxLength: number): Validators[] {
+        return [Validators.minLength(minLength), Validators.maxLength(maxLength)];
     }
 }

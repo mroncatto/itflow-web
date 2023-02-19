@@ -20,7 +20,6 @@ export class DepartmentFormComponent extends AbstractDepartment implements OnIni
   department!: IDepartment;
   branchs: IBranch[] = [];
   dptoForm!: FormGroup<DepartmentForm>;
-  mainView: boolean = false;
 
   constructor(
     private modal: BsModalRef,
@@ -96,6 +95,11 @@ export class DepartmentFormComponent extends AbstractDepartment implements OnIni
 
   closeModal() {
     this.modal.hide();
+  }
+
+  onCreateBranch(branch: IBranch): void {
+    this.branchs.push(branch);
+    this.dptoForm.controls['branch'].setValue(branch);
   }
 
 }

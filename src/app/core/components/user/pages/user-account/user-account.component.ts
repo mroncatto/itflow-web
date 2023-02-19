@@ -102,7 +102,7 @@ export class UserAccountComponent implements OnInit, OnDestroy, IAbstractCompone
   // ============================= CREATE USER ============================
   onCreate(): void {
     this.sub.push(
-      this.service.getModalUser(true).subscribe({
+      this.service.getModalUser().subscribe({
         next: (user) => this.users.push(user),
         error: (err) => this.service.onHttpError(err)
       })
@@ -112,7 +112,7 @@ export class UserAccountComponent implements OnInit, OnDestroy, IAbstractCompone
   // ============================= UPDATE USER ============================
   onUpdate(user: IUser): void {
     this.sub.push(
-      this.service.getModalUser(true, user).subscribe({
+      this.service.getModalUser(user).subscribe({
         next: (user) => this.afterUpdate(user),
         error: (err) => this.service.onHttpError(err)
       })

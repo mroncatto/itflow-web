@@ -1,5 +1,5 @@
 import { Injectable, Injector } from '@angular/core';
-import { AbstractControl, FormGroup, UntypedFormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, FormGroup, UntypedFormGroup, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { Observable, Subject } from 'rxjs';
 import { IPaginator } from 'src/app/core/shared/commons/model/paginator';
@@ -110,8 +110,8 @@ export class UserService extends AbstractService {
 
 
   // ===================== FormGroups ======================
-  getModalUser(mainView: boolean, user?: IUser): Observable<IUser> {
-    return this.callModal(UserAccountFormComponent, mainView, user);
+  getModalUser(user?: IUser): Observable<IUser> {
+    return this.callModal(UserAccountFormComponent, user);
   }
 
   onShowUser(username: string): void {

@@ -11,6 +11,7 @@ export interface IAbstractCheckboxFilter<T> {
     onSuccess(data: T[]): void;
     onChange(item: any): void;
     clearSelection(): void;
+    refershList(): void;
     clearFilter(): void;
     clearData(): void;
     countSelectedItems(): number;

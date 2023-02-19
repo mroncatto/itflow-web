@@ -8,7 +8,7 @@ import { AbstractComponent } from "../../abstracts/abstract-component";
 
 @Component({
     selector: 'btn-new-staff',
-    template: `<button (click)="execute()" type="button" [disabled]="loading || !submodal" title="{{'commons.register' | translate }}" class="btn btn-primary"><i
+    template: `<button (click)="execute()" type="button" [disabled]="loading" title="{{'commons.register' | translate }}" class="btn btn-primary"><i
     [class]="'fas ' + icon"></i></button>`
 })
 
@@ -18,8 +18,6 @@ export class NewStaffButtonComponent extends AbstractComponent implements OnInit
 
     @Input()
     icon: string = 'fa-folder-plus';
-    @Input()
-    submodal: boolean = false;
     @Input()
     override loading: boolean = false;
     

@@ -1,14 +1,16 @@
-import { Injectable, Injector, TemplateRef } from '@angular/core';
-import { UntypedFormGroup, Validators } from '@angular/forms';
-import { Observable, Subject, switchMap, take } from 'rxjs';
-import { AbstractValidation } from 'src/app/core/shared/commons/validation/abstract-validation';
+import { Injectable, Injector } from '@angular/core';
+import { FormGroup, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
 import { AbstractService } from 'src/app/core/shared/services/abstract/abstract.service';
-import { IBranch } from '../model/branch';
-import { ICompany } from '../model/company';
-import { IDepartment } from '../model/department';
+import { BranchForm, IBranch } from '../model/branch';
+import { CompanyForm, ICompany } from '../model/company';
+import { DepartmentForm, IDepartment } from '../model/department';
 import { CompanyFormComponent } from 'src/app/core/shared/components/forms/company/company-form/company-form.component';
 import { DepartmentFormComponent } from 'src/app/core/shared/components/forms/company/department-form/department-form.component';
 import { BranchFormComponent } from 'src/app/core/shared/components/forms/company/branch-form/branch-form.component';
+import { CompanyValidation } from '../validation/company-validation';
+import { BranchValidation } from '../validation/branch-validation';
+import { DepartmentValidation } from '../validation/department-validation';
 
 @Injectable({
   providedIn: 'root'
@@ -42,6 +44,10 @@ export class CompanyService extends AbstractService {
     return this.http.get<IDepartment[]>(`${this.API_URL}/department`);
   }
 
+  getDepartmentsUsingByStaff(): Observable<IDepartment[]> {
+    return this.http.get<IDepartment[]>(`${this.API_URL}/department/filter/staff`);
+  }
+
   updateDepartment(dpto: IDepartment): Observable<IDepartment> {
     return this.http.post<IDepartment>(`${this.API_URL}/department`, dpto);
   }
@@ -68,42 +74,42 @@ export class CompanyService extends AbstractService {
 
 
   // ===================== Modals =========================
-  getCompanyModal(mainView: boolean, company?: ICompany): Observable<ICompany> {
-    return this.callModal(CompanyFormComponent, mainView, company);
+  getCompanyModal(company?: ICompany): Observable<ICompany> {
+    return this.callModal(CompanyFormComponent, company);
   }
 
-  getBranchModal(mainView: boolean, branch?: IBranch): Observable<IBranch> {
-    return this.callModal(BranchFormComponent, mainView, branch);
+  getBranchModal(branch?: IBranch): Observable<IBranch> {
+    return this.callModal(BranchFormComponent, branch);
   }
 
-  getDptoModal(mainView: boolean, depto?: IDepartment): Observable<IDepartment> {
-    return this.callModal(DepartmentFormComponent, mainView, depto);
+  getDptoModal(depto?: IDepartment): Observable<IDepartment> {
+    return this.callModal(DepartmentFormComponent, depto);
   }
 
   // ===================== FormGroups ======================
-  getDepartmentForm(depto?: IDepartment): UntypedFormGroup {
+  getDepartmentForm(depto?: IDepartment): FormGroup<DepartmentForm> {
     return this.formBuilder.group({
       id: [depto ? depto.id : ''],
-      name: [depto ? depto.name : '', AbstractValidation.description(5)],
-      branch: [depto ? depto.branch : '', Validators.required],
+      name: [depto ? depto.name : '', DepartmentValidation.nameDept()],
+      branch: [depto ? depto.branch : '', DepartmentValidation.branch()],
       active: [true, Validators.required]
     });
   }
 
-  getCompanyForm(company?: ICompany): UntypedFormGroup {
+  getCompanyForm(company?: ICompany): FormGroup<CompanyForm> {
     return this.formBuilder.group({
       id: [company ? company.id : ''],
-      name: [company ? company.name : '', AbstractValidation.description(5)],
-      document: [company ? company.document : '', AbstractValidation.description(5)],
+      name: [company ? company.name : '', CompanyValidation.nameCompany()],
+      document: [company ? company.document : '', CompanyValidation.document()],
       active: [true, Validators.required]
     });
   }
 
-  getBranchForm(branch?: IBranch): UntypedFormGroup {
+  getBranchForm(branch?: IBranch): FormGroup<BranchForm> {
     return this.formBuilder.group({
       id: [branch ? branch.id : ''],
-      name: [branch ? branch.name : '', AbstractValidation.description(5)],
-      company: [branch ? branch.company : '', Validators.required],
+      name: [branch ? branch.name : '', BranchValidation.nameBranch()],
+      company: [branch ? branch.company : '', BranchValidation.company()],
       active: [true, Validators.required]
     });
   }

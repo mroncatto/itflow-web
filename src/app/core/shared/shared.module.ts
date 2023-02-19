@@ -17,6 +17,9 @@ import { DeviceFormComponent } from './components/forms/device/device-form/devic
 import { NewDepartmentButtonComponent } from './components/quickform/new-department';
 import { NewOccupationButtonComponent } from './components/quickform/new-occupation';
 import { NewStaffButtonComponent } from './components/quickform/new-staff';
+import { NewBranchButtonComponent } from './components/quickform/new-branch';
+import { NewDeviceCategoryButtonComponent } from './components/quickform/new-device-category';
+import { DeviceCategoryFormComponent } from './components/forms/device/device-category-form/device-category-form.component';
 
 
 @NgModule({
@@ -35,7 +38,10 @@ import { NewStaffButtonComponent } from './components/quickform/new-staff';
     DeviceFormComponent,
     NewDepartmentButtonComponent,
     NewOccupationButtonComponent,
-    NewStaffButtonComponent
+    NewStaffButtonComponent,
+    NewBranchButtonComponent,
+    NewDeviceCategoryButtonComponent,
+    DeviceCategoryFormComponent,
   ],
   imports: [
     CommonModule,
@@ -59,7 +65,10 @@ import { NewStaffButtonComponent } from './components/quickform/new-staff';
     DeviceFormComponent,
     NewDepartmentButtonComponent,
     NewOccupationButtonComponent,
-    NewStaffButtonComponent
+    NewStaffButtonComponent,
+    NewBranchButtonComponent,
+    NewDeviceCategoryButtonComponent,
+    DeviceCategoryFormComponent,
   ]
 })
 export class SharedModule { }

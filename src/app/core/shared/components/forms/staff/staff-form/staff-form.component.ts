@@ -21,7 +21,6 @@ export class StaffFormComponent extends AbstractStaff implements OnInit, OnDestr
   result!: Subject<IStaff>;
   staff!: IStaff;
   staffForm!: FormGroup<StaffForm>;
-  mainView: boolean = false;
   departments: IDepartment[] = [];
   occupations: Occupation[] = [];
 

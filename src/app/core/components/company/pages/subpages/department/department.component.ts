@@ -36,7 +36,7 @@ export class DepartmentComponent implements OnInit, OnDestroy {
 
   onCreate(): void {
     this.sub.push(
-      this.service.getDptoModal(true).subscribe({
+      this.service.getDptoModal().subscribe({
         next: (data) => this.departments.push(data),
         error: (err) => this.service.onHttpError(err)
       })
@@ -45,7 +45,7 @@ export class DepartmentComponent implements OnInit, OnDestroy {
 
   onUpdate(department: IDepartment): void {
     this.sub.push(
-      this.service.getDptoModal(true, department).subscribe({
+      this.service.getDptoModal(department).subscribe({
         next: (data) => {
           this.departments.forEach(d => {
             if(d.id === data.id) Object.assign(d, data);

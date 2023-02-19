@@ -77,9 +77,8 @@ export class AbstractService {
   }
 
   // ------------------ Modal Forms --------------------------------
-  callModal(template: any, mainView?: boolean, model?: any): Subject<any> {
+  callModal(template: any, model?: any): Subject<any> {
     const bsModalRef: BsModalRef = this.modalService.show(template, { backdrop: 'static' });
-    bsModalRef.content.mainView = mainView;
     if (model) bsModalRef.content?.payload(model);
     return (<any>bsModalRef.content).result;
   }

@@ -27,7 +27,7 @@
                         <option translate="staff.selectDepartment" disabled selected value=""></option>
                         <option *ngFor="let d of departments" [ngValue]="d">{{d.branch.name}}-{{d.name}}</option>
                     </select>
-                    <btn-new-department (onCreate)="onCreateDepartment($event)" [submodal]="mainView"></btn-new-department>
+                    <btn-new-department [loading]="loading" (onCreate)="onCreateDepartment($event)"></btn-new-department>
                 </div>
                 <app-validation-field [form]="staffForm" [field]="'department'"></app-validation-field>
             </div>
@@ -40,7 +40,7 @@
                         <option translate="staff.selectOccupation" disabled selected value=""></option>
                         <option *ngFor="let o of occupations" [ngValue]="o">{{o.name}}</option>
                     </select>
-                    <btn-new-occupation (onCreate)="onCreateOccupation($event)" [submodal]="mainView"></btn-new-occupation>
+                    <btn-new-occupation [loading]="loading" (onCreate)="onCreateOccupation($event)"></btn-new-occupation>
                 </div>
                 <app-validation-field [form]="staffForm" [field]="'occupation'"></app-validation-field>
             </div>

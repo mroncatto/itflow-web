@@ -50,8 +50,7 @@
                         <option translate="device.selectCategory" disabled selected value=""></option>
                         <option *ngFor="let c of categories" [ngValue]="c">{{c.name}}</option>
                     </select>
-                    <!-- <button (click)="onCreateOccupations()" type="button" [disabled]="loading || !mainView" title="{{'commons.register' | translate}}" class="btn btn-primary"><i
-                            class="fas fa-folder-plus"></i></button> -->
+                    <btn-new-device-category [loading]="loading" (onCreate)="onCreateCategory($event)"></btn-new-device-category>
                 </div>
                 <app-validation-field [form]="deviceForm" [field]="'deviceCategory'"></app-validation-field>
             </div>
@@ -63,8 +62,7 @@
                         <option translate="staff.selectDepartment" disabled selected value=""></option>
                         <option *ngFor="let d of departments" [ngValue]="d">{{d.name}}</option>
                     </select>
-                    <!-- <button (click)="onCreateOccupations()" type="button" [disabled]="loading || !mainView" title="{{'commons.register' | translate}}" class="btn btn-primary"><i
-                            class="fas fa-folder-plus"></i></button> -->
+                    <btn-new-department [loading]="loading" (onCreate)="onCreateDepartment($event)"></btn-new-department>
                 </div>
                 <app-validation-field [form]="deviceForm" [field]="'department'"></app-validation-field>
             </div>

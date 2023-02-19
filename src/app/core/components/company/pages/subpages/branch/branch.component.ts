@@ -36,7 +36,7 @@ export class BranchComponent implements OnInit, OnDestroy {
 
   onCreate(): void {
     this.sub.push(
-      this.service.getBranchModal(true).subscribe({
+      this.service.getBranchModal().subscribe({
         next: (data) => this.branches.push(data),
         error: (err) => this.service.onHttpError(err)
       })
@@ -45,7 +45,7 @@ export class BranchComponent implements OnInit, OnDestroy {
 
   onUpdate(branch: IBranch): void {
     this.sub.push(
-      this.service.getBranchModal(true, branch).subscribe({
+      this.service.getBranchModal(branch).subscribe({
         next: (data) => {
           this.branches.forEach(b => {
             if(b.id === data.id) Object.assign(b, data);

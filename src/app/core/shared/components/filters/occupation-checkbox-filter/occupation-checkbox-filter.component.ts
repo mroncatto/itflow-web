@@ -30,7 +30,7 @@ export class OccupationCheckboxFilterComponent extends AbstractFilter<Occupation
     this.loading = true;
     this.clearData();
     this.sub.push(
-      this.service.getOccupation().subscribe({
+      this.service.getOccupationUsingByStaff().subscribe({
         next: (data) => this.onSuccess(data),
         error: (err) => this.loading = false
       })
@@ -62,6 +62,12 @@ export class OccupationCheckboxFilterComponent extends AbstractFilter<Occupation
       this.filteredItemList = [];
       this.onSelect.emit([]);
     }
+  }
+
+  refershList(): void {
+    this.clearSelection();
+    this.records = [];
+    this.loadData();
   }
 
 }

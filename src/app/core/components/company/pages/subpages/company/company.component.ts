@@ -43,7 +43,7 @@ export class CompanyComponent implements OnInit, OnDestroy {
 
   onCreate(): void {
     this.sub.push(
-      this.service.getCompanyModal(true).subscribe({
+      this.service.getCompanyModal().subscribe({
         next: (data) => this.companies.push(data),
         error: (err) => this.service.onHttpError(err)
       })
@@ -52,7 +52,7 @@ export class CompanyComponent implements OnInit, OnDestroy {
 
   onUpdate(company: ICompany): void {
     this.sub.push(
-      this.service.getCompanyModal(true, company).subscribe({
+      this.service.getCompanyModal(company).subscribe({
         next: (data) => this.companies.forEach(c => {
           if (c.id === company.id) Object.assign(c, data);
         }),

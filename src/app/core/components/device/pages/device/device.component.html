@@ -42,7 +42,7 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th># id</th>
+                                    <th>#</th>
                                     <th translate="device.code"></th>
                                     <th translate="device.tag"></th>
                                     <th translate="device.hostname"></th>
@@ -57,7 +57,7 @@
                                     <td>{{device.id}}</td>
                                     <td>{{device.code}}</td>
                                     <td>{{device.tag}}</td>
-                                    <td class="link fw-bold">{{device.hostname}}</td>
+                                    <td class="link fw-bold"><a class="link" [routerLink]="[device.id + '/view']">{{device.hostname}}</a></td>
                                     <td>{{device.deviceCategory.name}}</td>
                                     <td>{{device.department.branch.name}} - {{device.department.name}}</td>
                                     <td>
@@ -77,13 +77,13 @@
                                                     <span translate="commons.open"></span>
                                                 </a>
                                             </li>
-                                            <li (click)="onUpdate(device)" class="link-spin">
+                                            <li *ngIf="device.active" (click)="onUpdate(device)" class="link-spin">
                                                 <a class="dropdown-item">
                                                     <i class="fas fa-pen"></i>&nbsp;
                                                     <span translate="commons.edit"></span>
                                                 </a>
                                             </li>
-                                            <div>
+                                            <div *ngIf="device.active">
                                                 <li>
                                                     <hr class="dropdown-divider">
                                                 </li>

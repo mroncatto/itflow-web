@@ -22,8 +22,8 @@
             <li class="dropdown-item" *ngFor="let item of itemList">
                 <div class="form-check">
                     <input class="link form-check-input" type="checkbox" [(ngModel)]="item.checked" [attr.id]="'occupation-' + item.id" (change)="onChange(item)">
-                    <label class="link form-check-label" [ngClass]="{'fw-bold': item.checked}" [attr.for]="'occupation-' + item.id">
-                        {{item.name}}
+                    <label [title]="'#' + item.id" class="link form-check-label" [ngClass]="{'fw-bold': item.checked}" [attr.for]="'occupation-' + item.id">
+                         {{item.name}}
                     </label>
                 </div>
             </li>
@@ -47,5 +47,6 @@
     </li>
     <div class="filter-footer d-flex justify-content-between">
         <span class="text-secondary link link-color-normal" (click)="clearSelection()"><small><strong translate="commons.clearSelection"></strong></small></span>
+        <span class="text-secondary link link-color-normal" (click)="refershList()"><small><strong translate="commons.refreshList"></strong></small></span>
     </div>
 </ul>

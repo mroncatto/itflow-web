@@ -19,7 +19,6 @@ export class OccupationFormComponent extends AbstractOccupation implements OnIni
   result!: Subject<IOccupation>;
   occupation!: IOccupation;
   occupationForm!: FormGroup<OccupationForm>;
-  mainView: boolean = false;
 
   constructor(
     private modal: BsModalRef,

@@ -1,19 +1,17 @@
-
-
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from "@angular/core";
-import { IOccupation } from "src/app/core/components/staff/model/occupation";
-import { StaffService } from "src/app/core/components/staff/services/staff.service";
+import { IBranch } from "src/app/core/components/company/model/branch";
+import { CompanyService } from "src/app/core/components/company/services/company.service";
 import { AbstractComponent } from "../../abstracts/abstract-component";
 
 @Component({
-    selector: 'btn-new-occupation',
+    selector: 'btn-new-branch',
     template: `<button (click)="execute()" type="button" [disabled]="loading" title="{{'commons.register' | translate }}" class="btn btn-primary"><i
     [class]="'fas ' + icon"></i></button>`
 })
 
-export class NewOccupationButtonComponent extends AbstractComponent implements OnInit, OnDestroy {
+export class NewBranchButtonComponent extends AbstractComponent implements OnInit, OnDestroy {
 
-    constructor(private service: StaffService) { super() }
+    constructor(private service: CompanyService) { super() }
 
     @Input()
     icon: string = 'fa-folder-plus';
@@ -21,7 +19,7 @@ export class NewOccupationButtonComponent extends AbstractComponent implements O
     override loading: boolean = false;
 
     @Output()
-    onCreate: EventEmitter<IOccupation> = new EventEmitter();
+    onCreate: EventEmitter<IBranch> = new EventEmitter();
 
     ngOnInit(): void {}
 
@@ -31,15 +29,15 @@ export class NewOccupationButtonComponent extends AbstractComponent implements O
 
     execute(): void {
     this.sub.push(
-      this.service.getOccupationModal().subscribe({
+      this.service.getBranchModal().subscribe({
         next: (data) => this.onAfterCreate(data),
         error: (err) => this.service.onHttpError(err)
       })
     );
   }
 
-  onAfterCreate(occupation: IOccupation): void {
-    this.onCreate.emit(occupation);
+  onAfterCreate(branch: IBranch): void {
+    this.onCreate.emit(branch);
   }
 
 }

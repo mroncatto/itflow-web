@@ -1,3 +1,5 @@
+import { FormControl } from "@angular/forms";
+
 export interface IDeviceCategory {
     readonly id: number;
     name: string;
@@ -14,4 +16,9 @@ export class DeviceCategory implements IDeviceCategory {
         this.name = name;
         this.active = active;
     }
+}
+
+export interface DeviceCategoryForm {
+    name: FormControl<string>;
+    active: FormControl<boolean>;
 }
