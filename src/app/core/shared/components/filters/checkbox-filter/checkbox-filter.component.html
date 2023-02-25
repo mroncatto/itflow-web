@@ -1,0 +1,61 @@
+<a class="nav-link dropdown-toggle" href="#" [id]="id" role="button" data-bs-toggle="dropdown"
+    (click)="load();" aria-expanded="false">
+    <i [class]="'fas ' + icon"></i>
+    <span *ngIf="countSelectedItems() == 0" class="mx-1" [translate]="headerText"></span>
+    <span *ngIf="countSelectedItems() > 0" class="mx-1 fw-bold badge bg-primary">{{getFirstSelectedItemName()}}
+        <span *ngIf="countSelectedItems() > 1"
+            class="badge rounded-pill bg-white text-secondary">{{selectionCounterExpresion()}}</span>
+    </span>
+    <i *ngIf="loading;" class="fas fa-spin fa-spinner"></i>
+</a>
+<ul class="dropdown-menu p-2" onclick="event.stopPropagation()">
+
+    <div class="input-group mb-2 mx-0">
+        <input type="text" class="form-control form-control-sm focus-0" [maxLength]="30" [(ngModel)]="filterInput"
+            (keyup)="filter()" autofocus placeholder="{{'commons.filterOnTheList' | translate}}"
+            aria-describedby="basic-addon2">
+        <div class="input-group-append">
+            <button class="btn btn-sm btn-outline-danger focus-0" type="button" (click)="clearFilter()"
+                translate="commons.clean"></button>
+        </div>
+    </div>
+    <div class="checkbox-filter-list">
+        <span *ngIf="filterInput.length == 0; else filteredList">
+            <span *ngIf="itemList.length == 0" class="text-muted small" translate="commons.noData"></span>
+            <li class="dropdown-item" *ngFor="let item of itemList">
+                <div class="form-check">
+                    <input class="link form-check-input" type="checkbox" [(ngModel)]="item.checked"
+                        [attr.id]="id + item.id" (change)="onChange(item)">
+                    <label [title]="'#' + item.id" class="link form-check-label" [ngClass]="{'fw-bold': item.checked}"
+                        [attr.for]="id + item.id">
+                        {{item.name}}
+                    </label>
+                </div>
+            </li>
+        </span>
+
+        <ng-template #filteredList>
+            <span *ngIf="filteredItemList.length == 0" class="text-muted small" translate="commons.noData"></span>
+            <li class="dropdown-item" *ngFor="let item of filteredItemList">
+                <div class="form-check">
+                    <input class="link form-check-input" type="checkbox" [(ngModel)]="item.checked"
+                        [attr.id]="id + item.id" (change)="onChange(item, true)">
+                    <label [title]="'#' + item.id" class="link form-check-label" [ngClass]="{'fw-bold': item.checked}"
+                        [attr.for]="id + item.id">
+                        {{item.name}}
+                    </label>
+                </div>
+            </li>
+        </ng-template>
+    </div>
+
+    <li>
+        <hr class="dropdown-divider">
+    </li>
+    <div class="filter-footer d-flex justify-content-between">
+        <span class="text-secondary link link-color-normal" (click)="clearSelection()"><small><strong
+                    translate="commons.clearSelection"></strong></small></span>
+        <span class="text-secondary link link-color-normal" (click)="refresh()"><small><strong
+                    translate="commons.refreshList"></strong></small></span>
+    </div>
+</ul>

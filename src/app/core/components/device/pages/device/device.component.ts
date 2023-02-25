@@ -1,8 +1,14 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription, tap } from 'rxjs';
+import { IAbstractComponentFilter } from 'src/app/core/shared/abstracts/interface/abstract-component-filter';
+import { ICheckboxFilter } from 'src/app/core/shared/abstracts/interface/checkbox-filter';
 import { IPaginator } from 'src/app/core/shared/commons/model/paginator';
+import { DepartmentCheckboxFilterComponent } from 'src/app/core/shared/components/filters/department-checkbox-filter/department-checkbox-filter.component';
+import { DeviceCategoryCheckboxFilterComponent } from 'src/app/core/shared/components/filters/device-category-checkbox-filter/device-category-checkbox-filter.component';
+import { SearchInputComponent } from 'src/app/core/shared/components/filters/search-input/search-input.component';
+import { DeviceFilter } from '../../filter/device-filter';
 import { IDevice } from '../../model/device';
 import { DeviceService } from '../../services/device.service';
 
@@ -10,7 +16,7 @@ import { DeviceService } from '../../services/device.service';
   templateUrl: './device.component.html',
   styleUrls: ['./device.component.css']
 })
-export class DeviceComponent implements OnInit, OnDestroy {
+export class DeviceComponent implements OnInit, OnDestroy, IAbstractComponentFilter {
 
   loading: boolean = true;
   devices: IDevice[] = [];
@@ -18,6 +24,12 @@ export class DeviceComponent implements OnInit, OnDestroy {
   private sub: Subscription[] = [];
   paginator!: IPaginator;
   page: number = 0;
+  filter: DeviceFilter = new DeviceFilter();
+
+  @ViewChild(SearchInputComponent) searchFilterChild!: SearchInputComponent;
+  @ViewChild(DepartmentCheckboxFilterComponent) departmentFilterChild!: DepartmentCheckboxFilterComponent;
+  @ViewChild(DeviceCategoryCheckboxFilterComponent) categoryFilterChild!: DeviceCategoryCheckboxFilterComponent;
+  
 
   constructor(private service: DeviceService, private activatedRoute: ActivatedRoute) { }
 
@@ -37,7 +49,7 @@ export class DeviceComponent implements OnInit, OnDestroy {
 
   private getDevices(): void {
     this.sub.push(
-      this.service.getDevice(this.page)
+      this.service.getDevice(this.page, this.filter)
         .pipe(
           tap(res => res.content = this.service.sortByField(res.content, 'hostname'))
         )
@@ -107,6 +119,40 @@ export class DeviceComponent implements OnInit, OnDestroy {
     this.service.onInfo("successfully", "deviceDeleted");
   }
 
+  filterInput(input: string): void {
+    if (input !== null && !this.loading) {
+      this.filter.input = input;
+      this.loading = true;
+      this.getDevices();
+    };
+  }
 
+  filterDepartment(filter: ICheckboxFilter[]): void {
+    this.filter.department = filter;
+    this.loading = true;
+    this.getDevices();
+  }
+
+  filterDeviceCategory(filter: ICheckboxFilter[]): void {
+    this.filter.deviceCategory = filter;
+    this.loading = true;
+    this.getDevices();
+  }
+
+  cleanFilter(): void {
+    this.searchFilterChild.clearFilter();
+    this.departmentFilterChild.clearSelection();
+    this.categoryFilterChild.clearSelection();
+
+    if(this.filter.isFilterNotEmpty()){
+      this.filter.cleanFilter();
+      this.refresh();
+    }
+  }
+
+  refresh(): void {
+    this.loading = true;
+    this.getDevices();
+  }
 
 }

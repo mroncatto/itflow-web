@@ -192,6 +192,10 @@ export class AbstractService {
     return this.authService.hasAnyRole(Roles.ADMIN);
   }
 
+  canOpenDevices(): boolean {
+    return this.authService.hasAnyRole(Roles.ADMIN, Roles.MANAGER, Roles.COORDINATOR, Roles.HELPDESK, Roles.SUPPORT);
+  }
+
   //-------------------------- Pages -----------------------------
   canOpenPage(page: string): boolean {
 

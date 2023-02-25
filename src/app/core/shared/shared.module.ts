@@ -20,6 +20,8 @@ import { NewStaffButtonComponent } from './components/quickform/new-staff';
 import { NewBranchButtonComponent } from './components/quickform/new-branch';
 import { NewDeviceCategoryButtonComponent } from './components/quickform/new-device-category';
 import { DeviceCategoryFormComponent } from './components/forms/device/device-category-form/device-category-form.component';
+import { DeviceCategoryCheckboxFilterComponent } from './components/filters/device-category-checkbox-filter/device-category-checkbox-filter.component';
+import { CheckboxFilterComponent } from './components/filters/checkbox-filter/checkbox-filter.component';
 
 
 @NgModule({
@@ -42,6 +44,8 @@ import { DeviceCategoryFormComponent } from './components/forms/device/device-ca
     NewBranchButtonComponent,
     NewDeviceCategoryButtonComponent,
     DeviceCategoryFormComponent,
+    DeviceCategoryCheckboxFilterComponent,
+    CheckboxFilterComponent,
   ],
   imports: [
     CommonModule,
@@ -69,6 +73,8 @@ import { DeviceCategoryFormComponent } from './components/forms/device/device-ca
     NewBranchButtonComponent,
     NewDeviceCategoryButtonComponent,
     DeviceCategoryFormComponent,
+    DeviceCategoryCheckboxFilterComponent,
+    CheckboxFilterComponent,
   ]
 })
 export class SharedModule { }

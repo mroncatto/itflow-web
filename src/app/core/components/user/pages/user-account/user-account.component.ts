@@ -55,20 +55,23 @@ export class UserAccountComponent implements OnInit, OnDestroy, IAbstractCompone
 
   filterUsers(data: string): void {
     if (data !== null && !this.loading) {
-      this.filter.param = data;
-      this.loading = true;
-      this.loadUsers()
+      this.filter.input = data;
+      this.refresh();
     };
   }
 
   cleanFilter(): void {
     this.filterChild.clearFilter();
 
-    if (this.filter.param.length > 0) {
-      this.filter.param = "";
-      this.loading = true;
-      this.loadUsers();
+    if (this.filter.isFilterNotEmpty()) {
+      this.filter.cleanFilter()
+      this.refresh();
     }
+  }
+
+  refresh(): void {
+    this.loading = true;
+    this.loadUsers();
   }
 
   private loadUsers(): void {

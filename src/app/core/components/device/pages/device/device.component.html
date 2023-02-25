@@ -33,12 +33,15 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <!-- <div class="filter-list d-flex gap-2 mb-2">
-                            <app-search-input (onEnter)="filterStaff($event)"></app-search-input>
-                            <app-department-checkbox-filter (onSelect)="filterDepartment($event)"></app-department-checkbox-filter>
-                            <app-occupation-checkbox-filter (onSelect)="filterOccupation($event)"></app-occupation-checkbox-filter>
-                            <button [disabled]="loading" class="btn btn-sm btn-primary focus-0" (click)="cleanFilter()" translate="commons.cleanFilter"></button>
-                        </div> -->
+                        <div class="filter-list d-flex gap-2 mb-2">
+                            <app-search-input (onEnter)="filterInput($event)"></app-search-input>
+                            <app-department-checkbox-filter
+                                (onSelect)="filterDepartment($event)"></app-department-checkbox-filter>
+                            <app-device-category-checkbox-filter
+                                (onSelect)="filterDeviceCategory($event)"></app-device-category-checkbox-filter>
+                            <button [disabled]="loading" class="btn btn-sm btn-primary focus-0" (click)="cleanFilter()"
+                                translate="commons.cleanFilter"></button>
+                        </div>
                         <table class="table table-striped">
                             <thead>
                                 <tr>
@@ -57,7 +60,8 @@
                                     <td>{{device.id}}</td>
                                     <td>{{device.code}}</td>
                                     <td>{{device.tag}}</td>
-                                    <td class="link fw-bold"><a class="link" [routerLink]="[device.id + '/view']">{{device.hostname}}</a></td>
+                                    <td class="link fw-bold"><a class="link"
+                                            [routerLink]="[device.id + '/view']">{{device.hostname}}</a></td>
                                     <td>{{device.deviceCategory.name}}</td>
                                     <td>{{device.department.branch.name}} - {{device.department.name}}</td>
                                     <td>
@@ -72,7 +76,7 @@
                                             data-bs-toggle="dropdown"></i>
                                         <ul class="dropdown-menu dropdown-menu-end">
                                             <li class="link-spin">
-                                                <a class="dropdown-item">
+                                                <a class="dropdown-item" [routerLink]="[device.id + '/view']">
                                                     <i class="fas fa-eye"></i>&nbsp;
                                                     <span translate="commons.open"></span>
                                                 </a>

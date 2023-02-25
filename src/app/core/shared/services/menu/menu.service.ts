@@ -125,7 +125,6 @@ export class MenuService extends AbstractService {
   }
 
   private getDeviceMenu(menu: MenuItem[]): void {
-    // TODO: Falta policy
-    menu.push(this.menuList['menu_device']);
+    if (this.canOpenDevices()) menu.push(this.menuList['menu_device']);
   }
 }

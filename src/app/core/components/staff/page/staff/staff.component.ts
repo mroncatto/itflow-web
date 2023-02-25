@@ -3,15 +3,12 @@ import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription, tap } from 'rxjs';
 import { IAbstractComponentFilter } from 'src/app/core/shared/abstracts/interface/abstract-component-filter';
+import { ICheckboxFilter } from 'src/app/core/shared/abstracts/interface/checkbox-filter';
 import { IPaginator } from 'src/app/core/shared/commons/model/paginator';
 import { DepartmentCheckboxFilterComponent } from 'src/app/core/shared/components/filters/department-checkbox-filter/department-checkbox-filter.component';
 import { OccupationCheckboxFilterComponent } from 'src/app/core/shared/components/filters/occupation-checkbox-filter/occupation-checkbox-filter.component';
 import { SearchInputComponent } from 'src/app/core/shared/components/filters/search-input/search-input.component';
-import { IDepartmentFilter } from '../../../company/filter/department-filter';
-import { IBranch } from '../../../company/model/branch';
-import { IOccupationFilter } from '../../filter/occupation-filter';
 import { StaffFilter } from '../../filter/staff-filter';
-import { Occupation } from '../../model/occupation';
 import { IStaff } from '../../model/staff';
 import { StaffService } from '../../services/staff.service';
 
@@ -49,38 +46,6 @@ export class StaffComponent implements OnInit, OnDestroy, IAbstractComponentFilt
     this.sub.forEach(sub => sub.unsubscribe());
   }
 
-  filterStaff(data: string): void {
-    if (data !== null && !this.loading) {
-      this.filter.param = data;
-      this.loading = true;
-      this.getStaff();
-    };
-  }
-
-  filterDepartment(data: IDepartmentFilter[]): void {
-    this.filter.department = data;
-    this.loading = true;
-    this.getStaff();
-  }
-
-  filterOccupation(data: IOccupationFilter[]): void {
-    this.filter.occupation = data;
-    this.loading = true;
-    this.getStaff();
-  }
-
-  cleanFilter(): void {
-    this.searchFilterChild.clearFilter();
-    this.departmentFilterChild.clearSelection();
-    this.occupationFilterChild.clearSelection();
-
-    if (this.filter.param.length > 0 || this.filter.department.length > 0) {
-      this.filter.param = "";
-      this.filter.department = [];
-      this.loading = true;
-      this.getStaff();
-    }
-  }
 
   getStaff(): void {
     this.sub.push(
@@ -149,6 +114,40 @@ export class StaffComponent implements OnInit, OnDestroy, IAbstractComponentFilt
   private afterDelete(staff: IStaff): void {
     this.staff = this.staff.filter(s => s.id != staff.id);
     this.service.onInfo("successfully", "staffDeleted");
+  }
+
+  filterInput(input: string): void {
+    if (input !== null && !this.loading) {
+      this.filter.input = input;
+      this.refresh();
+    };
+  }
+
+  filterDepartment(filter: ICheckboxFilter[]): void {
+    this.filter.department = filter;
+    this.refresh();
+  }
+
+  filterOccupation(filter: ICheckboxFilter[]): void {
+    this.filter.occupation = filter;
+    this.refresh();
+  }
+
+  cleanFilter(): void {
+    this.searchFilterChild.clearFilter();
+    this.departmentFilterChild.clearSelection();
+    this.occupationFilterChild.clearSelection();
+
+    if (this.filter.isFilterNotEmpty()) {
+      this.filter.cleanFilter();
+      this.refresh()
+    }
+    
+  }
+
+  refresh(): void {
+    this.loading = true;
+    this.getStaff();
   }
 
 }

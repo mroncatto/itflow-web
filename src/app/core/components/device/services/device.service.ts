@@ -5,6 +5,7 @@ import { IPaginator } from 'src/app/core/shared/commons/model/paginator';
 import { DeviceCategoryFormComponent } from 'src/app/core/shared/components/forms/device/device-category-form/device-category-form.component';
 import { DeviceFormComponent } from 'src/app/core/shared/components/forms/device/device-form/device-form.component';
 import { AbstractService } from 'src/app/core/shared/services/abstract/abstract.service';
+import { DeviceFilter } from '../filter/device-filter';
 import { DeviceForm, IDevice } from '../model/device';
 import { DeviceCategoryForm, IDeviceCategory } from '../model/device-category';
 import { DeviceCategoryValidation } from '../validation/device-category-validation';
@@ -18,12 +19,16 @@ export class DeviceService extends AbstractService {
   constructor(injector: Injector) { super(injector) }
 
   // ===================== Endpoints ======================
-  getDevice(page: number): Observable<IPaginator> {
-    return this.http.get<IPaginator>(`${this.API_URL}/device/page/${page}`);
+  getDevice(page: number, filter: DeviceFilter): Observable<IPaginator> {
+    return this.http.get<IPaginator>(`${this.API_URL}/device/page/${page}${this.filterDevice(filter)}`);
   }
 
   getDeviceCategories(): Observable<IDeviceCategory[]> {
     return this.http.get<IDeviceCategory[]>(`${this.API_URL}/device/category`);
+  }
+
+  getDeviceCategoriesUsingByDevice(): Observable<IDeviceCategory[]> {
+    return this.http.get<IDeviceCategory[]>(`${this.API_URL}/device/category/filter/device`);
   }
 
   createDevice(device: IDevice): Observable<IDevice> {
@@ -77,6 +82,19 @@ export class DeviceService extends AbstractService {
       name: [deviceCategory ? deviceCategory.name : '', DeviceCategoryValidation.nameCategory()],
       active: [deviceCategory ? deviceCategory.active : true, Validators.required]
     });
+  }
+
+  filterDevice(filter: DeviceFilter): string {
+    let urlParams: string = "";
+
+    urlParams = filter.composeInputFilter(urlParams, filter.input);
+    urlParams = filter.composeListParamsFilter(urlParams, "departments", filter.department);
+    urlParams = filter.composeListParamsFilter(urlParams, "categories", filter.deviceCategory);
+    
+    console.log(urlParams);
+    
+    return urlParams;
+
   }
 
 
