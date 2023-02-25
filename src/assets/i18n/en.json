@@ -17,6 +17,7 @@
 			"authenticated": "Successfully Authenticated",
 			"created": "Successfully created",
 			"deleted": "Successfully deleted",
+			"deviceDeleted": "Device was disabled",
 			"disabled": "Successfully disabled",
 			"passwordChanged": "Password was changed",
 			"passwordReseted": "A new password has been generated and sent to the user's mail",
@@ -65,11 +66,13 @@
 		"actions": "Actions",
 		"active": "Active",
 		"cancel": "Cancel",
+		"category": "Category",
 		"clean": "Clean",
 		"cleanFilter": "Clean Filter",
 		"clearSelection": "Clear selection",
 		"close": "Close",
 		"delete": "Delete",
+		"details": "Details",
 		"disable": "Disable",
 		"document": "Document",
 		"edit": "Edit",
@@ -83,9 +86,11 @@
 		"noData": "No records",
 		"open": "Open",
 		"optional": "Optional",
+		"refreshList": "Refresh List",
 		"register": "Register",
 		"remove": "Remove",
 		"save": "Save",
+		"status": "Status",
 		"warning": "Warning",
 		"yes": "Yes"
 	},
@@ -101,6 +106,26 @@
 		"departments": "Departments",
 		"name.placeholder": "Department name",
 		"selectBranch": "Select a branch"
+	},
+	"device": {
+		"category": "Device Category",
+		"code": "Code",
+		"code.placeholder": "Device Code",
+		"description": "Description",
+		"description.placeholder": "Device Description",
+		"serialNumber": "Serial Number",
+		"serialNumber.placeholder": "Serial Number",
+		"device": "Device",
+		"devices": "Devices",
+		"hostname": "Hostname",
+		"hostname.placeholder": "Device Hostname",
+		"selectCategory":"Select Category",
+		"tag": "Tag",
+		"tag.placeholder": "Device Tag"
+	},
+	"deviceCategory": {
+		"name": "Name",
+		"name.placeholder": "Decive category name"
 	},
 	"forms": {
 		"email": "You must provide a valid email",
@@ -125,6 +150,7 @@
 		"darkMode": "Dark Mode",
 		"dashboard": "Dashboard",
 		"departments": "Departments",
+		"devices": "Devices",
 		"helpdesk": "Helpdesk",
 		"interface": "Interface",
 		"logout": " Logout",
@@ -136,18 +162,24 @@
 	},
 	"modal": {
 		"branch": {
-			"new": "New Branch"
+			"new": "New branch"
 		},
 		"company": {
-			"new": "New Company"
+			"new": "New company"
 		},
 		"delete": "Are you sure you want to delete <b>{{record}}</b> ? This change cannot be reversed",
 		"department": {
-			"new": "New Department"
+			"new": "New department"
 		},
 		"disable": "Are you sure you want to disable it? This change cannot be reversed",
+		"device": {
+			"new": "New device"
+		},
+		"deviceCategory": {
+			"new": "New device category"
+		},
 		"occupation": {
-			"new": "New Occupation"
+			"new": "New occupation"
 		},
 		"staff": {
 			"new": "Register employee"

@@ -90,9 +90,7 @@ export class DeviceService extends AbstractService {
     urlParams = filter.composeInputFilter(urlParams, filter.input);
     urlParams = filter.composeListParamsFilter(urlParams, "departments", filter.department);
     urlParams = filter.composeListParamsFilter(urlParams, "categories", filter.deviceCategory);
-    
-    console.log(urlParams);
-    
+
     return urlParams;
 
   }

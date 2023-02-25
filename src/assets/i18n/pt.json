@@ -17,6 +17,7 @@
 			"authenticated": "Autenticado com sucesso",
 			"created": "Criado com sucesso",
 			"deleted": "Eliminado com sucesso",
+			"deviceDeleted": "Dispositivo foi inativado",
 			"disabled": "Desativado com sucesso",
 			"passwordChanged": "A senha foi alterada",
 			"passwordReseted": "Uma nova senha foi gerada e enviada para o e-mail do usuário",
@@ -65,11 +66,13 @@
 		"actions": "Ações",
 		"active": "Ativo",
 		"cancel": "Cancelar",
+		"category": "Categoria",
 		"clean": "Limpar",
 		"cleanFilter": "Limpar filtro",
 		"clearSelection": "Limpar seleção",
 		"close": "Fechar",
 		"delete": "Eliminar",
+		"details": "Detalhes",
 		"disable": "Desativar",
 		"document": "Documento",
 		"edit": "Editar",
@@ -83,9 +86,11 @@
 		"noData": "Sem registros",
 		"open": "Abrir",
 		"optional": "Opcional",
+		"refreshList": "Atualizar lista",
 		"register": "Registro",
 		"remove": "Remover",
 		"save": "Salvar",
+		"status": "Situação",
 		"warning": "Aviso",
 		"yes": "Sim"
 	},
@@ -101,6 +106,26 @@
 		"departments": "Filiais",
 		"name.placeholder": "Nombe da filial",
 		"selectBranch": "Selecione uma sucursal"
+	},
+	"device": {
+		"category": "Categoria de dispositivo",
+		"code": "Código",
+		"code.placeholder": "Código do dispositivo",
+		"description": "Descricão",
+		"description.placeholder": "Descricão do dispositivo",
+		"serialNumber": "Número de serie",
+		"serialNumber.placeholder": "Número de serie",
+		"device": "Dispositivo",
+		"devices": "Dispositivos",
+		"hostname": "Nome de host",
+		"hostname.placeholder": "Nome de host do dispositivo",
+		"selectCategory":"Selecione uma categoria",
+		"tag": "Etiqueta",
+		"tag.placeholder": "Etiqueta do dispositivo"
+	},
+	"deviceCategory": {
+		"name": "Nome",
+		"name.placeholder": "Nome da categoria"
 	},
 	"forms": {
 		"email": "Você deve inserir um e-mail valido",
@@ -125,6 +150,7 @@
 		"darkMode": "Modo escuro",
 		"dashboard": "Painel",
 		"departments": "Filiais",
+		"devices": "Dispositivos",
 		"helpdesk": "Helpdesk",
 		"interface": "Interface",
 		"logout": " Sair",
@@ -136,18 +162,24 @@
 	},
 	"modal": {
 		"branch": {
-			"new": "Nova Filial"
+			"new": "Nova filial"
 		},
 		"company": {
-			"new": "Nova Empresa"
+			"new": "Nova empresa"
 		},
 		"delete": "Tem certeza de que deseja desativar <b>{{record}}</b> ? Essa alteração não pode ser revertida",
 		"department": {
-			"new": "Nova Filial"
+			"new": "Nova filial"
 		},
 		"disable": "Tem certeza de que deseja desativá-lo? Essa alteração não pode ser revertida",
+		"device": {
+			"new": "Novo dispositivo"
+		},
+		"deviceCategory": {
+			"new": "Nova categoria de dispositivo"
+		},
 		"occupation": {
-			"new": "Novo Cargo"
+			"new": "Novo cargo"
 		},
 		"staff": {
 			"new": "Registrar funcionário"
