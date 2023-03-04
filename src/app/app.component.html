@@ -37,6 +37,15 @@
                         </li>
                         <li class="dropend">
                             <a class="dropdown-item dropdown-toggle link" data-bs-toggle="dropdown">
+                                <i class="fas fa-desktop px-1"></i> <span translate="menu.devices"></span>
+                            </a>
+                            <ul class="dropdown-menu shadow navbar-submenu">
+                                <li [routerLink]="['/device/register']" [queryParams]="{page: 'category'}"><a
+                                        class="dropdown-item link" translate="device.category"></a></li>
+                            </ul>
+                        </li>
+                        <li class="dropend">
+                            <a class="dropdown-item dropdown-toggle link" data-bs-toggle="dropdown">
                                 <i class="fas fa-users px-1"></i> <span translate="menu.staff"></span>
                             </a>
                             <ul class="dropdown-menu shadow navbar-submenu">

@@ -36,9 +36,12 @@
                     <div class="card-body">
                         <div class="filter-list d-flex gap-2 mb-2">
                             <app-search-input (onEnter)="filterInput($event)"></app-search-input>
-                            <app-department-checkbox-filter (onSelect)="filterDepartment($event)"></app-department-checkbox-filter>
-                            <app-occupation-checkbox-filter (onSelect)="filterOccupation($event)"></app-occupation-checkbox-filter>
-                            <button [disabled]="loading" class="btn btn-sm btn-primary focus-0" (click)="cleanFilter()" translate="commons.cleanFilter"></button>
+                            <app-department-checkbox-filter
+                                (onSelect)="filterDepartment($event)"></app-department-checkbox-filter>
+                            <app-occupation-checkbox-filter
+                                (onSelect)="filterOccupation($event)"></app-occupation-checkbox-filter>
+                            <button [disabled]="loading" class="btn btn-sm btn-primary focus-0" (click)="cleanFilter()"
+                                translate="commons.cleanFilter"></button>
                         </div>
                         <table class="table table-striped">
                             <thead>
@@ -46,6 +49,7 @@
                                     <th translate="staff.fullname"></th>
                                     <th translate="commons.email"></th>
                                     <th translate="department.department"></th>
+                                    <th translate="branch.branch"></th>
                                     <th translate="occupation.occupation"></th>
                                     <th></th>
                                 </tr>
@@ -54,14 +58,15 @@
                                 <tr *ngFor="let s of staff">
                                     <td>{{s.fullName}}</td>
                                     <td>{{s.email}}</td>
-                                    <td>{{s.department.branch.name}} - {{s.department.name}}</td>
+                                    <td>{{s.department.branch.name}}</td>
+                                    <td>{{s.department.name}}</td>
                                     <td>{{s.occupation.name}}</td>
                                     <td>
                                         <i title="{{'commons.actions' | translate}}"
                                             class="fas fa-chevron-circle-down link" [id]="s.id"
                                             data-bs-toggle="dropdown"></i>
                                         <ul class="dropdown-menu dropdown-menu-end">
-                                            <li (click)="onUpdate(s)"class="link-spin">
+                                            <li (click)="onUpdate(s)" class="link-spin">
                                                 <a class="dropdown-item">
                                                     <i class="fas fa-pen"></i>&nbsp;
                                                     <span translate="commons.edit"></span>

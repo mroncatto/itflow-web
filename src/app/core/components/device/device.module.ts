@@ -7,12 +7,16 @@ import { TranslateModule } from '@ngx-translate/core';
 import { SharedModule } from '../../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DeviceViewComponent } from './pages/device-view/device-view.component';
+import { DeviceRegisterComponent } from './pages/device-register/device-register.component';
+import { CategoryComponent } from './pages/subpages/category/category.component';
 
 
 @NgModule({
   declarations: [
     DeviceComponent,
-    DeviceViewComponent
+    DeviceViewComponent,
+    DeviceRegisterComponent,
+    CategoryComponent
   ],
   imports: [
     CommonModule,

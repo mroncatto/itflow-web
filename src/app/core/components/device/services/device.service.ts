@@ -23,6 +23,10 @@ export class DeviceService extends AbstractService {
     return this.http.get<IPaginator>(`${this.API_URL}/device/page/${page}${this.filterDevice(filter)}`);
   }
 
+  getDeviceById(id: number): Observable<IDevice> {
+    return this.http.get<IDevice>(`${this.API_URL}/device/${id}`);
+  }
+
   getDeviceCategories(): Observable<IDeviceCategory[]> {
     return this.http.get<IDeviceCategory[]>(`${this.API_URL}/device/category`);
   }
@@ -49,6 +53,10 @@ export class DeviceService extends AbstractService {
 
   deleteDevice(id: number): Observable<IDevice> {
     return this.http.delete<IDevice>(`${this.API_URL}/device/${id}`);
+  }
+
+  deleteDeviceCategory(id: number): Observable<IDeviceCategory> {
+    return this.http.delete<IDeviceCategory>(`${this.API_URL}/device/category/${id}`);
   }
 
 

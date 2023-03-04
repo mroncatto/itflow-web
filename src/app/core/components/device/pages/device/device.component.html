@@ -51,6 +51,7 @@
                                     <th translate="device.hostname"></th>
                                     <th translate="commons.category"></th>
                                     <th translate="department.department"></th>
+                                    <th translate="branch.branch"></th>
                                     <th translate="commons.status"></th>
                                     <th></th>
                                 </tr>
@@ -63,7 +64,8 @@
                                     <td class="link fw-bold"><a class="link"
                                             [routerLink]="[device.id + '/view']">{{device.hostname}}</a></td>
                                     <td>{{device.deviceCategory.name}}</td>
-                                    <td>{{device.department.branch.name}} - {{device.department.name}}</td>
+                                    <td>{{device.department.branch.name}}</td>
+                                    <td>{{device.department.name}}</td>
                                     <td>
                                         <span *ngIf="device.active" class="badge bg-success"
                                             translate="commons.active"></span>

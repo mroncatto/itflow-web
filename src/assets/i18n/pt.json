@@ -102,9 +102,9 @@
 		"selectCompany": "Selecione uma empresa"
 	},
 	"department": {
-		"department": "Filial",
-		"departments": "Filiais",
-		"name.placeholder": "Nombe da filial",
+		"department": "Departamento",
+		"departments": "Departamentos",
+		"name.placeholder": "Nome do departamento",
 		"selectBranch": "Selecione uma sucursal"
 	},
 	"device": {
@@ -149,7 +149,7 @@
 		"companies": "Empresas",
 		"darkMode": "Modo escuro",
 		"dashboard": "Painel",
-		"departments": "Filiais",
+		"departments": "Departamentos",
 		"devices": "Dispositivos",
 		"helpdesk": "Helpdesk",
 		"interface": "Interface",
@@ -162,14 +162,14 @@
 	},
 	"modal": {
 		"branch": {
-			"new": "Nova filial"
+			"new": "Novo Departamento"
 		},
 		"company": {
 			"new": "Nova empresa"
 		},
 		"delete": "Tem certeza de que deseja desativar <b>{{record}}</b> ? Essa alteração não pode ser revertida",
 		"department": {
-			"new": "Nova filial"
+			"new": "Novo Departamento"
 		},
 		"disable": "Tem certeza de que deseja desativá-lo? Essa alteração não pode ser revertida",
 		"device": {
@@ -224,7 +224,7 @@
 	},
 	"staff": {
 		"fullname": "Nome completo",
-		"selectDepartment": "Selecione uma filial",
+		"selectDepartment": "Selecione um departamento",
 		"selectOccupation": "Selecione um Cargo",
 		"staff": "Funcionários"
 	},
