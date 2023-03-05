@@ -51,6 +51,7 @@ export class DeviceCategoryCheckboxFilterComponent extends AbstractComponent imp
   }
 
   refresh(): void {
+    this.clearSelection();
     this.records = [];
     this.itemList = [];
     this.load();

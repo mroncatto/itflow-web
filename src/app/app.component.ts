@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import { IUser } from './core/components/user/model/user';
 import { MenuItem } from './core/shared/commons/interface/item-menu';
 import { ILanguage } from './core/shared/commons/interface/language';
+import { TopbarMenu } from './core/shared/commons/interface/topbar-menu';
 import { AuthenticationService } from './core/shared/services/authentication/authentication.service';
 import { MenuService } from './core/shared/services/menu/menu.service';
 
@@ -36,6 +37,10 @@ export class AppComponent {
 
   getMenu(): MenuItem[] {
     return this.menuService.getMenuList();
+  }
+
+  getTopbarMenu(): TopbarMenu[] {
+    return this.menuService.getTopbarMenu();
   }
 
   isLoggedIn(): Observable<boolean> {

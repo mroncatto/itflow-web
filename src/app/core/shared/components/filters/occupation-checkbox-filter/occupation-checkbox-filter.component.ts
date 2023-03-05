@@ -52,6 +52,7 @@ export class OccupationCheckboxFilterComponent extends AbstractComponent impleme
   }
 
   refresh(): void {
+    this.clearSelection();
     this.records = [];
     this.itemList = [];
     this.load();

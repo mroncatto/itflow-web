@@ -48,8 +48,8 @@
                                 <tr>
                                     <th translate="staff.fullname"></th>
                                     <th translate="commons.email"></th>
-                                    <th translate="department.department"></th>
                                     <th translate="branch.branch"></th>
+                                    <th translate="department.department"></th>                                
                                     <th translate="occupation.occupation"></th>
                                     <th></th>
                                 </tr>
@@ -57,9 +57,9 @@
                             <tbody>
                                 <tr *ngFor="let s of staff">
                                     <td>{{s.fullName}}</td>
-                                    <td>{{s.email}}</td>
-                                    <td>{{s.department.branch.name}}</td>
-                                    <td>{{s.department.name}}</td>
+                                    <td>{{s.email}}</td>    
+                                    <td>{{s.department.branch.name}}</td>                            
+                                    <td>{{s.department.name}}</td>            
                                     <td>{{s.occupation.name}}</td>
                                     <td>
                                         <i title="{{'commons.actions' | translate}}"

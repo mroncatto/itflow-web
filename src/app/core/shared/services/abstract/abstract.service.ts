@@ -196,6 +196,18 @@ export class AbstractService {
     return this.authService.hasAnyRole(Roles.ADMIN, Roles.MANAGER, Roles.COORDINATOR, Roles.HELPDESK, Roles.SUPPORT);
   }
 
+  canCreateCompanyRecords(): boolean {
+    return this.authService.hasAnyRole(Roles.ADMIN, Roles.MANAGER, Roles.COORDINATOR, Roles.HELPDESK, Roles.SUPPORT);
+  }
+
+  canCreateStaffRecords(): boolean {
+    return this.authService.hasAnyRole(Roles.ADMIN, Roles.MANAGER, Roles.COORDINATOR, Roles.HELPDESK, Roles.SUPPORT);
+  }
+
+  canCreateDeviceRecords(): boolean {
+    return this.authService.hasAnyRole(Roles.ADMIN, Roles.MANAGER, Roles.COORDINATOR, Roles.HELPDESK, Roles.SUPPORT);
+  }
+
   //-------------------------- Pages -----------------------------
   canOpenPage(page: string): boolean {
 

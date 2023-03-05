@@ -17,41 +17,26 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                        data-bs-auto-close="outside" aria-expanded="false" translate="commons.register">
+                <li *ngFor="let topbar of getTopbarMenu()" class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" [id]="topbar.menuId" role="button" data-bs-toggle="dropdown"
+                        data-bs-auto-close="outside" aria-expanded="false" [translate]="topbar.name">
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li class="dropend">
-                            <a class="dropdown-item dropdown-toggle link" data-bs-toggle="dropdown">
-                                <i class="fas fa-building px-1"></i> <span translate="menu.companies"></span>
+                        <li *ngFor="let submenu of topbar.submenu" class="dropend">
+                            <a *ngIf="submenu.isEmpty(); else withItems" [routerLink]="submenu.router"
+                                [queryParams]="{page: submenu.page_param}" class="dropdown-item link">
+                                <i [class]="'fas px-1 ' + submenu.icon"></i> <span [translate]="submenu.name"></span>
                             </a>
-                            <ul class="dropdown-menu shadow navbar-submenu">
-                                <li [routerLink]="['company/register']" [queryParams]="{page: 'company'}"><a
-                                        class="dropdown-item link" translate="menu.companies"></a></li>
-                                <li [routerLink]="['company/register']" [queryParams]="{page: 'branch'}"><a
-                                        class="dropdown-item link" translate="menu.branches"></a></li>
-                                <li [routerLink]="['company/register']" [queryParams]="{page: 'department'}"><a
-                                        class="dropdown-item link" translate="menu.departments"></a></li>
-                            </ul>
-                        </li>
-                        <li class="dropend">
-                            <a class="dropdown-item dropdown-toggle link" data-bs-toggle="dropdown">
-                                <i class="fas fa-desktop px-1"></i> <span translate="menu.devices"></span>
-                            </a>
-                            <ul class="dropdown-menu shadow navbar-submenu">
-                                <li [routerLink]="['/device/register']" [queryParams]="{page: 'category'}"><a
-                                        class="dropdown-item link" translate="device.category"></a></li>
-                            </ul>
-                        </li>
-                        <li class="dropend">
-                            <a class="dropdown-item dropdown-toggle link" data-bs-toggle="dropdown">
-                                <i class="fas fa-users px-1"></i> <span translate="menu.staff"></span>
-                            </a>
-                            <ul class="dropdown-menu shadow navbar-submenu">
-                                <li [routerLink]="['/staff/register']" [queryParams]="{page: 'occupation'}"><a
-                                        class="dropdown-item link" translate="occupation.occupation"></a></li>
-                            </ul>
+
+                            <ng-template #withItems>
+                                <a class="dropdown-item dropdown-toggle link" data-bs-toggle="dropdown">
+                                    <i [class]="'fas px-1 ' + submenu.icon"></i> <span [translate]="submenu.name"></span>
+                                </a>
+                                <ul class="dropdown-menu shadow navbar-submenu">
+                                    <li *ngFor="let item of submenu.items" [routerLink]="[item.router]" [queryParams]="{page: item.page_param}">
+                                        <a class="dropdown-item link" [translate]="item.name"></a></li>
+                                </ul>
+                            </ng-template>
                         </li>
                     </ul>
                 </li>
@@ -149,7 +134,8 @@
                 </li> -->
                 <li *ngFor="let menu of getMenu()">
                     <hr *ngIf="menu.isMenuDivider()" class="dropdown-divider">
-                    <div *ngIf="menu.isMenuDivider()" class="text-muted small fw-bold text-uppercase px-3" translate="{{menu._translate}}"></div> 
+                    <div *ngIf="menu.isMenuDivider()" class="text-muted small fw-bold text-uppercase px-3"
+                        translate="{{menu._translate}}"></div>
                     <a *ngIf="menu.isMenu()" [routerLink]="[menu._routerLink]" routerLinkActive="active"
                         class="nav-link px-3">
                         <span class="me-2">
@@ -411,7 +397,8 @@
                         </span>
                         <span translate="menu.darkMode"></span>
                         <span class="right-icon ms-auto">
-                            <i id="theme-button" (click)="onChangeTheme()" class="fas p-1" [ngClass]="getIconTheme()"></i>
+                            <i id="theme-button" (click)="onChangeTheme()" class="fas p-1"
+                                [ngClass]="getIconTheme()"></i>
                         </span>
                     </a>
                     <a class="nav-link px-3 switch-nav link">
