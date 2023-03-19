@@ -14,7 +14,7 @@ export class MenuItem implements IMenuItem {
     _routerLink!: string;
     _translate!: string;
     _icon!: string;
-    _submenu!: IMenuItem[];
+    _submenu: IMenuItem[]=[];
     _submenuId!: string;
 
     type(type: string): MenuItem {

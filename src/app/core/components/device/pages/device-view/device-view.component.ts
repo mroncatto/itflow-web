@@ -1,6 +1,6 @@
-import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TabsetComponent } from 'ngx-bootstrap/tabs';
 import { AbstractComponent } from 'src/app/core/shared/abstracts/abstract-component';
 import { IDevice } from '../../model/device';
 import { DeviceService } from '../../services/device.service';
@@ -13,6 +13,7 @@ export class DeviceViewComponent extends AbstractComponent implements OnInit {
 
 
   device!: IDevice | null;
+  @ViewChild('featuresTabs', { static: false }) featuresTabs?: TabsetComponent;
 
   constructor(private service: DeviceService, private activatedRoute: ActivatedRoute, private router: Router) {
     super();
@@ -60,6 +61,59 @@ export class DeviceViewComponent extends AbstractComponent implements OnInit {
     if (this.device != null) {
       Object.assign(this.device, device);
     }
+  }
+
+  confirmDeleteDeviceStaff(): void {
+    this.sub.push(
+      this.service.showConfirm('warning', 'remove', 'User').subscribe({
+        next: (confirm) => {
+          if (confirm) this.onDeleteDeviceStaff()
+        },
+        error: (err) => this.service.onHttpError(err)
+      })
+    )
+  }
+
+  private onDeleteDeviceStaff(): void {
+    if(this.device != null) {
+      this.sub.push(
+        this.service.deleteDeviceStaff(this.device.id).subscribe({
+          next: (data) => this.afterDeleteDeviceStaff(data),
+          error: (err) => this.service.onHttpError(err)
+        })
+      )
+    }
+  }
+
+  private afterDeleteDeviceStaff(device: IDevice): void {
+    this.selectTab(0);
+    this.device = device;
+    this.service.onSuccess('deleted', 'deleted');
+  }
+
+  onAddOrChangeStaff(): void {
+    if(this.device != null) {
+      this.sub.push(
+        this.service.getDeviceStaffModal(this.device).subscribe({
+          next: (data) => this.device = data,
+          error: (err) => this.service.onHttpError(err)
+        })
+      );
+    }
+  }
+
+  selectTab(tabId: number) {
+    if (this.featuresTabs?.tabs[tabId]) {
+      this.featuresTabs.tabs[tabId].active = true;
+    }
+  }
+
+  canAddFeatures(): boolean {
+    if(this.device){
+      return this.device.active && (this.device.deviceStaff == null);
+    }
+
+    return false;
   }
 
 }

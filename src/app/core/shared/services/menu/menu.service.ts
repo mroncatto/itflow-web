@@ -23,7 +23,14 @@ export class MenuService extends AbstractService {
     menu_divider_device: new MenuItem().type('divider').translate('menu.devices'),
     menu_staff: new MenuItem().icon('fa-users').routerLink('/staff').translate('menu.staff'),
     menu_account: new MenuItem().icon('fa-user-circle').routerLink('/users').translate('menu.usersAccount'),
-    menu_device: new MenuItem().icon('fa-desktop').routerLink('/device').translate('menu.devices'),
+    menu_all_device: new MenuItem().icon('fa-list').routerLink('/device').translate('menu.alldevices'),
+    menu_device: new MenuItem().type("submenu").icon('fa-laptop-house').translate('menu.devices').submenu(
+      new MenuItem().icon('fa-laptop').routerLink('').translate('menu.computer'),
+      new MenuItem().icon('fa-user').routerLink('').translate('device.deviceUser'),
+      new MenuItem().icon('fa-plug').routerLink('').translate('menu.power'),
+      new MenuItem().icon('fa-ethernet').routerLink('').translate('menu.network'),
+      
+    ),
   };
 
   private readonly submenu: Record<string, TopbarSubMenu> = {
@@ -133,6 +140,7 @@ export class MenuService extends AbstractService {
 
     // Devices
     this.getDeviceDivider(menu);
+    this.getAllDevicesSubmenu(menu);
     this.getDeviceMenu(menu);
     this.checkEmptyMenuBlock(menu)
 
@@ -165,6 +173,10 @@ export class MenuService extends AbstractService {
 
   private getDeviceMenu(menu: MenuItem[]): void {
     if (this.canOpenDevices()) menu.push(this.mainMenu['menu_device']);
+  }
+
+  private getAllDevicesSubmenu(menu: MenuItem[]): void {
+    if (this.canOpenDevices()) menu.push(this.mainMenu['menu_all_device']);
   }
 
 }

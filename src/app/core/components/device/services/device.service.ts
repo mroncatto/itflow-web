@@ -4,10 +4,12 @@ import { Observable, Subject } from 'rxjs';
 import { IPaginator } from 'src/app/core/shared/commons/model/paginator';
 import { DeviceCategoryFormComponent } from 'src/app/core/shared/components/forms/device/device-category-form/device-category-form.component';
 import { DeviceFormComponent } from 'src/app/core/shared/components/forms/device/device-form/device-form.component';
+import { DeviceStaffFormComponent } from 'src/app/core/shared/components/forms/device/device-staff-form/device-staff-form.component';
 import { AbstractService } from 'src/app/core/shared/services/abstract/abstract.service';
 import { DeviceFilter } from '../filter/device-filter';
 import { DeviceForm, IDevice } from '../model/device';
 import { DeviceCategoryForm, IDeviceCategory } from '../model/device-category';
+import { DeviceStaffForm, IDeviceStaff } from '../model/device-staff';
 import { DeviceCategoryValidation } from '../validation/device-category-validation';
 import { DeviceValidation } from '../validation/device-validation';
 
@@ -39,6 +41,10 @@ export class DeviceService extends AbstractService {
     return this.http.post<IDevice>(`${this.API_URL}/device`, device);
   }
 
+  updateStaff(id: number, deviceStaff: IDeviceStaff): Observable<IDevice> {
+    return this.http.put<IDevice>(`${this.API_URL}/device/staff/${id}`, deviceStaff);
+  }
+
   updateDevice(device: IDevice): Observable<IDevice> {
     return this.http.put<IDevice>(`${this.API_URL}/device`, device);
   }
@@ -59,10 +65,18 @@ export class DeviceService extends AbstractService {
     return this.http.delete<IDeviceCategory>(`${this.API_URL}/device/category/${id}`);
   }
 
+  deleteDeviceStaff(id: number): Observable<IDevice> {
+    return this.http.delete<IDevice>(`${this.API_URL}/device/staff/${id}`);
+  }
+
 
   // ===================== Modals =========================
   getDeviceModal(device?: IDevice): Subject<IDevice> {
     return this.callModal(DeviceFormComponent, device);
+  }
+
+  getDeviceStaffModal(device?: IDevice): Subject<IDevice> {
+    return this.callModal(DeviceStaffFormComponent, device);
   }
 
   getDeviceCategoryModal(deviceCategory?: IDeviceCategory): Subject<IDeviceCategory> {
@@ -81,6 +95,13 @@ export class DeviceService extends AbstractService {
       deviceCategory: [device ? device.deviceCategory : '', DeviceValidation.deviceCategory()],
       department: [device ? device.department : '', DeviceValidation.department()],
       active: [device ? device.active : true]
+    })
+  }
+
+  getDeviceStaffForm(deviceStaff?: IDeviceStaff): FormGroup<DeviceStaffForm> {
+    return this.formBuilder.group({
+      staff: [deviceStaff ? deviceStaff.staff : '', Validators.required],
+      login: [deviceStaff ? deviceStaff.login : '']
     })
   }
 

@@ -30,11 +30,14 @@
 
                             <ng-template #withItems>
                                 <a class="dropdown-item dropdown-toggle link" data-bs-toggle="dropdown">
-                                    <i [class]="'fas px-1 ' + submenu.icon"></i> <span [translate]="submenu.name"></span>
+                                    <i [class]="'fas px-1 ' + submenu.icon"></i> <span
+                                        [translate]="submenu.name"></span>
                                 </a>
                                 <ul class="dropdown-menu shadow navbar-submenu">
-                                    <li *ngFor="let item of submenu.items" [routerLink]="[item.router]" [queryParams]="{page: item.page_param}">
-                                        <a class="dropdown-item link" [translate]="item.name"></a></li>
+                                    <li *ngFor="let item of submenu.items" [routerLink]="[item.router]"
+                                        [queryParams]="{page: item.page_param}">
+                                        <a class="dropdown-item link" [translate]="item.name"></a>
+                                    </li>
                                 </ul>
                             </ng-template>
                         </li>
@@ -60,32 +63,36 @@
                             <!-- <div class="alert alert-warning alert-white rounded">
                                 <div class="icon">
                                     <i class="fas fa-exclamation-triangle"></i>
-                                </div> 
+                                </div>
                                 <h5>Notification tipo Warning</h5>
-                                <span>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ullam adipisci eaque atque mollitia explicabo facilis commodi consectetur.</span>
-                            </div> -->
-                            <!-- <div class="alert alert-danger alert-white rounded">
+                                <span>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ullam adipisci eaque
+                                    atque mollitia explicabo facilis commodi consectetur.</span>
+                            </div>
+                            <div class="alert alert-danger alert-white rounded">
                                 <div class="icon">
                                     <i class="fas fa-times-circle"></i>
                                 </div>
                                 <h5>Notification tipo Error</h5>
-                                <span>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ullam adipisci eaque atque mollitia explicabo facilis commodi consectetur.</span>
+                                <span>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ullam adipisci eaque
+                                    atque mollitia explicabo facilis commodi consectetur.</span>
                             </div>
                             <div class="alert alert-info alert-white rounded">
                                 <div class="icon">
                                     <i class="fas fa-info-circle"></i>
                                 </div>
                                 <h5>Notification tipo Info</h5>
-                                <span>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ullam adipisci eaque atque mollitia explicabo facilis commodi consectetur.</span>
+                                <span>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ullam adipisci eaque
+                                    atque mollitia explicabo facilis commodi consectetur.</span>
                             </div>
                             <div class="alert alert-success alert-white rounded">
                                 <div class="icon">
                                     <i class="fas fa-check"></i>
                                 </div>
                                 <h5>Notification tipo Success</h5>
-                                <span>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ullam adipisci eaque atque mollitia explicabo facilis commodi consectetur.</span>
-                            </div> -->
-                            <!-- <div class="alert text-center alert-more dropdown-item" *ngIf="false">
+                                <span>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ullam adipisci eaque
+                                    atque mollitia explicabo facilis commodi consectetur.</span>
+                            </div>
+                            <div class="alert text-center alert-more dropdown-item" *ngIf="true">
                                 Ver mas...
                             </div> -->
                         </ul>
@@ -143,245 +150,29 @@
                         </span>
                         <span translate="{{menu._translate}}"></span>
                     </a>
-                    <a *ngIf="menu.isSubMenu()" class="nav-link px-3 sidebar-link" data-bs-toggle="collapse"
-                        [href]="'#' + menu._submenuId " role="button">
-                        <span class="me-2"><i class="fa fa-ethernet"></i></span>
-                        <span>Redes</span>
-                        <span class="right-icon ms-auto">
-                            <i class="fa fa-chevron-down"></i>
-                        </span>
-                    </a>
-                    <div *ngIf="menu.isSubMenu()" class="collapse" [id]="menu._submenuId">
-                        <div>
-                            <ul class="navbar-nav ps-3">
-                                <li *ngFor="let itemMenu of menu._submenu">
-                                    <a routerLink="[itemMenu._routerLink]" class="nav-link px-3">
-                                        <span class="me-2"><i class="fa" [ngClass]="itemMenu._icon"></i></span>
-                                        <span translate="{{itemMenu._translate}}"></span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </li>
-
-                <!-- 
-                <li>
-                    <a [routerLink]="['/staff']" routerLinkActive="active" class="nav-link px-3">
-                        <span class="me-2">
-                            <i class="fas fa-users"></i>
-                        </span>
-                        <span translate="menu.staff"></span>
-                    </a>
-                </li> -->
-                <!-- <li>
-                    <a href="#" class="nav-link px-3">
-                        <span class="me-2">
-                            <i class="fas fa-headset"></i>
-                        </span>
-                        <span>Llamados</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="nav-link px-3">
-                        <span class="me-2">
-                            <i class="fas fa-tasks"></i>
-                        </span>
-                        <span>Tareas</span>
-                    </a>
-                </li>-->
-
-                <!-- <li class="my-1">
-                    <hr class="dropdown-divider">
-                </li>
-                <li>
-                    <div class="text-muted small fw-bold text-uppercase px-3" translate="menu.devices"></div>
-                </li> -->
-
-                <!-- Activos  -->
-                <!-- <li>
-                    <a [routerLink]="['/device']" routerLinkActive="active" class="nav-link px-3">
-                        <span class="me-2">
-                            <i class="fas fa-desktop"></i>
-                        </span>
-                        <span translate="menu.devices"></span>
-                    </a>
-                </li>  -->
-
-                <!-- Menu Activos -->
-                <!-- <li>
-                    <a class="nav-link px-3 sidebar-link" data-bs-toggle="collapse" href="#collapseRedes" role="button">
-                        <span class="me-2"><i class="fa fa-ethernet"></i></span>
-                        <span>Redes</span>
-                        <span class="right-icon ms-auto">
-                            <i class="fa fa-chevron-down"></i>
-                        </span>
-                    </a>
-                    <div class="collapse" id="collapseRedes">
-                        <div>
-                            <ul class="navbar-nav ps-3">
-                                <li>
-                                    <a href="#" class="nav-link px-3">
-                                        <span class="me-2"><i class="fa fa-network-wired"></i></span>
-                                        <span>Switch</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="nav-link px-3">
-                                        <span class="me-2"><i class="fa fa-wifi"></i></span>
-                                        <span>Router</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="nav-link px-3">
-                                        <span class="me-2"><i class="fa fa-bezier-curve"></i></span>
-                                        <span>Patch Panel</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="nav-link px-3">
-                                        <span class="me-2"><i class="fa fa-server"></i></span>
-                                        <span>Rack</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </li>  -->
-
-                <!-- Menu Energia -->
-                <!-- <li>
-                    <a class="nav-link px-3 sidebar-link" data-bs-toggle="collapse" href="#collapseEnergia"
-                        role="button" aria-expanded="false" aria-controls="collapseEnergia">
-                        <span class="me-2"><i class="fa fa-plug"></i></span>
-                        <span>Energia</span>
-                        <span class="right-icon ms-auto">
-                            <i class="fa fa-chevron-down"></i>
-                        </span>
-                    </a>
-                    <div class="collapse" id="collapseEnergia">
-                        <div>
-                            <ul class="navbar-nav ps-3">
-                                <li>
-                                    <a href="#" class="nav-link px-3">
-                                        <span class="me-2"><i class="fa fa-power-off"></i></span>
-                                        <span>UPS</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </li> -->
-
-                <!-- Menu Software -->
-                <!-- <li>
-                    <a class="nav-link px-3 sidebar-link" data-bs-toggle="collapse" href="#collapseSoftware"
-                        role="button" aria-expanded="false" aria-controls="collapseSoftware">
-                        <span class="me-2"><i class="fa fa-terminal"></i></span>
-                        <span>Software</span>
-                        <span class="right-icon ms-auto">
-                            <i class="fa fa-chevron-down"></i>
-                        </span>
-                    </a>
-                    <div class="collapse" id="collapseSoftware">
-                        <div>
-                            <ul class="navbar-nav ps-3">
-                                <li>
-                                    <a href="#" class="nav-link px-3">
-                                        <span class="me-2"><i class="fa fa-window-maximize"></i></span>
-                                        <span>Software</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="nav-link px-3">
-                                        <span class="me-2"><i class="fa fa-certificate"></i></span>
-                                        <span>Licencias</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </li> -->
-
-                <!-- <li class="my-1">
-                    <hr class="dropdown-divider">
-                </li>
-                <li>
-                    <div class="text-muted small fw-bold text-uppercase px-3" translate="menu.Records"></div>
-                </li> -->
-
-                <!-- Computadora -->
-                <!-- <li>
-                    <a [routerLink]="['/computador']" routerLinkActive="active" class="nav-link px-3">
-                        <span class="me-2">
-                            <i class="fas fa-microchip"></i>
-                        </span>
-                        <span translate="menu.Hardware"></span>
-                    </a>
-                </li> -->
-
-                <!-- Categorias -->
-                <!-- <li>
-                    <a [routerLink]="['/categorias']" routerLinkActive="active" class="nav-link px-3">
-                        <span class="me-2">
-                            <i class="fas fa-layer-group"></i>
-                        </span>
-                        <span translate="menu.Categories"></span>
-                    </a>
-                </li> -->
-
-                <!-- Empresas -->
-                <!-- <li>
-                    <a class="nav-link px-3 sidebar-link" data-bs-toggle="collapse" href="#collapseEmpresa"
-                        role="button" aria-expanded="false" aria-controls="collapseEmpresa">
-                        <span class="me-2">
-                            <i class="fas fa-building"></i>
-                        </span>
-                        <span translate="menu.Companies"></span>
-                        <span class="right-icon ms-auto">
-                            <i class="fa fa-chevron-down"></i>
-                        </span>
-                    </a>
-                    <div class="collapse" id="collapseEmpresa">
-                        <div>
-                            <ul class="navbar-nav ps-3">
-                                <li>
-                                    <a [routerLink]="['/empresas']" routerLinkActive="active" class="nav-link px-3">
-                                        <span translate="menu.Companies"></span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a [routerLink]="['/sucursales']" routerLinkActive="active" class="nav-link px-3">
-                                        <span translate="menu.Branches"></span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a [routerLink]="['/departamentos']" routerLinkActive="active"
-                                        class="nav-link px-3">
-                                        <span translate="menu.Departments"></span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </li> -->
-
-                <!-- <section *ngIf="canOpenUsers()">
-                    <li class="my-1">
-                        <hr class="dropdown-divider">
-                    </li>
-                    <li>
-                        <div class="text-muted small fw-bold text-uppercase px-3" translate="menu.manage"></div>
-                    </li>
-                    <li>
-                        <a [routerLink]="['/users']" routerLinkActive="active" class="nav-link px-3">
-                            <span class="me-2">
-                                <i class="fas fa-user-circle"></i>
+                    <div *ngIf="menu.isSubMenu()">
+                        <a class="nav-link px-3 sidebar-link" data-bs-toggle="collapse" [href]="'#' + menu._submenuId "
+                            role="button">
+                            <span class="me-2"><i class="fas" [ngClass]="menu._icon"></i></span>
+                            <span translate="{{menu._translate}}"></span>
+                            <span class="right-icon ms-auto">
+                                <i class="fa fa-chevron-down"></i>
                             </span>
-                            <span translate="menu.usersAccount"></span>
                         </a>
-                    </li>
-                </section> -->
+                        <div class="collapse" [id]="menu._submenuId">
+                            <div>
+                                <ul class="navbar-nav ps-3">
+                                    <li *ngFor="let sub of menu._submenu">
+                                        <a [routerLink]="[sub._routerLink]" class="nav-link px-3">
+                                            <span class="me-2"><i class="fas" [ngClass]="sub._icon"></i></span>
+                                            <span translate="{{sub._translate}}"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </li>
 
                 <li class="my-1">
                     <hr class="dropdown-divider">

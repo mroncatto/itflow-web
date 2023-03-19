@@ -40,6 +40,7 @@
 		"warning": {
 			"ALL FIELDS ARE REQUIRED": "Todos los campos son obligatorios",
 			"BAD_REQUEST": "Datos inválidos",
+			"DEVICE NOT FOUND": "Dispositivo no encontrado",
 			"INVALID FORMAT EMAIL": "Formato de correo inválido",
 			"NOT_FOUND": "No encontrado",
 			"No message available": "Error desconocido",
@@ -73,6 +74,7 @@
 		"close": "Cerrar",
 		"delete": "Eliminar",
 		"details": "Detalles",
+		"description": "Descripción",
 		"disable": "Desactivar",
 		"document": "Documento",
 		"edit": "Editar",
@@ -91,6 +93,7 @@
 		"remove": "Remover",
 		"save": "Salvar",
 		"status": "Situación",
+		"update": "Actualizar",
 		"warning": "Aviso",
 		"yes": "Si"
 	},
@@ -111,12 +114,13 @@
 		"category": "Categoria de dispositivo",
 		"code": "Código",
 		"code.placeholder": "Código del dispositivo",
-		"description": "Descripción",
 		"description.placeholder": "Descripción del dispositivo",
 		"serialNumber": "Número de serie",
 		"serialNumber.placeholder": "Número de serie",
+		"details": "Detalles del dispositivo",
 		"device": "Dispositivo",
 		"devices": "Dispositivos",
+		"deviceUser": "Usuario del dispositivo",
 		"hostname": "Nombre de host",
 		"hostname.placeholder": "Nombre de host del dispositivo",
 		"selectCategory":"Selecciona una categoria",
@@ -126,6 +130,11 @@
 	"deviceCategory": {
 		"name": "Nombre",
 		"name.placeholder": "Nombre de la categoria"
+	},
+	"deviceStaff": {
+		"login": "Login",
+		"login.placeholder": "Login del usuario",
+		"addFeatures": "Agrega características"
 	},
 	"forms": {
 		"email": "Debes ingresar un correo válido",
@@ -145,8 +154,10 @@
 		"placeholder.username": "Su nombre de usuario"
 	},
 	"menu": {
+		"alldevices": "Todos los dispositivos",
 		"branches": "Sucursales",
 		"companies": "Empresas",
+		"computer": "Computador",
 		"darkMode": "Modo oscuro",
 		"dashboard": "Panel",
 		"departments": "Departamentos",
@@ -155,8 +166,10 @@
 		"interface": "Interfaz",
 		"logout": " Salir",
 		"manage": "Administrar",
+		"network": "Red",
 		"noNotification": "No hay notificaciones",
 		"profile": " Perfil",
+		"power": "Energia",
 		"staff": "Funcionários",
 		"usersAccount": "Cuenta de usuarios"
 	},
@@ -167,7 +180,8 @@
 		"company": {
 			"new": "Nueva empresa"
 		},
-		"delete": "¿Estás seguro de que quieres eliminar <b>{{record}}</b> ? Este cambio no se puede revertir",
+		"delete": "¿Estás seguro de que quieres eliminar <b>{{record}}</b>? Este cambio no se puede revertir",
+		"remove": "¿Estás seguro de que quieres remover la característica <b>{{record}}</b>? ",
 		"department": {
 			"new": "Nuevo departamento"
 		},
@@ -177,6 +191,9 @@
 		},
 		"deviceCategory": {
 			"new": "Nueva categoria de dispositivo"
+		},
+		"deviceStaff": {
+			"new": "Nuevo usuario de dispositivo"
 		},
 		"occupation": {
 			"new": "Nuevo Puesto"

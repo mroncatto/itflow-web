@@ -1,0 +1,39 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <h5 *ngIf="!deviceStaff" class="modal-title" translate="modal.deviceStaff.new"></h5>
+        <h5 *ngIf="deviceStaff" class="modal-title" [translateParams]="{name: deviceStaff.staff.fullName}" translate="modal.update">
+        </h5>
+    </div>
+    <form [formGroup]="deviceStaffForm" (ngSubmit)="save()">
+        <div class="modal-body">
+
+            <div class="mb-3">
+                <label for="login" translate="deviceStaff.login"></label>
+                <input autocomplete="off" type="text" formControlName="login" id="login" class="form-control"
+                    placeholder="{{'deviceStaff.login.placeholder' | translate}}">
+                <app-validation-field [form]="deviceStaffForm" [field]="'login'"></app-validation-field>
+            </div>
+
+            <div class="mb-3">
+                <label for="staff" translate="staff.staff"></label>
+                <div class="d-flex gap-2">
+                    <select formControlName="staff" id="staff" [compareWith]="compareWith" class="form-select">
+                        <option translate="users.selectStaff" disabled selected value=""></option>
+                        <option *ngFor="let s of staff" [ngValue]="s">{{s.fullName}}</option>
+                    </select>
+                    <!-- <btn-new-department [loading]="loading" (onCreate)="onCreateDepartment($event)"></btn-new-department> -->
+                </div>
+                <app-validation-field [form]="deviceStaffForm" [field]="'staff'"></app-validation-field>
+            </div>
+
+
+        </div>
+        <div class="modal-footer">
+            <button [disabled]="loading" type="button" class="btn btn-outline-danger" (click)="closeModal()"
+                translate="commons.cancel"></button>
+            <button [disabled]="loading" type="submit" class="btn btn-success" translate="commons.save">
+                <i *ngIf="loading" class="fas fa-spinner fa-pulse mx-1"></i>
+            </button>
+        </div>
+    </form>
+</div>

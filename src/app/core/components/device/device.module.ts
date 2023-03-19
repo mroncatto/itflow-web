@@ -9,6 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DeviceViewComponent } from './pages/device-view/device-view.component';
 import { DeviceRegisterComponent } from './pages/device-register/device-register.component';
 import { CategoryComponent } from './pages/subpages/category/category.component';
+import { TabsModule } from 'ngx-bootstrap/tabs';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { CategoryComponent } from './pages/subpages/category/category.component'
   ],
   imports: [
     CommonModule,
+    TabsModule.forRoot(),
     ReactiveFormsModule,
     DeviceRoutingModule,
     TranslateModule,

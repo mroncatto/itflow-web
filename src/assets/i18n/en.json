@@ -40,6 +40,7 @@
 		"warning": {
 			"ALL FIELDS ARE REQUIRED": "All fields are required",
 			"BAD_REQUEST": "Bad Request",
+			"DEVICE NOT FOUND": "Device not found",
 			"INVALID FORMAT EMAIL": "Invalid Email Format",
 			"NOT_FOUND": "Not Found",
 			"No message available": "Unknown error",
@@ -73,6 +74,7 @@
 		"close": "Close",
 		"delete": "Delete",
 		"details": "Details",
+		"description": "Description",
 		"disable": "Disable",
 		"document": "Document",
 		"edit": "Edit",
@@ -91,6 +93,7 @@
 		"remove": "Remove",
 		"save": "Save",
 		"status": "Status",
+		"update": "Update",
 		"warning": "Warning",
 		"yes": "Yes"
 	},
@@ -111,12 +114,13 @@
 		"category": "Device Category",
 		"code": "Code",
 		"code.placeholder": "Device Code",
-		"description": "Description",
 		"description.placeholder": "Device Description",
 		"serialNumber": "Serial Number",
 		"serialNumber.placeholder": "Serial Number",
+		"details": "Device Details",
 		"device": "Device",
 		"devices": "Devices",
+		"deviceUser": "Device User",
 		"hostname": "Hostname",
 		"hostname.placeholder": "Device Hostname",
 		"selectCategory":"Select Category",
@@ -126,6 +130,11 @@
 	"deviceCategory": {
 		"name": "Name",
 		"name.placeholder": "Decive category name"
+	},
+	"deviceStaff": {
+		"login": "Login",
+		"login.placeholder": "User login",
+		"addFeatures": "Add features"
 	},
 	"forms": {
 		"email": "You must provide a valid email",
@@ -145,8 +154,10 @@
 		"placeholder.username": "Your username"
 	},
 	"menu": {
+		"alldevices": "All devices",
 		"branches": "Branches",
 		"companies": "Companies",
+		"computer": "Computer",
 		"darkMode": "Dark Mode",
 		"dashboard": "Dashboard",
 		"departments": "Departments",
@@ -155,8 +166,10 @@
 		"interface": "Interface",
 		"logout": " Logout",
 		"manage": "Manage",
+		"network": "Network",
 		"noNotification": "No notification",
 		"profile": " Profile",
+		"power": "Power",
 		"staff": "Staff",
 		"usersAccount": "Users Account"
 	},
@@ -167,7 +180,8 @@
 		"company": {
 			"new": "New company"
 		},
-		"delete": "Are you sure you want to delete <b>{{record}}</b> ? This change cannot be reversed",
+		"delete": "Are you sure you want to delete <b>{{record}}</b>? This change cannot be reversed",
+		"remove": "Are you sure you want to remove the <b>{{record}}</b> feature?",
 		"department": {
 			"new": "New department"
 		},
@@ -177,6 +191,9 @@
 		},
 		"deviceCategory": {
 			"new": "New device category"
+		},
+		"deviceStaff": {
+			"new": "New device user"
 		},
 		"occupation": {
 			"new": "New occupation"
