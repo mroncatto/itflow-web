@@ -4,12 +4,12 @@ import { AbstractValidation } from "src/app/core/shared/commons/validation/abstr
 export class CompanyValidation extends AbstractValidation {
 
     static nameCompany(): Validators[] {
-        return this.description(1,45)
+        return [Validators.max(45), Validators.required]
     }
 
     static document(): Validators[] {
-        return this.description(0,5)
+        return [Validators.max(45)];
     }
-    
+
 
 }

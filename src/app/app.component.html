@@ -133,12 +133,6 @@
                         <span translate="menu.dashboard"></span>
                     </a>
                 </li>
-                <!-- <li class="my-1">
-                    <hr class="dropdown-divider">
-                </li> -->
-                <!-- <li>
-                    <div class="text-muted small fw-bold text-uppercase px-3" translate="menu.helpdesk"></div>
-                </li> -->
                 <li *ngFor="let menu of getMenu()">
                     <hr *ngIf="menu.isMenuDivider()" class="dropdown-divider">
                     <div *ngIf="menu.isMenuDivider()" class="text-muted small fw-bold text-uppercase px-3"
@@ -163,7 +157,7 @@
                             <div>
                                 <ul class="navbar-nav ps-3">
                                     <li *ngFor="let sub of menu._submenu">
-                                        <a [routerLink]="[sub._routerLink]" class="nav-link px-3">
+                                        <a [routerLink]="[sub._routerLink]" routerLinkActive="active" class="nav-link px-3">
                                             <span class="me-2"><i class="fas" [ngClass]="sub._icon"></i></span>
                                             <span translate="{{sub._translate}}"></span>
                                         </a>

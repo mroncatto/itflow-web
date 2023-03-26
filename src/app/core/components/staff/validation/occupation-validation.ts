@@ -4,6 +4,6 @@ import { AbstractValidation } from "src/app/core/shared/commons/validation/abstr
 export class OccupationValidation extends AbstractValidation {
 
     static nameOccupation(): Validators[] {
-        return [this.description(1,45), Validators.required];
+        return [Validators.maxLength(45), Validators.required];
     }
 }

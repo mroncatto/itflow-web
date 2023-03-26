@@ -4,10 +4,10 @@ import { AbstractValidation } from "src/app/core/shared/commons/validation/abstr
 export class BranchValidation extends AbstractValidation {
     
     static nameBranch(): Validators[] {
-        return this.description(5, 45);
+        return [Validators.min(5), Validators.max(45), Validators.required];
     }
 
     static company(): Validators[] {
-        return this.description(5, 45);
+        return [this.required]
     }
 }

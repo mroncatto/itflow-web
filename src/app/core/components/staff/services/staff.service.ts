@@ -90,7 +90,7 @@ export class StaffService extends AbstractService {
     return this.formBuilder.group({
       id: [occupation ? occupation.id : ''],
       name: [occupation ? occupation.name : '', OccupationValidation.nameOccupation()],
-      active: [true, Validators.required],
+      active: [true, Validators.required]
     });
   }
 

@@ -71,6 +71,9 @@ export class DeviceStaffFormComponent extends AbstractDeviceStaff implements OnI
           error: (err) => this.onError(err)
         })
       )
+    } else {
+      this.deviceStaffForm.markAllAsTouched();
+      this.service.onWarning("badRequest", "fillFieldsRequired");
     }
   }
 

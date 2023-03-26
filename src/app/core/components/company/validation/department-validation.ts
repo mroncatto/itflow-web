@@ -4,7 +4,7 @@ import { AbstractValidation } from "src/app/core/shared/commons/validation/abstr
 export class DepartmentValidation extends AbstractValidation {
 
     static nameDept(): Validators[] {
-        return this.description(1,45)
+        return [Validators.max(45), Validators.required]
     }
 
     static branch(): Validators[] {
