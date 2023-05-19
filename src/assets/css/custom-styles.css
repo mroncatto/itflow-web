@@ -523,10 +523,11 @@ body {
   margin: 0 !important;
 }
 
-.navbar-submenu li a:hover {
-  border-left: 5px solid var(--bg-dark);
+.navbar-submenu li a:hover, .navbar-submenu li a.show {
+  border-left: 5px solid var(--third-color);
   transition: .1s;
 }
+
 
 /*================= DASHBOARD SCROLLBAR ==============*/
 ::-webkit-scrollbar {

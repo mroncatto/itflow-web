@@ -1,0 +1,40 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <h5 *ngIf="!computerStorage" class="modal-title" translate="modal.computerStorage.new"></h5>
+        <h5 *ngIf="computerStorage" class="modal-title" [translateParams]="{name: computerStorage.brandName}" translate="modal.update">
+        </h5>
+    </div>
+    <form [formGroup]="computerStorageForm" (ngSubmit)="save()">
+        <div class="modal-body">
+
+            <div class="mb-3">
+                <label for="brandName" translate="computerStorage.brandName"></label>
+                <input autocomplete="off" type="text" formControlName="brandName" id="brandName" class="form-control"
+                    placeholder="{{'computerStorage.brandName.placeholder' | translate}}">
+                <app-validation-field [form]="computerStorageForm" [field]="'brandName'"></app-validation-field>
+            </div>
+
+            <div class="mb-3">
+                <label for="transferRate" translate="computerStorage.transferRate"></label>
+                <input autocomplete="off" type="text" formControlName="transferRate" id="transferRate" class="form-control"
+                    placeholder="{{'computerStorage.transferRate.placeholder' | translate}}">
+                <app-validation-field [form]="computerStorageForm" [field]="'transferRate'"></app-validation-field>
+            </div>
+            
+            <div class="mb-3">
+                <label for="type" translate="computerStorage.type"></label>
+                <input autocomplete="off" type="text" formControlName="type" id="type" class="form-control"
+                    placeholder="{{'computerStorage.type.placeholder' | translate}}">
+                <app-validation-field [form]="computerStorageForm" [field]="'type'"></app-validation-field>
+            </div>
+            
+        </div>
+        <div class="modal-footer">
+            <button [disabled]="loading" type="button" class="btn btn-outline-danger" (click)="closeModal()"
+                translate="commons.cancel"></button>
+            <button [disabled]="loading" type="submit" class="btn btn-success" translate="commons.save">
+                <i *ngIf="loading" class="fas fa-spinner fa-pulse mx-1"></i>
+            </button>
+        </div>
+    </form>
+</div>

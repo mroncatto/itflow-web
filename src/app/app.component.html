@@ -29,14 +29,28 @@
                             </a>
 
                             <ng-template #withItems>
-                                <a class="dropdown-item dropdown-toggle link" data-bs-toggle="dropdown">
+                                <a class="dropdown-item dropdown-toggle link" data-bs-toggle="dropdown"
+                                    data-bs-auto-close="outside" aria-expanded="false">
                                     <i [class]="'fas px-1 ' + submenu.icon"></i> <span
                                         [translate]="submenu.name"></span>
                                 </a>
                                 <ul class="dropdown-menu shadow navbar-submenu">
-                                    <li *ngFor="let item of submenu.items" [routerLink]="[item.router]"
-                                        [queryParams]="{page: item.page_param}">
-                                        <a class="dropdown-item link" [translate]="item.name"></a>
+                                    <li *ngFor="let item of submenu.items" class="dropend">
+
+                                        <a *ngIf="item.isEmpty(); else withItems" [routerLink]="[item.router]"
+                                            [queryParams]="{page: item.page_param}" class="dropdown-item link"
+                                            [translate]="item.name"></a>
+
+                                        <ng-template #withItems class="dropdown">
+                                            <a class="dropdown-item dropdown-toggle link" data-bs-toggle="dropdown" [translate]="item.name">
+                                            </a>
+                                            <ul class="dropdown-menu shadow navbar-submenu">
+                                                <li *ngFor="let item of item.items">
+                                                    <a class="dropdown-item link" [routerLink]="item.router"
+                                                    [queryParams]="{page: item.page_param}" [translate]="item.name"></a>
+                                                </li>
+                                            </ul>
+                                        </ng-template>
                                     </li>
                                 </ul>
                             </ng-template>
@@ -157,7 +171,8 @@
                             <div>
                                 <ul class="navbar-nav ps-3">
                                     <li *ngFor="let sub of menu._submenu">
-                                        <a [routerLink]="[sub._routerLink]" routerLinkActive="active" class="nav-link px-3">
+                                        <a [routerLink]="[sub._routerLink]" routerLinkActive="active"
+                                            class="nav-link px-3">
                                             <span class="me-2"><i class="fas" [ngClass]="sub._icon"></i></span>
                                             <span translate="{{sub._translate}}"></span>
                                         </a>

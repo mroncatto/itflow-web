@@ -1,6 +1,7 @@
 import { FormControl } from "@angular/forms";
 import { IStaff } from "../../staff/model/staff";
 import { IDevice } from "./device";
+import { IComputerCategory } from "../../computer/model/computer-category";
 
 export interface IDeviceStaff {
     staff: IStaff;

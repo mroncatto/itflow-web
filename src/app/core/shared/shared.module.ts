@@ -23,6 +23,13 @@ import { DeviceCategoryFormComponent } from './components/forms/device/device-ca
 import { DeviceCategoryCheckboxFilterComponent } from './components/filters/device-category-checkbox-filter/device-category-checkbox-filter.component';
 import { CheckboxFilterComponent } from './components/filters/checkbox-filter/checkbox-filter.component';
 import { DeviceStaffFormComponent } from './components/forms/device/device-staff-form/device-staff-form.component';
+import { DeviceComputerFormComponent } from './components/forms/device/device-computer-form/device-computer-form.component';
+import { TabsModule } from 'ngx-bootstrap/tabs';
+import { ComputerCategoryFormComponent } from './components/forms/computer/computer-category-form/computer-category-form.component';
+import { ComputerCpuFormComponent } from './components/forms/computer/computer-cpu-form/computer-cpu-form.component';
+import { ComputerMemoryFormComponent } from './components/forms/computer/computer-memory-form/computer-memory-form.component';
+import { ComputerStorageFormComponent } from './components/forms/computer/computer-storage-form/computer-storage-form.component';
+import { NewComputerCategory } from './components/quickform/new-computer-category';
 
 @NgModule({
   declarations: [
@@ -46,14 +53,20 @@ import { DeviceStaffFormComponent } from './components/forms/device/device-staff
     DeviceCategoryFormComponent,
     DeviceCategoryCheckboxFilterComponent,
     CheckboxFilterComponent,
-    DeviceStaffFormComponent
+    DeviceStaffFormComponent,
+    DeviceComputerFormComponent,
+    ComputerCategoryFormComponent,
+    ComputerCpuFormComponent,
+    ComputerMemoryFormComponent,
+    ComputerStorageFormComponent,
+    NewComputerCategory
   ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    TranslateModule
-    
+    TranslateModule,
+    TabsModule.forRoot(),    
   ],
   exports: [
     ValidationFieldComponent,
@@ -73,10 +86,12 @@ import { DeviceStaffFormComponent } from './components/forms/device/device-staff
     NewStaffButtonComponent,
     NewBranchButtonComponent,
     NewDeviceCategoryButtonComponent,
+    NewComputerCategory,
     DeviceCategoryFormComponent,
     DeviceCategoryCheckboxFilterComponent,
     CheckboxFilterComponent,
-    DeviceStaffFormComponent
+    DeviceStaffFormComponent,
+    DeviceComputerFormComponent
   ]
 })
 export class SharedModule { }

@@ -12,6 +12,9 @@ import { DeviceCategoryForm, IDeviceCategory } from '../model/device-category';
 import { DeviceStaffForm, IDeviceStaff } from '../model/device-staff';
 import { DeviceCategoryValidation } from '../validation/device-category-validation';
 import { DeviceValidation } from '../validation/device-validation';
+import { DeviceComputerFormComponent } from 'src/app/core/shared/components/forms/device/device-computer-form/device-computer-form.component';
+import { DeviceComputerForm, IDeviceComputer } from '../model/device-computer';
+import { DeviceComputerValidation } from '../validation/device-computer-validation';
 
 @Injectable({
   providedIn: 'root'
@@ -41,8 +44,12 @@ export class DeviceService extends AbstractService {
     return this.http.post<IDevice>(`${this.API_URL}/device`, device);
   }
 
-  updateStaff(id: number, deviceStaff: IDeviceStaff): Observable<IDevice> {
+  updateDeviceStaff(id: number, deviceStaff: IDeviceStaff): Observable<IDevice> {
     return this.http.put<IDevice>(`${this.API_URL}/device/staff/${id}`, deviceStaff);
+  }
+
+  updateDeviceComputer(id: number, deviceComputer: IDeviceComputer): Observable<IDevice> {
+    return this.http.put<IDevice>(`${this.API_URL}/device/computer/${id}`, deviceComputer);
   }
 
   updateDevice(device: IDevice): Observable<IDevice> {
@@ -69,6 +76,10 @@ export class DeviceService extends AbstractService {
     return this.http.delete<IDevice>(`${this.API_URL}/device/staff/${id}`);
   }
 
+  deleteDeviceComputer(id: number): Observable<IDevice> {
+    return this.http.delete<IDevice>(`${this.API_URL}/device/computer/${id}`);
+  }
+
 
   // ===================== Modals =========================
   getDeviceModal(device?: IDevice): Subject<IDevice> {
@@ -77,6 +88,10 @@ export class DeviceService extends AbstractService {
 
   getDeviceStaffModal(device?: IDevice): Subject<IDevice> {
     return this.callModal(DeviceStaffFormComponent, device);
+  }
+
+  getDeviceComputerModal(device?: IDevice): Subject<IDevice> {
+    return this.callModal(DeviceComputerFormComponent, device, { backdrop: 'static', class: 'modal-xl' });
   }
 
   getDeviceCategoryModal(deviceCategory?: IDeviceCategory): Subject<IDeviceCategory> {
@@ -102,6 +117,14 @@ export class DeviceService extends AbstractService {
     return this.formBuilder.group({
       staff: [deviceStaff ? deviceStaff.staff : '', Validators.required],
       login: [deviceStaff ? deviceStaff.login : '']
+    })
+  }
+
+  getDeviceComputerForm(deviceComputer?: IDeviceComputer): FormGroup<DeviceComputerForm> {
+    return this.formBuilder.group({
+      computerCategory: [deviceComputer ? deviceComputer : "", Validators.required],
+      description: [deviceComputer ? deviceComputer.description : "", DeviceComputerValidation.description()],
+      virtual: [deviceComputer ? deviceComputer.virtual : false, Validators.required]
     })
   }
 

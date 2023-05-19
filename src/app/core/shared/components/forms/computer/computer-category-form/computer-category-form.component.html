@@ -1,0 +1,27 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <h5 *ngIf="!computerCategory" class="modal-title" translate="modal.computerCategory.new"></h5>
+        <h5 *ngIf="computerCategory" class="modal-title" [translateParams]="{name: computerCategory.name}" translate="modal.update">
+        </h5>
+    </div>
+    <form [formGroup]="computerCategoryForm" (ngSubmit)="save()">
+        <div class="modal-body">
+
+            <div class="mb-3">
+                <label for="name" translate="computerCategory.name"></label>
+                <input autocomplete="off" type="text" formControlName="name" id="name" class="form-control"
+                    placeholder="{{'computerCategory.name.placeholder' | translate}}">
+                <app-validation-field [form]="computerCategoryForm" [field]="'name'"></app-validation-field>
+            </div>
+
+            
+        </div>
+        <div class="modal-footer">
+            <button [disabled]="loading" type="button" class="btn btn-outline-danger" (click)="closeModal()"
+                translate="commons.cancel"></button>
+            <button [disabled]="loading" type="submit" class="btn btn-success" translate="commons.save">
+                <i *ngIf="loading" class="fas fa-spinner fa-pulse mx-1"></i>
+            </button>
+        </div>
+    </form>
+</div>

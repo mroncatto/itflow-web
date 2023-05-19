@@ -1,0 +1,47 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <h5 *ngIf="!computerMemory" class="modal-title" translate="modal.computerMemory.new"></h5>
+        <h5 *ngIf="computerMemory" class="modal-title" [translateParams]="{name: computerMemory.brandName}" translate="modal.update">
+        </h5>
+    </div>
+    <form [formGroup]="computerMemoryForm" (ngSubmit)="save()">
+        <div class="modal-body">
+
+            <div class="mb-3">
+                <label for="brandName" translate="computerMemory.brandName"></label>
+                <input autocomplete="off" type="text" formControlName="brandName" id="brandName" class="form-control"
+                    placeholder="{{'computerMemory.brandName.placeholder' | translate}}">
+                <app-validation-field [form]="computerMemoryForm" [field]="'brandName'"></app-validation-field>
+            </div>
+
+            <div class="mb-3">
+                <label for="type" translate="computerMemory.type"></label>
+                <input autocomplete="off" type="text" formControlName="type" id="type" class="form-control"
+                    placeholder="{{'computerMemory.type.placeholder' | translate}}">
+                <app-validation-field [form]="computerMemoryForm" [field]="'type'"></app-validation-field>
+            </div>
+
+            <div class="mb-3">
+                <label for="type" translate="computerMemory.size"></label>
+                <input autocomplete="off" type="text" formControlName="size" id="size" class="form-control"
+                    placeholder="{{'computerMemory.size.placeholder' | translate}}">
+                <app-validation-field [form]="computerMemoryForm" [field]="'size'"></app-validation-field>
+            </div>
+
+            <div class="mb-3">
+                <label for="frequency" translate="computerMemory.frequency"></label>
+                <input autocomplete="off" type="text" formControlName="frequency" id="frequency" class="form-control"
+                    placeholder="{{'computerMemory.frequency.placeholder' | translate}}">
+                <app-validation-field [form]="computerMemoryForm" [field]="'frequency'"></app-validation-field>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+            <button [disabled]="loading" type="button" class="btn btn-outline-danger" (click)="closeModal()"
+                translate="commons.cancel"></button>
+            <button [disabled]="loading" type="submit" class="btn btn-success" translate="commons.save">
+                <i *ngIf="loading" class="fas fa-spinner fa-pulse mx-1"></i>
+            </button>
+        </div>
+    </form>
+</div>

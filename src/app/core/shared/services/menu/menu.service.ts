@@ -44,6 +44,12 @@ export class MenuService extends AbstractService {
     ),
     menu_device: new TopbarSubMenu().setName('device.devices').setIcon('fa-desktop').setItems(
       new TopbarSubMenuItem().setName('device.category').setRouter('device/register').setPageParam('device'),
+      new TopbarSubMenuItem().setName('deviceComputer.computer').setItems(
+        new TopbarSubMenuItem().setName('commons.category').setRouter('computer/register').setPageParam('category'),
+        new TopbarSubMenuItem().setName('deviceComputer.cpu').setRouter('computer/register').setPageParam('cpu'),
+        new TopbarSubMenuItem().setName('deviceComputer.memory').setRouter('computer/register').setPageParam('memory'),
+        new TopbarSubMenuItem().setName('deviceComputer.storage').setRouter('computer/register').setPageParam('storage'),
+      )
     ),
   }
   /* ======================================================================================== */
@@ -141,7 +147,7 @@ export class MenuService extends AbstractService {
     // Devices
     this.getDeviceDivider(menu);
     this.getAllDevicesSubmenu(menu);
-    this.getDeviceMenu(menu);
+    //this.getDeviceMenu(menu);
     this.checkEmptyMenuBlock(menu)
 
     return menu;

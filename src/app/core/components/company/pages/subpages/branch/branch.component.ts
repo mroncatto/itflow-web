@@ -2,16 +2,17 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { IBranch } from '../../../model/branch';
 import { CompanyService } from '../../../services/company.service';
+import { IAbstractRegisterSubpages } from 'src/app/core/shared/abstracts/interface/abstract-register-subpages';
 
 @Component({
   selector: 'app-branch',
   templateUrl: './branch.component.html',
   styleUrls: ['./branch.component.css']
 })
-export class BranchComponent implements OnInit, OnDestroy {
+export class BranchComponent implements OnInit, OnDestroy, IAbstractRegisterSubpages<IBranch> {
 
   private sub: Subscription[] = [];
-  branches: IBranch[]=[];
+  branches: IBranch[] = [];
   loading: boolean = true;
 
   constructor(private service: CompanyService) { }
@@ -48,7 +49,7 @@ export class BranchComponent implements OnInit, OnDestroy {
       this.service.getBranchModal(branch).subscribe({
         next: (data) => {
           this.branches.forEach(b => {
-            if(b.id === data.id) Object.assign(b, data);
+            if (b.id === data.id) Object.assign(b, data);
           })
         },
         error: (err) => this.service.onHttpError(err)
@@ -59,7 +60,7 @@ export class BranchComponent implements OnInit, OnDestroy {
   confirmDelete(branch: IBranch): void {
     this.sub.push(
       this.service.showConfirm('warning', 'delete', branch.name).subscribe({
-        next: (confirm) => { if(confirm) this.onDelete(branch) }
+        next: (confirm) => { if (confirm) this.onDelete(branch) }
       })
     );
   }

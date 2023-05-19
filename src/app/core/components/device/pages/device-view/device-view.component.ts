@@ -14,6 +14,7 @@ export class DeviceViewComponent extends AbstractComponent implements OnInit {
 
   device!: IDevice | null;
   @ViewChild('featuresTabs', { static: false }) featuresTabs?: TabsetComponent;
+  @ViewChild('propertiesTabs', { static: false }) propertiesTabs?: TabsetComponent;
 
   constructor(private service: DeviceService, private activatedRoute: ActivatedRoute, private router: Router) {
     super();
@@ -47,7 +48,7 @@ export class DeviceViewComponent extends AbstractComponent implements OnInit {
   }
 
   onUpdate(): void {
-    if(this.device != null) {
+    if (this.device != null) {
       this.sub.push(
         this.service.getDeviceModal(this.device).subscribe({
           next: (data) => this.afterUpdate(data),
@@ -75,26 +76,59 @@ export class DeviceViewComponent extends AbstractComponent implements OnInit {
   }
 
   private onDeleteDeviceStaff(): void {
-    if(this.device != null) {
+    if (this.device != null) {
       this.sub.push(
         this.service.deleteDeviceStaff(this.device.id).subscribe({
-          next: (data) => this.afterDeleteDeviceStaff(data),
+          next: (data) => this.afterDeleteDeviceFeatures(data),
           error: (err) => this.service.onHttpError(err)
         })
       )
     }
   }
 
-  private afterDeleteDeviceStaff(device: IDevice): void {
+  confirmDeleteDeviceComputer(): void {
+    this.sub.push(
+      this.service.showConfirm('warning', 'remove', 'Computer').subscribe({
+        next: (confirm) => {
+          if (confirm) this.onDeleteDeviceComputer()
+        },
+        error: (err) => this.service.onHttpError(err)
+      })
+    )
+  }
+
+  private onDeleteDeviceComputer(): void {
+    if (this.device != null) {
+      this.sub.push(
+        this.service.deleteDeviceComputer(this.device.id).subscribe({
+          next: (data) => this.afterDeleteDeviceFeatures(data),
+          error: (err) => this.service.onHttpError(err)
+        })
+      )
+    }
+  }
+
+  private afterDeleteDeviceFeatures(device: IDevice): void {
     this.selectTab(0);
     this.device = device;
     this.service.onSuccess('deleted', 'deleted');
   }
 
   onAddOrChangeStaff(): void {
-    if(this.device != null) {
+    if (this.device != null) {
       this.sub.push(
         this.service.getDeviceStaffModal(this.device).subscribe({
+          next: (data) => this.device = data,
+          error: (err) => this.service.onHttpError(err)
+        })
+      );
+    }
+  }
+
+  onAddOrChangeComputer(): void {
+    if (this.device != null) {
+      this.sub.push(
+        this.service.getDeviceComputerModal(this.device).subscribe({
           next: (data) => this.device = data,
           error: (err) => this.service.onHttpError(err)
         })
@@ -109,8 +143,10 @@ export class DeviceViewComponent extends AbstractComponent implements OnInit {
   }
 
   canAddFeatures(): boolean {
-    if(this.device){
-      return this.device.active && (this.device.deviceStaff == null);
+    if (this.device) {
+      return this.device.active
+        && (this.device.deviceStaff == null)
+        || (this.device.deviceComputer == null);
     }
 
     return false;

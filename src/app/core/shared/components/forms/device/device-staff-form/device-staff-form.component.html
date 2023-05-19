@@ -21,7 +21,7 @@
                         <option translate="users.selectStaff" disabled selected value=""></option>
                         <option *ngFor="let s of staff" [ngValue]="s">{{s.fullName}}</option>
                     </select>
-                    <!-- <btn-new-department [loading]="loading" (onCreate)="onCreateDepartment($event)"></btn-new-department> -->
+                    <btn-new-staff [loading]="loading" (onCreate)="onCreateStaff($event)"></btn-new-staff>
                 </div>
                 <app-validation-field [form]="deviceStaffForm" [field]="'staff'"></app-validation-field>
             </div>

@@ -66,7 +66,7 @@ export class DeviceStaffFormComponent extends AbstractDeviceStaff implements OnI
     if (this.deviceStaffForm.valid) {
       this.loading = true;
       this.sub.push(
-        this.service.updateStaff(this.device.id, this.deviceStaffForm.value as IDeviceStaff).subscribe({
+        this.service.updateDeviceStaff(this.device.id, this.deviceStaffForm.value as IDeviceStaff).subscribe({
           next: (data) => this.onSave(data),
           error: (err) => this.onError(err)
         })
@@ -85,6 +85,11 @@ export class DeviceStaffFormComponent extends AbstractDeviceStaff implements OnI
       this.service.onSuccess("created", "created");
     }
     this.closeModal();
+  }
+
+  onCreateStaff(staff: IStaff): void {
+    this.staff.push(staff);
+    this.deviceStaffForm.get('staff')?.setValue(staff);
   }
 
   onError(err: HttpErrorResponse): void {

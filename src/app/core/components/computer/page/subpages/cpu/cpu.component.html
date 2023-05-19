@@ -1,0 +1,64 @@
+<div class="card">
+    <div class="card-header bg-primary fw-bold text-white flex-between">
+        <div>
+            <span translate="deviceComputer.cpu"></span>
+            <div class="spinner-border spinner-border-sm mx-2" role="status" *ngIf="loading">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+        <div>
+            <button class="btn btn-success text-white" (click)="onCreate()">
+                <i class="fas fa-user-plus"></i>&nbsp;<span translate="commons.new"></span>
+            </button>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table table-stripped">
+            <thead>
+                <th>#</th>
+                <th translate="commons.brandName"></th>
+                <th translate="commons.model"></th>
+                <th translate="computerCpu.frequency"></th>
+                <th translate="computerCpu.socket"></th>
+                <th translate="computerCpu.generation"></th>
+                <th></th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let cpu of cpus">
+                    <td>{{ cpu.id }}</td>
+                    <td>{{ cpu.brandName }}</td>
+                    <td>{{ cpu.model }}</td>
+                    <td>{{ cpu.frequency }}</td>
+                    <td>{{ cpu.socket }}</td>
+                    <td>{{ cpu.generation }}</td>
+                    <td>
+                        <i title="{{'commons.actions' | translate}}" class="fas fa-chevron-circle-down link" [id]="cpu.id"
+                            data-bs-toggle="dropdown"></i>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li class="link-spin">
+                                <a (click)="onUpdate(cpu)" class="dropdown-item">
+                                    <i class="fas fa-pen"></i>&nbsp;
+                                    <span translate="commons.edit"></span>
+                                </a>
+                            </li>
+                            <div>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li class="link-spin">
+                                    <a (click)="confirmDelete(cpu)" class="dropdown-item">
+                                        <i class="fas fa-trash text-danger"></i>&nbsp;<span
+                                            translate="commons.delete"></span>
+                                    </a>
+                                </li>
+                            </div>
+                        </ul>
+                    </td>
+                </tr>
+                <tr *ngIf="cpus.length === 0">
+                    <td colspan="2" translate="commons.noData"></td>
+                </tr>
+            </tbody>
+        </table> 
+    </div>
+</div>

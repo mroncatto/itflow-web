@@ -12,6 +12,7 @@ const routes: Routes = [
       { path: 'staff', loadChildren: () => import('./core/components/staff/staff.module').then(m => m.StaffModule) },
       { path: 'company', loadChildren: () => import('./core/components/company/company.module').then(m => m.CompanyModule) },
       { path: 'device', loadChildren: () => import('./core/components/device/device.module').then(m => m.DeviceModule) },
+      { path: 'computer', loadChildren: () => import('./core/components/computer/computer.module').then(m => m.ComputerModule) },
       { path: '**', pathMatch: 'full', redirectTo: 'dashboard' }
     ]
   },
