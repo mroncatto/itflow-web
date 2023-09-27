@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { UntypedFormGroup } from '@angular/forms';
+import { FormControl, FormGroup, UntypedFormGroup } from '@angular/forms';
 import { ValidationService } from '../../../services/validation/validation.service';
 
 @Component({
@@ -9,16 +9,33 @@ import { ValidationService } from '../../../services/validation/validation.servi
 })
 export class ValidationFieldComponent {
 
-  @Input() form!: UntypedFormGroup;
+  @Input() form!: FormGroup<any>;
+  @Input() control!: FormControl<any>;
   @Input() field!: string;
-  constructor(private validationService: ValidationService) {}
+  constructor(private validationService: ValidationService) { }
 
-  invalidControl(): boolean | undefined {
-    return this.validationService.invalidControl(this.form, this.field);
+  invalidForm(): boolean | undefined {
+    return this.isFormGroup() && this.validationService.invalidForm(this.form, this.field);
   }
 
-  errorMessage(): string {
-    return this.validationService.getFormErrorMessage(this.form.controls[this.field]);
+  invalidControl(): boolean | undefined {
+    return this.isFormControl() && this.validationService.invalidControl(this.control);
+  }
+
+  errorMessageForm(): string {
+    return this.validationService.getControlErrorMessage(this.form.controls[this.field]);
+  }
+
+  errorMessageControl(): string {
+    return this.validationService.getControlErrorMessage(this.control);
+  }
+
+  private isFormGroup(): boolean {
+    return (this.form != null) && (this.field != null) && !this.isFormControl();
+  }
+
+  private isFormControl(): boolean {
+    return (this.control != null) && !this.isFormGroup();
   }
 
 }

@@ -15,6 +15,7 @@ import { DeviceValidation } from '../validation/device-validation';
 import { DeviceComputerFormComponent } from 'src/app/core/shared/components/forms/device/device-computer-form/device-computer-form.component';
 import { DeviceComputerForm, IDeviceComputer } from '../model/device-computer';
 import { DeviceComputerValidation } from '../validation/device-computer-validation';
+import { IDeviceComputerCpu } from '../model/device-computer-cpu';
 
 @Injectable({
   providedIn: 'root'
@@ -50,6 +51,10 @@ export class DeviceService extends AbstractService {
 
   updateDeviceComputer(id: number, deviceComputer: IDeviceComputer): Observable<IDevice> {
     return this.http.put<IDevice>(`${this.API_URL}/device/computer/${id}`, deviceComputer);
+  }
+
+  updateDeviceComputerCpu(id: number, deviceComputerCpu: IDeviceComputerCpu): Observable<IDevice> {
+    return this.http.put<IDevice>(`${this.API_URL}/device/computer/${id}/cpu`, deviceComputerCpu);
   }
 
   updateDevice(device: IDevice): Observable<IDevice> {

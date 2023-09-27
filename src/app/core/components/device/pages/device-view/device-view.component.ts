@@ -4,6 +4,11 @@ import { TabsetComponent } from 'ngx-bootstrap/tabs';
 import { AbstractComponent } from 'src/app/core/shared/abstracts/abstract-component';
 import { IDevice } from '../../model/device';
 import { DeviceService } from '../../services/device.service';
+import { ComputerService } from '../../../computer/services/computer.service';
+import { Observable, finalize, map, pipe } from 'rxjs';
+import { IComputerCpu } from '../../../computer/model/computer-cpu';
+import { FormControl, FormGroup } from '@angular/forms';
+import { DeviceComputerCpuForm, IDeviceComputerCpu } from '../../model/device-computer-cpu';
 
 @Component({
   templateUrl: './device-view.component.html',
@@ -13,10 +18,17 @@ export class DeviceViewComponent extends AbstractComponent implements OnInit {
 
 
   device!: IDevice | null;
+
+  deviceComputerCpuForm!: FormGroup<DeviceComputerCpuForm>;
+
   @ViewChild('featuresTabs', { static: false }) featuresTabs?: TabsetComponent;
   @ViewChild('propertiesTabs', { static: false }) propertiesTabs?: TabsetComponent;
 
-  constructor(private service: DeviceService, private activatedRoute: ActivatedRoute, private router: Router) {
+  constructor(
+    private service: DeviceService,
+    private computerService: ComputerService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router) {
     super();
   }
 
@@ -27,6 +39,11 @@ export class DeviceViewComponent extends AbstractComponent implements OnInit {
       if (deviceID == null || deviceID == undefined) this.notFound()
       this.findDevice(deviceID);
     });
+  }
+
+  startForms() {
+    if (this.device?.deviceComputer)
+      this.deviceComputerCpuForm = this.computerService.getDeviceComputerCpuForm(this.device.deviceComputer);
   }
 
 
@@ -42,7 +59,10 @@ export class DeviceViewComponent extends AbstractComponent implements OnInit {
           this.service.onHttpError(err);
           this.notFound();
         },
-        complete: () => this.loading = false
+        complete: () => {
+          this.loading = false;
+          this.startForms();
+        }
       })
     )
   }
@@ -152,4 +172,29 @@ export class DeviceViewComponent extends AbstractComponent implements OnInit {
     return false;
   }
 
+  onSelectCpu(cpu: IComputerCpu | null): void {
+    if (cpu) {
+      this.deviceComputerCpuForm.controls['computerCpu'].setValue(cpu);
+      this.nextFocus('vcpu')
+    } else {
+      this.deviceComputerCpuForm.controls['computerCpu'].reset();
+    }
+
+  }
+
+  saveDeviceComputerCpu(): void {
+    if (this.device && this.deviceComputerCpuForm.valid) {
+      this.sub.push(
+        this.service.updateDeviceComputerCpu(this.device.id, this.deviceComputerCpuForm.value as IDeviceComputerCpu).subscribe({
+          next: (data) => this.device = data,
+          error: (err) => this.service.onHttpError(err)
+        })
+      );
+    }
+  }
+
+
 }
+
+
+

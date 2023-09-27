@@ -17,4 +17,8 @@ export abstract class AbstractValidation {
     protected static description(minLength: number, maxLength: number): Validators[] {
         return [Validators.minLength(minLength), Validators.maxLength(maxLength)];
     }
+
+    protected static onlyNumbers(): Validators {
+        return Validators.pattern('^[0-9]*$');
+    }
 }

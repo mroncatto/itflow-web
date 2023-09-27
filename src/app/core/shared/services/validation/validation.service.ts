@@ -9,11 +9,15 @@ export class ValidationService {
 
   constructor(private translateService: TranslateConfigService) { }
 
-  invalidControl(form: AbstractControl, field: string): boolean | undefined {
+  invalidForm(form: AbstractControl, field: string): boolean | undefined {
     return (form.get(field)?.touched && form.get(field)?.invalid);
   }
 
-  getFormErrorMessage(form: AbstractControl): string {
+  invalidControl(control: AbstractControl): boolean | undefined {
+    return (control.touched && control.invalid);
+  }
+
+  getControlErrorMessage(form: AbstractControl): string {
     if (form.hasError('pattern')) return this.translateService.instant('forms.pattern');
     if (form.hasError('email')) return this.translateService.instant('forms.email');
     if (form.hasError('required')) return this.translateService.instant('forms.required');

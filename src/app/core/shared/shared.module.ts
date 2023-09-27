@@ -30,6 +30,8 @@ import { ComputerCpuFormComponent } from './components/forms/computer/computer-c
 import { ComputerMemoryFormComponent } from './components/forms/computer/computer-memory-form/computer-memory-form.component';
 import { ComputerStorageFormComponent } from './components/forms/computer/computer-storage-form/computer-storage-form.component';
 import { NewComputerCategory } from './components/quickform/new-computer-category';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { ComputerCpuAutocompleteComponent } from './components/commons/autocomplete/computer-cpu-autocomplete/computer-cpu-autocomplete.component';
 
 @NgModule({
   declarations: [
@@ -59,13 +61,15 @@ import { NewComputerCategory } from './components/quickform/new-computer-categor
     ComputerCpuFormComponent,
     ComputerMemoryFormComponent,
     ComputerStorageFormComponent,
-    NewComputerCategory
+    NewComputerCategory,
+    ComputerCpuAutocompleteComponent,
   ],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     TranslateModule,
+    MatAutocompleteModule,
     TabsModule.forRoot(),    
   ],
   exports: [
@@ -91,7 +95,8 @@ import { NewComputerCategory } from './components/quickform/new-computer-categor
     DeviceCategoryCheckboxFilterComponent,
     CheckboxFilterComponent,
     DeviceStaffFormComponent,
-    DeviceComputerFormComponent
+    DeviceComputerFormComponent,
+    ComputerCpuAutocompleteComponent
   ]
 })
 export class SharedModule { }

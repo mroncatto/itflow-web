@@ -5,7 +5,7 @@ import { DeviceRoutingModule } from './router/device-routing.module';
 import { DeviceComponent } from './pages/device/device.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { SharedModule } from '../../shared/shared.module';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DeviceViewComponent } from './pages/device-view/device-view.component';
 import { DeviceRegisterComponent } from './pages/device-register/device-register.component';
 import { CategoryComponent } from './pages/subpages/category/category.component';
@@ -23,6 +23,7 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
     CommonModule,
     TabsModule.forRoot(),
     ReactiveFormsModule,
+    FormsModule,
     DeviceRoutingModule,
     TranslateModule,
     SharedModule

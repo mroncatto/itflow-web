@@ -217,10 +217,33 @@
                                                     <span class="mx-1" translate="deviceComputer.cpu"></span>
                                                 </ng-template>
                                                 <div class="computer-tab-content m-3">
-                                                    <div class="my-3 d-flex gap-1">
-                                                        <input type="text" placeholder="CPU" class="form-control">
-                                                        <button class="btn btn-sm btn-primary" disabled>Agregar</button>
-                                                    </div>
+                                                    <form class="my-3 d-flex gap-1" [formGroup]="deviceComputerCpuForm"
+                                                        (ngSubmit)="saveDeviceComputerCpu()">
+                                                        <div class="mb-3">
+                                                            <app-computer-cpu-autocomplete [id]="'computerCpu'"
+                                                                (onSelect)="onSelectCpu($event)">
+                                                            </app-computer-cpu-autocomplete>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="vcpu">Number of vcpu:</label>
+                                                            <input type="text" class="form-control" (keydown)="nextFocus('unit', $event)"
+                                                                formControlName="vcpu" id="vcpu" placeholder="vcpu">
+                                                            <app-validation-field [form]="deviceComputerCpuForm"
+                                                                [field]="'vcpu'"></app-validation-field>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="unit">Unit:</label>
+                                                            <input type="text" class="form-control"
+                                                                formControlName="unit" id="unit" placeholder="unit">
+                                                            <app-validation-field [form]="deviceComputerCpuForm"
+                                                                [field]="'unit'"></app-validation-field>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="save-computer-cpu" class="sr-only">computer-cpu</label><br>
+                                                            <button id="save-computer-cpu" type="submit" class="btn btn-primary"
+                                                                [disabled]="deviceComputerCpuForm.invalid" translate="commons.add"></button>
+                                                        </div>
+                                                    </form>
                                                     <table class="table table-striped">
                                                         <thead>
                                                             <tr>
@@ -231,14 +254,17 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <!-- <tr>
-                                                                <td>INTEL CORE I7-12600KF 4.2GHZ</td>
-                                                                <td>16</td>
-                                                                <td>1</td>
+                                                            <tr *ngIf="device.deviceComputer.cpu">
+                                                                <td>{{ device.deviceComputer.cpu.computerCpu.brandName }} 
+                                                                    {{ device.deviceComputer.cpu.computerCpu.model }} 
+                                                                    {{ device.deviceComputer.cpu.computerCpu.frequency }} 
+                                                                    {{ device.deviceComputer.cpu.computerCpu.socket }}</td>
+                                                                <td>{{ device.deviceComputer.cpu.vcpu }} </td>
+                                                                <td>{{ device.deviceComputer.cpu.unit}}</td>
                                                                 <td><i title="{{'commons.remove' | translate}}"
                                                                         class="fas fa-trash text-danger link link-animation"></i>
                                                                 </td>
-                                                            </tr> -->
+                                                            </tr>
                                                         </tbody>
                                                     </table>
                                                 </div>

@@ -66,6 +66,7 @@
 	"commons": {
 		"actions": "Actions",
 		"active": "Active",
+		"brandName": "Brand",
 		"cancel": "Cancel",
 		"category": "Category",
 		"clean": "Clean",
@@ -82,6 +83,7 @@
 		"inactive": "Inactive",
 		"filterOnTheList": "Filter on the list",
 		"filterResults": "Filter results",
+		"model": "Model",
 		"name": "Name",
 		"new": "New",
 		"no": "No",
@@ -129,12 +131,63 @@
 	},
 	"deviceCategory": {
 		"name": "Name",
-		"name.placeholder": "Decive category name"
+		"name.placeholder": "Device category name"
+	},
+	"computerCategory": {
+		"name": "Name",
+		"name.placeholder": "Computer category name"
+	},
+	"computerCpu": {
+		"brandName": "Brand name",
+		"brandName.placeholder": "Cpu brand name",
+		"model": "Model",
+		"model.placeholder": "Cpu model",
+		"generation": "Generation",
+		"generation.placeholder": "Cpu generation",
+		"socket": "Socket",
+		"socket.placeholder": "CPU Socket",
+		"core": "Core",
+		"core.placeholder": "Number of processor cores",
+		"frequency": "Frequency (Ghz)",
+		"frequency.placeholder": "CPU frequency (Ghz)",
+		"fsb": "FSB",
+		"fsb.placeholder": "FSB (Front Side Bus)"
+		
+	},
+	"computerMemory": {
+		"size": "Size (GB)",
+		"size.placeholder": "Memory size (GB)",
+		"frequency": "Frequency (Mhz)",
+		"frequency.placeholder": "Memory frequency",
+		"type": "Type",
+		"type.placeholder": "Memory type",
+		"brandName": "Brand name",
+		"brandName.placeholder": "Memory brand name"
+	},
+	"computerStorage": {
+		"brandName": "Brand Name",
+		"brandName.placeholder": "Storage brand name",
+		"type": "Type",
+		"type.placeholder": "Storage type",
+		"transferRate": "Transfer Rate (MB/s)",
+		"transferRate.placeholder": "Storage transfer Rate (MB/s)"
 	},
 	"deviceStaff": {
 		"login": "Login",
 		"login.placeholder": "User login",
 		"addFeatures": "Add features"
+	},
+	"deviceComputer": {
+		"computer": "Computer",
+		"category": "Computer Category",
+		"cpu": "CPU",
+		"description.placeholder": "Computer description",
+		"memory": "Memory",
+		"storage": "Storage",
+		"server": "Server",
+		"virtual": "Virtual Machine",
+		"virtual.placeholder": "Is a virtual machine?",
+		"software": "Software"
 	},
 	"forms": {
 		"email": "You must provide a valid email",
@@ -194,6 +247,21 @@
 		},
 		"deviceStaff": {
 			"new": "New device user"
+		},
+		"deviceComputer": {
+			"new": "New device computer"
+		},
+		"computerCategory": {
+			"new": "New computer category"
+		},
+		"computerCpu": {
+			"new": "New computer cpu"
+		},
+		"computerMemory": {
+			"new": "New computer memory"
+		},
+		"computerStorage": {
+			"new": "New computer storage"
 		},
 		"occupation": {
 			"new": "New occupation"

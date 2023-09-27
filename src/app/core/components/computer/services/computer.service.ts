@@ -14,6 +14,9 @@ import { ComputerStorageValidation } from '../validation/computer-storage-valida
 import { ComputerCpuFormComponent } from 'src/app/core/shared/components/forms/computer/computer-cpu-form/computer-cpu-form.component';
 import { ComputerMemoryFormComponent } from 'src/app/core/shared/components/forms/computer/computer-memory-form/computer-memory-form.component';
 import { ComputerStorageFormComponent } from 'src/app/core/shared/components/forms/computer/computer-storage-form/computer-storage-form.component';
+import { DeviceComputerCpuForm, IDeviceComputerCpu } from '../../device/model/device-computer-cpu';
+import { DeviceComputerForm, IDeviceComputer } from '../../device/model/device-computer';
+import { DeviceComputerCpuValidation } from '../../device/validation/device-computer-cpu-validation';
 
 @Injectable({
   providedIn: 'root'
@@ -41,6 +44,10 @@ export class ComputerService extends AbstractService {
 
   getComputerCPU(): Observable<IComputerCpu[]> {
     return this.http.get<IComputerCpu[]>(`${this.API_URL}/computer/cpu`);
+  }
+
+  getComputerCpuAutoComplete(filter: string): Observable<IComputerCpu[]> {
+    return this.http.get<IComputerCpu[]>(`${this.API_URL}/computer/cpu/autocomplete/${filter}`);
   }
 
   createComputerCPU(computerCPU: IComputerCpu): Observable<IComputerCpu> {
@@ -129,6 +136,15 @@ export class ComputerService extends AbstractService {
       transferRate: [storage ? storage.transferRate : '', ComputerStorageValidation.transferRate()],
       type: [storage ? storage.type : '', ComputerStorageValidation.type()],
       active: [true, Validators.required]
+    })
+  }
+
+  getDeviceComputerCpuForm(deviceComputer: IDeviceComputer, cpu?: IDeviceComputerCpu): FormGroup<DeviceComputerCpuForm> {
+    return this.formBuilder.group({
+      deviceComputer: [ deviceComputer ],
+      computerCpu: [cpu ? cpu.computerCpu : '', DeviceComputerCpuValidation.computerCpu()],
+      vcpu: [cpu ? cpu.vcpu : '', DeviceComputerCpuValidation.vcpu()],
+      unit: [cpu ? cpu.unit : '', DeviceComputerCpuValidation.unit()]
     })
   }
 
