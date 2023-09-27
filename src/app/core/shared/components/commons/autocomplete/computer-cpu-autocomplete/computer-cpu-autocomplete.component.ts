@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { MatLegacyAutocompleteSelectedEvent as MatAutocompleteSelectedEvent } from '@angular/material/legacy-autocomplete';
 import { Observable, finalize, map, of, pipe, take } from 'rxjs';
 import { IComputerCpu } from 'src/app/core/components/computer/model/computer-cpu';
 import { ComputerService } from 'src/app/core/components/computer/services/computer.service';

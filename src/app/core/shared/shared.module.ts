@@ -30,7 +30,7 @@ import { ComputerCpuFormComponent } from './components/forms/computer/computer-c
 import { ComputerMemoryFormComponent } from './components/forms/computer/computer-memory-form/computer-memory-form.component';
 import { ComputerStorageFormComponent } from './components/forms/computer/computer-storage-form/computer-storage-form.component';
 import { NewComputerCategory } from './components/quickform/new-computer-category';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatLegacyAutocompleteModule as MatAutocompleteModule } from '@angular/material/legacy-autocomplete';
 import { ComputerCpuAutocompleteComponent } from './components/commons/autocomplete/computer-cpu-autocomplete/computer-cpu-autocomplete.component';
 
 @NgModule({

@@ -1,6 +1,6 @@
 import { EventEmitter } from "@angular/core";
 import { FormControl } from "@angular/forms";
-import { MatAutocompleteSelectedEvent } from "@angular/material/autocomplete";
+import { MatLegacyAutocompleteSelectedEvent as MatAutocompleteSelectedEvent } from "@angular/material/legacy-autocomplete";
 import { Observable } from "rxjs";
 
 export interface IAbstractAutocomplete<T> {
