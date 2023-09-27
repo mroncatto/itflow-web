@@ -8,7 +8,7 @@ import { IAuthResponse } from '../../user/model/auth-response';
 })
 export class LoginService extends AbstractService {
 
-  constructor(injector: Injector) { super(injector) }
+  constructor() { super() }
 
   login(login: FormData): Observable<IAuthResponse> {
     return this.http.post<IAuthResponse>(`${this.API_URL}/auth/login`, login);

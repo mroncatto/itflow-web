@@ -17,7 +17,7 @@ import { DepartmentValidation } from '../validation/department-validation';
 })
 export class CompanyService extends AbstractService {
 
-  constructor(injector: Injector) { super(injector) }
+  constructor() { super() }
 
   // ===================== Endpoints =========================
   getCompanies(): Observable<ICompany[]> {

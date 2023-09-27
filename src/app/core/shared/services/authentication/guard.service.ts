@@ -6,8 +6,8 @@ import { AbstractService } from '../abstract/abstract.service';
 })
 export class GuardService extends AbstractService {
 
-  constructor(injector: Injector) {
-    super(injector);
+  constructor() {
+    super();
   }
 
   alertExpiredToken() {

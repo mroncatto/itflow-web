@@ -6,7 +6,7 @@ import { AbstractService } from '../abstract/abstract.service';
 })
 export class InterceptorService extends AbstractService {
 
-  constructor(injector: Injector) { super(injector) }
+  constructor() { super() }
 
   getToken(): string | null {
     return this.authService.getTokenFromSessionStorage();

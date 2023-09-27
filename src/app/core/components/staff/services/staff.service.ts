@@ -18,7 +18,7 @@ import { StaffValidation } from '../validation/staff-validation';
 })
 export class StaffService extends AbstractService {
 
-  constructor(injector: Injector) { super(injector) }
+  constructor() { super() }
 
   // ===================== Endpoints ======================
   getStaff(page: number, filter: StaffFilter): Observable<IPaginator> {

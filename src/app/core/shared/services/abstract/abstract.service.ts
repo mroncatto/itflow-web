@@ -1,5 +1,5 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Injectable, Injector } from '@angular/core';
+import { Injectable, Injector, inject } from '@angular/core';
 import { UntypedFormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
@@ -19,24 +19,17 @@ import { TranslateConfigService } from '../translate/translate-config.service';
 })
 export class AbstractService {
 
-  protected translateService: TranslateConfigService;
-  protected router: Router;
-  protected authService: AuthenticationService;
-  protected http: HttpClient;
-  protected modalService: BsModalService;
-  alertService: AlertService;
-  formBuilder: UntypedFormBuilder;
+  protected readonly translateService = inject(TranslateConfigService);
+  protected readonly router = inject(Router);
+  protected readonly authService = inject(AuthenticationService);
+  protected readonly http = inject(HttpClient);
+  protected readonly modalService = inject(BsModalService);
+  public readonly alertService = inject(AlertService);
+  public readonly formBuilder = inject(UntypedFormBuilder);
 
   readonly API_URL = environment.API_URL;
-  constructor(injector: Injector) {
-    this.alertService = injector.get(AlertService);
-    this.translateService = injector.get(TranslateConfigService);
-    this.router = injector.get(Router);
-    this.modalService = injector.get(BsModalService);
-    this.authService = injector.get(AuthenticationService);
-    this.http = injector.get(HttpClient);
-    this.formBuilder = injector.get(UntypedFormBuilder);
-  }
+  
+  constructor() {}
 
   // ------------------ Lists --------------------------------
   sortById(list: any[]): any[] {

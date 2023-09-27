@@ -23,7 +23,7 @@ import { DeviceComputerCpuValidation } from '../../device/validation/device-comp
 })
 export class ComputerService extends AbstractService {
 
-  constructor(injector: Injector) { super(injector) }
+  constructor() { super() }
 
   // ===================== Endpoints =========================
   getCategories(): Observable<IComputerCategory[]> {

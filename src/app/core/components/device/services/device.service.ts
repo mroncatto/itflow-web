@@ -22,7 +22,7 @@ import { IDeviceComputerCpu } from '../model/device-computer-cpu';
 })
 export class DeviceService extends AbstractService {
 
-  constructor(injector: Injector) { super(injector) }
+  constructor() { super() }
 
   // ===================== Endpoints ======================
   getDevice(page: number, filter: DeviceFilter): Observable<IPaginator> {

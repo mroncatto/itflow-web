@@ -16,7 +16,7 @@ import { UserValidation } from '../validation/user-validation';
 })
 export class UserService extends AbstractService {
 
-  constructor(injector: Injector) { super(injector) }
+  constructor() { super() }
 
   createUser(user: IUser): Observable<IUser> {
     return this.http.post<IUser>(`${this.API_URL}/user`, user);
