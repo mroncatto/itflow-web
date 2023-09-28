@@ -37,7 +37,7 @@ export class AuthenticationService {
 
   getRolesFromToken(): Roles[] {
     const token = this.getTokenFromSessionStorage();
-    if(token !== null) return this.tokenHelper.decodeToken(token).credentials as Roles[];
+    if(token !== null) return this.tokenHelper.decodeToken(token).roles as Roles[];
     return [];
   }
 
