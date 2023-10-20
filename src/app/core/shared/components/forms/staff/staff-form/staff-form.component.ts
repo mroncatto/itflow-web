@@ -69,6 +69,7 @@ export class StaffFormComponent extends AbstractStaff implements OnInit, OnDestr
         )
       }
     } else {
+      this.staffForm.markAllAsTouched();
       this.service.onWarning("badRequest", "fillFieldsRequired");
     }
   }

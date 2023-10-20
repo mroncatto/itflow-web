@@ -14,7 +14,7 @@ export class TranslateConfigService {
     { id: "pt", name: "Português" }
   ];
 
-  private currentLang: string = "en";
+  protected currentLang: string = "en";
   private browserLang: string = window.navigator.language.substring(0, 2);
 
   constructor(private translate: TranslateService, private http: HttpClient) {

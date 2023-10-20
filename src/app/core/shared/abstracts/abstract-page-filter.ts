@@ -2,6 +2,18 @@ import { ICheckboxFilter } from "./interface/checkbox-filter";
 
 export abstract class AbstractPageFilter {
 
+    composePageFilter(urlParams: string, page: number): string {
+        if (page != null && page > 0) {
+            if (urlParams.length > 0) {
+                return urlParams.concat("&page=0");
+            } else {
+                return urlParams.concat("?page=", page.toString());
+            }
+        }
+
+        return urlParams;
+    }
+
     composeInputFilter(urlParams: string, filter: string): string {
         if (filter.length > 0) {
             if (urlParams.length > 0) {

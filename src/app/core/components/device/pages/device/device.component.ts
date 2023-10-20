@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription, tap } from 'rxjs';
 import { IAbstractComponentFilter } from 'src/app/core/shared/abstracts/interface/abstract-component-filter';
 import { ICheckboxFilter } from 'src/app/core/shared/abstracts/interface/checkbox-filter';
@@ -29,15 +29,17 @@ export class DeviceComponent implements OnInit, OnDestroy, IAbstractComponentFil
   @ViewChild(SearchInputComponent) searchFilterChild!: SearchInputComponent;
   @ViewChild(DepartmentCheckboxFilterComponent) departmentFilterChild!: DepartmentCheckboxFilterComponent;
   @ViewChild(DeviceCategoryCheckboxFilterComponent) categoryFilterChild!: DeviceCategoryCheckboxFilterComponent;
-  
 
-  constructor(private service: DeviceService, private activatedRoute: ActivatedRoute) { }
+
+  constructor(private service: DeviceService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.sub.push(
-      this.activatedRoute.params.subscribe(params => {
-        const numPage: number = params['page'];
-        if (numPage !== null && numPage !== undefined) this.page = numPage;
+      this.activatedRoute.queryParams.subscribe(query => {
+        if (query['page']) {
+          const numPage = this.page = query['page'];
+          if (numPage !== null && numPage !== undefined) this.page = numPage;
+        }
         this.getDevices();
       })
     )
@@ -131,6 +133,14 @@ export class DeviceComponent implements OnInit, OnDestroy, IAbstractComponentFil
     this.filter.department = filter;
     this.loading = true;
     this.getDevices();
+
+    //TODO: Testar / Implementar padrao filtro url
+    // this.router.navigate([],
+    //   {
+    //     relativeTo: this.activatedRoute,
+    //     queryParams: {departments: '1,2'},
+    //     queryParamsHandling: 'merge'
+    //   });
   }
 
   filterDeviceCategory(filter: ICheckboxFilter[]): void {
@@ -144,7 +154,7 @@ export class DeviceComponent implements OnInit, OnDestroy, IAbstractComponentFil
     this.departmentFilterChild.clearSelection();
     this.categoryFilterChild.clearSelection();
 
-    if(this.filter.isFilterNotEmpty()){
+    if (this.filter.isFilterNotEmpty()) {
       this.filter.cleanFilter();
       this.refresh();
     }

@@ -1,3 +1,4 @@
+import { query } from '@angular/animations';
 import { Component, OnInit, ChangeDetectionStrategy, Input, SimpleChanges, OnChanges } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -29,23 +30,23 @@ export class PaginatorComponent implements OnInit, OnChanges {
   }
 
   goPage(page: number): void {
-    this.router.navigate([`${this.route}/page/${page - 1}`]);
+    this.router.navigate([this.route], { queryParams: { page: page - 1 } });
   }
 
   firstPage(): void {
-    this.router.navigate([`${this.route}/page/0`]);
+    this.router.navigate([this.route], { queryParams: { page: 0 } });
   }
 
   lastPage(): void {
-    this.router.navigate([`${this.route}/page/${this.paginator.totalPages - 1}`]);
+    this.router.navigate([this.route], { queryParams: { page: this.paginator.totalPages - 1 } });
   }
 
   nextPage(): void {
-    this.router.navigate([`${this.route}/page/${this.paginator.number + 1}`]);
+    this.router.navigate([this.route], { queryParams: { page: this.paginator.number + 1 } });
   }
 
   backPage(): void {
-    this.router.navigate([`${this.route}/page/${this.paginator.number - 1}`]);
+    this.router.navigate([this.route], { queryParams: { page: this.paginator.number - 1 } });
   }
 
   // Keep pagination between 5 and 10 buttons

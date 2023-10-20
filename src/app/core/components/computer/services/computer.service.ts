@@ -47,7 +47,7 @@ export class ComputerService extends AbstractService {
   }
 
   getComputerCpuAutoComplete(filter: string): Observable<IComputerCpu[]> {
-    return this.http.get<IComputerCpu[]>(`${this.API_URL}/computer/cpu/autocomplete/${filter}`);
+    return this.http.get<IComputerCpu[]>(`${this.API_URL}/computer/cpu/autocomplete?filter=${filter}`);
   }
 
   createComputerCPU(computerCPU: IComputerCpu): Observable<IComputerCpu> {

@@ -26,7 +26,7 @@ export class DeviceService extends AbstractService {
 
   // ===================== Endpoints ======================
   getDevice(page: number, filter: DeviceFilter): Observable<IPaginator> {
-    return this.http.get<IPaginator>(`${this.API_URL}/device/page/${page}${this.filterDevice(filter)}`);
+    return this.http.get<IPaginator>(`${this.API_URL}/device${this.filterDevice(filter, page)}`);
   }
 
   getDeviceById(id: number): Observable<IDevice> {
@@ -141,13 +141,13 @@ export class DeviceService extends AbstractService {
     });
   }
 
-  filterDevice(filter: DeviceFilter): string {
+  filterDevice(filter: DeviceFilter, page: number): string {
     let urlParams: string = "";
 
+    urlParams = filter.composePageFilter(urlParams, page);
     urlParams = filter.composeInputFilter(urlParams, filter.input);
     urlParams = filter.composeListParamsFilter(urlParams, "departments", filter.department);
     urlParams = filter.composeListParamsFilter(urlParams, "categories", filter.deviceCategory);
-
     return urlParams;
 
   }

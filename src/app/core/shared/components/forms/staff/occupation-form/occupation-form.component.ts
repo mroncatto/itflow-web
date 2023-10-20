@@ -62,6 +62,7 @@ export class OccupationFormComponent extends AbstractOccupation implements OnIni
         )
       }
     } else {
+      this.occupationForm.markAllAsTouched();
       this.service.onWarning("badRequest", "fillFieldsRequired");
     }
   }

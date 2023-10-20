@@ -6,7 +6,6 @@ import {
   HttpInterceptor
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { InterceptorService } from '../shared/services/authentication/interceptor.service';
 import { AuthenticationService } from '../shared/services/authentication/authentication.service';
 import { environment } from 'src/environments/environment';
 
@@ -36,7 +35,7 @@ export class AuthenticationInterceptor implements HttpInterceptor {
 
     // Inject the token in the header
     if (token) {
-      const authenticatedRequest = request.clone({ setHeaders: { Authorization: `Bearer ${token}` } });
+      const authenticatedRequest = request.clone({ setHeaders: { Authorization: `Bearer ${token}`, 'Accept-Language': 'es' } });
       return next.handle(authenticatedRequest);
     }
 

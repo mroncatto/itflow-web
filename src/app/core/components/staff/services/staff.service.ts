@@ -22,11 +22,11 @@ export class StaffService extends AbstractService {
 
   // ===================== Endpoints ======================
   getStaff(page: number, filter: StaffFilter): Observable<IPaginator> {
-    return this.http.get<IPaginator>(`${this.API_URL}/staff/page/${page}${this.filterStaff(filter)}`);
+    return this.http.get<IPaginator>(`${this.API_URL}/staff${this.filterStaff(filter, page)}`);
   }
 
   getAllStaff(): Observable<Staff[]> {
-    return this.http.get<Staff[]>(`${this.API_URL}/staff`);
+    return this.http.get<Staff[]>(`${this.API_URL}/staff/all`);
   }
 
   getOccupation(): Observable<Occupation[]> {
@@ -94,9 +94,10 @@ export class StaffService extends AbstractService {
     });
   }
 
-  filterStaff(filter: StaffFilter): string {
+  filterStaff(filter: StaffFilter, page: number): string {
     let urlParams: string = "";
  
+    urlParams = filter.composePageFilter(urlParams, page);
     urlParams = filter.composeInputFilter(urlParams, filter.input);
     urlParams = filter.composeListParamsFilter(urlParams, "departments", filter.department);
     urlParams = filter.composeListParamsFilter(urlParams, "occupations", filter.occupation);

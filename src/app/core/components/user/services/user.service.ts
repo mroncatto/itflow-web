@@ -40,7 +40,7 @@ export class UserService extends AbstractService {
   }
 
   getUsers(page: number, filter: UserFilter): Observable<IPaginator> {
-    return this.http.get<IPaginator>(`${this.API_URL}/user/page/${page}${this.filterUser(filter)}`);
+    return this.http.get<IPaginator>(`${this.API_URL}/user${this.filterUser(filter, page)}`);
   }
 
   getAllUsers(): Observable<User[]> {
@@ -128,9 +128,11 @@ export class UserService extends AbstractService {
     return form;
   }
 
-  filterUser(filter: UserFilter): string {
-    let urlParams: string = "";
-    if (filter.hasInput()) urlParams = urlParams.concat("?filter=", filter.input);
+  filterUser(filter: UserFilter, page: number): string {
+    let urlParams: string = "";0
+    urlParams = filter.composePageFilter(urlParams, page);
+    urlParams = filter.composeInputFilter(urlParams, filter.input);
+
     return urlParams;
   }
 

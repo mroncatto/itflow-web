@@ -49,7 +49,7 @@ export class CompanyService extends AbstractService {
   }
 
   updateDepartment(dpto: IDepartment): Observable<IDepartment> {
-    return this.http.post<IDepartment>(`${this.API_URL}/department`, dpto);
+    return this.http.put<IDepartment>(`${this.API_URL}/department`, dpto);
   }
 
   deleteDepartment(dpto: IDepartment): Observable<IDepartment> {

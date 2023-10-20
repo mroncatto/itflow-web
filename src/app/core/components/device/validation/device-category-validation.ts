@@ -3,6 +3,6 @@ import { AbstractValidation } from "src/app/core/shared/commons/validation/abstr
 
 export class DeviceCategoryValidation extends AbstractValidation {
     static nameCategory(): Validators[] {
-        return this.description(1, 45);
+        return [Validators.required, Validators.max(45)];
     }
 }

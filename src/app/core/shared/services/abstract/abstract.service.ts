@@ -4,9 +4,7 @@ import { UntypedFormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Subject } from 'rxjs';
-import { StaffFilter } from 'src/app/core/components/staff/filter/staff-filter';
 import { Roles } from 'src/app/core/components/user/enum/role.enum';
-import { UserFilter } from 'src/app/core/components/user/filter/user-filter';
 import { environment } from 'src/environments/environment';
 import { ToastType } from '../../commons/enum/toastType.enum';
 import { ConfirmComponent } from '../../components/modal/confirm/confirm.component';
@@ -121,26 +119,22 @@ export class AbstractService {
 
   private badRequestError(err: any) {
     const title = this.translateService.instant(`alert.warning.${err?.error}`);
-    const msg = this.translateService.instant(`alert.warning.${err?.message}`);
-    this.alertService.showAlert(title, (err.error === 'BAD_REQUEST') ? err.message : msg, ToastType.WARNING);
+    this.alertService.showAlert(title, err?.message, ToastType.WARNING);
   }
 
   private authenticationRequest(err: any) {
     const title = this.translateService.instant(`alert.error.${err?.error}`);
-    const msg = this.translateService.instant(`alert.error.${err?.message}`);
-    this.alertService.showAlert(title, msg, ToastType.ERROR);
+    this.alertService.showAlert(title, err?.message, ToastType.ERROR);
   }
 
   private notFound(err: any) {
     const title = this.translateService.instant(`alert.warning.${err?.error}`);
-    const msg = this.translateService.instant(`alert.warning.${err?.message}`);
-    this.alertService.showAlert(title, msg, ToastType.WARNING);
+    this.alertService.showAlert(title, err?.message, ToastType.WARNING);
   }
 
   private internalServerError(err: any) {
     const title = this.translateService.instant(`alert.error.unknown`);
-    const msg = this.translateService.instant(`alert.error.${err?.message}`);
-    this.alertService.showAlert(title, msg, ToastType.ERROR);
+    this.alertService.showAlert(title, err?.message, ToastType.ERROR);
   }
 
   private undefinedError() {
