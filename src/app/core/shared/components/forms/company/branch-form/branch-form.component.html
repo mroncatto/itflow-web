@@ -5,12 +5,13 @@
     </div>
     <form [formGroup]="branchForm" (ngSubmit)="save()">
         <div class="modal-body">
-            <div class="mb-3">
-                <label for="name" translate="commons.name"></label>
-                <input autocomplete="off" type="text" formControlName="name" id="name" class="form-control"
-                    placeholder="{{'branch.name.placeholder' | translate}}">
-                <app-validation-field [form]="branchForm" [field]="'name'"></app-validation-field>
-            </div>
+
+            <app-input-group
+            [form]="branchForm"
+            translateLabel="commons.name" 
+            translatePlaceholder="branch.name.placeholder"
+            id="name">
+            </app-input-group>
 
             <div class="mb-3">
                 <label for="company" translate="company.company"></label>

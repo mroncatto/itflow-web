@@ -1,0 +1,6 @@
+<div class="mb-3" *ngIf="form">
+    <label [for]="id" [translate]="translateLabel" [ngClass]="{'validation-required': isRequired()}"></label>
+    <input autocomplete="off" [type]="type" [formControl]="getControl()" [id]="id" class="form-control"
+        placeholder="{{translatePlaceholder | translate}}">
+    <app-validation-field [form]="form" [field]="id"></app-validation-field>
+</div>

@@ -179,7 +179,7 @@
                                                 <div>
                                                     <ul class="list-group list-group-">
                                                         <li class="list-group-item border-0"><span class="fw-bold"
-                                                                translate="deviceComputer.category"></span>:
+                                                                translate="commons.category"></span>:
                                                             {{ device.deviceComputer.computerCategory.name }}
                                                         </li>
                                                         <li class="list-group-item border-0"><span class="fw-bold"
@@ -211,33 +211,32 @@
                                                     </div>
                                                 </div>
                                             </tab>
-                                            <tab>
+                                             <tab>
                                                 <ng-template tabHeading>
                                                     <i class="fas fa-microchip"></i>
                                                     <span class="mx-1" translate="deviceComputer.cpu"></span>
                                                 </ng-template>
-                                                <div class="computer-tab-content m-3">
+                                                <div class="computer-tab-content m-3" *ngIf="deviceComputerCpuForm">
                                                     <form class="my-3 d-flex gap-1" [formGroup]="deviceComputerCpuForm"
                                                         (ngSubmit)="saveDeviceComputerCpu()">
+                                                        
                                                         <div class="mb-3">
-                                                            <app-computer-cpu-autocomplete [id]="'computerCpu'"
-                                                                (onSelect)="onSelectCpu($event)">
+                                                            <app-computer-cpu-autocomplete 
+                                                            [id]="'computerCpu'" 
+                                                            [control]="computerCpuAutoComplete"
+                                                            (onSelect)="onSelectCpu($event)">
                                                             </app-computer-cpu-autocomplete>
                                                         </div>
-                                                        <div class="mb-3">
-                                                            <label for="vcpu">Number of vcpu:</label>
-                                                            <input type="text" class="form-control" (keydown)="nextFocus('unit', $event)"
-                                                                formControlName="vcpu" id="vcpu" placeholder="vcpu">
-                                                            <app-validation-field [form]="deviceComputerCpuForm"
-                                                                [field]="'vcpu'"></app-validation-field>
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label for="unit">Unit:</label>
-                                                            <input type="text" class="form-control"
-                                                                formControlName="unit" id="unit" placeholder="unit">
-                                                            <app-validation-field [form]="deviceComputerCpuForm"
-                                                                [field]="'unit'"></app-validation-field>
-                                                        </div>
+
+                                                        <!-- (keydown)="nextFocus('unit', $event)" -->
+
+                                                        <app-input-group
+                                                        [form]="deviceComputerCpuForm"
+                                                        translateLabel="computerCpu.core" 
+                                                        translatePlaceholder="computerCpu.placeholder.core"
+                                                        id="core">
+                                                        </app-input-group>
+
                                                         <div class="mb-3">
                                                             <label for="save-computer-cpu" class="sr-only">computer-cpu</label><br>
                                                             <button id="save-computer-cpu" type="submit" class="btn btn-primary"
@@ -248,19 +247,18 @@
                                                         <thead>
                                                             <tr>
                                                                 <th>CPU</th>
-                                                                <th>VCPU</th>
-                                                                <th>UNIT</th>
+                                                                <th>CORES</th>
+                                                                <th>FREQUENCY</th>
+                                                                <th>SOCKET</th>
                                                                 <th></th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngIf="device.deviceComputer.cpu">
-                                                                <td>{{ device.deviceComputer.cpu.computerCpu.brandName }} 
-                                                                    {{ device.deviceComputer.cpu.computerCpu.model }} 
-                                                                    {{ device.deviceComputer.cpu.computerCpu.frequency }} 
-                                                                    {{ device.deviceComputer.cpu.computerCpu.socket }}</td>
-                                                                <td>{{ device.deviceComputer.cpu.vcpu }} </td>
-                                                                <td>{{ device.deviceComputer.cpu.unit}}</td>
+                                                            <tr *ngFor="let cpus of device.deviceComputer.computerCpuList">
+                                                                <td>{{ cpus.computerCpu.brandName }} - {{ cpus.computerCpu.model }} </td>
+                                                                <td>{{ cpus.core }} </td> 
+                                                                <td>{{ cpus.computerCpu.frequency }} </td> 
+                                                                <td>{{ cpus.computerCpu.socket }}</td>
                                                                 <td><i title="{{'commons.remove' | translate}}"
                                                                         class="fas fa-trash text-danger link link-animation"></i>
                                                                 </td>
@@ -269,7 +267,7 @@
                                                     </table>
                                                 </div>
                                             </tab>
-                                            <tab>
+                                            <!--<tab>
                                                 <ng-template tabHeading>
                                                     <i class="fas fa-memory"></i>
                                                     <span class="mx-1" translate="deviceComputer.memory"></span>
@@ -288,13 +286,13 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <!-- <tr>
+                                                             <tr>
                                                                 <td>CORSAIR DDR4 2600MHZ</td>
                                                                 <td>2</td>
                                                                 <td><i title="{{'commons.remove' | translate}}"
                                                                         class="fas fa-trash text-danger link link-animation"></i>
                                                                 </td>
-                                                            </tr> -->
+                                                            </tr> 
                                                         </tbody>
                                                     </table>
                                                 </div>
@@ -318,13 +316,13 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <!-- <tr>
+                                                            <tr>
                                                                 <td>SSD</td>
                                                                 <td>120</td>
                                                                 <td><i title="{{'commons.remove' | translate}}"
                                                                         class="fas fa-trash text-danger link link-animation"></i>
                                                                 </td>
-                                                            </tr> -->
+                                                            </tr> 
                                                         </tbody>
                                                     </table>
                                                 </div>
@@ -395,7 +393,7 @@
                                                         </tbody>
                                                     </table>
                                                 </div>
-                                            </tab>
+                                            </tab> -->
                                         </tabset>
                                     </div>
                                 </tab>

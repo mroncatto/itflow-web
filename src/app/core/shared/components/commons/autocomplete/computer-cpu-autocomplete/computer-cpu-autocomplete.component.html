@@ -1,10 +1,12 @@
-<label for="computerCpu">CPU:</label>
-<input type="text" class="form-control" [id]="id" placeholder="Type and press enter to search"
-    [formControl]="control" [matAutocomplete]="auto">
-<app-validation-field [control]="control"></app-validation-field>
-<mat-autocomplete autoActiveFirstOption [displayWith]="displayWith" #auto="matAutocomplete"
-    (optionSelected)="onSelectItem($event)">
-    <mat-option *ngFor="let item of items | async" [value]="item">
-        {{ displayWith(item) }}
-    </mat-option>
-</mat-autocomplete>
+<ng-template ngIf="control">
+    <label for="computerCpu">CPU:</label>
+    <input type="text" class="form-control" [id]="id" placeholder="{{'commons.typeToSearch' | translate }}"
+        [formControl]="control" [matAutocomplete]="auto">
+    <app-validation-field [control]="control"></app-validation-field>
+    <mat-autocomplete autoActiveFirstOption [displayWith]="displayWith" #auto="matAutocomplete"
+        (optionSelected)="onSelectItem($event)">
+        <mat-option *ngFor="let item of items | async" [value]="item">
+            {{ displayWith(item) }}
+        </mat-option>
+    </mat-autocomplete>
+</ng-template>

@@ -8,15 +8,15 @@ export class ComputerMemoryValidation extends AbstractValidation {
     }
 
     static type(): Validators[] {
-        return [Validators.maxLength(25)];
+        return [Validators.maxLength(25), Validators.required];
     }
 
     static frequency(): Validators[] {
-        return [Validators.maxLength(25)];
+        return [Validators.maxLength(25), this.onlyNumbers()];
     }
 
     static size(): Validators[] {
-        return [Validators.maxLength(25)];
+        return [Validators.maxLength(25), Validators.required, this.onlyNumbers()];
     }
 
 }

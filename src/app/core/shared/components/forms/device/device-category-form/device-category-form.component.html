@@ -7,12 +7,13 @@
     <form [formGroup]="deviceCategoryForm" (ngSubmit)="save()">
         <div class="modal-body">
 
-            <div class="mb-3">
-                <label for="name" translate="deviceCategory.name"></label>
-                <input autocomplete="off" type="text" formControlName="name" id="name" class="form-control"
-                    placeholder="{{'deviceCategory.name.placeholder' | translate}}">
-                <app-validation-field [form]="deviceCategoryForm" [field]="'name'"></app-validation-field>
-            </div>
+            <app-input-group
+            [form]="deviceCategoryForm"
+            translateLabel="deviceCategory.name" 
+            translatePlaceholder="deviceCategory.name.placeholder"
+            id="name">
+            </app-input-group>
+
         </div>
         <div class="modal-footer">
             <button [disabled]="loading" type="button" class="btn btn-outline-danger" (click)="closeModal()"

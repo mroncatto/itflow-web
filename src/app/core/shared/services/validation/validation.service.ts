@@ -18,7 +18,7 @@ export class ValidationService {
   }
 
   getControlErrorMessage(form: AbstractControl): string {
-    if (form.hasError('pattern')) return this.translateService.instant('forms.pattern');
+    if (form.hasError('pattern')) return this.translateService.instant('forms.pattern', {n: form.errors?.['pattern'].requiredPattern});
     if (form.hasError('email')) return this.translateService.instant('forms.email');
     if (form.hasError('required')) return this.translateService.instant('forms.required');
     if (form.hasError('minlength')) return this.translateService.instant('forms.minlength', {n: form.errors?.['minlength'].requiredLength});

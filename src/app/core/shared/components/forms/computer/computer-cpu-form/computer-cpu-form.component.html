@@ -8,54 +8,69 @@
     <form [formGroup]="computerCpuForm" (ngSubmit)="save()">
 
         <div class="modal-body">
-            <div class="mb-3">
-                <label for="brandName" translate="computerCpu.brandName"></label>
+            <!-- <div class="mb-3">
+                <label for="brandName" translate="commons.brand" [ngClass]="{'validation-required': isInvalidControl('brandName')}"></label>
                 <input autocomplete="off" type="text" formControlName="brandName" id="brandName" class="form-control"
-                    placeholder="{{'computerCpu.brandName.placeholder' | translate}}">
+                    placeholder="{{'commons.placeholder.brand' | translate}}">
                 <app-validation-field [form]="computerCpuForm" [field]="'brandName'"></app-validation-field>
-            </div>
+            </div> -->
 
-            <div class="mb-3">
-                <label for="model" translate="computerCpu.model"></label>
-                <input autocomplete="off" type="text" formControlName="model" id="model" class="form-control"
-                    placeholder="{{'computerCpu.model.placeholder' | translate}}">
-                <app-validation-field [form]="computerCpuForm" [field]="'model'"></app-validation-field>
-            </div>
+            <app-input-group
+            [form]="computerCpuForm"
+            translateLabel="commons.brand" 
+            translatePlaceholder="commons.placeholder.brand"
+            id="brandName">
+            </app-input-group>
 
-            <div class="mb-3">
-                <label for="generation" translate="computerCpu.generation"></label>
-                <input autocomplete="off" type="text" formControlName="generation" id="generation" class="form-control"
-                    placeholder="{{'computerCpu.generation.placeholder' | translate}}">
-                <app-validation-field [form]="computerCpuForm" [field]="'generation'"></app-validation-field>
-            </div>
+            <app-input-group
+            [form]="computerCpuForm"
+            translateLabel="commons.model" 
+            translatePlaceholder="commons.placeholder.model"
+            id="model">
+            </app-input-group>
 
-            <div class="mb-3">
-                <label for="socket" translate="computerCpu.socket"></label>
-                <input autocomplete="off" type="text" formControlName="socket" id="socket" class="form-control"
-                    placeholder="{{'computerCpu.socket.placeholder' | translate}}">
-                <app-validation-field [form]="computerCpuForm" [field]="'socket'"></app-validation-field>
-            </div>
+            <app-input-group
+            [form]="computerCpuForm"
+            translateLabel="computerCpu.generation" 
+            translatePlaceholder="computerCpu.generation.placeholder"
+            id="generation">
+            </app-input-group>
 
-            <div class="mb-3">
-                <label for="core" translate="computerCpu.core"></label>
-                <input autocomplete="off" type="text" formControlName="core" id="core" class="form-control"
-                    placeholder="{{'computerCpu.core.placeholder' | translate}}">
-                <app-validation-field [form]="computerCpuForm" [field]="'core'"></app-validation-field>
-            </div>
+            <app-input-group
+            [form]="computerCpuForm"
+            translateLabel="computerCpu.socket" 
+            translatePlaceholder="computerCpu.socket.placeholder"
+            id="socket">
+            </app-input-group>
 
-            <div class="mb-3">
-                <label for="frequency" translate="computerCpu.frequency"></label>
-                <input autocomplete="off" type="text" formControlName="frequency" id="frequency" class="form-control"
-                    placeholder="{{'computerCpu.frequency.placeholder' | translate}}">
-                <app-validation-field [form]="computerCpuForm" [field]="'frequency'"></app-validation-field>
-            </div>
- 
-            <div class="mb-3">
-                <label for="fsb" translate="computerCpu.fsb"></label>
-                <input autocomplete="off" type="text" formControlName="fsb" id="fsb" class="form-control"
-                    placeholder="{{'computerCpu.fsb.placeholder' | translate}}">
-                <app-validation-field [form]="computerCpuForm" [field]="'fsb'"></app-validation-field>
-            </div>
+            <app-input-group
+            [form]="computerCpuForm"
+            translateLabel="computerCpu.core" 
+            translatePlaceholder="computerCpu.core.placeholder"
+            id="core">
+            </app-input-group>
+
+            <app-input-group
+            [form]="computerCpuForm"
+            translateLabel="computerCpu.thread" 
+            translatePlaceholder="computerCpu.placeholder.thread"
+            id="thread">
+            </app-input-group>
+
+            <app-input-group
+            [form]="computerCpuForm"
+            translateLabel="computerCpu.frequency" 
+            translatePlaceholder="computerCpu.frequency.placeholder"
+            id="frequency">
+            </app-input-group>
+
+            <app-input-group
+            [form]="computerCpuForm"
+            translateLabel="computerCpu.fsb" 
+            translatePlaceholder="computerCpu.fsb.placeholder"
+            id="fsb">
+            </app-input-group>
+
         </div>
 
         <div class="modal-footer">

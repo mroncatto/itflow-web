@@ -7,12 +7,12 @@
     <form [formGroup]="computerCategoryForm" (ngSubmit)="save()">
         <div class="modal-body">
 
-            <div class="mb-3">
-                <label for="name" translate="computerCategory.name"></label>
-                <input autocomplete="off" type="text" formControlName="name" id="name" class="form-control"
-                    placeholder="{{'computerCategory.name.placeholder' | translate}}">
-                <app-validation-field [form]="computerCategoryForm" [field]="'name'"></app-validation-field>
-            </div>
+            <app-input-group
+            [form]="computerCategoryForm"
+            translateLabel="commons.name" 
+            translatePlaceholder="commons.name"
+            id="name">
+            </app-input-group>
 
             
         </div>

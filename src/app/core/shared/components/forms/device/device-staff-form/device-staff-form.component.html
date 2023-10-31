@@ -7,12 +7,12 @@
     <form [formGroup]="deviceStaffForm" (ngSubmit)="save()">
         <div class="modal-body">
 
-            <div class="mb-3">
-                <label for="login" translate="deviceStaff.login"></label>
-                <input autocomplete="off" type="text" formControlName="login" id="login" class="form-control"
-                    placeholder="{{'deviceStaff.login.placeholder' | translate}}">
-                <app-validation-field [form]="deviceStaffForm" [field]="'login'"></app-validation-field>
-            </div>
+            <app-input-group
+            [form]="deviceStaffForm"
+            translateLabel="deviceStaff.login" 
+            translatePlaceholder="deviceStaff.login.placeholder"
+            id="login">
+            </app-input-group>
 
             <div class="mb-3">
                 <label for="staff" translate="staff.staff"></label>

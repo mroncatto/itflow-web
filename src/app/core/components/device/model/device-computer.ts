@@ -9,7 +9,7 @@ export interface IDeviceComputer {
     computerCategory: IComputerCategory;
     description: string;
     virtual: boolean;
-    cpu: IDeviceComputerCpu;
+    computerCpuList: IDeviceComputerCpu[];
 }
 
 export class DeviceComputer implements IDeviceComputer {
@@ -18,15 +18,15 @@ export class DeviceComputer implements IDeviceComputer {
     computerCategory: IComputerCategory;
     description: string;
     virtual: boolean;
-    cpu: IDeviceComputerCpu;
+    computerCpuList: IDeviceComputerCpu[];
 
-    constructor(id: number, device: Device, computerCategory: IComputerCategory, description: string, virtual: boolean, cpu: IDeviceComputerCpu) {
+    constructor(id: number, device: Device, computerCategory: IComputerCategory, description: string, virtual: boolean, computerCpuList: IDeviceComputerCpu[]) {
         this.id = id;
         this.device = device;
         this.computerCategory = computerCategory;
         this.description = description;
         this.virtual = virtual;
-        this.cpu = cpu;
+        this.computerCpuList = computerCpuList;
     }
 }
 

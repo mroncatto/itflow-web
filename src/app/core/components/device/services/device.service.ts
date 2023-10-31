@@ -127,7 +127,7 @@ export class DeviceService extends AbstractService {
 
   getDeviceComputerForm(deviceComputer?: IDeviceComputer): FormGroup<DeviceComputerForm> {
     return this.formBuilder.group({
-      computerCategory: [deviceComputer ? deviceComputer : "", Validators.required],
+      computerCategory: [deviceComputer ? deviceComputer.computerCategory : "", Validators.required],
       description: [deviceComputer ? deviceComputer.description : "", DeviceComputerValidation.description()],
       virtual: [deviceComputer ? deviceComputer.virtual : false, Validators.required]
     })

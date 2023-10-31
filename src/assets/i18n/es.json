@@ -8,10 +8,10 @@
 			"INVALID PASSWORD": "Contraseña invalida",
 			"METHOD NOT ALLOWED": "Método no permitido",
 			"UNAUTHORIZED": "No autorizado",
-			"UNSUCCESSFUL AUTHENTICATION": "La autenticación falló",
-			"USER ACCOUNT IS LOCKED": "Tu cuenta está bloqueada",
 			"undefined": "Error interno del servidor",
-			"unknown": "Error interno del servidor"
+			"unknown": "Error interno del servidor",
+			"UNSUCCESSFUL AUTHENTICATION": "La autenticación falló",
+			"USER ACCOUNT IS LOCKED": "Tu cuenta está bloqueada"
 		},
 		"info": {
 			"authenticated": "Autenticado con éxito",
@@ -39,23 +39,23 @@
 		},
 		"warning": {
 			"ALL FIELDS ARE REQUIRED": "Todos los campos son obligatorios",
+			"attention": "Atención",
 			"BAD_REQUEST": "Datos inválidos",
+			"badRequest": "Datos inválidos",
+			"canActivatedDenied": "Acceso denegado, no tienes permiso para acceder a esta página",
 			"DEVICE NOT FOUND": "Dispositivo no encontrado",
+			"fillFieldsRequired": "Completa los campos obligatorios",
 			"INVALID FORMAT EMAIL": "Formato de correo inválido",
-			"NOT_FOUND": "No encontrado",
+			"loginRequired": "Por favor, vuelva a iniciar sesión",
 			"No message available": "Error desconocido",
 			"Not Found": "No encontrado",
+			"NOT_FOUND": "No encontrado",
+			"passwordExpired": "Su contraseña ha caducado, ¡establezca una nueva contraseña!",
+			"sessionExpired": "Sesión expirada",
 			"THE USERNAME FIELD IS REQUIRED": "O campo nome de usuário é obrigatório",
 			"USER ALREADY EXISTS WITH THIS EMAIL": "Ya hay un usuario con este correo",
 			"USER ALREADY EXISTS WITH THIS USERNAME": "Ya existe un usuario con este nombre de usuario",
-			"USER NOT FOUND": "Usuario no encontrado",
-			"attention": "Atención",
-			"badRequest": "Datos inválidos",
-			"canActivatedDenied": "Acceso denegado, no tienes permiso para acceder a esta página",
-			"fillFieldsRequired": "Completa los campos obligatorios",
-			"loginRequired": "Por favor, vuelva a iniciar sesión",
-			"passwordExpired": "Su contraseña ha caducado, ¡establezca una nueva contraseña!",
-			"sessionExpired": "Sesión expirada"
+			"USER NOT FOUND": "Usuario no encontrado"
 		}
 	},
 	"branch": {
@@ -66,6 +66,8 @@
 	"commons": {
 		"actions": "Acciones",
 		"active": "Activo",
+		"add": "Adicionar",
+		"brand": "Marca",
 		"cancel": "Cancelar",
 		"category": "Categoria",
 		"clean": "Limpiar",
@@ -73,26 +75,34 @@
 		"clearSelection": "Limpiar selección",
 		"close": "Cerrar",
 		"delete": "Eliminar",
-		"details": "Detalles",
 		"description": "Descripción",
+		"details": "Detalles",
 		"disable": "Desactivar",
 		"document": "Documento",
 		"edit": "Editar",
 		"email": "Correo",
-		"inactive": "Inactivo",
 		"filterOnTheList": "Filtrar en la lista",
 		"filterResults": "Filtrar resultados",
+		"inactive": "Inactivo",
+		"model": "Modelo",
 		"name": "Nombre",
 		"new": "Nuevo",
 		"no": "No",
 		"noData": "Sin registros",
 		"open": "Abrir",
 		"optional": "Opcional",
+		"placeholder": {
+			"brand": "Marca",
+			"model": "Modelo",
+			"type": "Tipo"
+		},
 		"refreshList": "Actualizar lista",
 		"register": "Registro",
 		"remove": "Remover",
 		"save": "Salvar",
 		"status": "Situación",
+		"type": "Tipo",
+		"typeToSearch": "Escribe para buscar",
 		"update": "Actualizar",
 		"warning": "Aviso",
 		"yes": "Si"
@@ -103,6 +113,32 @@
 		"document.placeholder": "Número de documento",
 		"name.placeholder": "Nombre de la empresa",
 		"selectCompany": "Selecciona una empresa"
+	},
+	"computerCpu": {
+		"core": "Núcleos",
+		"frequency": "Frecuencia (Mhz)",
+		"frequency.placeholder": "Frecuencia de CPU (Mhz)",
+		"fsb": "FSB (Mhz)",
+		"fsb.placeholder": "FSB (Bus frontal)",
+		"generation": "Generación",
+		"generation.placeholder": "Generación de CPU",
+		"placeholder": {
+			"core": "Números de núcleos",
+			"thread": "Números de threads"
+		},
+		"socket": "Socket",
+		"socket.placeholder": "CPU Socket",
+		"thread": "Thread"
+	},
+	"computerMemory": {
+		"frequency": "Frecuencia (Mhz)",
+		"frequency.placeholder": "Frecuencia de memoria",
+		"size": "Tamaño (GB)",
+		"size.placeholder": "Tamaño de memoria (GB)"
+	},
+	"computerStorage": {
+		"transferRate": "Velocidad de transferencia (MB/s)",
+		"transferRate.placeholder": "Tasa de transferencia de almacenamiento (MB/s)"
 	},
 	"department": {
 		"department": "Departamento",
@@ -115,15 +151,15 @@
 		"code": "Código",
 		"code.placeholder": "Código del dispositivo",
 		"description.placeholder": "Descripción del dispositivo",
-		"serialNumber": "Número de serie",
-		"serialNumber.placeholder": "Número de serie",
 		"details": "Detalles del dispositivo",
 		"device": "Dispositivo",
 		"devices": "Dispositivos",
 		"deviceUser": "Usuario del dispositivo",
 		"hostname": "Nombre de host",
 		"hostname.placeholder": "Nombre de host del dispositivo",
-		"selectCategory":"Selecciona una categoria",
+		"selectCategory": "Selecciona una categoria",
+		"serialNumber": "Número de serie",
+		"serialNumber.placeholder": "Número de serie",
 		"tag": "Etiqueta",
 		"tag.placeholder": "Etiqueta del dispositivo"
 	},
@@ -131,10 +167,21 @@
 		"name": "Nombre",
 		"name.placeholder": "Nombre de la categoria"
 	},
+	"deviceComputer": {
+		"computer": "Computadora",
+		"cpu": "Procesador",
+		"description.placeholder": "Descripción de la computadora",
+		"memory": "Memoria",
+		"server": "Servidor",
+		"software": "Software",
+		"storage": "Almacenamiento",
+		"virtual": "Máquina virtual",
+		"virtual.placeholder": "¿Es una máquina virtual?"
+	},
 	"deviceStaff": {
+		"addFeatures": "Agrega características",
 		"login": "Login",
-		"login.placeholder": "Login del usuario",
-		"addFeatures": "Agrega características"
+		"login.placeholder": "Login del usuario"
 	},
 	"forms": {
 		"email": "Debes ingresar un correo válido",
@@ -144,7 +191,7 @@
 		"min": "El valor mínimo permitido es {{n}}",
 		"minlength": "Se requiere un mínimo de {{n}} caracteres",
 		"passwordMatch": "Las contraseñas no coinciden",
-		"pattern": "Patrón no válido",
+		"pattern": "Patrón no válido, patrón esperado: {{n}}",
 		"required": "Este campo es obligatorio"
 	},
 	"login": {
@@ -168,8 +215,8 @@
 		"manage": "Administrar",
 		"network": "Red",
 		"noNotification": "No hay notificaciones",
-		"profile": " Perfil",
 		"power": "Energia",
+		"profile": " Perfil",
 		"staff": "Funcionários",
 		"usersAccount": "Cuenta de usuarios"
 	},
@@ -180,24 +227,39 @@
 		"company": {
 			"new": "Nueva empresa"
 		},
+		"computerCategory": {
+			"new": "Nueva categoría de computadoras"
+		},
+		"computerCpu": {
+			"new": "Nueva CPU"
+		},
+		"computerMemory": {
+			"new": "Nueva memoria"
+		},
+		"computerStorage": {
+			"new": "Nuevo almacenamiento"
+		},
 		"delete": "¿Estás seguro de que quieres eliminar <b>{{record}}</b>? Este cambio no se puede revertir",
-		"remove": "¿Estás seguro de que quieres remover la característica <b>{{record}}</b>? ",
 		"department": {
 			"new": "Nuevo departamento"
 		},
-		"disable": "¿Estás seguro de que quieres desactivarlo? Este cambio no se puede revertir.",
 		"device": {
 			"new": "Nuevo dispositivo"
 		},
 		"deviceCategory": {
 			"new": "Nueva categoria de dispositivo"
 		},
+		"deviceComputer": {
+			"new": "Computadora nueva"
+		},
 		"deviceStaff": {
 			"new": "Nuevo usuario de dispositivo"
 		},
+		"disable": "¿Estás seguro de que quieres desactivarlo? Este cambio no se puede revertir.",
 		"occupation": {
 			"new": "Nuevo Puesto"
 		},
+		"remove": "¿Estás seguro de que quieres remover la característica <b>{{record}}</b>? ",
 		"staff": {
 			"new": "Registrar funcionario"
 		},

@@ -1,14 +1,14 @@
 <div class="card">
     <div class="card-header bg-primary fw-bold text-white flex-between">
         <div>
-            <span translate="branch.branches"></span>
+            <span translate="deviceComputer.storage"></span>
             <div class="spinner-border spinner-border-sm mx-2" role="status" *ngIf="loading">
                 <span class="visually-hidden">Loading...</span>
             </div>
         </div>
         <div>
             <button class="btn btn-success text-white" (click)="onCreate()">
-                <i class="fas fa-user-plus"></i>&nbsp;<span translate="commons.new"></span>
+                <i class="fas fa-plus"></i>&nbsp;<span translate="commons.new"></span>
             </button>
         </div>
     </div>
@@ -16,8 +16,8 @@
         <table class="table table-stripped">
             <thead>
                 <th>#</th>
-                <th translate="commons.brandName"></th>
-                <th translate="computerStorage.type"></th>
+                <th translate="commons.brand"></th>
+                <th translate="commons.type"></th>
                 <th translate="computerStorage.transferRate"></th>
                 <th></th>
             </thead>

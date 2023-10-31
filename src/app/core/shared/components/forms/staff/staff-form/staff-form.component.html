@@ -5,19 +5,20 @@
     </div>
     <form [formGroup]="staffForm" (ngSubmit)="save()">
         <div class="modal-body">
-            <div class="mb-3">
-                <label for="fullName" translate="staff.fullname"></label>
-                <input autocomplete="off" type="text" formControlName="fullName" id="fullName" class="form-control"
-                    placeholder="{{'users.fullname.placeholder' | translate}}">
-                <app-validation-field [form]="staffForm" [field]="'fullName'"></app-validation-field>
-            </div>
 
-            <div class="mb-3">
-                <label for="email" translate="commons.email"></label>
-                <input autocomplete="off" type="email" formControlName="email" id="email" class="form-control"
-                    placeholder="{{'users.email.placeholder' | translate}}">
-                <app-validation-field [form]="staffForm" [field]="'email'"></app-validation-field>
-            </div>
+            <app-input-group
+            [form]="staffForm"
+            translateLabel="staff.fullname" 
+            translatePlaceholder="users.fullname.placeholder"
+            id="fullName">
+            </app-input-group>
+
+            <app-input-group
+            [form]="staffForm"
+            translateLabel="commons.email" 
+            translatePlaceholder="users.email.placeholder"
+            id="email">
+            </app-input-group>
 
             <div class="mb-3">
                 <label for="department" translate="department.department"></label>
@@ -44,7 +45,6 @@
                 </div>
                 <app-validation-field [form]="staffForm" [field]="'occupation'"></app-validation-field>
             </div>
-
 
         </div>
         <div class="modal-footer">

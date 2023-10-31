@@ -5,12 +5,14 @@
     </div>
     <form [formGroup]="occupationForm" (ngSubmit)="save()">
         <div class="modal-body">
-            <div class="mb-3">
-                <label for="name" translate="commons.name"></label>
-                <input autocomplete="off" type="text" formControlName="name" id="name" class="form-control"
-                    placeholder="{{'occupation.name.placeholder' | translate}}">
-                <app-validation-field [form]="occupationForm" [field]="'name'"></app-validation-field>
-            </div>
+
+            <app-input-group
+            [form]="occupationForm"
+            translateLabel="commons.name" 
+            translatePlaceholder="occupation.name.placeholder"
+            id="name">
+            </app-input-group>
+            
         </div>
         <div class="modal-footer">
             <button [disabled]="loading" type="button" class="btn btn-outline-danger" (click)="closeModal()"

@@ -1,0 +1,5 @@
+.validation-required::after {
+    content: "*";
+    color: red;
+    font-size: .9rem;
+}

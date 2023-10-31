@@ -7,26 +7,26 @@
     <form [formGroup]="computerStorageForm" (ngSubmit)="save()">
         <div class="modal-body">
 
-            <div class="mb-3">
-                <label for="brandName" translate="computerStorage.brandName"></label>
-                <input autocomplete="off" type="text" formControlName="brandName" id="brandName" class="form-control"
-                    placeholder="{{'computerStorage.brandName.placeholder' | translate}}">
-                <app-validation-field [form]="computerStorageForm" [field]="'brandName'"></app-validation-field>
-            </div>
+            <app-input-group
+            [form]="computerStorageForm"
+            translateLabel="commons.brand" 
+            translatePlaceholder="commons.placeholder.brand"
+            id="brandName">
+            </app-input-group>
 
-            <div class="mb-3">
-                <label for="transferRate" translate="computerStorage.transferRate"></label>
-                <input autocomplete="off" type="text" formControlName="transferRate" id="transferRate" class="form-control"
-                    placeholder="{{'computerStorage.transferRate.placeholder' | translate}}">
-                <app-validation-field [form]="computerStorageForm" [field]="'transferRate'"></app-validation-field>
-            </div>
-            
-            <div class="mb-3">
-                <label for="type" translate="computerStorage.type"></label>
-                <input autocomplete="off" type="text" formControlName="type" id="type" class="form-control"
-                    placeholder="{{'computerStorage.type.placeholder' | translate}}">
-                <app-validation-field [form]="computerStorageForm" [field]="'type'"></app-validation-field>
-            </div>
+            <app-input-group
+            [form]="computerStorageForm"
+            translateLabel="computerStorage.transferRate" 
+            translatePlaceholder="computerStorage.transferRate.placeholder"
+            id="transferRate">
+            </app-input-group>
+
+            <app-input-group
+            [form]="computerStorageForm"
+            translateLabel="commons.type" 
+            translatePlaceholder="commons.type"
+            id="type">
+            </app-input-group>
             
         </div>
         <div class="modal-footer">

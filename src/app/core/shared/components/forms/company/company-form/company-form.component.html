@@ -5,19 +5,20 @@
     </div>
     <form [formGroup]="companyForm" (ngSubmit)="save()">
         <div class="modal-body">
-            <div class="mb-3">
-                <label for="name" translate="commons.name"></label>
-                <input autocomplete="off" type="text" formControlName="name" id="name" class="form-control"
-                    placeholder="{{'company.name.placeholder' | translate}}">
-                <app-validation-field [form]="companyForm" [field]="'name'"></app-validation-field>
-            </div>
 
-            <div class="mb-3">
-                <label for="name" translate="commons.document"></label>
-                <input autocomplete="off" type="text" formControlName="document" id="document" class="form-control"
-                    placeholder="{{'company.document.placeholder' | translate}}">
-                <app-validation-field [form]="companyForm" [field]="'document'"></app-validation-field>
-            </div>
+            <app-input-group
+            [form]="companyForm"
+            translateLabel="commons.name" 
+            translatePlaceholder="company.name.placeholder"
+            id="name">
+            </app-input-group>
+
+            <app-input-group
+            [form]="companyForm"
+            translateLabel="commons.document" 
+            translatePlaceholder="company.document.placeholder"
+            id="document">
+            </app-input-group>
 
         </div>
         <div class="modal-footer">

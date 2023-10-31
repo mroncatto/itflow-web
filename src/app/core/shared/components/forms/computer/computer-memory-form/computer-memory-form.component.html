@@ -7,33 +7,33 @@
     <form [formGroup]="computerMemoryForm" (ngSubmit)="save()">
         <div class="modal-body">
 
-            <div class="mb-3">
-                <label for="brandName" translate="computerMemory.brandName"></label>
-                <input autocomplete="off" type="text" formControlName="brandName" id="brandName" class="form-control"
-                    placeholder="{{'computerMemory.brandName.placeholder' | translate}}">
-                <app-validation-field [form]="computerMemoryForm" [field]="'brandName'"></app-validation-field>
-            </div>
+            <app-input-group
+            [form]="computerMemoryForm"
+            translateLabel="commons.brand" 
+            translatePlaceholder="commons.placeholder.brand"
+            id="brandName">
+            </app-input-group>
 
-            <div class="mb-3">
-                <label for="type" translate="computerMemory.type"></label>
-                <input autocomplete="off" type="text" formControlName="type" id="type" class="form-control"
-                    placeholder="{{'computerMemory.type.placeholder' | translate}}">
-                <app-validation-field [form]="computerMemoryForm" [field]="'type'"></app-validation-field>
-            </div>
+            <app-input-group
+            [form]="computerMemoryForm"
+            translateLabel="commons.type" 
+            translatePlaceholder="commons.placeholder.type"
+            id="type">
+            </app-input-group>
 
-            <div class="mb-3">
-                <label for="type" translate="computerMemory.size"></label>
-                <input autocomplete="off" type="text" formControlName="size" id="size" class="form-control"
-                    placeholder="{{'computerMemory.size.placeholder' | translate}}">
-                <app-validation-field [form]="computerMemoryForm" [field]="'size'"></app-validation-field>
-            </div>
+            <app-input-group
+            [form]="computerMemoryForm"
+            translateLabel="computerMemory.size" 
+            translatePlaceholder="computerMemory.size.placeholder"
+            id="size">
+            </app-input-group>
 
-            <div class="mb-3">
-                <label for="frequency" translate="computerMemory.frequency"></label>
-                <input autocomplete="off" type="text" formControlName="frequency" id="frequency" class="form-control"
-                    placeholder="{{'computerMemory.frequency.placeholder' | translate}}">
-                <app-validation-field [form]="computerMemoryForm" [field]="'frequency'"></app-validation-field>
-            </div>
+            <app-input-group
+            [form]="computerMemoryForm"
+            translateLabel="computerMemory.frequency" 
+            translatePlaceholder="computerMemory.frequency.placeholder"
+            id="frequency">
+            </app-input-group>
 
         </div>
         <div class="modal-footer">

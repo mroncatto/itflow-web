@@ -6,11 +6,8 @@ export class DeviceComputerCpuValidation extends AbstractValidation {
         return [Validators.required]
     }
     
-    static vcpu(): Validators[] {
+    static core(): Validators[] {
         return [Validators.required, this.onlyNumbers()]
     }
 
-    static unit(): Validators[] {
-        return [Validators.required, this.onlyNumbers()]
-    }
 }

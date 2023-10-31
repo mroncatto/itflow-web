@@ -7,6 +7,7 @@ export interface IComputerCpu {
     generation: string;
     socket: string;
     core: string;
+    thread: string;
     frequency: string;
     fsb: string;
     active: boolean;
@@ -18,6 +19,7 @@ export interface ComputerCpuForm {
     generation: FormControl<string>;
     socket: FormControl<string>;
     core: FormControl<string>;
+    thread: FormControl<string>;
     frequency: FormControl<string>;
     fsb: FormControl<string>;
     active: FormControl<boolean>;

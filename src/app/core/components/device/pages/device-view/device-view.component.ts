@@ -2,12 +2,12 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TabsetComponent } from 'ngx-bootstrap/tabs';
 import { AbstractComponent } from 'src/app/core/shared/abstracts/abstract-component';
-import { IDevice } from '../../model/device';
+import { Device, IDevice } from '../../model/device';
 import { DeviceService } from '../../services/device.service';
 import { ComputerService } from '../../../computer/services/computer.service';
 import { Observable, finalize, map, pipe } from 'rxjs';
 import { IComputerCpu } from '../../../computer/model/computer-cpu';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DeviceComputerCpuForm, IDeviceComputerCpu } from '../../model/device-computer-cpu';
 
 @Component({
@@ -18,7 +18,7 @@ export class DeviceViewComponent extends AbstractComponent implements OnInit {
 
 
   device!: IDevice | null;
-
+  computerCpuAutoComplete = new FormControl('', Validators.required);
   deviceComputerCpuForm!: FormGroup<DeviceComputerCpuForm>;
 
   @ViewChild('featuresTabs', { static: false }) featuresTabs?: TabsetComponent;
@@ -41,11 +41,14 @@ export class DeviceViewComponent extends AbstractComponent implements OnInit {
     });
   }
 
-  startForms() {
+  startForms(): void {
+    this.startFormComputer();
+  }
+
+  startFormComputer(): void {
     if (this.device?.deviceComputer)
       this.deviceComputerCpuForm = this.computerService.getDeviceComputerCpuForm(this.device.deviceComputer);
   }
-
 
   private notFound(): void {
     this.router.navigate(['device']);
@@ -149,7 +152,8 @@ export class DeviceViewComponent extends AbstractComponent implements OnInit {
     if (this.device != null) {
       this.sub.push(
         this.service.getDeviceComputerModal(this.device).subscribe({
-          next: (data) => this.device = data,
+          next: (data) => { console.log(data);
+           this.device = data; this.startFormComputer()},
           error: (err) => this.service.onHttpError(err)
         })
       );
@@ -175,7 +179,7 @@ export class DeviceViewComponent extends AbstractComponent implements OnInit {
   onSelectCpu(cpu: IComputerCpu | null): void {
     if (cpu) {
       this.deviceComputerCpuForm.controls['computerCpu'].setValue(cpu);
-      this.nextFocus('vcpu')
+      this.deviceComputerCpuForm.controls['core'].setValue( cpu.core ? cpu.core : "0");
     } else {
       this.deviceComputerCpuForm.controls['computerCpu'].reset();
     }
@@ -186,11 +190,18 @@ export class DeviceViewComponent extends AbstractComponent implements OnInit {
     if (this.device && this.deviceComputerCpuForm.valid) {
       this.sub.push(
         this.service.updateDeviceComputerCpu(this.device.id, this.deviceComputerCpuForm.value as IDeviceComputerCpu).subscribe({
-          next: (data) => this.device = data,
+          next: (data) => this.onDeviceComputerCpuSave(data),
           error: (err) => this.service.onHttpError(err)
         })
       );
     }
+  }
+
+  onDeviceComputerCpuSave(data: Device): void {
+    this.device = data;
+    this.computerCpuAutoComplete.reset();
+    this.deviceComputerCpuForm.reset();
+    this.service.onInfo("updated","updated"); 
   }
 
 

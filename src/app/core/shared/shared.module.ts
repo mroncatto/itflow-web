@@ -30,8 +30,9 @@ import { ComputerCpuFormComponent } from './components/forms/computer/computer-c
 import { ComputerMemoryFormComponent } from './components/forms/computer/computer-memory-form/computer-memory-form.component';
 import { ComputerStorageFormComponent } from './components/forms/computer/computer-storage-form/computer-storage-form.component';
 import { NewComputerCategory } from './components/quickform/new-computer-category';
-import { MatLegacyAutocompleteModule as MatAutocompleteModule } from '@angular/material/legacy-autocomplete';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { ComputerCpuAutocompleteComponent } from './components/commons/autocomplete/computer-cpu-autocomplete/computer-cpu-autocomplete.component';
+import { InputGroupComponent } from './components/commons/input-group/input-group.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { ComputerCpuAutocompleteComponent } from './components/commons/autocompl
     ComputerStorageFormComponent,
     NewComputerCategory,
     ComputerCpuAutocompleteComponent,
+    InputGroupComponent
   ],
   imports: [
     CommonModule,
@@ -96,7 +98,8 @@ import { ComputerCpuAutocompleteComponent } from './components/commons/autocompl
     CheckboxFilterComponent,
     DeviceStaffFormComponent,
     DeviceComputerFormComponent,
-    ComputerCpuAutocompleteComponent
+    ComputerCpuAutocompleteComponent,
+    InputGroupComponent,
   ]
 })
 export class SharedModule { }

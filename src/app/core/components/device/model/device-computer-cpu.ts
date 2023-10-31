@@ -7,13 +7,11 @@ export interface IDeviceComputerCpu {
     readonly id: IDeviceComputerCpuPK;
     deviceComputer: IDeviceComputer;
     computerCpu: IComputerCpu;
-    vcpu: number;
-    unit: number;
+    core: string;
 }
 
 export interface DeviceComputerCpuForm {
     deviceComputer: FormControl<IDeviceComputer>;
     computerCpu: FormControl<IComputerCpu>;
-    vcpu: FormControl<number>;
-    unit: FormControl<number>;
+    core: FormControl<string>;
 }

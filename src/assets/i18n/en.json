@@ -8,10 +8,10 @@
 			"INVALID PASSWORD": "Invalid Password",
 			"METHOD NOT ALLOWED": "Method not allowed",
 			"UNAUTHORIZED": "Unauthorized",
-			"UNSUCCESSFUL AUTHENTICATION": "Unsuccessful Authentication",
-			"USER ACCOUNT IS LOCKED": "User account is locked",
 			"undefined": "Internal Server Error",
-			"unknown": "Internal Server Error"
+			"unknown": "Internal Server Error",
+			"UNSUCCESSFUL AUTHENTICATION": "Unsuccessful Authentication",
+			"USER ACCOUNT IS LOCKED": "User account is locked"
 		},
 		"info": {
 			"authenticated": "Successfully Authenticated",
@@ -39,23 +39,23 @@
 		},
 		"warning": {
 			"ALL FIELDS ARE REQUIRED": "All fields are required",
+			"attention": "Attention",
 			"BAD_REQUEST": "Bad Request",
+			"badRequest": "Bad Request",
+			"canActivatedDenied": "Access denied, you do not have permission to access this page",
 			"DEVICE NOT FOUND": "Device not found",
+			"fillFieldsRequired": "Fill in the required fields",
 			"INVALID FORMAT EMAIL": "Invalid Email Format",
-			"NOT_FOUND": "Not Found",
+			"loginRequired": "Please login again",
 			"No message available": "Unknown error",
 			"Not Found": "Not Found",
+			"NOT_FOUND": "Not Found",
+			"passwordExpired": "Your password has expired, please set a new password!",
+			"sessionExpired": "Session expired",
 			"THE USERNAME FIELD IS REQUIRED": "The username field is required",
 			"USER ALREADY EXISTS WITH THIS EMAIL": "User already exists with this email",
 			"USER ALREADY EXISTS WITH THIS USERNAME": "User already exists with this username",
-			"USER NOT FOUND": "User not found",
-			"attention": "Attention",
-			"badRequest": "Bad Request",
-			"canActivatedDenied": "Access denied, you do not have permission to access this page",
-			"fillFieldsRequired": "Fill in the required fields",
-			"loginRequired": "Please login again",
-			"passwordExpired": "Your password has expired, please set a new password!",
-			"sessionExpired": "Session expired"
+			"USER NOT FOUND": "User not found"
 		}
 	},
 	"branch": {
@@ -66,7 +66,8 @@
 	"commons": {
 		"actions": "Actions",
 		"active": "Active",
-		"brandName": "Brand",
+		"add": "Add",
+		"brand": "Brand",
 		"cancel": "Cancel",
 		"category": "Category",
 		"clean": "Clean",
@@ -74,15 +75,15 @@
 		"clearSelection": "Clear selection",
 		"close": "Close",
 		"delete": "Delete",
-		"details": "Details",
 		"description": "Description",
+		"details": "Details",
 		"disable": "Disable",
 		"document": "Document",
 		"edit": "Edit",
 		"email": "Email",
-		"inactive": "Inactive",
 		"filterOnTheList": "Filter on the list",
 		"filterResults": "Filter results",
+		"inactive": "Inactive",
 		"model": "Model",
 		"name": "Name",
 		"new": "New",
@@ -90,11 +91,18 @@
 		"noData": "No records",
 		"open": "Open",
 		"optional": "Optional",
+		"placeholder": {
+			"brand": "Brand",
+			"model": "Model",
+			"type": "Type"
+		},
 		"refreshList": "Refresh List",
 		"register": "Register",
 		"remove": "Remove",
 		"save": "Save",
 		"status": "Status",
+		"type": "Type",
+		"typeToSearch": "Type to search",
 		"update": "Update",
 		"warning": "Warning",
 		"yes": "Yes"
@@ -105,6 +113,32 @@
 		"document.placeholder": "Document number",
 		"name.placeholder": "Company name",
 		"selectCompany": "Select a Company"
+	},
+	"computerCpu": {
+		"core": "Cores",
+		"frequency": "Frequency (Mhz)",
+		"frequency.placeholder": "CPU frequency (Mhz)",
+		"fsb": "FSB (Mhz)",
+		"fsb.placeholder": "FSB (Front Side Bus)",
+		"generation": "Generation",
+		"generation.placeholder": "Cpu generation",
+		"placeholder": {
+			"core": "Number of cores",
+			"thread": "Thread numbers"
+		},
+		"socket": "Socket",
+		"socket.placeholder": "CPU Socket",
+		"thread": "Thread"
+	},
+	"computerMemory": {
+		"frequency": "Frequency (Mhz)",
+		"frequency.placeholder": "Memory frequency",
+		"size": "Size (GB)",
+		"size.placeholder": "Memory size (GB)"
+	},
+	"computerStorage": {
+		"transferRate": "Transfer Rate (MB/s)",
+		"transferRate.placeholder": "Storage transfer Rate (MB/s)"
 	},
 	"department": {
 		"department": "Department",
@@ -117,15 +151,15 @@
 		"code": "Code",
 		"code.placeholder": "Device Code",
 		"description.placeholder": "Device Description",
-		"serialNumber": "Serial Number",
-		"serialNumber.placeholder": "Serial Number",
 		"details": "Device Details",
 		"device": "Device",
 		"devices": "Devices",
 		"deviceUser": "Device User",
 		"hostname": "Hostname",
 		"hostname.placeholder": "Device Hostname",
-		"selectCategory":"Select Category",
+		"selectCategory": "Select Category",
+		"serialNumber": "Serial Number",
+		"serialNumber.placeholder": "Serial Number",
 		"tag": "Tag",
 		"tag.placeholder": "Device Tag"
 	},
@@ -133,61 +167,21 @@
 		"name": "Name",
 		"name.placeholder": "Device category name"
 	},
-	"computerCategory": {
-		"name": "Name",
-		"name.placeholder": "Computer category name"
-	},
-	"computerCpu": {
-		"brandName": "Brand name",
-		"brandName.placeholder": "Cpu brand name",
-		"model": "Model",
-		"model.placeholder": "Cpu model",
-		"generation": "Generation",
-		"generation.placeholder": "Cpu generation",
-		"socket": "Socket",
-		"socket.placeholder": "CPU Socket",
-		"core": "Core",
-		"core.placeholder": "Number of processor cores",
-		"frequency": "Frequency (Ghz)",
-		"frequency.placeholder": "CPU frequency (Ghz)",
-		"fsb": "FSB",
-		"fsb.placeholder": "FSB (Front Side Bus)"
-		
-	},
-	"computerMemory": {
-		"size": "Size (GB)",
-		"size.placeholder": "Memory size (GB)",
-		"frequency": "Frequency (Mhz)",
-		"frequency.placeholder": "Memory frequency",
-		"type": "Type",
-		"type.placeholder": "Memory type",
-		"brandName": "Brand name",
-		"brandName.placeholder": "Memory brand name"
-	},
-	"computerStorage": {
-		"brandName": "Brand Name",
-		"brandName.placeholder": "Storage brand name",
-		"type": "Type",
-		"type.placeholder": "Storage type",
-		"transferRate": "Transfer Rate (MB/s)",
-		"transferRate.placeholder": "Storage transfer Rate (MB/s)"
-	},
-	"deviceStaff": {
-		"login": "Login",
-		"login.placeholder": "User login",
-		"addFeatures": "Add features"
-	},
 	"deviceComputer": {
 		"computer": "Computer",
-		"category": "Computer Category",
-		"cpu": "CPU",
+		"cpu": "Processor",
 		"description.placeholder": "Computer description",
 		"memory": "Memory",
-		"storage": "Storage",
 		"server": "Server",
+		"software": "Software",
+		"storage": "Storage",
 		"virtual": "Virtual Machine",
-		"virtual.placeholder": "Is a virtual machine?",
-		"software": "Software"
+		"virtual.placeholder": "Is a virtual machine?"
+	},
+	"deviceStaff": {
+		"addFeatures": "Add features",
+		"login": "Login",
+		"login.placeholder": "User login"
 	},
 	"forms": {
 		"email": "You must provide a valid email",
@@ -197,7 +191,7 @@
 		"min": "Minimum allowed value is {{n}}",
 		"minlength": "Minimum {{n}} characters required",
 		"passwordMatch": "Passwords do not match",
-		"pattern": "Invalid Pattern",
+		"pattern": "Invalid pattern, expected pattern: {{n}}",
 		"required": "This field is required"
 	},
 	"login": {
@@ -221,8 +215,8 @@
 		"manage": "Manage",
 		"network": "Network",
 		"noNotification": "No notification",
-		"profile": " Profile",
 		"power": "Power",
+		"profile": " Profile",
 		"staff": "Staff",
 		"usersAccount": "Users Account"
 	},
@@ -233,39 +227,39 @@
 		"company": {
 			"new": "New company"
 		},
+		"computerCategory": {
+			"new": "New computer category"
+		},
+		"computerCpu": {
+			"new": "New CPU"
+		},
+		"computerMemory": {
+			"new": "New memory"
+		},
+		"computerStorage": {
+			"new": "New storage"
+		},
 		"delete": "Are you sure you want to delete <b>{{record}}</b>? This change cannot be reversed",
-		"remove": "Are you sure you want to remove the <b>{{record}}</b> feature?",
 		"department": {
 			"new": "New department"
 		},
-		"disable": "Are you sure you want to disable it? This change cannot be reversed",
 		"device": {
 			"new": "New device"
 		},
 		"deviceCategory": {
 			"new": "New device category"
 		},
+		"deviceComputer": {
+			"new": "New computer"
+		},
 		"deviceStaff": {
 			"new": "New device user"
 		},
-		"deviceComputer": {
-			"new": "New device computer"
-		},
-		"computerCategory": {
-			"new": "New computer category"
-		},
-		"computerCpu": {
-			"new": "New computer cpu"
-		},
-		"computerMemory": {
-			"new": "New computer memory"
-		},
-		"computerStorage": {
-			"new": "New computer storage"
-		},
+		"disable": "Are you sure you want to disable it? This change cannot be reversed",
 		"occupation": {
 			"new": "New occupation"
 		},
+		"remove": "Are you sure you want to remove the <b>{{record}}</b> feature?",
 		"staff": {
 			"new": "Register employee"
 		},

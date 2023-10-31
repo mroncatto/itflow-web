@@ -13,7 +13,7 @@ import { IAbstractAutocomplete } from 'src/app/core/shared/abstracts/interface/a
 })
 export class ComputerCpuAutocompleteComponent implements OnInit, IAbstractAutocomplete<IComputerCpu> {
 
-  control = new FormControl('', Validators.required);
+  @Input() control!: FormControl;
   register!: IComputerCpu;
   items!: Observable<IComputerCpu[]>;
   loading: boolean = false;

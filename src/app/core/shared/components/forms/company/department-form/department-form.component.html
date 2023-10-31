@@ -5,12 +5,13 @@
     </div>
     <form [formGroup]="dptoForm" (ngSubmit)="save()">
         <div class="modal-body">
-            <div class="mb-3">
-                <label for="name" translate="commons.name"></label>
-                <input autocomplete="off" type="text" formControlName="name" id="name" class="form-control"
-                    placeholder="{{'department.name.placeholder' | translate}}">
-                <app-validation-field [form]="dptoForm" [field]="'name'"></app-validation-field>
-            </div>
+
+            <app-input-group
+            [form]="dptoForm"
+            translateLabel="commons.name" 
+            translatePlaceholder="department.name.placeholder"
+            id="name">
+            </app-input-group>
 
             <div class="mb-3">
                 <label for="branch" translate="branch.branch"></label>
@@ -23,6 +24,7 @@
                 </div>
                 <app-validation-field [form]="dptoForm" [field]="'branch'"></app-validation-field>
             </div>
+            
         </div>
         <div class="modal-footer">
             <button [disabled]="loading" type="button" class="btn btn-outline-danger" (click)="closeModal()"

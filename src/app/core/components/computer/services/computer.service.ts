@@ -112,6 +112,7 @@ export class ComputerService extends AbstractService {
       generation: [cpu ? cpu.generation : '', ComputerCpuValidation.generation()],
       socket: [cpu ? cpu.socket : '', ComputerCpuValidation.socket()],
       core: [cpu ? cpu.core : '', ComputerCpuValidation.core()],
+      thread: [cpu ? cpu.thread : '', ComputerCpuValidation.thread()],
       frequency: [cpu ? cpu.frequency : '', ComputerCpuValidation.frequency()],
       fsb: [cpu ? cpu.fsb : '', ComputerCpuValidation.fsb()],
       active: [true, Validators.required]
@@ -143,8 +144,7 @@ export class ComputerService extends AbstractService {
     return this.formBuilder.group({
       deviceComputer: [ deviceComputer ],
       computerCpu: [cpu ? cpu.computerCpu : '', DeviceComputerCpuValidation.computerCpu()],
-      vcpu: [cpu ? cpu.vcpu : '', DeviceComputerCpuValidation.vcpu()],
-      unit: [cpu ? cpu.unit : '', DeviceComputerCpuValidation.unit()]
+      core: [cpu ? cpu.core : '', DeviceComputerCpuValidation.core()],
     })
   }
 

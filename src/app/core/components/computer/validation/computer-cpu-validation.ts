@@ -19,6 +19,10 @@ export class ComputerCpuValidation extends AbstractValidation {
         return [Validators.maxLength(25)];
     }
 
+    static thread(): Validators[] {
+        return [Validators.maxLength(25)];
+    }
+
     static core(): Validators[] {
         return [Validators.maxLength(25)];
     }
