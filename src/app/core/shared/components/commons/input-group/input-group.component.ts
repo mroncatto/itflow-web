@@ -8,16 +8,11 @@ import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
 })
 export class InputGroupComponent {
 
-  @Input()
-  form!: FormGroup;
-  @Input()
-  id: string = "";
-  @Input()
-  translateLabel: string = "";
-  @Input()
-  translatePlaceholder: string = "";
-  @Input()
-  type: string = "text";
+  @Input() form!: FormGroup;
+  @Input() id: string = "";
+  @Input() translateLabel: string = "";
+  @Input() translatePlaceholder: string = "";
+  @Input() type: string = "text";
 
   isRequired(): boolean {
     const control = this.form.get(this.id);

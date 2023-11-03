@@ -45,6 +45,10 @@ export class AbstractService {
       this.router.navigate([url]);
     }
   }
+  // ------------------ Helpers --------------------------------
+  removeNonAlfaNumericCharacters(filter: string): string {
+    return filter.replace(/[^a-zA-Z0-9]/g, '');
+  }
 
   createDataForm(form: any, ...deleteParams: string[]): FormData {
     const formData: FormData = new FormData();

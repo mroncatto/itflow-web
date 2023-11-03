@@ -133,12 +133,17 @@
 	"computerMemory": {
 		"frequency": "Frequência (Mhz)",
 		"frequency.placeholder": "Frequência de memória",
+		"modules": "Módulos",
 		"size": "Tamanho (GB)",
 		"size.placeholder": "Tamanho da memória (GB)"
 	},
 	"computerStorage": {
-		"transferRate": "Taxa de transferência (MB/s)",
-		"transferRate.placeholder": "Taxa de transferência de armazenamento (MB/s)"
+		"placeholder": {
+			"size": "Tamanho da unidade em GB",
+			"transferRate": "Taxa de transferência de armazenamento (MB/s)"
+		},
+		"size": "Tamanho (GB)",
+		"transferRate": "Taxa de transferência (MB/s)"
 	},
 	"department": {
 		"department": "Departamento",

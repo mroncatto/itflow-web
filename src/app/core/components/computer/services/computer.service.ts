@@ -17,6 +17,10 @@ import { ComputerStorageFormComponent } from 'src/app/core/shared/components/for
 import { DeviceComputerCpuForm, IDeviceComputerCpu } from '../../device/model/device-computer-cpu';
 import { DeviceComputerForm, IDeviceComputer } from '../../device/model/device-computer';
 import { DeviceComputerCpuValidation } from '../../device/validation/device-computer-cpu-validation';
+import { DeviceComputerMemoryForm, IDeviceComputerMemory } from '../../device/model/device-computer-memory';
+import { DeviceComputerMemoryValidation } from '../../device/validation/device-computer-memory-validation';
+import { DeviceComputerStorageForm, IDeviceComputerStorage } from '../../device/model/device-computer-storage';
+import { DeviceComputerStorageValidation } from '../../device/validation/device-computer-storage-validation';
 
 @Injectable({
   providedIn: 'root'
@@ -48,6 +52,14 @@ export class ComputerService extends AbstractService {
 
   getComputerCpuAutoComplete(filter: string): Observable<IComputerCpu[]> {
     return this.http.get<IComputerCpu[]>(`${this.API_URL}/computer/cpu/autocomplete?filter=${filter}`);
+  }
+
+  getComputerMemoryAutoComplete(filter: string): Observable<IComputerMemory[]> {
+    return this.http.get<IComputerMemory[]>(`${this.API_URL}/computer/memory/autocomplete?filter=${filter}`);
+  }
+
+  getComputerStorageAutoComplete(filter: string): Observable<IComputerStorage[]> {
+    return this.http.get<IComputerStorage[]>(`${this.API_URL}/computer/storage/autocomplete?filter=${filter}`);
   }
 
   createComputerCPU(computerCPU: IComputerCpu): Observable<IComputerCpu> {
@@ -145,6 +157,22 @@ export class ComputerService extends AbstractService {
       deviceComputer: [ deviceComputer ],
       computerCpu: [cpu ? cpu.computerCpu : '', DeviceComputerCpuValidation.computerCpu()],
       core: [cpu ? cpu.core : '', DeviceComputerCpuValidation.core()],
+    })
+  }
+
+  getDeviceComputerMemoryForm(deviceComputer: IDeviceComputer, memory?: IDeviceComputerMemory): FormGroup<DeviceComputerMemoryForm> {
+    return this.formBuilder.group({
+      deviceComputer: [ deviceComputer ],
+      computerMemory: [memory ? memory.computerMemory : '', DeviceComputerMemoryValidation.computerMemory()],
+      modules: [memory ? memory.modules : '', DeviceComputerMemoryValidation.modules()],
+    })
+  }
+
+  getDeviceComputerStorageForm(deviceComputer: IDeviceComputer, storage?: IDeviceComputerStorage): FormGroup<DeviceComputerStorageForm> {
+    return this.formBuilder.group({
+      deviceComputer: [ deviceComputer ],
+      computerStorage: [storage ? storage.computerStorage : '', DeviceComputerStorageValidation.computerStorage()],
+      size: [storage ? storage.size : '', DeviceComputerStorageValidation.size()],
     })
   }
 

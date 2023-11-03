@@ -33,6 +33,8 @@ import { NewComputerCategory } from './components/quickform/new-computer-categor
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { ComputerCpuAutocompleteComponent } from './components/commons/autocomplete/computer-cpu-autocomplete/computer-cpu-autocomplete.component';
 import { InputGroupComponent } from './components/commons/input-group/input-group.component';
+import { ComputerMemoryAutocompleteComponent } from './components/commons/autocomplete/computer-memory-autocomplete/computer-memory-autocomplete.component';
+import { ComputerStorageAutocompleteComponent } from './components/commons/autocomplete/computer-storage-autocomplete/computer-storage-autocomplete.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +66,9 @@ import { InputGroupComponent } from './components/commons/input-group/input-grou
     ComputerStorageFormComponent,
     NewComputerCategory,
     ComputerCpuAutocompleteComponent,
-    InputGroupComponent
+    InputGroupComponent,
+    ComputerMemoryAutocompleteComponent,
+    ComputerStorageAutocompleteComponent,
   ],
   imports: [
     CommonModule,
@@ -99,6 +103,8 @@ import { InputGroupComponent } from './components/commons/input-group/input-grou
     DeviceStaffFormComponent,
     DeviceComputerFormComponent,
     ComputerCpuAutocompleteComponent,
+    ComputerMemoryAutocompleteComponent,
+    ComputerStorageAutocompleteComponent,
     InputGroupComponent,
   ]
 })

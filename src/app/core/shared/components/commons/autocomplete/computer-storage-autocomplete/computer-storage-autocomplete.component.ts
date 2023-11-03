@@ -2,23 +2,23 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { Observable, finalize, of, pipe, take } from 'rxjs';
-import { IComputerCpu } from 'src/app/core/components/computer/model/computer-cpu';
+import { IComputerStorage } from 'src/app/core/components/computer/model/computer-storage';
 import { ComputerService } from 'src/app/core/components/computer/services/computer.service';
 import { IAbstractAutocomplete } from 'src/app/core/shared/abstracts/interface/abstract-autocomplete';
 
 @Component({
-  selector: 'app-computer-cpu-autocomplete',
-  templateUrl: './computer-cpu-autocomplete.component.html',
-  styleUrls: ['./computer-cpu-autocomplete.component.css']
+  selector: 'app-computer-storage-autocomplete',
+  templateUrl: './computer-storage-autocomplete.component.html',
+  styleUrls: ['./computer-storage-autocomplete.component.css']
 })
-export class ComputerCpuAutocompleteComponent implements OnInit, IAbstractAutocomplete<IComputerCpu> {
+export class ComputerStorageAutocompleteComponent implements OnInit, IAbstractAutocomplete<IComputerStorage> {
 
   @Input() control!: FormControl;
-  register!: IComputerCpu;
-  items!: Observable<IComputerCpu[]>;
+  register!: IComputerStorage;
+  items!: Observable<IComputerStorage[]>;
   loading: boolean = false;
   @Input() id: string = "";
-  @Output() onSelect: EventEmitter<IComputerCpu | null> = new EventEmitter();
+  @Output() onSelect: EventEmitter<IComputerStorage | null> = new EventEmitter();
 
   constructor(private service: ComputerService) { }
 
@@ -41,15 +41,16 @@ export class ComputerCpuAutocompleteComponent implements OnInit, IAbstractAutoco
     const filter = this.control.value
     if (filter) {
       this.loading = true;
-      this.items = this.service.getComputerCpuAutoComplete(this.service.removeNonAlfaNumericCharacters(filter));
+      this.items = this.service.getComputerStorageAutoComplete(this.service.removeNonAlfaNumericCharacters(filter));
       pipe(finalize(() => this.loading = false))
     } else {
       this.items = of([]).pipe(take(1));
     }
   }
 
-  displayWith(cpu: IComputerCpu): string {
-    return cpu ? `${cpu.id} - ${cpu.brandName} ${cpu.model} ${cpu.frequency} ${cpu.socket}` : '';
+  displayWith(storage: IComputerStorage): string {
+    return storage ? `${storage.id} - ${storage.brandName} ${storage.type}` : '';
   }
+
 
 }
