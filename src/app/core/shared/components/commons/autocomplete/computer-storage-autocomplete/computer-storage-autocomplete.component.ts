@@ -35,6 +35,7 @@ export class ComputerStorageAutocompleteComponent implements OnInit, IAbstractAu
   onSelectItem(event: MatAutocompleteSelectedEvent): void {
     this.register = event.option.value;
     this.onSelect.emit(this.register);
+    this.items = of([]);
   }
 
   search(): void {

@@ -190,13 +190,19 @@
 	},
 	"forms": {
 		"email": "You must provide a valid email",
+		"format": {
+			"invalid": "Invalid",
+			"only_letters": "Only Letters",
+			"only_numbers": "Only numbers",
+			"strong_password": "Weak password"
+		},
 		"invalidField": "Invalid field",
 		"max": "Maximum allowed value is {{n}}",
 		"maxlength": "Maximum {{n}} characters allowed",
 		"min": "Minimum allowed value is {{n}}",
 		"minlength": "Minimum {{n}} characters required",
 		"passwordMatch": "Passwords do not match",
-		"pattern": "Invalid pattern, expected pattern: {{n}}",
+		"pattern": "Invalid pattern",
 		"required": "This field is required"
 	},
 	"login": {

@@ -35,6 +35,7 @@ export class ComputerCpuAutocompleteComponent implements OnInit, IAbstractAutoco
   onSelectItem(event: MatAutocompleteSelectedEvent): void {
     this.register = event.option.value;
     this.onSelect.emit(this.register);
+    this.items = of([]);
   }
 
   search(): void {

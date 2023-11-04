@@ -7,7 +7,7 @@ export class DeviceComputerCpuValidation extends AbstractValidation {
     }
     
     static core(): Validators[] {
-        return [Validators.required, this.onlyNumbers()]
+        return [Validators.required, Validators.min(1), this.onlyNumbers()]
     }
 
 }

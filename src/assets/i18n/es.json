@@ -190,13 +190,19 @@
 	},
 	"forms": {
 		"email": "Debes ingresar un correo válido",
+		"format": {
+			"invalid": "Inválido",
+			"only_letters": "Solo letras",
+			"only_numbers": "Solo números",
+			"strong_password": "Contraseña débil"
+		},
 		"invalidField": "Campo inválido",
 		"max": "El valor máximo permitido es {{n}}",
 		"maxlength": "Máximo de {{n}} caracteres permitidos",
 		"min": "El valor mínimo permitido es {{n}}",
 		"minlength": "Se requiere un mínimo de {{n}} caracteres",
 		"passwordMatch": "Las contraseñas no coinciden",
-		"pattern": "Patrón no válido, patrón esperado: {{n}}",
+		"pattern": "Patrón no válido",
 		"required": "Este campo es obligatorio"
 	},
 	"login": {

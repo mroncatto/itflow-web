@@ -1,4 +1,5 @@
 import { Validators } from "@angular/forms";
+import { Patterns } from "../enum/pattern.enum";
 
 export abstract class AbstractValidation {
 
@@ -7,7 +8,7 @@ export abstract class AbstractValidation {
     }
 
     static strongPassword(): Validators[] {
-        return [Validators.pattern("?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}")];
+        return [Validators.pattern(Patterns.STRONG_PASSWORD)];
     }
 
     static required(): Validators[]{
@@ -19,6 +20,6 @@ export abstract class AbstractValidation {
     }
 
     protected static onlyNumbers(): Validators {
-        return Validators.pattern('^[0-9]*$');
+        return Validators.pattern(Patterns.ONLY_NUMBERS);
     }
 }

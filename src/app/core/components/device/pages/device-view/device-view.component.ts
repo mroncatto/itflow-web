@@ -220,7 +220,7 @@ export class DeviceViewComponent extends AbstractComponent implements OnInit {
     saveDeviceComputerCpu(): void {
       if(this.device && this.deviceComputerCpuForm.valid) {
       this.sub.push(
-        this.service.updateDeviceComputerCpu(this.device.id, this.deviceComputerMemoryForm.value as IDeviceComputerCpu).subscribe({
+        this.service.updateDeviceComputerCpu(this.device.id, this.deviceComputerCpuForm.value as IDeviceComputerCpu).subscribe({
           next: (data) => this.onDeviceComputerCpuSave(data),
           error: (err) => this.service.onHttpError(err)
         })
