@@ -242,13 +242,16 @@
 			"new": "Nova categoria de computador"
 		},
 		"computerCpu": {
-			"new": "Novo CPU"
+			"new": "Novo CPU",
+			"remove": "Tem certeza de que deseja remover o processador <b>{{record}}</b> ?"
 		},
 		"computerMemory": {
-			"new": "Nova memória"
+			"new": "Nova memória",
+			"remove": "Tem certeza de que deseja remover a memória <b>{{record}}</b> ?"
 		},
 		"computerStorage": {
-			"new": "Novo armazenamento"
+			"new": "Novo armazenamento",
+			"remove": "Tem certeza de que deseja remover o armazenamento <b>{{record}}</b> ?"
 		},
 		"delete": "Tem certeza de que deseja desativar <b>{{record}}</b>? Essa alteração não pode ser revertida",
 		"department": {

@@ -22,21 +22,20 @@ export class DeviceComputer implements IDeviceComputer {
     computerCategory: IComputerCategory;
     description: string;
     virtual: boolean;
-    computerCpuList: IDeviceComputerCpu[];
-    computerMemoryList: IDeviceComputerMemory[];
-    computerStorageList: IDeviceComputerStorage[];
+    computerCpuList: IDeviceComputerCpu[] = [];
+    computerMemoryList: IDeviceComputerMemory[] = [];
+    computerStorageList: IDeviceComputerStorage[] = [];
 
     constructor(id: number, device: Device, computerCategory: IComputerCategory, description: string, 
-        virtual: boolean, computerCpuList: IDeviceComputerCpu[], computerMemoryList: IDeviceComputerMemory[],
-        computerStorageList: IDeviceComputerStorage[]) {
+        virtual: boolean) {
         this.id = id;
         this.device = device;
         this.computerCategory = computerCategory;
         this.description = description;
         this.virtual = virtual;
-        this.computerCpuList = computerCpuList;
-        this.computerMemoryList = computerMemoryList;
-        this.computerStorageList = computerStorageList;
+        this.computerCpuList = [];
+        this.computerMemoryList = [];
+        this.computerStorageList = [];
     }
 }
 

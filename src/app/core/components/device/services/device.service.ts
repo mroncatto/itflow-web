@@ -59,12 +59,24 @@ export class DeviceService extends AbstractService {
     return this.http.put<IDevice>(`${this.API_URL}/device/computer/${id}/cpu`, deviceComputerCpu);
   }
 
+  deleteDeviceComputerCpu(id: number, cpuId: number): Observable<any> {
+    return this.http.delete(`${this.API_URL}/device/computer/${id}/cpu/${cpuId}`);
+  }
+
   updateDeviceComputerMemory(id: number, deviceComputerMemory: IDeviceComputerMemory): Observable<IDevice> {
     return this.http.put<IDevice>(`${this.API_URL}/device/computer/${id}/memory`, deviceComputerMemory);
   }
 
+  deleteDeviceComputerMemory(id: number, memoryId: number): Observable<any> {
+    return this.http.delete(`${this.API_URL}/device/computer/${id}/memory/${memoryId}`);
+  }
+
   updateDeviceComputerStorage(id: number, deviceComputerStorage: IDeviceComputerStorage): Observable<IDevice> {
     return this.http.put<IDevice>(`${this.API_URL}/device/computer/${id}/storage`, deviceComputerStorage);
+  }
+
+  deleteDeviceComputerStorage(id: number, storageId: number): Observable<any> {
+    return this.http.delete(`${this.API_URL}/device/computer/${id}/storage/${storageId}`);
   }
 
   updateDevice(device: IDevice): Observable<IDevice> {

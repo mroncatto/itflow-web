@@ -242,13 +242,16 @@
 			"new": "New computer category"
 		},
 		"computerCpu": {
-			"new": "New CPU"
+			"new": "New CPU",
+			"remove": "Are you sure you want to remove the <b>{{record}}</b> processor ?"
 		},
 		"computerMemory": {
-			"new": "New memory"
+			"new": "New memory",
+			"remove": "Are you sure you want to remove the <b>{{record}}</b> memory ?"
 		},
 		"computerStorage": {
-			"new": "New storage"
+			"new": "New storage",
+			"remove": "Are you sure you want to remove the <b>{{record}}</b> storage ?"
 		},
 		"delete": "Are you sure you want to delete <b>{{record}}</b>? This change cannot be reversed",
 		"department": {

@@ -259,8 +259,11 @@
                                                                 <td>{{ cpus.computerCpu.frequency }} </td>
                                                                 <td>{{ cpus.computerCpu.socket }}</td>
                                                                 <td><i title="{{'commons.remove' | translate}}"
-                                                                        class="fas fa-trash text-danger link link-animation"></i>
+                                                                        class="fas fa-trash text-danger link link-animation" (click)="onConfirmDeleteComputerCpu(cpus.computerCpu)"></i>
                                                                 </td>
+                                                            </tr>
+                                                            <tr *ngIf="isEmptyOrNull(device.deviceComputer.computerCpuList)">
+                                                                <td colspan="6" translate="commons.noData"></td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -314,8 +317,12 @@
                                                                 </td>
                                                                 <td>{{mem.modules}}</td>
                                                                 <td><i title="{{'commons.remove' | translate}}"
-                                                                        class="fas fa-trash text-danger link link-animation"></i>
+                                                                        class="fas fa-trash text-danger link link-animation"
+                                                                        (click)="onConfirmDeleteComputerMemory(mem.computerMemory)"></i>
                                                                 </td>
+                                                            </tr>
+                                                            <tr *ngIf="isEmptyOrNull(device.deviceComputer.computerMemoryList)">
+                                                                <td colspan="6" translate="commons.noData"></td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -366,8 +373,12 @@
                                                                 <td>{{storages.computerStorage.type}}</td>
                                                                 <td>{{storages.size}}</td>
                                                                 <td><i title="{{'commons.remove' | translate}}"
-                                                                        class="fas fa-trash text-danger link link-animation"></i>
+                                                                        class="fas fa-trash text-danger link link-animation"
+                                                                        (click)="onConfirmDeleteComputerStorage(storages.computerStorage)"></i>
                                                                 </td>
+                                                            </tr>
+                                                            <tr *ngIf="isEmptyOrNull(device.deviceComputer.computerStorageList)">
+                                                                <td colspan="6" translate="commons.noData"></td>
                                                             </tr>
                                                         </tbody>
                                                     </table>

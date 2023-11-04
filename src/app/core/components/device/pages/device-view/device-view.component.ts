@@ -75,6 +75,8 @@ export class DeviceViewComponent extends AbstractComponent implements OnInit {
         },
         complete: () => {
           this.loading = false;
+          console.log(this.device);
+
           this.startForms();
         }
       })
@@ -90,6 +92,10 @@ export class DeviceViewComponent extends AbstractComponent implements OnInit {
         })
       );
     }
+  }
+
+  isEmptyOrNull(list: any): boolean {
+    return list == null || list == undefined || list.length == 0
   }
 
   private afterUpdate(device: IDevice): void {
@@ -192,33 +198,33 @@ export class DeviceViewComponent extends AbstractComponent implements OnInit {
   onSelectCpu(cpu: IComputerCpu | null): void {
     if (cpu) {
       this.deviceComputerCpuForm.controls['computerCpu'].setValue(cpu);
-      this.deviceComputerCpuForm.controls['core'].setValue(cpu.core ? cpu.core : "0");
+      this.deviceComputerCpuForm.controls['core'].setValue(cpu.core ? cpu.core : "1");
       //this.nextFocus('unit'); TODO: Criar evento focus no formulario
     } else {
       this.deviceComputerCpuForm.controls['computerCpu'].reset();
     }
   }
 
-    onSelectMemory(memory: IComputerMemory | null): void {
-      if(memory) {
-        this.deviceComputerMemoryForm.controls['computerMemory'].setValue(memory);
-        this.deviceComputerMemoryForm.controls['modules'].setValue(1);
-      } else {
-        this.deviceComputerMemoryForm.controls['computerMemory'].reset();
-      }
+  onSelectMemory(memory: IComputerMemory | null): void {
+    if (memory) {
+      this.deviceComputerMemoryForm.controls['computerMemory'].setValue(memory);
+      this.deviceComputerMemoryForm.controls['modules'].setValue(1);
+    } else {
+      this.deviceComputerMemoryForm.controls['computerMemory'].reset();
     }
+  }
 
-    onSelectStorage(storage: IComputerStorage | null): void {
-      if(storage) {
-        this.deviceComputerStorageForm.controls['computerStorage'].setValue(storage);
-        this.deviceComputerStorageForm.controls['size'].setValue(1);
-      } else {
-        this.deviceComputerStorageForm.controls['computerStorage'].reset();
-      }
+  onSelectStorage(storage: IComputerStorage | null): void {
+    if (storage) {
+      this.deviceComputerStorageForm.controls['computerStorage'].setValue(storage);
+      this.deviceComputerStorageForm.controls['size'].setValue(1);
+    } else {
+      this.deviceComputerStorageForm.controls['computerStorage'].reset();
     }
+  }
 
-    saveDeviceComputerCpu(): void {
-      if(this.device && this.deviceComputerCpuForm.valid) {
+  saveDeviceComputerCpu(): void {
+    if (this.device && this.deviceComputerCpuForm.valid) {
       this.sub.push(
         this.service.updateDeviceComputerCpu(this.device.id, this.deviceComputerCpuForm.value as IDeviceComputerCpu).subscribe({
           next: (data) => this.onDeviceComputerCpuSave(data),
@@ -235,8 +241,35 @@ export class DeviceViewComponent extends AbstractComponent implements OnInit {
     this.service.onInfo("updated", "updated");
   }
 
+  onConfirmDeleteComputerCpu(cpu: IComputerCpu): void {
+    this.sub.push(
+      this.service.showConfirm('warning', 'computerCpu.remove', `${cpu.brandName}-${cpu.model}`).subscribe({
+        next: (confirm) => { if (confirm) this.onRemoveComputerCpu(cpu) }
+      })
+    );
+  }
+
+  private onRemoveComputerCpu(cpu: IComputerCpu): void {
+    if (this.device) {
+      this.sub.push(
+        this.service.deleteDeviceComputerCpu(this.device.id, cpu.id).subscribe({
+          next: () => this.filterCpuDeleted(cpu.id),
+          error: (err) => this.service.onHttpError(err)
+        })
+      );
+    }
+  }
+
+  private filterCpuDeleted(id: number): void {
+    if (this.device) {
+      this.device.deviceComputer.computerCpuList = this.device.deviceComputer.computerCpuList
+        .filter(cpu => cpu.computerCpu.id !== id);
+      this.service.onInfo("deleted", "deleted");
+    }
+  }
+
   saveDeviceComputerMemory(): void {
-    if(this.device && this.deviceComputerMemoryForm.valid) {
+    if (this.device && this.deviceComputerMemoryForm.valid) {
       this.sub.push(
         this.service.updateDeviceComputerMemory(this.device.id, this.deviceComputerMemoryForm.value as IDeviceComputerMemory).subscribe({
           next: (data) => this.onDeviceComputerMemorySave(data),
@@ -253,8 +286,35 @@ export class DeviceViewComponent extends AbstractComponent implements OnInit {
     this.service.onInfo("updated", "updated");
   }
 
+  onConfirmDeleteComputerMemory(memory: IComputerMemory): void {
+    this.sub.push(
+      this.service.showConfirm('warning', 'computerMemory.remove', `${memory.brandName} - ${memory.size}GB`).subscribe({
+        next: (confirm) => { if (confirm) this.onRemoveComputerMemory(memory) }
+      })
+    );
+  }
+
+  private onRemoveComputerMemory(memory: IComputerMemory): void {
+    if (this.device) {
+      this.sub.push(
+        this.service.deleteDeviceComputerMemory(this.device.id, memory.id).subscribe({
+          next: () => this.filterMemoryDeleted(memory.id),
+          error: (err) => this.service.onHttpError(err)
+        })
+      );
+    }
+  }
+
+  private filterMemoryDeleted(id: number): void {
+    if (this.device) {
+      this.device.deviceComputer.computerMemoryList = this.device.deviceComputer.computerMemoryList
+        .filter(memory => memory.computerMemory.id !== id);
+      this.service.onInfo("deleted", "deleted");
+    }
+  }
+
   saveDeviceComputerStorage(): void {
-    if(this.device && this.deviceComputerStorageForm.valid) {
+    if (this.device && this.deviceComputerStorageForm.valid) {
       this.sub.push(
         this.service.updateDeviceComputerStorage(this.device.id, this.deviceComputerStorageForm.value as IDeviceComputerStorage).subscribe({
           next: (data) => this.onDeviceComputerStorageSave(data),
@@ -269,6 +329,33 @@ export class DeviceViewComponent extends AbstractComponent implements OnInit {
     this.computerStorageAutoComplete.reset();
     this.deviceComputerStorageForm.reset();
     this.service.onInfo("updated", "updated");
+  }
+
+  onConfirmDeleteComputerStorage(storage: IComputerStorage): void {
+    this.sub.push(
+      this.service.showConfirm('warning', 'computerStorage.remove', `${storage.brandName} - ${storage.type}`).subscribe({
+        next: (confirm) => { if (confirm) this.onRemoveComputerStorage(storage) }
+      })
+    );
+  }
+
+  private onRemoveComputerStorage(storage: IComputerStorage): void {
+    if (this.device) {
+      this.sub.push(
+        this.service.deleteDeviceComputerStorage(this.device.id, storage.id).subscribe({
+          next: () => this.filterStorageDeleted(storage.id),
+          error: (err) => this.service.onHttpError(err)
+        })
+      );
+    }
+  }
+
+  private filterStorageDeleted(id: number): void {
+    if (this.device) {
+      this.device.deviceComputer.computerStorageList = this.device.deviceComputer.computerStorageList
+        .filter(storage => storage.computerStorage.id !== id);
+      this.service.onInfo("deleted", "deleted");
+    }
   }
 
 
