@@ -4,18 +4,18 @@
                 <div class="logo">
                     <img src="/assets/img/logo-1920x556.png" width="280" alt="IT FLOW">
                     <div class="info">
-                        <p translate="login.about"></p>
+                        <p [translate]="messages.LOGIN_ABOUT"></p>
                     </div>
                 </div>     
                 <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
                 <div class="form">                
                         <div class="input-group mb-3">
                             <span class="input-group-text"><i class="fa fa-user"></i></span>
-                            <input formControlName="username" type="username" class="form-control" id="username" placeholder="{{'login.placeholder.username' | translate }}" required>
+                            <input formControlName="username" type="username" class="form-control" id="username" placeholder="{{messages.LOGIN_USERNAME_PLACEHOLDER| translate }}" required>
                         </div>
                         <div class="input-group mb-3">
                             <span class="input-group-text"><i class="fa fa-lock"></i></span>
-                            <input formControlName="password" type="password" class="form-control" id="password" placeholder="{{'login.placeholder.password' | translate }}" required>
+                            <input formControlName="password" type="password" class="form-control" id="password" placeholder="{{messages.LOGIN_PWD_PLACEHOLDER | translate }}" required>
                         </div>
                 </div>
                 <div class="button">

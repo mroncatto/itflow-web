@@ -1,18 +1,18 @@
 <div class="modal-content">
     <div class="modal-header">
-        <h5 *ngIf="!deviceComputer" class="modal-title" translate="modal.deviceComputer.new"></h5>
+        <h5 *ngIf="!deviceComputer" class="modal-title" [translate]="messages.MODAL_NEW_DEVICE_COMPUTER"></h5>
         <h5 *ngIf="deviceComputer" class="modal-title" [translateParams]="{name: deviceComputer.computerCategory.name}"
-            translate="modal.update"></h5>
+            [translate]="messages.MODAL_UPDATE"></h5>
     </div>
     <form [formGroup]="deviceComputerForm" (ngSubmit)="save()">
         <div class="modal-body" *ngIf="device">
             <div class="computer-tab-content m-3">
                 <div class="my-3">
-                    <label for="staff" translate="commons.category"></label>
+                    <label for="staff" [translate]="messages.CATEGORY"></label>
                     <div class="d-flex gap-2">
                         <select id="staff" formControlName="computerCategory" id="computerCategory"
                             [compareWith]="compareWith" class="form-select">
-                            <option translate="commons.category" disabled selected value=""></option>
+                            <option [translate]="messages.CATEGORY" disabled selected value=""></option>
                             <option *ngFor="let c of computerCategories" [ngValue]="c">{{c.name}}</option>
                         </select>
                         <btn-new-computer-category [loading]="loading"
@@ -23,23 +23,23 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="login" translate="commons.description"></label>
+                    <label for="login" [translate]="messages.DESCRIPTION"></label>
                     <input autocomplete="off" type="text" formControlName="description" id="description"
-                        class="form-control" placeholder="{{'deviceComputer.description.placeholder' | translate}}">
+                        class="form-control" placeholder="{{messages.DEVICE_COMPUTER_DESCRIPTION_PH | translate}}">
                     <app-validation-field [form]="deviceComputerForm" [field]="'description'"></app-validation-field>
                 </div>
 
-                <div class="form-check mb-3" title="{{'deviceComputer.virtual.placeholder' | translate}}">
+                <div class="form-check mb-3" title="{{messages.DEVICE_COMPUTER_VIRTUAL_PH | translate}}">
                     <input class="form-check-input link" type="checkbox" formControlName="virtual" id="virtual">
-                    <label class="form-check-label link" for="virtual" translate="deviceComputer.virtual"></label>
+                    <label class="form-check-label link" for="virtual" [translate]="messages.DEVICE_COMPUTER_VIRTUAL"></label>
                 </div>
             </div>
 
             <div class="modal-footer">
                 <button [disabled]="loading" type="button" class="btn btn-outline-danger" (click)="closeModal()"
-                    translate="commons.cancel"></button>
+                    [translate]="messages.CANCEL"></button>
                 <button [disabled]="loading || deviceComputerForm.invalid" type="submit" class="btn btn-success"
-                    (click)="save()" translate="commons.save">
+                    (click)="save()" [translate]="messages.SAVE">
                     <i *ngIf="loading" class="fas fa-spinner fa-pulse mx-1"></i>
                 </button>
             </div>

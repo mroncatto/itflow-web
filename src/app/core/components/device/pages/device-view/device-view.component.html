@@ -5,13 +5,13 @@
         <div class="d-flex justify-content-between mt-2">
             <div class="row">
                 <div class="title-page col-md-12 fw-bold fs-3">
-                    <i class="fa fa-info-circle"></i> <span class="mx-1" translate="commons.details"></span>
+                    <i class="fa fa-info-circle"></i> <span class="mx-1" [translate]="messages.DETAILS"></span>
                 </div>
             </div>
 
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item link" [routerLink]="['/device']" translate="device.device"></li>
+                    <li class="breadcrumb-item link" [routerLink]="['/device']" [translate]="messages.DEVICE"></li>
                     <li class="breadcrumb-item active" aria-current="page">{{device?.hostname}}</li>
                 </ol>
             </nav>
@@ -35,7 +35,7 @@
                                 <button class="btn btn-primary btn-sm dropdown-toggle" type="button"
                                     data-bs-toggle="dropdown" aria-expanded="false">
                                     <i class="fas fa-puzzle-piece"></i> <span class="mx-2"
-                                        translate="deviceStaff.addFeatures"></span>
+                                        [translate]="messages.UNDEFINED"></span>
                                 </button>
                                 <ul class="dropdown-menu">
                                     <li class="link" *ngIf="!device?.deviceStaff">
@@ -62,7 +62,7 @@
                                 <tab>
                                     <ng-template tabHeading>
                                         <i class="fa fa-info-circle"></i> <span class="mx-1"
-                                            translate="device.details"></span>
+                                            [translate]="messages.DETAILS"></span>
                                     </ng-template>
                                     <div class="py-2">
                                         <ul class="list-group list-group-flush">
@@ -70,88 +70,88 @@
                                                 {{ device.id }}
                                             </li>
                                             <li class="list-group-item border-0"><span class="fw-bold"
-                                                    translate="device.code"></span>:
+                                                    [translate]="device.code"></span>:
                                                 {{ device.code }}
                                             </li>
                                             <li class="list-group-item border-0"><span class="fw-bold"
-                                                    translate="device.tag"></span>:
+                                                    [translate]="device.tag"></span>:
                                                 {{ device.tag }}
                                             </li>
                                             <li class="list-group-item border-0"><span class="fw-bold"
-                                                    translate="device.serialNumber"></span>:
+                                                    [translate]="device.serialNumber"></span>:
                                                 {{ device.serialNumber }}
                                             </li>
                                             <li class="list-group-item border-0"><span class="fw-bold"
-                                                    translate="commons.description"></span>:
+                                                    [translate]="messages.DESCRIPTION"></span>:
                                                 {{ device.description }}
                                             </li>
                                             <li class="list-group-item border-0"><span class="fw-bold"
-                                                    translate="device.hostname"></span>:
+                                                    [translate]="device.hostname"></span>:
                                                 {{ device.hostname }}
                                             </li>
                                             <li class="list-group-item border-0"><span class="fw-bold"
-                                                    translate="device.category"></span>:
+                                                    [translate]="messages.CATEGORY"></span>:
                                                 {{ device.deviceCategory.name }}
                                             </li>
                                             <li class="list-group-item border-0"><span class="fw-bold"
-                                                    translate="department.department"></span>:
+                                                    [translate]="messages.DEPARTMENT"></span>:
                                                 {{ device.department.name }}
                                             </li>
                                             <li *ngIf="device.active" class="list-group-item border-0"><span
-                                                    class="fw-bold" translate="users.state"></span>:
-                                                <span class="badge bg-success mx-1" translate="commons.active"></span>
+                                                    class="fw-bold" [translate]="messages.USER_STATE"></span>:
+                                                <span class="badge bg-success mx-1" [translate]="messages.ACTIVE"></span>
                                             </li>
                                             <li *ngIf="!device.active" class="list-group-item  border-0"><span
-                                                    class="fw-bold" translate="users.state"></span>:
-                                                <span class="badge bg-danger mx-1" translate="commons.inactive"></span>
+                                                    class="fw-bold" [translate]="messages.USER_STATE"></span>:
+                                                <span class="badge bg-danger mx-1" [translate]="messages.INACTIVE"></span>
                                             </li>
                                         </ul>
                                     </div>
                                     <div class="py-2" *ngIf="device.active">
                                         <button class="btn btn-sm btn-warning" (click)="onUpdate()"><i
                                                 class="fas fa-pen"></i> <span class="mx-1"
-                                                translate="commons.update"></span></button>
+                                                [translate]="messages.UPDATE"></span></button>
                                     </div>
                                 </tab>
                                 <tab *ngIf="device.deviceStaff">
                                     <ng-template tabHeading>
-                                        <i class="fa fa-user"></i> <span class="mx-1" translate="users.user"></span>
+                                        <i class="fa fa-user"></i> <span class="mx-1" [translate]="messages.USER"></span>
                                     </ng-template>
                                     <div class="py-2">
                                         <ul class="list-group list-group-">
                                             <li class="list-group-item border-0"><span class="fw-bold"
-                                                    translate="users.fullname"></span>:
+                                                    [translate]="messages.FULLNAME"></span>:
                                                 {{ device.deviceStaff.staff.fullName }}
                                             </li>
                                             <li class="list-group-item border-0"><span class="fw-bold"
-                                                    translate="commons.email"></span>:
+                                                    [translate]="messages.EMAIL"></span>:
                                                 {{ device.deviceStaff.staff.email }}
                                             </li>
                                             <li class="list-group-item border-0"><span class="fw-bold"
-                                                    translate="branch.branch"></span>:
+                                                    [translate]="messages.BRANCH"></span>:
                                                 {{ device.deviceStaff.staff.department.branch.name }}
                                             </li>
                                             <li class="list-group-item border-0"><span class="fw-bold"
-                                                    translate="department.department"></span>:
+                                                    [translate]="messages.DEPARTMENT"></span>:
                                                 {{ device.deviceStaff.staff.department.name }}
                                             </li>
                                             <li class="list-group-item border-0"><span class="fw-bold"
-                                                    translate="occupation.occupation"></span>:
+                                                    [translate]="messages.OCCUPATION"></span>:
                                                 {{ device.deviceStaff.staff.occupation.name }}
                                             </li>
                                             <li class="list-group-item border-0"><span class="fw-bold"
-                                                    translate="deviceStaff.login"></span>:
+                                                    [translate]="messages.LOGIN"></span>:
                                                 {{ device.deviceStaff.login }}
                                             </li>
                                             <li *ngIf="device.deviceStaff.staff.active"
                                                 class="list-group-item border-0"><span class="fw-bold"
-                                                    translate="users.state"></span>:
-                                                <span class="badge bg-success mx-1" translate="commons.active"></span>
+                                                    [translate]="messages.USER_STATE"></span>:
+                                                <span class="badge bg-success mx-1" [translate]="messages.ACTIVE"></span>
                                             </li>
                                             <li *ngIf="!device.deviceStaff.staff.active"
                                                 class="list-group-item border-0"><span class="fw-bold"
-                                                    translate="users.state"></span>:
-                                                <span class="badge bg-danger mx-1" translate="commons.inactive"></span>
+                                                    [translate]="messages.USER_STATE"></span>:
+                                                <span class="badge bg-danger mx-1" [translate]="messages.INACTIVE"></span>
                                             </li>
                                         </ul>
                                     </div>
@@ -159,62 +159,62 @@
                                     <div class="py-2 flex-gap">
                                         <button class="btn btn-sm btn-warning" (click)="onAddOrChangeStaff()"><i
                                                 class="fas fa-pen"></i> <span class="mx-1"
-                                                translate="commons.update"></span></button>
+                                                [translate]="messages.UPDATE"></span></button>
                                         <button class="btn btn-sm btn-danger" (click)="confirmDeleteDeviceStaff()"><i
                                                 class="fas fa-trash"></i> <span class="mx-1"
-                                                translate="commons.delete"></span></button>
+                                                [translate]="messages.DELETE"></span></button>
                                     </div>
                                 </tab>
                                 <tab *ngIf="device.deviceComputer">
                                     <ng-template tabHeading>
                                         <i class="fa fa-desktop"></i> <span class="mx-1"
-                                            translate="deviceComputer.computer"></span>
+                                            [translate]="messages.DEVICE_COMPUTER"></span>
                                     </ng-template>
                                     <div class="py-2">
                                         <tabset #propertiesTabs>
                                             <tab>
                                                 <ng-template tabHeading>
-                                                    <span class="mx-1" translate="commons.description"></span>
+                                                    <span class="mx-1" [translate]="messages.DESCRIPTION"></span>
                                                 </ng-template>
                                                 <div>
                                                     <ul class="list-group list-group-">
                                                         <li class="list-group-item border-0"><span class="fw-bold"
-                                                                translate="commons.category"></span>:
+                                                                [translate]="messages.CATEGORY"></span>:
                                                             {{ device.deviceComputer.computerCategory.name }}
                                                         </li>
                                                         <li class="list-group-item border-0"><span class="fw-bold"
-                                                                translate="commons.description"></span>:
+                                                                [translate]="messages.DESCRIPTION"></span>:
                                                             {{ device.deviceComputer.description }}
                                                         </li>
                                                         <li *ngIf="device.deviceComputer.virtual"
                                                             class="list-group-item border-0"><span class="fw-bold"
-                                                                translate="deviceComputer.virtual"></span>:
+                                                                [translate]="messages.DEVICE_COMPUTER_VIRTUAL"></span>:
                                                             <span class="badge bg-success mx-1"
-                                                                translate="commons.yes"></span>
+                                                                [translate]="messages.YES"></span>
                                                         </li>
                                                         <li *ngIf="!device.deviceComputer.virtual"
                                                             class="list-group-item  border-0"><span class="fw-bold"
-                                                                translate="deviceComputer.virtual"></span>:
+                                                                [translate]="messages.DEVICE_COMPUTER_VIRTUAL"></span>:
                                                             <span class="badge bg-danger mx-1"
-                                                                translate="commons.no"></span>
+                                                                [translate]="messages.NO"></span>
                                                         </li>
                                                     </ul>
                                                     <div class="py-2 flex-gap">
                                                         <button class="btn btn-sm btn-warning"
                                                             (click)="onAddOrChangeComputer()"><i class="fas fa-pen"></i>
                                                             <span class="mx-1"
-                                                                translate="commons.update"></span></button>
+                                                                [translate]="messages.UPDATE"></span></button>
                                                         <button class="btn btn-sm btn-danger"
                                                             (click)="confirmDeleteDeviceComputer()"><i
                                                                 class="fas fa-trash"></i> <span class="mx-1"
-                                                                translate="commons.delete"></span></button>
+                                                                [translate]="messages.DELETE"></span></button>
                                                     </div>
                                                 </div>
                                             </tab>
                                             <tab>
                                                 <ng-template tabHeading>
                                                     <i class="fas fa-microchip"></i>
-                                                    <span class="mx-1" translate="deviceComputer.cpu"></span>
+                                                    <span class="mx-1" [translate]="messages.DEVICE_COMPUTER_CPU"></span>
                                                 </ng-template>
                                                 <div class="computer-tab-content m-3" *ngIf="deviceComputerCpuForm">
                                                     <form class="my-3 d-flex gap-1" [formGroup]="deviceComputerCpuForm"
@@ -226,8 +226,8 @@
                                                         </app-computer-cpu-autocomplete>
 
                                                         <app-input-group [form]="deviceComputerCpuForm"
-                                                            translateLabel="computerCpu.core"
-                                                            translatePlaceholder="computerCpu.placeholder.core"
+                                                            [translateLabel]="messages.COMPUTER_CPU_CORE"
+                                                            [translatePlaceholder]="messages.COMPUTER_CPU_CORE_PH"
                                                             id="core">
                                                         </app-input-group>
 
@@ -237,16 +237,16 @@
                                                             <button id="save-computer-cpu" type="submit"
                                                                 class="btn btn-primary"
                                                                 [disabled]="deviceComputerCpuForm.invalid"
-                                                                translate="commons.add"></button>
+                                                                [translate]="messages.ADD"></button>
                                                         </div>
                                                     </form>
                                                     <table class="table table-striped">
                                                         <thead>
                                                             <tr>
-                                                                <th translate="deviceComputer.cpu"></th>
-                                                                <th translate="computerCpu.core"></th>
-                                                                <th translate="computerCpu.frequency"></th>
-                                                                <th translate="computerCpu.socket"></th>
+                                                                <th [translate]="messages.DEVICE_COMPUTER_CPU"></th>
+                                                                <th [translate]="messages.COMPUTER_CPU_CORE"></th>
+                                                                <th [translate]="messages.COMPUTER_CPU_FREQUENCY"></th>
+                                                                <th [translate]="messages.COMPUTER_CPU_SOCKET"></th>
                                                                 <th></th>
                                                             </tr>
                                                         </thead>
@@ -258,12 +258,12 @@
                                                                 <td>{{ cpus.core }} </td>
                                                                 <td>{{ cpus.computerCpu.frequency }} </td>
                                                                 <td>{{ cpus.computerCpu.socket }}</td>
-                                                                <td><i title="{{'commons.remove' | translate}}"
+                                                                <td><i title="{{messages.REMOVE | translate}}"
                                                                         class="fas fa-trash text-danger link link-animation" (click)="onConfirmDeleteComputerCpu(cpus.computerCpu)"></i>
                                                                 </td>
                                                             </tr>
                                                             <tr *ngIf="isEmptyOrNull(device.deviceComputer.computerCpuList)">
-                                                                <td colspan="6" translate="commons.noData"></td>
+                                                                <td colspan="6" [translate]="messages.NO_DATA"></td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -272,7 +272,7 @@
                                             <tab>
                                                 <ng-template tabHeading>
                                                     <i class="fas fa-memory"></i>
-                                                    <span class="mx-1" translate="deviceComputer.memory"></span>
+                                                    <span class="mx-1" [translate]="messages.DEVICE_COMPUTER_MEMORY"></span>
                                                 </ng-template>
                                                 <div class="computer-tab-content m-3" *ngIf="deviceComputerMemoryForm">
 
@@ -286,8 +286,8 @@
                                                         </app-computer-memory-autocomplete>
 
                                                         <app-input-group [form]="deviceComputerMemoryForm"
-                                                            translateLabel="computerMemory.modules"
-                                                            translatePlaceholder="computerMemory.modules" id="modules">
+                                                            [translateLabel]="messages.COMPUTER_MEMORY_MODULES"
+                                                            [translatePlaceholder]="messages.COMPUTER_MEMORY_MODULES" id="modules">
                                                         </app-input-group>
 
                                                         <div class="mb-3">
@@ -296,7 +296,7 @@
                                                             <button id="save-computer-memory" type="submit"
                                                                 class="btn btn-primary"
                                                                 [disabled]="deviceComputerMemoryForm.invalid"
-                                                                translate="commons.add"></button>
+                                                                [translate]="messages.ADD"></button>
                                                         </div>
 
                                                     </form>
@@ -304,8 +304,8 @@
                                                     <table class="table table-striped">
                                                         <thead>
                                                             <tr>
-                                                                <th translate="deviceComputer.memory"></th>
-                                                                <th translate="computerMemory.modules"></th>
+                                                                <th [translate]="messages.DEVICE_COMPUTER_MEMORY"></th>
+                                                                <th [translate]="messages.COMPUTER_MEMORY_MODULES"></th>
                                                                 <th></th>
                                                             </tr>
                                                         </thead>
@@ -316,13 +316,13 @@
                                                                     {{mem.computerMemory.size}}GB 
                                                                 </td>
                                                                 <td>{{mem.modules}}</td>
-                                                                <td><i title="{{'commons.remove' | translate}}"
+                                                                <td><i title="{{messages.REMOVE | translate}}"
                                                                         class="fas fa-trash text-danger link link-animation"
                                                                         (click)="onConfirmDeleteComputerMemory(mem.computerMemory)"></i>
                                                                 </td>
                                                             </tr>
                                                             <tr *ngIf="isEmptyOrNull(device.deviceComputer.computerMemoryList)">
-                                                                <td colspan="6" translate="commons.noData"></td>
+                                                                <td colspan="6" [translate]="messages.NO_DATA"></td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -331,7 +331,7 @@
                                             <tab>
                                                 <ng-template tabHeading>
                                                     <i class="fas fa-database"></i>
-                                                    <span class="mx-1" translate="deviceComputer.storage"></span>
+                                                    <span class="mx-1" [translate]="messages.DEVICE_COMPUTER_STORAGE"></span>
                                                 </ng-template>
                                                 <div class="computer-tab-content m-3" *ngIf="deviceComputerStorageForm">
                                                     <form class="my-3 d-flex gap-1"
@@ -344,8 +344,8 @@
                                                         </app-computer-storage-autocomplete>
 
                                                         <app-input-group [form]="deviceComputerStorageForm"
-                                                            translateLabel="computerStorage.size"
-                                                            translatePlaceholder="computerStorage.placeholder.size" id="size">
+                                                            [translateLabel]="messages.COMPUTER_STORAGE_SIZE"
+                                                            [translatePlaceholder]="messages.COMPUTER_STORAGE_SIZE_PH" id="size">
                                                         </app-input-group>
 
                                                         <div class="mb-3">
@@ -354,16 +354,16 @@
                                                             <button id="save-computer-storage" type="submit"
                                                                 class="btn btn-primary"
                                                                 [disabled]="deviceComputerStorageForm.invalid"
-                                                                translate="commons.add"></button>
+                                                                [translate]="messages.ADD"></button>
                                                         </div>
 
                                                     </form>
                                                     <table class="table table-striped">
                                                         <thead>
                                                             <tr>
-                                                                <th translate="commons.brand"></th>
-                                                                <th translate="commons.type"></th>
-                                                                <th translate="computerStorage.size"></th>
+                                                                <th [translate]="messages.BRAND"></th>
+                                                                <th [translate]="messages.TYPE"></th>
+                                                                <th [translate]="messages.COMPUTER_STORAGE_SIZE"></th>
                                                                 <th></th>
                                                             </tr>
                                                         </thead>
@@ -372,13 +372,13 @@
                                                                 <td>{{storages.computerStorage.brandName}}</td>
                                                                 <td>{{storages.computerStorage.type}}</td>
                                                                 <td>{{storages.size}}</td>
-                                                                <td><i title="{{'commons.remove' | translate}}"
+                                                                <td><i title="{{messages.REMOVE | translate}}"
                                                                         class="fas fa-trash text-danger link link-animation"
                                                                         (click)="onConfirmDeleteComputerStorage(storages.computerStorage)"></i>
                                                                 </td>
                                                             </tr>
                                                             <tr *ngIf="isEmptyOrNull(device.deviceComputer.computerStorageList)">
-                                                                <td colspan="6" translate="commons.noData"></td>
+                                                                <td colspan="6" [translate]="messages.NO_DATA"></td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -387,7 +387,7 @@
                                             <tab *ngIf="false">
                                                 <ng-template tabHeading="">
                                                     <i class="fas fa-window-restore"></i>
-                                                    <span class="mx-1" translate="deviceComputer.software"></span>
+                                                    <span class="mx-1" [translate]="messages.DEVICE_COMPUTER_SOFTWARE"></span>
                                                 </ng-template>
                                                 <div class="computer-tab-content m-3">
                                                     <div class="my-3 d-flex gap-1">
@@ -406,7 +406,7 @@
                                                             <tr>
                                                                 <td>Microsoft Office</td>
                                                                 <td><i>NO LICENSE</i></td>
-                                                                <td><i title="{{'commons.remove' | translate}}"
+                                                                <td><i title="{{messages.REMOVE | translate}}"
                                                                         class="fas fa-trash text-danger link link-animation"></i>
                                                                 </td>
                                                             </tr>
@@ -417,7 +417,7 @@
                                             <tab *ngIf="false">
                                                 <ng-template tabHeading>
                                                     <i class="fas fa-server"></i>
-                                                    <span class="mx-1" translate="deviceComputer.server"></span>
+                                                    <span class="mx-1" [translate]="messages.DEVICE_COMPUTER_SERVER"></span>
                                                 </ng-template>
                                                 <div class="computer-tab-content m-3">
                                                     <div class="my-3 d-flex gap-1">
@@ -436,14 +436,14 @@
                                                             <tr>
                                                                 <td>Oracle Database 11G</td>
                                                                 <td>1521</td>
-                                                                <td><i title="{{'commons.remove' | translate}}"
+                                                                <td><i title="{{messages.REMOVE | translate}}"
                                                                         class="fas fa-trash text-danger link link-animation"></i>
                                                                 </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>ERP API</td>
                                                                 <td>8080</td>
-                                                                <td><i title="{{'commons.remove' | translate}}"
+                                                                <td><i title="{{messages.REMOVE | translate}}"
                                                                         class="fas fa-trash text-danger link link-animation"></i>
                                                                 </td>
                                                             </tr>

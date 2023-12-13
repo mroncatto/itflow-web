@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { IBranch } from '../../../model/branch';
 import { CompanyService } from '../../../services/company.service';
 import { IAbstractRegisterSubpages } from 'src/app/core/shared/abstracts/interface/abstract-register-subpages';
+import { TranslateMessages } from 'src/app/core/shared/commons/enum/translate-messages.enum';
 
 @Component({
   selector: 'app-branch',
@@ -14,6 +15,7 @@ export class BranchComponent implements OnInit, OnDestroy, IAbstractRegisterSubp
   private sub: Subscription[] = [];
   branches: IBranch[] = [];
   loading: boolean = true;
+  messages = TranslateMessages;
 
   constructor(private service: CompanyService) { }
 
@@ -59,7 +61,7 @@ export class BranchComponent implements OnInit, OnDestroy, IAbstractRegisterSubp
 
   confirmDelete(branch: IBranch): void {
     this.sub.push(
-      this.service.showConfirm('warning', 'delete', branch.name).subscribe({
+      this.service.showConfirm(this.messages.WARNING, this.messages.MODAL_DELETE_RECORD, branch.name).subscribe({
         next: (confirm) => { if (confirm) this.onDelete(branch) }
       })
     );
@@ -69,7 +71,7 @@ export class BranchComponent implements OnInit, OnDestroy, IAbstractRegisterSubp
     this.sub.push(
       this.service.deleteBranch(branch).subscribe({
         next: (data) => {
-          this.service.onInfo('successfully', 'deleted');
+          this.service.onInfo(this.messages.INFO_SUCCESS, this.messages.INFO_DELETED);
           this.branches = this.branches.filter(b => b.id !== data.id);
         },
         error: (err) => this.service.onHttpError(err)

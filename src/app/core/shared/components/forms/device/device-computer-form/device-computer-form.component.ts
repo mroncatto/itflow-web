@@ -13,6 +13,7 @@ import { DeviceComputerForm, IDeviceComputer } from 'src/app/core/components/dev
 import { DeviceService } from 'src/app/core/components/device/services/device.service';
 import { AbstractDeviceComputer } from 'src/app/core/shared/abstracts/abstract-device-computer';
 import { IAbstractModelForms } from 'src/app/core/shared/abstracts/interface/abstract-model-forms';
+import { TranslateMessages } from 'src/app/core/shared/commons/enum/translate-messages.enum';
 
 @Component({
   selector: 'app-device-computer-form',
@@ -29,6 +30,7 @@ export class DeviceComputerFormComponent extends AbstractDeviceComputer implemen
   computerCpus: IComputerCpu[] = [];
   computerMemories: IComputerMemory[] = [];
   computerStorages: IComputerStorage[] = [];
+  messages = TranslateMessages;
 
   constructor(
     private modal: BsModalRef,
@@ -78,16 +80,16 @@ export class DeviceComputerFormComponent extends AbstractDeviceComputer implemen
       )
     } else {
       this.deviceComputerForm.markAllAsTouched();
-      this.service.onWarning("badRequest", "fillFieldsRequired");
+      this.service.onWarning(this.messages.WARNING_BAD_REQUEST, this.messages.WARNING_COMPLETE_REQUIRED_FIELDS);
     }
   }
 
   onSave(device: IDevice): void {
     this.result.next(device);
     if (this.deviceComputer) {
-      this.service.onSuccess("updated", "updated");
+      this.service.onSuccess(this.messages.INFO_SUCCESS, this.messages.INFO_UPDATED);
     } else {
-      this.service.onSuccess("created", "created");
+      this.service.onSuccess(this.messages.INFO_SUCCESS, this.messages.INFO_CREATED);
     }
     this.closeModal();
   }

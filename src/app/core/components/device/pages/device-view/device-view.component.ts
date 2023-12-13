@@ -12,6 +12,7 @@ import { DeviceComputerMemoryForm, IDeviceComputerMemory } from '../../model/dev
 import { IComputerMemory } from '../../../computer/model/computer-memory';
 import { DeviceComputerStorageForm, IDeviceComputerStorage } from '../../model/device-computer-storage';
 import { IComputerStorage } from '../../../computer/model/computer-storage';
+import { TranslateMessages } from 'src/app/core/shared/commons/enum/translate-messages.enum';
 
 @Component({
   templateUrl: './device-view.component.html',
@@ -19,6 +20,7 @@ import { IComputerStorage } from '../../../computer/model/computer-storage';
 })
 export class DeviceViewComponent extends AbstractComponent implements OnInit {
 
+  messages = TranslateMessages;
 
   device!: IDevice | null;
   computerCpuAutoComplete = new FormControl('', Validators.required);
@@ -106,7 +108,7 @@ export class DeviceViewComponent extends AbstractComponent implements OnInit {
 
   confirmDeleteDeviceStaff(): void {
     this.sub.push(
-      this.service.showConfirm('warning', 'remove', 'User').subscribe({
+      this.service.showConfirm(this.messages.WARNING, this.messages.REMOVE, 'User').subscribe({
         next: (confirm) => {
           if (confirm) this.onDeleteDeviceStaff()
         },
@@ -128,7 +130,7 @@ export class DeviceViewComponent extends AbstractComponent implements OnInit {
 
   confirmDeleteDeviceComputer(): void {
     this.sub.push(
-      this.service.showConfirm('warning', 'remove', 'Computer').subscribe({
+      this.service.showConfirm(this.messages.WARNING, this.messages.REMOVE, 'Computer').subscribe({
         next: (confirm) => {
           if (confirm) this.onDeleteDeviceComputer()
         },
@@ -151,7 +153,7 @@ export class DeviceViewComponent extends AbstractComponent implements OnInit {
   private afterDeleteDeviceFeatures(device: IDevice): void {
     this.selectTab(0);
     this.device = device;
-    this.service.onSuccess('deleted', 'deleted');
+    this.service.onSuccess(this.messages.INFO_SUCCESS, this.messages.INFO_DELETED);
   }
 
   onAddOrChangeStaff(): void {
@@ -238,12 +240,12 @@ export class DeviceViewComponent extends AbstractComponent implements OnInit {
     this.device = data;
     this.computerCpuAutoComplete.reset();
     this.deviceComputerCpuForm.reset();
-    this.service.onInfo("updated", "updated");
+    this.service.onInfo(this.messages.INFO_SUCCESS, this.messages.INFO_UPDATED);
   }
 
   onConfirmDeleteComputerCpu(cpu: IComputerCpu): void {
     this.sub.push(
-      this.service.showConfirm('warning', 'computerCpu.remove', `${cpu.brandName}-${cpu.model}`).subscribe({
+      this.service.showConfirm(this.messages.WARNING, this.messages.MODAL_REMOVE_COMPUTER_CPU, `${cpu.brandName}-${cpu.model}`).subscribe({
         next: (confirm) => { if (confirm) this.onRemoveComputerCpu(cpu) }
       })
     );
@@ -264,7 +266,7 @@ export class DeviceViewComponent extends AbstractComponent implements OnInit {
     if (this.device) {
       this.device.deviceComputer.computerCpuList = this.device.deviceComputer.computerCpuList
         .filter(cpu => cpu.computerCpu.id !== id);
-      this.service.onInfo("deleted", "deleted");
+      this.service.onInfo(this.messages.INFO_SUCCESS, this.messages.INFO_DELETED);
     }
   }
 
@@ -283,12 +285,12 @@ export class DeviceViewComponent extends AbstractComponent implements OnInit {
     this.device = data;
     this.computerMemoryAutoComplete.reset();
     this.deviceComputerMemoryForm.reset();
-    this.service.onInfo("updated", "updated");
+    this.service.onInfo(this.messages.INFO_SUCCESS, this.messages.INFO_UPDATED);
   }
 
   onConfirmDeleteComputerMemory(memory: IComputerMemory): void {
     this.sub.push(
-      this.service.showConfirm('warning', 'computerMemory.remove', `${memory.brandName} - ${memory.size}GB`).subscribe({
+      this.service.showConfirm(this.messages.WARNING, this.messages.MODAL_REMOVE_COMPUTER_MEMORY, `${memory.brandName} - ${memory.size}GB`).subscribe({
         next: (confirm) => { if (confirm) this.onRemoveComputerMemory(memory) }
       })
     );
@@ -309,7 +311,7 @@ export class DeviceViewComponent extends AbstractComponent implements OnInit {
     if (this.device) {
       this.device.deviceComputer.computerMemoryList = this.device.deviceComputer.computerMemoryList
         .filter(memory => memory.computerMemory.id !== id);
-      this.service.onInfo("deleted", "deleted");
+      this.service.onInfo(this.messages.INFO_SUCCESS, this.messages.INFO_DELETED);
     }
   }
 
@@ -328,12 +330,12 @@ export class DeviceViewComponent extends AbstractComponent implements OnInit {
     this.device = data;
     this.computerStorageAutoComplete.reset();
     this.deviceComputerStorageForm.reset();
-    this.service.onInfo("updated", "updated");
+    this.service.onInfo(this.messages.INFO_SUCCESS, this.messages.INFO_UPDATED);
   }
 
   onConfirmDeleteComputerStorage(storage: IComputerStorage): void {
     this.sub.push(
-      this.service.showConfirm('warning', 'computerStorage.remove', `${storage.brandName} - ${storage.type}`).subscribe({
+      this.service.showConfirm(this.messages.WARNING, this.messages.MODAL_REMOVE_COMPUTER_STORAGE, `${storage.brandName} - ${storage.type}`).subscribe({
         next: (confirm) => { if (confirm) this.onRemoveComputerStorage(storage) }
       })
     );
@@ -354,7 +356,7 @@ export class DeviceViewComponent extends AbstractComponent implements OnInit {
     if (this.device) {
       this.device.deviceComputer.computerStorageList = this.device.deviceComputer.computerStorageList
         .filter(storage => storage.computerStorage.id !== id);
-      this.service.onInfo("deleted", "deleted");
+      this.service.onInfo(this.messages.INFO_SUCCESS, this.messages.INFO_DELETED);
     }
   }
 

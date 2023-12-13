@@ -5,13 +5,13 @@
         <div class="d-flex justify-content-between mt-2">
             <div class="row">
                 <div class="title-page col-md-12 fw-bold fs-3">
-                    <i class="fa fa-user-shield"></i> <span class="mx-1" translate="users.users"></span>
+                    <i class="fa fa-user-shield"></i> <span class="mx-1" [translate]="messages.USERS"></span>
                 </div>
             </div>
 
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item active" aria-current="page" translate="users.users"></li>
+                    <li class="breadcrumb-item active" aria-current="page" [translate]="messages.USERS"></li>
                 </ol>
             </nav>
         </div>
@@ -22,67 +22,67 @@
                 <div class="card">
                     <div class="card-header bg-primary fw-bold text-white flex-between">
                         <div>
-                            <span translate="users.users"></span>
+                            <span [translate]="messages.USERS"></span>
                             <div class="spinner-border spinner-border-sm mx-2" role="status" *ngIf="loading">
                                 <span class="visually-hidden">Loading...</span>
                             </div>
                         </div>
                         <div>
                             <button *ngIf="canCreateUsers()" (click)="onCreate()" class="btn btn-success text-white">
-                                <i class="fas fa-plus"></i>&nbsp;<span translate="commons.new"></span>
+                                <i class="fas fa-plus"></i>&nbsp;<span [translate]="messages.NEW"></span>
                             </button>
                         </div>
                     </div>
                     <div class="card-body">
                         <div class="filter-list d-flex gap-2">
                             <app-search-input (onEnter)="filterUsers($event)"></app-search-input>
-                            <button [disabled]="loading" class="btn btn-sm btn-primary" (click)="cleanFilter()" translate="commons.cleanFilter"></button>
+                            <button [disabled]="loading" class="btn btn-sm btn-primary" (click)="cleanFilter()" [translate]="messages.CLEAN_FILTER"></button>
                         </div>
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th translate="users.fullname"></th>
-                                    <th translate="users.username"></th>
-                                    <th translate="commons.email"></th>
-                                    <th translate="users.lastLogin"></th>
-                                    <th translate="users.state"></th>
-                                    <th translate="users.locked"></th>
+                                    <th [translate]="messages.FULLNAME"></th>
+                                    <th [translate]="messages.USERNAME"></th>
+                                    <th [translate]="messages.EMAIL"></th>
+                                    <th [translate]="messages.USER_LAST_LOGIN"></th>
+                                    <th [translate]="messages.USER_STATE"></th>
+                                    <th [translate]="messages.USER_LOCKED"></th>
                                     <th *ngIf="canUpdateUsers()"></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr *ngFor="let u of users">
-                                    <td [title]="'users.show' | translate" class="link"
+                                    <td [title]="messages.USER_SHOW | translate" class="link"
                                         (click)="onShowUser(u)">{{u.fullName}}</td>
                                     <td>{{u.username}}</td>
                                     <td>{{u.email}}</td>
                                     <td>{{u.lastLoginDate | date:'medium' }}</td>
                                     <td>
                                         <span *ngIf="u.active" class="badge bg-success"
-                                            translate="commons.active"></span>
+                                            [translate]="messages.ACTIVE"></span>
                                         <span *ngIf="!u.active" class="badge bg-danger"
-                                            translate="commons.inactive"></span>
+                                            [translate]="messages.INACTIVE"></span>
                                     </td>
                                     <td>
                                         <span *ngIf="u.nonLocked" class="badge bg-success"
-                                            translate="commons.no"></span>
+                                            [translate]="messages.NO"></span>
                                         <span *ngIf="!u.nonLocked" class="badge bg-danger"
-                                            translate="commons.yes"></span>
+                                            [translate]="messages.YES"></span>
                                     </td>
                                     <td *ngIf="canUpdateUsers()">
-                                        <i title="{{'commons.actions' | translate}}"
+                                        <i title="{{messages.ACTIONS | translate}}"
                                             class="fas fa-chevron-circle-down link" [id]="u.username"
                                             data-bs-toggle="dropdown"></i>
                                         <ul class="dropdown-menu dropdown-menu-end">
                                             <li><a (click)="onShowUser(u)" class="dropdown-item link-spin">
                                                     <i class="fas fa-eye"></i>&nbsp;
-                                                    <span translate="commons.open"></span>
+                                                    <span [translate]="messages.OPEN"></span>
                                                 </a>
                                             </li>
                                             <li *ngIf="u.active && !isYourAccount(u)" class="link-spin">
                                                 <a (click)="onUpdate(u)" class="dropdown-item">
                                                     <i class="fas fa-pen"></i>&nbsp;
-                                                    <span translate="commons.edit"></span>
+                                                    <span [translate]="messages.EDIT"></span>
                                                 </a>
                                             </li>
                                             <div *ngIf="u.active && !isYourAccount(u)">
@@ -92,25 +92,25 @@
                                                 <li class="link-spin">
                                                     <a (click)="confirmResetPassword(u)" class="dropdown-item">
                                                         <i class="fas fa-key"></i>&nbsp;
-                                                        <span translate="users.resetPassword"></span>
+                                                        <span [translate]="messages.USER_RESET_PASSWORD"></span>
                                                     </a>
                                                 </li>
                                                 <li *ngIf="u.nonLocked" class="link-spin">
                                                     <a (click)="confirmLockUnLockUser(u)" class="dropdown-item">
                                                         <i class="fas fa-user-lock text-primary"></i>&nbsp;<span
-                                                            translate="users.lock"></span>
+                                                            [translate]="messages.USER_LOCK"></span>
                                                     </a>
                                                 </li>
                                                 <li *ngIf="!u.nonLocked" class="link-spin">
                                                     <a (click)="confirmLockUnLockUser(u)" class="dropdown-item">
                                                         <i class="fas fa-user-check text-success"></i>&nbsp;<span
-                                                            translate="users.unlock"></span>
+                                                            [translate]="messages.USER_UNLOCK"></span>
                                                     </a>
                                                 </li>
                                                 <li class="link-spin" *ngIf="canDeleteUsers()">
                                                     <a (click)="confirmDisable(u)" class="dropdown-item">
                                                         <i class="fas fa-user-times text-danger"></i>&nbsp;<span
-                                                            translate="commons.disable"></span>
+                                                            [translate]="messages.DISABLE"></span>
                                                     </a>
                                                 </li>
                                             </div>

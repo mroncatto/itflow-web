@@ -63,16 +63,16 @@ export class OccupationFormComponent extends AbstractOccupation implements OnIni
       }
     } else {
       this.occupationForm.markAllAsTouched();
-      this.service.onWarning("badRequest", "fillFieldsRequired");
+      this.service.onWarning(this.messages.WARNING_BAD_REQUEST, this.messages.WARNING_COMPLETE_REQUIRED_FIELDS);
     }
   }
 
   onSave(occupation: IOccupation): void {
     this.result.next(occupation);
     if (this.occupation?.id) {
-      this.service.onSuccess("updated", "updated");
+      this.service.onSuccess(this.messages.INFO_SUCCESS, this.messages.INFO_UPDATED);
     } else {
-      this.service.onSuccess("created", "created");
+      this.service.onSuccess(this.messages.INFO_SUCCESS, this.messages.INFO_CREATED);
     }
     this.closeModal();
   }

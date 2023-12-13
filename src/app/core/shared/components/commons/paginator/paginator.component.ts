@@ -1,6 +1,7 @@
 import { query } from '@angular/animations';
 import { Component, OnInit, ChangeDetectionStrategy, Input, SimpleChanges, OnChanges } from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslateMessages } from '../../../commons/enum/translate-messages.enum';
 
 @Component({
   selector: 'app-paginator',
@@ -10,6 +11,7 @@ import { Router } from '@angular/router';
 })
 export class PaginatorComponent implements OnInit, OnChanges {
 
+  messages = TranslateMessages;
   @Input() paginator: any;
   @Input() route: string = "";
   paginas: number[] = [];

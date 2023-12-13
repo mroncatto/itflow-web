@@ -9,6 +9,7 @@ import { AbstractUser } from 'src/app/core/shared/abstracts/abstract-user';
 import { IAbstractModelForms } from 'src/app/core/shared/abstracts/interface/abstract-model-forms';
 import { IUser, UserForm } from '../../../../model/user';
 import { UserService } from '../../../../services/user.service';
+import { TranslateMessages } from 'src/app/core/shared/commons/enum/translate-messages.enum';
 
 @Component({
   selector: 'app-user-account-form',
@@ -21,6 +22,7 @@ export class UserAccountFormComponent extends AbstractUser implements OnInit, On
   staff: Staff[] = [];
   result!: Subject<IUser>;
   userForm!: FormGroup<UserForm>;
+  messages = TranslateMessages;
 
   constructor(
     private modal: BsModalRef,
@@ -68,16 +70,16 @@ export class UserAccountFormComponent extends AbstractUser implements OnInit, On
       }
     } else {
       this.userForm.markAllAsTouched();
-      this.service.onWarning("badRequest", "fillFieldsRequired");
+      this.service.onWarning(this.messages.WARNING_BAD_REQUEST, this.messages.WARNING_COMPLETE_REQUIRED_FIELDS);
     }
   }
 
   onSave(user: IUser): void {
     this.result.next(user);
     if (this.user?.username) {
-      this.service.onSuccess("updated", "updated");
+      this.service.onSuccess(this.messages.INFO_SUCCESS, this.messages.INFO_UPDATED);
     } else {
-      this.service.onSuccess("created", "created");
+      this.service.onSuccess(this.messages.INFO_SUCCESS, this.messages.INFO_CREATED);
     }
     this.closeModal();
   }

@@ -8,6 +8,7 @@ import { ICompany } from 'src/app/core/components/company/model/company';
 import { CompanyService } from 'src/app/core/components/company/services/company.service';
 import { AbstractBranch } from 'src/app/core/shared/abstracts/abstract-branch';
 import { IAbstractModelForms } from 'src/app/core/shared/abstracts/interface/abstract-model-forms';
+import { TranslateMessages } from 'src/app/core/shared/commons/enum/translate-messages.enum';
 
 @Component({
   selector: 'app-branch-form',
@@ -20,6 +21,7 @@ export class BranchFormComponent extends AbstractBranch implements OnInit, OnDes
   branchForm!: FormGroup<BranchForm>;
   branch!: IBranch;
   companies: ICompany[] = [];
+  messages = TranslateMessages;
 
   constructor(
     private service: CompanyService,
@@ -74,15 +76,15 @@ export class BranchFormComponent extends AbstractBranch implements OnInit, OnDes
       }
     } else {
       this.branchForm.markAllAsTouched();
-      this.service.onWarning("badRequest", "fillFieldsRequired");
+      this.service.onWarning(this.messages.WARNING_BAD_REQUEST, this.messages.WARNING_COMPLETE_REQUIRED_FIELDS);
     }
   }
   onSave(branch: IBranch): void {
     this.result.next(branch);
     if (this.branch?.id) {
-      this.service.onSuccess("updated", "updated");
+      this.service.onSuccess(this.messages.INFO_SUCCESS, this.messages.INFO_UPDATED);
     } else {
-      this.service.onSuccess("created", "created");
+      this.service.onSuccess(this.messages.INFO_SUCCESS, this.messages.INFO_CREATED);
     }
     this.closeModal();
   }

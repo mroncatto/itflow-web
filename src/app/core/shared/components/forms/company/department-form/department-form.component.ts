@@ -8,6 +8,7 @@ import { DepartmentForm, IDepartment } from 'src/app/core/components/company/mod
 import { CompanyService } from 'src/app/core/components/company/services/company.service';
 import { IAbstractModelForms } from 'src/app/core/shared/abstracts/interface/abstract-model-forms';
 import { AbstractDepartment } from '../../../../abstracts/abstract-department';
+import { TranslateMessages } from 'src/app/core/shared/commons/enum/translate-messages.enum';
 
 @Component({
   selector: 'app-department-form',
@@ -20,6 +21,7 @@ export class DepartmentFormComponent extends AbstractDepartment implements OnIni
   department!: IDepartment;
   branchs: IBranch[] = [];
   dptoForm!: FormGroup<DepartmentForm>;
+  messages = TranslateMessages;
 
   constructor(
     private modal: BsModalRef,
@@ -74,7 +76,7 @@ export class DepartmentFormComponent extends AbstractDepartment implements OnIni
       }
     } else {
       this.dptoForm.markAllAsTouched();
-      this.service.onWarning("badRequest", "fillFieldsRequired");
+      this.service.onWarning(this.messages.WARNING_BAD_REQUEST, this.messages.WARNING_COMPLETE_REQUIRED_FIELDS);
     }
   }
 
@@ -86,9 +88,9 @@ export class DepartmentFormComponent extends AbstractDepartment implements OnIni
   onSave(dpto: IDepartment): void {
     this.result.next(dpto);
     if (this.department?.id) {
-      this.service.onSuccess("updated", "updated");
+      this.service.onSuccess(this.messages.INFO_SUCCESS, this.messages.INFO_UPDATED);
     } else {
-      this.service.onSuccess("created", "created");
+      this.service.onSuccess(this.messages.INFO_SUCCESS, this.messages.INFO_CREATED);
     }
     this.closeModal();
   }

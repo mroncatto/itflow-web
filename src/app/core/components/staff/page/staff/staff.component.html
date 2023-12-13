@@ -5,13 +5,13 @@
         <div class="d-flex justify-content-between mt-2">
             <div class="row">
                 <div class="title-page col-md-12 fw-bold fs-3">
-                    <i class="fa fa-users"></i> <span class="mx-1" translate="staff.staff"></span>
+                    <i class="fa fa-users"></i> <span class="mx-1" [translate]="messages.STAFF"></span>
                 </div>
             </div>
 
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item active" aria-current="page" translate="staff.staff"></li>
+                    <li class="breadcrumb-item active" aria-current="page" [translate]="messages.STAFF"></li>
                 </ol>
             </nav>
         </div>
@@ -22,14 +22,14 @@
                 <div class="card">
                     <div class="card-header bg-primary fw-bold text-white flex-between">
                         <div>
-                            <span translate="staff.staff"></span>
+                            <span [translate]="messages.STAFF"></span>
                             <div class="spinner-border spinner-border-sm mx-2" role="status" *ngIf="loading">
                                 <span class="visually-hidden">Loading...</span>
                             </div>
                         </div>
                         <div>
                             <button class="btn btn-success text-white" (click)="onCreate()">
-                                <i class="fas fa-plus"></i>&nbsp;<span translate="commons.new"></span>
+                                <i class="fas fa-plus"></i>&nbsp;<span [translate]="messages.NEW"></span>
                             </button>
                         </div>
                     </div>
@@ -41,16 +41,16 @@
                             <app-occupation-checkbox-filter
                                 (onSelect)="filterOccupation($event)"></app-occupation-checkbox-filter>
                             <button [disabled]="loading" class="btn btn-sm btn-primary focus-0" (click)="cleanFilter()"
-                                translate="commons.cleanFilter"></button>
+                                [translate]="messages.CLEAN_FILTER"></button>
                         </div>
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th translate="staff.fullname"></th>
-                                    <th translate="commons.email"></th>
-                                    <th translate="branch.branch"></th>
-                                    <th translate="department.department"></th>                                
-                                    <th translate="occupation.occupation"></th>
+                                    <th [translate]="messages.FULLNAME"></th>
+                                    <th [translate]="messages.EMAIL"></th>
+                                    <th [translate]="messages.BRANCH"></th>
+                                    <th [translate]="messages.DEPARTMENT"></th>                                
+                                    <th [translate]="messages.OCCUPATION"></th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -62,14 +62,14 @@
                                     <td>{{s.department.name}}</td>            
                                     <td>{{s.occupation.name}}</td>
                                     <td>
-                                        <i title="{{'commons.actions' | translate}}"
+                                        <i title="{{messages.ACTIONS | translate}}"
                                             class="fas fa-chevron-circle-down link" [id]="s.id"
                                             data-bs-toggle="dropdown"></i>
                                         <ul class="dropdown-menu dropdown-menu-end">
                                             <li (click)="onUpdate(s)" class="link-spin">
                                                 <a class="dropdown-item">
                                                     <i class="fas fa-pen"></i>&nbsp;
-                                                    <span translate="commons.edit"></span>
+                                                    <span [translate]="messages.EDIT"></span>
                                                 </a>
                                             </li>
                                             <div>
@@ -79,7 +79,7 @@
                                                 <li (click)="confirmDelete(s)" class="link-spin">
                                                     <a class="dropdown-item">
                                                         <i class="fas fa-trash text-danger"></i>&nbsp;<span
-                                                            translate="commons.delete"></span>
+                                                            [translate]="messages.DELETE"></span>
                                                     </a>
                                                 </li>
                                             </div>
@@ -87,7 +87,7 @@
                                     </td>
                                 </tr>
                                 <tr *ngIf="staff.length === 0 && !loading">
-                                    <td class="text-center" colspan="6" translate="commons.noData"></td>
+                                    <td class="text-center" colspan="6" [translate]="messages.NO_DATA"></td>
                                 </tr>
                             </tbody>
                         </table>

@@ -4,6 +4,7 @@ import { UntypedFormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { IUser, User } from '../../model/user';
 import { UserService } from '../../services/user.service';
+import { TranslateMessages } from 'src/app/core/shared/commons/enum/translate-messages.enum';
 
 @Component({
   templateUrl: './profile.component.html',
@@ -19,6 +20,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   userForm!: UntypedFormGroup;
   passwordForm!: UntypedFormGroup;
   showPassword: boolean = false;
+  messages = TranslateMessages;
 
   constructor(private userService: UserService) { }
 
@@ -83,7 +85,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   private passwordChanged(): void {
-    this.userService.onInfo('updated', 'passwordChanged');
+    this.userService.onInfo(this.messages.INFO_UPDATED, this.messages.INFO_PASSWORD_CHANGED);
     this.loadingMode = false;
     this.passwordForm.reset();
     this.updateMode = false;
@@ -91,7 +93,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   private profileChanged(user: IUser): void {
     this.user = user;
-    this.userService.onInfo('updated', 'profileChanged');
+    this.userService.onInfo(this.messages.INFO_UPDATED, this.messages.PROFILE_UPDATE_INFO);
     this.loadingMode = false;
     this.updateMode = false;
   }

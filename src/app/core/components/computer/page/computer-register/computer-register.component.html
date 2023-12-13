@@ -5,13 +5,13 @@
         <div class="d-flex justify-content-between mt-2">
             <div class="row">
                 <div class="title-page col-md-12 fw-bold fs-3">
-                    <i class="fa fa-desktop"></i> <span class="mx-1" translate="deviceComputer.computer"></span>
+                    <i class="fa fa-desktop"></i> <span class="mx-1" [translate]="messages.DEVICE_COMPUTER"></span>
                 </div>
             </div>
 
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item active" aria-current="page" translate="deviceComputer.computer"></li>
+                    <li class="breadcrumb-item active" aria-current="page" [translate]="messages.DEVICE_COMPUTER"></li>
                 </ol>
             </nav>
         </div>
@@ -19,10 +19,10 @@
         <div class="row m-5">
             <div class="col-md-4 col-xl-2 col-12">
                 <div id="list-example" class="list-group p-1">
-                    <a [ngClass]="{ active: page == pages[0] }" [routerLink]="['/computer/register']" [queryParams]="{page: 'category'}" class="list-group-item link" translate="commons.category"></a>
-                    <a [ngClass]="{ active: page == pages[1] }" [routerLink]="['/computer/register']" [queryParams]="{page: 'cpu'}" class="list-group-item link" translate="deviceComputer.cpu"></a>
-                    <a [ngClass]="{ active: page == pages[2] }" [routerLink]="['/computer/register']" [queryParams]="{page: 'memory'}" class="list-group-item link" translate="deviceComputer.memory"></a>
-                    <a [ngClass]="{ active: page == pages[3] }" [routerLink]="['/computer/register']" [queryParams]="{page: 'storage'}" class="list-group-item link" translate="deviceComputer.storage"></a>
+                    <a [ngClass]="{ active: page == pages[0] }" [routerLink]="['/computer/register']" [queryParams]="{page: 'category'}" class="list-group-item link" [translate]="messages.CATEGORY"></a>
+                    <a [ngClass]="{ active: page == pages[1] }" [routerLink]="['/computer/register']" [queryParams]="{page: 'cpu'}" class="list-group-item link" [translate]="messages.DEVICE_COMPUTER_CPU"></a>
+                    <a [ngClass]="{ active: page == pages[2] }" [routerLink]="['/computer/register']" [queryParams]="{page: 'memory'}" class="list-group-item link" [translate]="messages.DEVICE_COMPUTER_MEMORY"></a>
+                    <a [ngClass]="{ active: page == pages[3] }" [routerLink]="['/computer/register']" [queryParams]="{page: 'storage'}" class="list-group-item link" [translate]="messages.DEVICE_COMPUTER_STORAGE"></a>
                 </div>
             </div>
             <div class="col-md-8 col-xl-10 col-12">

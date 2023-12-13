@@ -3,6 +3,7 @@ import { IAbstractRegisterSubpages } from 'src/app/core/shared/abstracts/interfa
 import { IComputerMemory } from '../../../model/computer-memory';
 import { Subscription } from 'rxjs';
 import { ComputerService } from '../../../services/computer.service';
+import { TranslateMessages } from 'src/app/core/shared/commons/enum/translate-messages.enum';
 
 @Component({
   selector: 'app-memory',
@@ -14,6 +15,7 @@ export class MemoryComponent implements OnInit, OnDestroy, IAbstractRegisterSubp
   private sub: Subscription[] = [];
   loading: boolean = true;
   memories: IComputerMemory[] = [];
+  messages = TranslateMessages;
 
   constructor(private service: ComputerService) { }
 
@@ -59,7 +61,7 @@ export class MemoryComponent implements OnInit, OnDestroy, IAbstractRegisterSubp
 
   confirmDelete(memory: IComputerMemory): void {
     this.sub.push(
-      this.service.showConfirm('warning', 'delete', `${memory.brandName} - ${memory.type}`).subscribe({
+      this.service.showConfirm(this.messages.WARNING, this.messages.MODAL_DELETE_RECORD, `${memory.brandName} - ${memory.type}`).subscribe({
         next: (confirm) => { if (confirm) this.onDelete(memory) }
       })
     );
@@ -69,7 +71,7 @@ export class MemoryComponent implements OnInit, OnDestroy, IAbstractRegisterSubp
     this.sub.push(
       this.service.deleteComputerMemory(memory.id).subscribe({
         next: (data) => {
-          this.service.onInfo('successfully', 'deleted');
+          this.service.onInfo(this.messages.INFO_SUCCESS, this.messages.INFO_DELETED);
           this.memories = this.memories.filter(b => b.id !== data.id);
         },
         error: (err) => this.service.onHttpError(err)

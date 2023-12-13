@@ -3,6 +3,7 @@ import { IAbstractRegisterSubpages } from 'src/app/core/shared/abstracts/interfa
 import { IComputerStorage } from '../../../model/computer-storage';
 import { Subscription } from 'rxjs';
 import { ComputerService } from '../../../services/computer.service';
+import { TranslateMessages } from 'src/app/core/shared/commons/enum/translate-messages.enum';
 
 @Component({
   selector: 'app-storage',
@@ -14,6 +15,7 @@ export class StorageComponent implements OnInit, OnDestroy, IAbstractRegisterSub
   private sub: Subscription[] = [];
   loading: boolean = true;
   storages: IComputerStorage[] = [];
+  messages = TranslateMessages;
 
   constructor(private service: ComputerService) { }
 
@@ -59,7 +61,7 @@ export class StorageComponent implements OnInit, OnDestroy, IAbstractRegisterSub
 
   confirmDelete(storage: IComputerStorage): void {
     this.sub.push(
-      this.service.showConfirm('warning', 'delete', `${storage.brandName} - ${storage.type}`).subscribe({
+      this.service.showConfirm(this.messages.WARNING, this.messages.MODAL_DELETE_RECORD, `${storage.brandName} - ${storage.type}`).subscribe({
         next: (confirm) => { if (confirm) this.onDelete(storage) }
       })
     );
@@ -69,7 +71,7 @@ export class StorageComponent implements OnInit, OnDestroy, IAbstractRegisterSub
     this.sub.push(
       this.service.deleteComputerCategory(storage.id).subscribe({
         next: (data) => {
-          this.service.onInfo('successfully', 'deleted');
+          this.service.onInfo(this.messages.INFO_SUCCESS, this.messages.INFO_DELETED);
           this.storages = this.storages.filter(b => b.id !== data.id);
         },
         error: (err) => this.service.onHttpError(err)

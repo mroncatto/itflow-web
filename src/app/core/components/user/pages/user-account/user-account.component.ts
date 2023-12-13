@@ -9,6 +9,7 @@ import { SearchInputComponent } from 'src/app/core/shared/components/filters/sea
 import { UserFilter } from '../../filter/user-filter';
 import { IUser } from '../../model/user';
 import { UserService } from '../../services/user.service';
+import { TranslateMessages } from 'src/app/core/shared/commons/enum/translate-messages.enum';
 
 @Component({
   templateUrl: './user-account.component.html',
@@ -26,6 +27,7 @@ export class UserAccountComponent implements OnInit, OnDestroy, IAbstractCompone
   paginator!: IPaginator;
   page: number = 0;
   filter: UserFilter = new UserFilter();
+  messages = TranslateMessages;
 
   @ViewChild(SearchInputComponent) filterChild!: SearchInputComponent;
 
@@ -132,7 +134,7 @@ export class UserAccountComponent implements OnInit, OnDestroy, IAbstractCompone
   // ========================== RESET USER PASSWORD ==========================
   confirmResetPassword(user: IUser): void {
     this.sub.push(
-      this.service.showConfirm('warning', 'user.resetPassword', user.fullName).subscribe({
+      this.service.showConfirm(this.messages.WARNING, this.messages.MODAL_USER_RESET_PWD, user.fullName).subscribe({
         next: (confirm) => { if (confirm) this.onResetPassword(user) },
         error: (err) => this.service.onHttpError(err)
       })
@@ -154,14 +156,14 @@ export class UserAccountComponent implements OnInit, OnDestroy, IAbstractCompone
 
   private afterResetPassword(): void {
     this.loading = false;
-    this.service.onInfo("successfully", "passwordReseted");
+    this.service.onInfo(this.messages.INFO_SUCCESS, this.messages.INFO_PASSWORD_RESETED);
   }
 
   // ============================= LOCKUNLOCK USER ============================
   confirmLockUnLockUser(user: IUser): void {
     if (user.nonLocked) {
       this.sub.push(
-        this.service.showConfirm('warning', 'user.lock', user.fullName).subscribe({
+        this.service.showConfirm(this.messages.WARNING, this.messages.INFO_USER_UNLOCKED, user.fullName).subscribe({
           next: (confirm) => { if (confirm) this.onLockUnLockUser(user) },
           error: (err) => this.service.onHttpError(err)
         })
@@ -186,9 +188,9 @@ export class UserAccountComponent implements OnInit, OnDestroy, IAbstractCompone
       if (u.username === user.username) u = user
     })
     if (user.nonLocked) {
-      this.service.onInfo("successfully", "userUnBlocked");
+      this.service.onInfo(this.messages.INFO_SUCCESS, this.messages.INFO_USER_UNLOCKED);
     } else {
-      this.service.onInfo("successfully", "userBlocked");
+      this.service.onInfo(this.messages.INFO_SUCCESS, this.messages.INFO_USER_BLOCKED);
     }
 
   }
@@ -197,7 +199,7 @@ export class UserAccountComponent implements OnInit, OnDestroy, IAbstractCompone
 
   confirmDisable(user: IUser): void {
     this.sub.push(
-      this.service.showConfirm('warning', 'user.disable', user.fullName).subscribe({
+      this.service.showConfirm(this.messages.WARNING, this.messages.INFO_USER_DISABLED, user.fullName).subscribe({
         next: (confirm) => { if (confirm) this.onDisableUser(user) },
         error: (err) => this.service.onHttpError(err)
       })
@@ -218,7 +220,7 @@ export class UserAccountComponent implements OnInit, OnDestroy, IAbstractCompone
     this.users.forEach((u) => {
       if (u.username === user.username) u = user
     })
-    this.service.onInfo("successfully", "userDisabled");
+    this.service.onInfo(this.messages.INFO_SUCCESS, this.messages.INFO_USER_DISABLED);
   }
 
   canCreateUsers(): boolean {

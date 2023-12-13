@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { IComputerCpu } from '../../../model/computer-cpu';
 import { ComputerService } from '../../../services/computer.service';
 import { IAbstractRegisterSubpages } from 'src/app/core/shared/abstracts/interface/abstract-register-subpages';
+import { TranslateMessages } from 'src/app/core/shared/commons/enum/translate-messages.enum';
 
 @Component({
   selector: 'app-cpu',
@@ -14,6 +15,7 @@ export class CpuComponent implements OnInit, OnDestroy, IAbstractRegisterSubpage
   private sub: Subscription[] = [];
   cpus: IComputerCpu[] = [];
   loading: boolean = true;
+  messages = TranslateMessages;
 
   constructor(private service: ComputerService) { }
 
@@ -59,7 +61,7 @@ export class CpuComponent implements OnInit, OnDestroy, IAbstractRegisterSubpage
 
   confirmDelete(cpu: IComputerCpu): void {
     this.sub.push(
-      this.service.showConfirm('warning', 'delete', cpu.brandName + ' -  ' + cpu.model).subscribe({
+      this.service.showConfirm(this.messages.WARNING, this.messages.MODAL_DELETE_RECORD, cpu.brandName + ' -  ' + cpu.model).subscribe({
         next: (confirm) => { if (confirm) this.onDelete(cpu) }
       })
     );
@@ -69,7 +71,7 @@ export class CpuComponent implements OnInit, OnDestroy, IAbstractRegisterSubpage
     this.sub.push(
       this.service.deleteComputerCPU(cpu.id).subscribe({
         next: (data) => {
-          this.service.onInfo('successfully', 'deleted');
+          this.service.onInfo(this.messages.INFO_SUCCESS, this.messages.INFO_DELETED);
           this.cpus = this.cpus.filter(b => b.id !== data.id);
         },
         error: (err) => this.service.onHttpError(err)

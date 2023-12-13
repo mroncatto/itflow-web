@@ -7,6 +7,7 @@ import { CompanyService } from 'src/app/core/components/company/services/company
 import { CompanyForm, ICompany } from '../../../../../components/company/model/company';
 import { AbstractCompany } from '../../../../abstracts/abstract-company';
 import { IAbstractModelForms } from '../../../../abstracts/interface/abstract-model-forms';
+import { TranslateMessages } from 'src/app/core/shared/commons/enum/translate-messages.enum';
 
 @Component({
   selector: 'app-company-form',
@@ -18,6 +19,7 @@ export class CompanyFormComponent extends AbstractCompany implements OnInit, OnD
   result!: Subject<ICompany>;
   company!: ICompany;
   companyForm!: FormGroup<CompanyForm>;
+  messages = TranslateMessages;
 
   constructor(
     private modal: BsModalRef,
@@ -70,16 +72,16 @@ export class CompanyFormComponent extends AbstractCompany implements OnInit, OnD
       }
     } else {
       this.companyForm.markAllAsTouched();
-      this.service.onWarning("badRequest", "fillFieldsRequired");
+      this.service.onWarning(this.messages.WARNING_BAD_REQUEST, this.messages.WARNING_COMPLETE_REQUIRED_FIELDS);
     }
   }
 
   onSave(company: ICompany): void {
     this.result.next(company);
     if (this.company?.id) {
-      this.service.onSuccess("updated", "updated");
+      this.service.onSuccess(this.messages.INFO_SUCCESS, this.messages.INFO_UPDATED);
     } else {
-      this.service.onSuccess("created", "created");
+      this.service.onSuccess(this.messages.INFO_SUCCESS, this.messages.INFO_CREATED);
     }
     this.closeModal();
   }

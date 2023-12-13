@@ -8,7 +8,7 @@
         </li>
 
         <li class="page-item" [ngClass]="{disabled: paginator.first}">
-            <a class="page-link link" (click)="firstPage()" translate="paginator.first"></a>
+            <a class="page-link link" (click)="firstPage()" [translate]="messages.PAGINATOR_FIRST"></a>
         </li>
 
         <li *ngFor="let page of paginas" class="page-item" [ngClass]="{active: page-1 === paginator.number}">
@@ -16,7 +16,7 @@
         </li>
 
         <li class="page-item" [ngClass]="{disabled: paginator.last}">
-            <a class="page-link link" (click)="lastPage()" translate="paginator.last"></a>
+            <a class="page-link link" (click)="lastPage()" [translate]="messages.PAGINATOR_LAST"></a>
         </li>
         <li class="page-item" [ngClass]="{disabled: paginator.last}">
             <a class="page-link link" (click)="nextPage()" aria-label="Next">

@@ -5,11 +5,14 @@ import { TopbarMenu } from '../../commons/interface/topbar-menu';
 import { TopbarSubMenu } from '../../commons/interface/topbar-submenu';
 import { TopbarSubMenuItem } from '../../commons/interface/topbar-submenu-item';
 import { AbstractService } from '../abstract/abstract.service';
+import { TranslateMessages } from '../../commons/enum/translate-messages.enum';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MenuService extends AbstractService {
+
+  private messages = TranslateMessages;
 
   constructor() {
     super();
@@ -18,37 +21,37 @@ export class MenuService extends AbstractService {
 
   /* ======================================================================================== */
   private readonly mainMenu: Record<string, MenuItem> = {
-    menu_divider_helpdesk: new MenuItem().type('divider').translate('menu.helpdesk'),
-    menu_divider_manage: new MenuItem().type('divider').translate('menu.manage'),
-    menu_divider_device: new MenuItem().type('divider').translate('menu.devices'),
-    menu_staff: new MenuItem().icon('fa-users').routerLink('/staff').translate('menu.staff'),
-    menu_account: new MenuItem().icon('fa-user-circle').routerLink('/users').translate('menu.usersAccount'),
-    menu_all_device: new MenuItem().icon('fa-list').routerLink('/device').translate('menu.alldevices'),
-    menu_device: new MenuItem().type("submenu").icon('fa-laptop-house').translate('menu.devices').submenu(
-      new MenuItem().icon('fa-laptop').routerLink('').translate('menu.computer'),
-      new MenuItem().icon('fa-user').routerLink('').translate('device.deviceUser'),
-      new MenuItem().icon('fa-plug').routerLink('').translate('menu.power'),
-      new MenuItem().icon('fa-ethernet').routerLink('').translate('menu.network'),
+    menu_divider_helpdesk: new MenuItem().type('divider').translate(this.messages.MENU_HELPDESK),
+    menu_divider_manage: new MenuItem().type('divider').translate(this.messages.MENU_MANAGE),
+    menu_divider_device: new MenuItem().type('divider').translate(this.messages.DEVICES),
+    menu_staff: new MenuItem().icon('fa-users').routerLink('/staff').translate(this.messages.MENU_STAFF),
+    menu_account: new MenuItem().icon('fa-user-circle').routerLink('/users').translate(this.messages.MENU_USERS_ACCOUNT),
+    menu_all_device: new MenuItem().icon('fa-list').routerLink('/device').translate(this.messages.MENU_ALL_DEVICES),
+    menu_device: new MenuItem().type("submenu").icon('fa-laptop-house').translate(this.messages.MENU_DEVICES).submenu(
+      new MenuItem().icon('fa-laptop').routerLink('').translate(this.messages.MENU_COMPUTER),
+      new MenuItem().icon('fa-user').routerLink('').translate(this.messages.DEVICE_USER),
+      new MenuItem().icon('fa-plug').routerLink('').translate(this.messages.MENU_POWER),
+      new MenuItem().icon('fa-ethernet').routerLink('').translate(this.messages.MENU_NETWORK),
       
     ),
   };
 
   private readonly submenu: Record<string, TopbarSubMenu> = {
-    menu_company: new TopbarSubMenu().setName('company.company').setIcon('fa-building').setItems(
-      new TopbarSubMenuItem().setName('company.companies').setRouter('company/register').setPageParam('company'),
-      new TopbarSubMenuItem().setName('branch.branches').setRouter('company/register').setPageParam('branch'),
-      new TopbarSubMenuItem().setName('department.departments').setRouter('company/register').setPageParam('department'),
+    menu_company: new TopbarSubMenu().setName(this.messages.COMPANY).setIcon('fa-building').setItems(
+      new TopbarSubMenuItem().setName(this.messages.COMPANIES).setRouter('company/register').setPageParam('company'),
+      new TopbarSubMenuItem().setName(this.messages.BRANCHS).setRouter('company/register').setPageParam('branch'),
+      new TopbarSubMenuItem().setName(this.messages.DEPARTMENTS).setRouter('company/register').setPageParam('department'),
     ),
-    menu_staff: new TopbarSubMenu().setName('staff.staff').setIcon('fa-users').setItems(
-      new TopbarSubMenuItem().setName('occupation.occupation').setRouter('staff/register').setPageParam('occupation'),
+    menu_staff: new TopbarSubMenu().setName(this.messages.STAFF).setIcon('fa-users').setItems(
+      new TopbarSubMenuItem().setName(this.messages.OCCUPATION).setRouter('staff/register').setPageParam('occupation'),
     ),
-    menu_device: new TopbarSubMenu().setName('device.devices').setIcon('fa-desktop').setItems(
-      new TopbarSubMenuItem().setName('device.category').setRouter('device/register').setPageParam('device'),
-      new TopbarSubMenuItem().setName('deviceComputer.computer').setItems(
-        new TopbarSubMenuItem().setName('commons.category').setRouter('computer/register').setPageParam('category'),
-        new TopbarSubMenuItem().setName('deviceComputer.cpu').setRouter('computer/register').setPageParam('cpu'),
-        new TopbarSubMenuItem().setName('deviceComputer.memory').setRouter('computer/register').setPageParam('memory'),
-        new TopbarSubMenuItem().setName('deviceComputer.storage').setRouter('computer/register').setPageParam('storage'),
+    menu_device: new TopbarSubMenu().setName(this.messages.DEVICES).setIcon('fa-desktop').setItems(
+      new TopbarSubMenuItem().setName(this.messages.CATEGORY).setRouter('device/register').setPageParam('device'),
+      new TopbarSubMenuItem().setName(this.messages.DEVICE_COMPUTER).setItems(
+        new TopbarSubMenuItem().setName(this.messages.CATEGORY).setRouter('computer/register').setPageParam('category'),
+        new TopbarSubMenuItem().setName(this.messages.DEVICE_COMPUTER_CPU).setRouter('computer/register').setPageParam('cpu'),
+        new TopbarSubMenuItem().setName(this.messages.DEVICE_COMPUTER_MEMORY).setRouter('computer/register').setPageParam('memory'),
+        new TopbarSubMenuItem().setName(this.messages.DEVICE_COMPUTER_STORAGE).setRouter('computer/register').setPageParam('storage'),
       )
     ),
   }

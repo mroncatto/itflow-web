@@ -1,53 +1,53 @@
 <div class="modal-content">
     <div class="modal-header">
-        <h5 *ngIf="!device" class="modal-title" translate="modal.device.new"></h5>
-        <h5 *ngIf="device" class="modal-title" [translateParams]="{name: device.hostname}" translate="modal.update">
+        <h5 *ngIf="!device" class="modal-title" [translate]="messages.MODAL_NEW_DEVICE"></h5>
+        <h5 *ngIf="device" class="modal-title" [translateParams]="{name: device.hostname}" [translate]="messages.MODAL_UPDATE">
         </h5>
     </div>
     <form [formGroup]="deviceForm" (ngSubmit)="save()">
         <div class="modal-body">
 
             <div class="mb-3">
-                <label for="hostname" translate="device.hostname"></label>
+                <label for="hostname" [translate]="messages.DEVICE_HOSTNAME"></label>
                 <input autocomplete="off" type="text" formControlName="hostname" id="hostname" class="form-control"
-                    placeholder="{{'device.hostname.placeholder' | translate}}">
+                    placeholder="{{messages.DEVICE_HOSTNAME_PH | translate}}">
                 <app-validation-field [form]="deviceForm" [field]="'hostname'"></app-validation-field>
             </div>
 
             <div class="mb-3">
-                <label for="description" translate="commons.description"></label>
+                <label for="description" [translate]="messages.DESCRIPTION"></label>
                 <input autocomplete="off" type="text" formControlName="description" id="description" class="form-control"
-                    placeholder="{{'device.description.placeholder' | translate}}">
+                    placeholder="{{messages.DEVICE_DESCRIPTION_PH | translate}}">
                 <app-validation-field [form]="deviceForm" [field]="'description'"></app-validation-field>
             </div>
 
             <div class="mb-3">
-                <label for="serialNumber" translate="device.serialNumber"></label>
+                <label for="serialNumber" [translate]="messages.DEVICE_SERIALNUMBER"></label>
                 <input autocomplete="off" type="text" formControlName="serialNumber" id="serialNumber" class="form-control"
-                    placeholder="{{'device.serialNumber.placeholder' | translate}}">
+                    placeholder="{{messages.DEVICE_SERIALNUMBER_PH | translate}}">
                 <app-validation-field [form]="deviceForm" [field]="'serialNumber'"></app-validation-field>
             </div>
 
             <div class="d-flex gap-5">
                 <div class="mb-3">
-                    <label for="code" translate="device.code"></label>
+                    <label for="code" [translate]="messages.DEVICE_CODE"></label>
                     <input autocomplete="off" type="text" formControlName="code" id="code" class="form-control"
-                        placeholder="{{'device.code.placeholder' | translate}}">
+                        placeholder="{{messages.DEVICE_CODE_PH | translate}}">
                     <app-validation-field [form]="deviceForm" [field]="'code'"></app-validation-field>
                 </div>
                 <div class="mb-3">
-                    <label for="tag" translate="device.tag"></label>
+                    <label for="tag" [translate]="messages.DEVICE_TAG_PH"></label>
                     <input autocomplete="off" type="text" formControlName="tag" id="tag" class="form-control"
-                        placeholder="{{'device.tag.placeholder' | translate}}">
+                        placeholder="{{messages.DEVICE_TAG | translate}}">
                     <app-validation-field [form]="deviceForm" [field]="'tag'"></app-validation-field>
                 </div>
             </div>
 
             <div class="mb-3">
-                <label for="deviceCategory" translate="device.category"></label>
+                <label for="deviceCategory" [translate]="messages.DEVICE_CATEGORY"></label>
                 <div class="d-flex gap-2">
                     <select formControlName="deviceCategory" id="deviceCategory" [compareWith]="compareWith" class="form-select">
-                        <option translate="device.selectCategory" disabled selected value=""></option>
+                        <option [translate]="messages.DEVICE_SELECT_CATEGORY" disabled selected value=""></option>
                         <option *ngFor="let c of categories" [ngValue]="c">{{c.name}}</option>
                     </select>
                     <btn-new-device-category [loading]="loading" (onCreate)="onCreateCategory($event)"></btn-new-device-category>
@@ -56,10 +56,10 @@
             </div>
 
             <div class="mb-3">
-                <label for="department" translate="department.department"></label>
+                <label for="department" [translate]="messages.DEPARTMENT"></label>
                 <div class="d-flex gap-2">
                     <select formControlName="department" id="department" [compareWith]="compareWith" class="form-select">
-                        <option translate="staff.selectDepartment" disabled selected value=""></option>
+                        <option [translate]="messages.SELECT_DEPARTMENT" disabled selected value=""></option>
                         <option *ngFor="let d of departments" [ngValue]="d">{{d.name}}</option>
                     </select>
                     <btn-new-department [loading]="loading" (onCreate)="onCreateDepartment($event)"></btn-new-department>
@@ -71,8 +71,8 @@
         </div>
         <div class="modal-footer">
             <button [disabled]="loading" type="button" class="btn btn-outline-danger" (click)="closeModal()"
-                translate="commons.cancel"></button>
-            <button [disabled]="loading" type="submit" class="btn btn-success" translate="commons.save">
+                [translate]="messages.CANCEL"></button>
+            <button [disabled]="loading" type="submit" class="btn btn-success" [translate]="messages.SAVE">
                 <i *ngIf="loading" class="fas fa-spinner fa-pulse mx-1"></i>
             </button>
         </div>

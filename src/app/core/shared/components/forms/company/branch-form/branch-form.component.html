@@ -1,22 +1,22 @@
 <div class="modal-content">
     <div class="modal-header">
-        <h5 *ngIf="!branch" class="modal-title" translate="modal.branch.new"></h5>
-        <h5 *ngIf="branch" class="modal-title" [translateParams]="{name: branch.name}" translate="modal.update"></h5>
+        <h5 *ngIf="!branch" class="modal-title" [translate]="messages.MODAL_NEW_BRANCH"></h5>
+        <h5 *ngIf="branch" class="modal-title" [translateParams]="{name: branch.name}" [translate]="messages.MODAL_UPDATE"></h5>
     </div>
     <form [formGroup]="branchForm" (ngSubmit)="save()">
         <div class="modal-body">
 
             <app-input-group
             [form]="branchForm"
-            translateLabel="commons.name" 
-            translatePlaceholder="branch.name.placeholder"
+            [translateLabel]="messages.BRANCH" 
+            [translatePlaceholder]="messages.BRANCH_NAME_PH"
             id="name">
             </app-input-group>
 
             <div class="mb-3">
-                <label for="company" translate="company.company"></label>
+                <label for="company" [translate]="messages.COMPANY"></label>
                 <select formControlName="company" id="company" [compareWith]="compareWith" class="form-select">
-                    <option translate="company.selectCompany" disabled selected value=""></option>
+                    <option [translate]="messages.COMPANY_SELECT" disabled selected value=""></option>
                     <option *ngFor="let c of companies" [ngValue]="c">{{c.name}}</option>
                 </select>
                 <app-validation-field [form]="branchForm" [field]="'company'"></app-validation-field>
@@ -25,8 +25,8 @@
         </div>
         <div class="modal-footer">
             <button [disabled]="loading" type="button" class="btn btn-outline-danger" (click)="closeModal()"
-                translate="commons.cancel"></button>
-            <button [disabled]="loading" type="submit" class="btn btn-success" translate="commons.save">
+                [translate]="messages.CANCEL"></button>
+            <button [disabled]="loading" type="submit" class="btn btn-success" [translate]="messages.SAVE">
                 <i *ngIf="loading" class="fas fa-spinner fa-pulse mx-1"></i>
             </button>
         </div>

@@ -7,6 +7,7 @@ import { ComputerStorageForm, IComputerStorage } from 'src/app/core/components/c
 import { ComputerService } from 'src/app/core/components/computer/services/computer.service';
 import { AbstractComponent } from 'src/app/core/shared/abstracts/abstract-component';
 import { IAbstractModelForms } from 'src/app/core/shared/abstracts/interface/abstract-model-forms';
+import { TranslateMessages } from 'src/app/core/shared/commons/enum/translate-messages.enum';
 
 @Component({
   selector: 'app-computer-storage-form',
@@ -18,6 +19,7 @@ export class ComputerStorageFormComponent extends AbstractComponent implements O
   computerStorage!: IComputerStorage;
   computerStorageForm!: FormGroup<ComputerStorageForm>;
   result!: Subject<IComputerStorage>;
+  messages = TranslateMessages;
 
   constructor(
     private service: ComputerService,
@@ -63,16 +65,16 @@ export class ComputerStorageFormComponent extends AbstractComponent implements O
       }
     } else {
       this.computerStorageForm.markAllAsTouched();
-      this.service.onWarning("badRequest", "fillFieldsRequired");
+      this.service.onWarning(this.messages.WARNING_BAD_REQUEST, this.messages.WARNING_COMPLETE_REQUIRED_FIELDS);
     }
   }
 
   onSave(computerStorage: IComputerStorage): void {
     this.result.next(computerStorage);
     if (this.computerStorage?.id) {
-      this.service.onSuccess("updated", "updated");
+      this.service.onSuccess(this.messages.INFO_SUCCESS, this.messages.INFO_UPDATED);
     } else {
-      this.service.onSuccess("created", "created");
+      this.service.onSuccess(this.messages.INFO_SUCCESS, this.messages.INFO_CREATED);
     }
     this.closeModal();
   }

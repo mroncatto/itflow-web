@@ -11,6 +11,7 @@ import { SearchInputComponent } from 'src/app/core/shared/components/filters/sea
 import { StaffFilter } from '../../filter/staff-filter';
 import { IStaff } from '../../model/staff';
 import { StaffService } from '../../services/staff.service';
+import { TranslateMessages } from 'src/app/core/shared/commons/enum/translate-messages.enum';
 
 @Component({
   templateUrl: './staff.component.html',
@@ -25,6 +26,7 @@ export class StaffComponent implements OnInit, OnDestroy, IAbstractComponentFilt
   paginator!: IPaginator;
   page: number = 0;
   filter: StaffFilter = new StaffFilter();
+  messages = TranslateMessages;
 
   @ViewChild(SearchInputComponent) searchFilterChild!: SearchInputComponent;
   @ViewChild(DepartmentCheckboxFilterComponent) departmentFilterChild!: DepartmentCheckboxFilterComponent;
@@ -93,7 +95,7 @@ export class StaffComponent implements OnInit, OnDestroy, IAbstractComponentFilt
 
   confirmDelete(staff: IStaff): void {
     this.sub.push(
-      this.service.showConfirm('warning', 'delete', staff.fullName).subscribe({
+      this.service.showConfirm(this.messages.WARNING, this.messages.MODAL_DELETE_RECORD, staff.fullName).subscribe({
         next: (confirm) => {
           if (confirm) this.onDelete(staff)
         },
@@ -113,7 +115,7 @@ export class StaffComponent implements OnInit, OnDestroy, IAbstractComponentFilt
 
   private afterDelete(staff: IStaff): void {
     this.staff = this.staff.filter(s => s.id != staff.id);
-    this.service.onInfo("successfully", "staffDeleted");
+    this.service.onInfo(this.messages.INFO_SUCCESS, this.messages.INFO_STAFF_DELETED);
   }
 
   filterInput(input: string): void {

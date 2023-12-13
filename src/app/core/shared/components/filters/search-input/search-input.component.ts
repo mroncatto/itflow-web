@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { TranslateMessages } from '../../../commons/enum/translate-messages.enum';
 
 @Component({
   selector: 'app-search-input',
@@ -7,6 +8,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class SearchInputComponent implements OnInit {
 
+  messages = TranslateMessages;
   data: string="";
   @Output() onEnter: EventEmitter<any> = new EventEmitter();
 

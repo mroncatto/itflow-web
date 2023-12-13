@@ -6,18 +6,18 @@
         </div>
         <div class="user-desc flex-center mb-3">
             <h6 class="fw-bold">{{user.fullName}}</h6>
-            <span [title]="'users.username' | translate" class="text-muted">{{user.username}}</span>
-            <span [title]="'commons.email' | translate">{{user.email}}</span>
-            <span [title]="'users.lastLogin' | translate">
+            <span [title]="messages.USERNAME | translate" class="text-muted">{{user.username}}</span>
+            <span [title]="messages.EMAIL | translate">{{user.email}}</span>
+            <span [title]="messages.USER_LAST_LOGIN | translate">
                 <i class="fas fa-user-clock mx-1"></i>
                 <span>{{user.lastLoginDate | date}}</span>
-                <span class="text-muted" *ngIf="!user.lastLoginDate" translate="users.neverLogged"></span>
+                <span class="text-muted" *ngIf="!user.lastLoginDate" [translate]="messages.USER_NEVER_LOGGED"></span>
             </span>
         </div>
         <div class="user-assign-role">
                 <div class="d-flex gap-2">
                     <select class="form-select" [formControl]="roleControl">
-                        <option value="" translate="users.selectRole"></option>
+                        <option value="" [translate]="messages.USER_SELECT_ROLE"></option>
                         <option *ngFor="let role of roles" [ngValue]="role">{{role.role}}</option>
                     </select>
                     <button (click)="addRole()" [disabled]="roles.length === 0 || roleControl.invalid" class="btn btn-success btn-sm">Agregar</button>
@@ -29,7 +29,7 @@
                 <li class="list-group-item text-muted" *ngIf="user.role.length === 0">No roles assigned</li>
                 <li class="list-group-item flex-between link-spin" *ngFor="let rol of user.role">
                     <span class="badge bg-info">{{rol.role}}</span>
-                    <i (click)="removeRole(rol)" [title]="'commons.remove' | translate" class="fas fa-trash text-danger"></i>
+                    <i (click)="removeRole(rol)" [title]="messages.REMOVE | translate" class="fas fa-trash text-danger"></i>
                 </li>
             </ul>
         </div>
@@ -43,6 +43,6 @@
     </ng-template>
     <div class="modal-footer">
         <button type="button" class="btn btn-outline-secondary" (click)="closeModal()"
-            translate="commons.close"></button>
+            [translate]="messages.CLOSE"></button>
     </div>
 </div>

@@ -1,7 +1,7 @@
 <div class="modal-content">
     <div class="modal-header">
-        <h5 *ngIf="!deviceCategory" class="modal-title" translate="modal.deviceCategory.new"></h5>
-        <h5 *ngIf="deviceCategory" class="modal-title" [translateParams]="{name: deviceCategory.name}" translate="modal.update">
+        <h5 *ngIf="!deviceCategory" class="modal-title" [translate]="messages.MODAL_NEW_DEVICE_CATEGORY"></h5>
+        <h5 *ngIf="deviceCategory" class="modal-title" [translateParams]="{name: deviceCategory.name}" [translate]="messages.MODAL_UPDATE">
         </h5>
     </div>
     <form [formGroup]="deviceCategoryForm" (ngSubmit)="save()">
@@ -9,16 +9,16 @@
 
             <app-input-group
             [form]="deviceCategoryForm"
-            translateLabel="deviceCategory.name" 
-            translatePlaceholder="deviceCategory.name.placeholder"
+            [translateLabel]="messages.DEVICE_CATEGORY" 
+            [translatePlaceholder]="messages.DEVICE_CATEGORY"
             id="name">
             </app-input-group>
 
         </div>
         <div class="modal-footer">
             <button [disabled]="loading" type="button" class="btn btn-outline-danger" (click)="closeModal()"
-                translate="commons.cancel"></button>
-            <button [disabled]="loading" type="submit" class="btn btn-success" translate="commons.save">
+                [translate]="messages.CANCEL"></button>
+            <button [disabled]="loading" type="submit" class="btn btn-success" [translate]="messages.SAVE">
                 <i *ngIf="loading" class="fas fa-spinner fa-pulse mx-1"></i>
             </button>
         </div>

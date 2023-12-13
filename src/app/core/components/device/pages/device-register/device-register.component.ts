@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { TranslateMessages } from 'src/app/core/shared/commons/enum/translate-messages.enum';
 
 @Component({
   templateUrl: './device-register.component.html',
@@ -11,6 +12,7 @@ export class DeviceRegisterComponent implements OnInit, OnDestroy {
   private sub: Subscription[] = [];
   readonly pages: string[] = ["category"];
   page: string = '';
+  messages = TranslateMessages;
 
   constructor(private activatedRoute: ActivatedRoute) { }
 

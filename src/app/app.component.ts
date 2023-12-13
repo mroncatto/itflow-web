@@ -9,6 +9,7 @@ import { ILanguage } from './core/shared/commons/interface/language';
 import { TopbarMenu } from './core/shared/commons/interface/topbar-menu';
 import { AuthenticationService } from './core/shared/services/authentication/authentication.service';
 import { MenuService } from './core/shared/services/menu/menu.service';
+import { TranslateMessages } from './core/shared/commons/enum/translate-messages.enum';
 
 @Component({
   selector: 'app-root',
@@ -21,6 +22,7 @@ export class AppComponent {
   currentLang: string = '';
   languages: ILanguage[] = [];
   readonly version: string = environment.version;
+  messages = TranslateMessages;
 
   constructor(
     private router: Router,

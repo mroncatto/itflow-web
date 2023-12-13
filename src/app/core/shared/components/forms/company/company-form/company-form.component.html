@@ -1,30 +1,30 @@
 <div class="modal-content">
     <div class="modal-header">
-        <h5 *ngIf="!company" class="modal-title" translate="modal.company.new"></h5>
-        <h5 *ngIf="company" class="modal-title" [translateParams]="{name: company.name}" translate="modal.update"></h5>
+        <h5 *ngIf="!company" class="modal-title" [translate]="messages.MODAL_NEW_COMPANY"></h5>
+        <h5 *ngIf="company" class="modal-title" [translateParams]="{name: company.name}" [translate]="messages.MODAL_UPDATE"></h5>
     </div>
     <form [formGroup]="companyForm" (ngSubmit)="save()">
         <div class="modal-body">
 
             <app-input-group
             [form]="companyForm"
-            translateLabel="commons.name" 
-            translatePlaceholder="company.name.placeholder"
+            [translateLabel]="messages.NAME" 
+            [translatePlaceholder]="messages.COMPANY_NAME_PH"
             id="name">
             </app-input-group>
 
             <app-input-group
             [form]="companyForm"
-            translateLabel="commons.document" 
-            translatePlaceholder="company.document.placeholder"
+            [translateLabel]="messages.DOCUMENT" 
+            [translatePlaceholder]="messages.DOCUMENT_PLACEHOLDER"
             id="document">
             </app-input-group>
 
         </div>
         <div class="modal-footer">
             <button [disabled]="loading" type="button" class="btn btn-outline-danger" (click)="closeModal()"
-                translate="commons.cancel"></button>
-            <button [disabled]="loading" type="submit" class="btn btn-success" translate="commons.save">
+                [translate]="messages.CANCEL"></button>
+            <button [disabled]="loading" type="submit" class="btn btn-success" [translate]="messages.SAVE">
                 <i *ngIf="loading" class="fas fa-spinner fa-pulse mx-1"></i>
             </button>
         </div>

@@ -1,8 +1,9 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnDestroy, OnInit, TemplateRef } from '@angular/core';
-import { EMPTY, Subscription, switchMap, take } from 'rxjs';
-import { Company, ICompany } from '../../../model/company';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { ICompany } from '../../../model/company';
 import { CompanyService } from '../../../services/company.service';
+import { TranslateMessages } from 'src/app/core/shared/commons/enum/translate-messages.enum';
 
 @Component({
   selector: 'app-company',
@@ -15,6 +16,7 @@ export class CompanyComponent implements OnInit, OnDestroy {
   companies: ICompany[] = [];
   errorResponse!: HttpErrorResponse;
   loading: boolean = true;
+  messages = TranslateMessages;
 
   constructor(private service: CompanyService) { }
 
@@ -63,7 +65,7 @@ export class CompanyComponent implements OnInit, OnDestroy {
 
   confirmDelete(company: ICompany): void {
     this.sub.push(
-      this.service.showConfirm('warning', 'delete', company.name).subscribe({
+      this.service.showConfirm(this.messages.WARNING, this.messages.MODAL_DELETE_RECORD, company.name).subscribe({
         next: (confirm) => { if (confirm) this.onDelete(company) }
       })
     )
@@ -74,7 +76,7 @@ export class CompanyComponent implements OnInit, OnDestroy {
       this.service.deleteCompany(company.id).subscribe({
         next: () => {
           this.companies = this.companies.filter(c => c.id !== company.id);
-          this.service.onInfo("successfully", "deleted");
+          this.service.onInfo(this.messages.INFO_SUCCESS, this.messages.MODAL_DELETE_RECORD);
         },
         error: (err) => this.service.onHttpError(err)
       })

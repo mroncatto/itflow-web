@@ -7,6 +7,7 @@ import { ComputerMemoryForm, IComputerMemory } from 'src/app/core/components/com
 import { ComputerService } from 'src/app/core/components/computer/services/computer.service';
 import { AbstractComponent } from 'src/app/core/shared/abstracts/abstract-component';
 import { IAbstractModelForms } from 'src/app/core/shared/abstracts/interface/abstract-model-forms';
+import { TranslateMessages } from 'src/app/core/shared/commons/enum/translate-messages.enum';
 
 @Component({
   selector: 'app-computer-memory-form',
@@ -18,6 +19,7 @@ export class ComputerMemoryFormComponent extends AbstractComponent implements On
   computerMemory!: IComputerMemory;
   computerMemoryForm!: FormGroup<ComputerMemoryForm>;
   result!: Subject<IComputerMemory>;
+  messages = TranslateMessages;
 
   constructor(
     private service: ComputerService,
@@ -62,16 +64,16 @@ export class ComputerMemoryFormComponent extends AbstractComponent implements On
       }
     } else {
       this.computerMemoryForm.markAllAsTouched();
-      this.service.onWarning("badRequest", "fillFieldsRequired");
+      this.service.onWarning(this.messages.WARNING_BAD_REQUEST, this.messages.WARNING_COMPLETE_REQUIRED_FIELDS);
     }
   }
 
   onSave(memory: IComputerMemory): void {
     this.result.next(memory);
     if (this.computerMemory?.id) {
-      this.service.onSuccess("updated", "updated");
+      this.service.onSuccess(this.messages.INFO_SUCCESS, this.messages.INFO_UPDATED);
     } else {
-      this.service.onSuccess("created", "created");
+      this.service.onSuccess(this.messages.INFO_SUCCESS, this.messages.INFO_CREATED);
     }
     this.closeModal();
   }

@@ -11,6 +11,7 @@ import { SearchInputComponent } from 'src/app/core/shared/components/filters/sea
 import { DeviceFilter } from '../../filter/device-filter';
 import { IDevice } from '../../model/device';
 import { DeviceService } from '../../services/device.service';
+import { TranslateMessages } from 'src/app/core/shared/commons/enum/translate-messages.enum';
 
 @Component({
   templateUrl: './device.component.html',
@@ -25,6 +26,7 @@ export class DeviceComponent implements OnInit, OnDestroy, IAbstractComponentFil
   paginator!: IPaginator;
   page: number = 0;
   filter: DeviceFilter = new DeviceFilter();
+  messages = TranslateMessages;
 
   @ViewChild(SearchInputComponent) searchFilterChild!: SearchInputComponent;
   @ViewChild(DepartmentCheckboxFilterComponent) departmentFilterChild!: DepartmentCheckboxFilterComponent;
@@ -96,7 +98,7 @@ export class DeviceComponent implements OnInit, OnDestroy, IAbstractComponentFil
 
   confirmDelete(device: IDevice): void {
     this.sub.push(
-      this.service.showConfirm('warning', 'delete', device.hostname).subscribe({
+      this.service.showConfirm(this.messages.WARNING, this.messages.MODAL_DELETE_RECORD, device.hostname).subscribe({
         next: (confirm) => {
           if (confirm) this.onDelete(device)
         },
@@ -118,7 +120,7 @@ export class DeviceComponent implements OnInit, OnDestroy, IAbstractComponentFil
     this.devices.forEach(d => {
       if (d.id === device.id) d.active = false;
     });
-    this.service.onInfo("successfully", "deviceDeleted");
+    this.service.onInfo(this.messages.INFO_SUCCESS, this.messages.INFO_DEVICE_DELETED);
   }
 
   filterInput(input: string): void {

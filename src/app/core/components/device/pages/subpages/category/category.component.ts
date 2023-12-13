@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AbstractComponent } from 'src/app/core/shared/abstracts/abstract-component';
 import { IDeviceCategory } from '../../../model/device-category';
 import { DeviceService } from '../../../services/device.service';
+import { TranslateMessages } from 'src/app/core/shared/commons/enum/translate-messages.enum';
 
 @Component({
   selector: 'app-category',
@@ -11,6 +12,7 @@ import { DeviceService } from '../../../services/device.service';
 export class CategoryComponent extends AbstractComponent implements OnInit, OnDestroy {
 
   categories: IDeviceCategory[] = [];
+  messages = TranslateMessages;
 
   constructor(private service: DeviceService) {
     super();
@@ -57,7 +59,7 @@ export class CategoryComponent extends AbstractComponent implements OnInit, OnDe
 
   confirmDelete(category: IDeviceCategory): void {
     this.sub.push(
-      this.service.showConfirm('warning', 'delete', category.name).subscribe({
+      this.service.showConfirm(this.messages.WARNING, this.messages.MODAL_DELETE_RECORD, category.name).subscribe({
         next: (confirm) => { if(confirm) this.onDelete(category) }
       })
     );
@@ -67,7 +69,7 @@ export class CategoryComponent extends AbstractComponent implements OnInit, OnDe
     this.sub.push(
       this.service.deleteDeviceCategory(category.id).subscribe({
         next: (data) => {
-          this.service.onInfo('successfully', 'deleted');
+          this.service.onInfo(this.messages.INFO_SUCCESS, this.messages.INFO_DELETED);
           this.categories = this.categories.filter(c => c.id !== data.id);
         },
         error: (err) => this.service.onHttpError(err)

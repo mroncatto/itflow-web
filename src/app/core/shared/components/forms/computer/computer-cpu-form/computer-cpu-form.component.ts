@@ -7,6 +7,7 @@ import { ComputerCpuForm, IComputerCpu } from 'src/app/core/components/computer/
 import { ComputerService } from 'src/app/core/components/computer/services/computer.service';
 import { AbstractComponent } from 'src/app/core/shared/abstracts/abstract-component';
 import { IAbstractModelForms } from 'src/app/core/shared/abstracts/interface/abstract-model-forms';
+import { TranslateMessages } from 'src/app/core/shared/commons/enum/translate-messages.enum';
 
 @Component({
   selector: 'app-computer-cpu-form',
@@ -18,6 +19,7 @@ export class ComputerCpuFormComponent extends AbstractComponent implements OnIni
   computerCpu!: IComputerCpu;
   computerCpuForm!: FormGroup<ComputerCpuForm>;
   result!: Subject<IComputerCpu>;
+  messages = TranslateMessages;
 
   constructor(
     private service: ComputerService,
@@ -62,16 +64,16 @@ export class ComputerCpuFormComponent extends AbstractComponent implements OnIni
       }
     } else {
       this.computerCpuForm.markAllAsTouched();
-      this.service.onWarning("badRequest", "fillFieldsRequired");
+      this.service.onWarning(this.messages.WARNING_BAD_REQUEST, this.messages.WARNING_COMPLETE_REQUIRED_FIELDS);
     }
   }
 
   onSave(computerCpu: IComputerCpu): void {
     this.result.next(computerCpu);
     if (this.computerCpu?.id) {
-      this.service.onSuccess("updated", "updated");
+      this.service.onSuccess(this.messages.INFO_SUCCESS, this.messages.INFO_UPDATED);
     } else {
-      this.service.onSuccess("created", "created");
+      this.service.onSuccess(this.messages.INFO_SUCCESS, this.messages.INFO_CREATED);
     }
     this.closeModal();
   }

@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ICheckboxFilter } from '../../../abstracts/interface/checkbox-filter';
+import { TranslateMessages } from '../../../commons/enum/translate-messages.enum';
 
 @Component({
   selector: 'app-checkbox-filter',
@@ -7,6 +8,8 @@ import { ICheckboxFilter } from '../../../abstracts/interface/checkbox-filter';
   styleUrls: ['./checkbox-filter.component.css']
 })
 export class CheckboxFilterComponent implements OnInit {
+
+  messages = TranslateMessages;
 
   @Output() onSelect: EventEmitter<ICheckboxFilter[]> = new EventEmitter();
   @Output() onClick: EventEmitter<any> = new EventEmitter();

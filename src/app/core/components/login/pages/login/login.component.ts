@@ -3,6 +3,7 @@ import { UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { IAuthResponse } from '../../../user/model/auth-response';
 import { LoginService } from '../../services/login.service';
+import { TranslateMessages } from 'src/app/core/shared/commons/enum/translate-messages.enum';
 
 @Component({
   selector: 'app-login',
@@ -15,6 +16,7 @@ export class LoginComponent implements OnInit {
   authentication!: IAuthResponse;
   private redirect!: string;
   loading: boolean = false;
+  messages = TranslateMessages;
 
   constructor(
     private loginService: LoginService,

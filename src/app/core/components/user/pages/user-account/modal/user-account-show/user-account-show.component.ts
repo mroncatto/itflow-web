@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { IRole } from '../../../../model/role';
 import { IUser } from '../../../../model/user';
 import { UserService } from '../../../../services/user.service';
+import { TranslateMessages } from 'src/app/core/shared/commons/enum/translate-messages.enum';
 
 @Component({
   selector: 'app-user-account-show',
@@ -17,6 +18,7 @@ export class UserAccountShowComponent implements OnInit {
   roles: IRole[] = [];
   roleControl = new UntypedFormControl("", Validators.required);
   loading: boolean = false;
+  messages = TranslateMessages;
   private sub: Subscription[] = [];
 
   constructor(
@@ -63,7 +65,7 @@ export class UserAccountShowComponent implements OnInit {
             this.user.role = data.role;
             this.refreshListRoles();   
             this.roleControl.reset("");                
-            this.userService.onInfo('updated', 'userRoleUpdated');
+            this.userService.onInfo(this.messages.INFO_UPDATED, this.messages.INFO_USER_ROLE_UPDATE);
           },
           error: (err) => {
             this.userService.onHttpError(err);
@@ -82,7 +84,7 @@ export class UserAccountShowComponent implements OnInit {
           this.roles.push(role);
           this.refreshListRoles();     
           this.roleControl.reset("");   
-          this.userService.onInfo('updated', 'userRoleUpdated');
+          this.userService.onInfo(this.messages.INFO_UPDATED, this.messages.INFO_USER_ROLE_UPDATE);
         },
         error: (err) => {
           this.userService.onHttpError(err);

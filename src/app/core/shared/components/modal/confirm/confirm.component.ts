@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { Subject } from 'rxjs';
+import { TranslateMessages } from '../../../commons/enum/translate-messages.enum';
 
 @Component({
   selector: 'app-confirm',
@@ -14,6 +15,7 @@ export class ConfirmComponent implements OnInit {
   @Input() param: string = "";
 
   confirmResult!: Subject<boolean>;
+  messages = TranslateMessages;
 
    constructor(public bsModalRef: BsModalRef) {}
 

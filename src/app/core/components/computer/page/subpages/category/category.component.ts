@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { IComputerCategory } from '../../../model/computer-category';
 import { ComputerService } from '../../../services/computer.service';
+import { TranslateMessages } from 'src/app/core/shared/commons/enum/translate-messages.enum';
 
 @Component({
   selector: 'app-category',
@@ -13,6 +14,7 @@ export class CategoryComponent implements OnInit, OnDestroy {
   private sub: Subscription[] = [];
   categories: IComputerCategory[] = [];
   loading: boolean = true;
+  messages = TranslateMessages;
 
   constructor(private service: ComputerService) { }
 
@@ -58,7 +60,7 @@ export class CategoryComponent implements OnInit, OnDestroy {
 
   confirmDelete(category: IComputerCategory): void {
     this.sub.push(
-      this.service.showConfirm('warning', 'delete', category.name).subscribe({
+      this.service.showConfirm(this.messages.WARNING, this.messages.MODAL_DELETE_RECORD, category.name).subscribe({
         next: (confirm) => { if (confirm) this.onDelete(category) }
       })
     );
@@ -68,7 +70,7 @@ export class CategoryComponent implements OnInit, OnDestroy {
     this.sub.push(
       this.service.deleteComputerCategory(category.id).subscribe({
         next: (data) => {
-          this.service.onInfo('successfully', 'deleted');
+          this.service.onInfo(this.messages.INFO_SUCCESS, this.messages.INFO_DELETED);
           this.categories = this.categories.filter(b => b.id !== data.id);
         },
         error: (err) => this.service.onHttpError(err)

@@ -1,7 +1,7 @@
 <div class="modal-content">
     <div class="modal-header">
-        <h5 *ngIf="!computerStorage" class="modal-title" translate="modal.computerStorage.new"></h5>
-        <h5 *ngIf="computerStorage" class="modal-title" [translateParams]="{name: computerStorage.brandName}" translate="modal.update">
+        <h5 *ngIf="!computerStorage" class="modal-title" [translate]="messages.MODAL_NEW_COMPUTER_STORAGE"></h5>
+        <h5 *ngIf="computerStorage" class="modal-title" [translateParams]="{name: computerStorage.brandName}" [translate]="messages.MODAL_UPDATE">
         </h5>
     </div>
     <form [formGroup]="computerStorageForm" (ngSubmit)="save()">
@@ -9,30 +9,30 @@
 
             <app-input-group
             [form]="computerStorageForm"
-            translateLabel="commons.brand" 
-            translatePlaceholder="commons.placeholder.brand"
+            [translateLabel]="messages.BRAND" 
+            [translatePlaceholder]="messages.BRAND_PLACEHOLDER"
             id="brandName">
             </app-input-group>
 
             <app-input-group
             [form]="computerStorageForm"
-            translateLabel="computerStorage.transferRate" 
-            translatePlaceholder="computerStorage.placeholder.transferRate"
+            [translateLabel]="messages.COMPUTER_STORAGE_TRANSFER_RATE" 
+            [translatePlaceholder]="messages.COMPUTER_STORAGE_SIZE_TRANSFER_RATE_PH"
             id="transferRate">
             </app-input-group>
 
             <app-input-group
             [form]="computerStorageForm"
-            translateLabel="commons.type" 
-            translatePlaceholder="commons.type"
+            [translateLabel]="messages.TYPE" 
+            [translatePlaceholder]="messages.TYPE_PLACEHOLDER"
             id="type">
             </app-input-group>
             
         </div>
         <div class="modal-footer">
             <button [disabled]="loading" type="button" class="btn btn-outline-danger" (click)="closeModal()"
-                translate="commons.cancel"></button>
-            <button [disabled]="loading" type="submit" class="btn btn-success" translate="commons.save">
+                [translate]="messages.CANCEL"></button>
+            <button [disabled]="loading" type="submit" class="btn btn-success" [translate]="messages.SAVE">
                 <i *ngIf="loading" class="fas fa-spinner fa-pulse mx-1"></i>
             </button>
         </div>

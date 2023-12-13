@@ -1,8 +1,9 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
-import { EMPTY, Subscription, switchMap, take } from 'rxjs';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { IOccupation } from '../../../model/occupation';
 import { StaffService } from '../../../services/staff.service';
+import { TranslateMessages } from 'src/app/core/shared/commons/enum/translate-messages.enum';
 
 @Component({
   selector: 'app-occupation',
@@ -15,6 +16,7 @@ export class OccupationComponent implements OnInit, OnDestroy {
   occupations: IOccupation[] = [];
   errorResponse!: HttpErrorResponse;
   loading: boolean = true;
+  messages = TranslateMessages;
 
   constructor(private service: StaffService) { }
 
@@ -43,7 +45,7 @@ export class OccupationComponent implements OnInit, OnDestroy {
 
   confirmDelete(occupation: IOccupation): void {
     this.sub.push(
-      this.service.showConfirm('warning', 'delete', occupation.name).subscribe({
+      this.service.showConfirm(this.messages.WARNING, this.messages.MODAL_DELETE_RECORD, occupation.name).subscribe({
         next: (confirm) => {
           if (confirm) this.onDelete(occupation)
         },
@@ -64,7 +66,7 @@ export class OccupationComponent implements OnInit, OnDestroy {
 
   private afterDelete(occupation: IOccupation): void {
     this.occupations = this.occupations.filter(o => o.id != occupation.id);
-    this.service.onInfo("successfully", "deleted");
+    this.service.onInfo(this.messages.INFO_SUCCESS, this.messages.INFO_DELETED);
   }
 
   onCreate(): void {

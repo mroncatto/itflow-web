@@ -1,14 +1,14 @@
 <div class="card">
     <div class="card-header bg-primary fw-bold text-white flex-between">
         <div>
-            <span translate="device.category"></span>
+            <span [translate]="messages.CATEGORY"></span>
             <div class="spinner-border spinner-border-sm mx-2" role="status" *ngIf="loading">
                 <span class="visually-hidden">Loading...</span>
             </div>
         </div>
         <div>
             <button class="btn btn-success text-white" (click)="onCreate()">
-                <i class="fas fa-plus"></i>&nbsp;<span translate="commons.new"></span>
+                <i class="fas fa-plus"></i>&nbsp;<span [translate]="messages.NEW"></span>
             </button>
         </div>
     </div>
@@ -16,7 +16,7 @@
         <table class="table table-stripped">
             <thead>
                 <th>#</th>
-                <th translate="device.category"></th>
+                <th [translate]="messages.CATEGORY"></th>
                 <th></th>
             </thead>
             <tbody>
@@ -24,13 +24,13 @@
                     <td>{{ category.id }}</td>
                     <td>{{ category.name }}</td>
                     <td>
-                        <i title="{{'commons.actions' | translate}}" class="fas fa-chevron-circle-down link" [id]="category.id"
+                        <i title="{{messages.ACTIONS | translate}}" class="fas fa-chevron-circle-down link" [id]="category.id"
                             data-bs-toggle="dropdown"></i>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li class="link-spin">
                                 <a (click)="onUpdate(category)" class="dropdown-item">
                                     <i class="fas fa-pen"></i>&nbsp;
-                                    <span translate="commons.edit"></span>
+                                    <span [translate]="messages.EDIT"></span>
                                 </a>
                             </li>
                             <div>
@@ -40,7 +40,7 @@
                                 <li class="link-spin">
                                     <a (click)="confirmDelete(category)" class="dropdown-item">
                                         <i class="fas fa-trash text-danger"></i>&nbsp;<span
-                                            translate="commons.delete"></span>
+                                            [translate]="messages.DELETE"></span>
                                     </a>
                                 </li>
                             </div>

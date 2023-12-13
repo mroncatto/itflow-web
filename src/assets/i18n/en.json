@@ -17,25 +17,20 @@
 			"authenticated": "Successfully Authenticated",
 			"created": "Successfully created",
 			"deleted": "Successfully deleted",
-			"deviceDeleted": "Device was disabled",
+			"device_deleted": "Device was disabled",
 			"disabled": "Successfully disabled",
-			"passwordChanged": "Password was changed",
-			"passwordReseted": "A new password has been generated and sent to the user's mail",
-			"profileChanged": "Profile was changed",
-			"staffDeleted": "Employee was deleted",
-			"successfully": "Successfully",
-			"updated": "Successfully changed",
-			"userBlocked": "The account has been locked",
-			"userDisabled": "The user account was disabled!",
-			"userRoleUpdated": "User roles have been updated",
-			"userUnBlocked": "The account has been unlocked",
-			"welcome": "Welcome"
-		},
-		"success": {
-			"created": "Successfully created",
-			"deleted": "Successfully deleted",
+			"password_changed": "Password was changed",
+			"password_reseted": "A new password has been generated and sent to the user's mail",
+			"profile_changed": "Profile was changed",
+			"staff_deleted": "Employee was deleted",
+			"success": "Successfully",
 			"updated": "Successfully updated",
-			"userCreated": "The account was created, the login data was sent to the user's email"
+			"user_blocked": "The account has been locked",
+			"user_created": "The account was created, the login data was sent to the user's email",
+			"user_disabled": "The user account was disabled!",
+			"user_role_updated": "User roles have been updated",
+			"user_unlocked": "The account has been unlocked",
+			"welcome": "Welcome"
 		},
 		"warning": {
 			"ALL FIELDS ARE REQUIRED": "All fields are required",
@@ -43,8 +38,8 @@
 			"BAD_REQUEST": "Bad Request",
 			"badRequest": "Bad Request",
 			"canActivatedDenied": "Access denied, you do not have permission to access this page",
+			"complete_required_fields": "Complete the required fields",
 			"DEVICE NOT FOUND": "Device not found",
-			"fillFieldsRequired": "Fill in the required fields",
 			"INVALID FORMAT EMAIL": "Invalid Email Format",
 			"loginRequired": "Please login again",
 			"No message available": "Unknown error",
@@ -61,7 +56,9 @@
 	"branch": {
 		"branch": "Branch",
 		"branches": "Branches",
-		"name.placeholder": "Branch name"
+		"placeholder": {
+			"name": "Branch name"
+		}
 	},
 	"commons": {
 		"actions": "Actions",
@@ -83,6 +80,7 @@
 		"email": "Email",
 		"filterOnTheList": "Filter on the list",
 		"filterResults": "Filter results",
+		"fullname": "Full name",
 		"inactive": "Inactive",
 		"model": "Model",
 		"name": "Name",
@@ -93,6 +91,7 @@
 		"optional": "Optional",
 		"placeholder": {
 			"brand": "Brand",
+			"document": "Document number",
 			"model": "Model",
 			"type": "Type"
 		},
@@ -110,20 +109,19 @@
 	"company": {
 		"companies": "Companies",
 		"company": "Company",
-		"document.placeholder": "Document number",
 		"name.placeholder": "Company name",
 		"selectCompany": "Select a Company"
 	},
 	"computerCpu": {
 		"core": "Cores",
 		"frequency": "Frequency (Mhz)",
-		"frequency.placeholder": "CPU frequency (Mhz)",
 		"fsb": "FSB (Mhz)",
 		"fsb.placeholder": "FSB (Front Side Bus)",
 		"generation": "Generation",
 		"generation.placeholder": "Cpu generation",
 		"placeholder": {
 			"core": "Number of cores",
+			"frequency": "CPU frequency (Mhz)",
 			"thread": "Thread numbers"
 		},
 		"socket": "Socket",
@@ -149,44 +147,46 @@
 		"department": "Department",
 		"departments": "Departments",
 		"name.placeholder": "Department name",
-		"selectBranch": "Select a branch"
+		"select_branch": "Select a branch",
+		"select_department": "Select a Department"
 	},
 	"device": {
 		"category": "Device Category",
 		"code": "Code",
-		"code.placeholder": "Device Code",
-		"description.placeholder": "Device Description",
 		"details": "Device Details",
 		"device": "Device",
 		"devices": "Devices",
 		"deviceUser": "Device User",
 		"hostname": "Hostname",
-		"hostname.placeholder": "Device Hostname",
+		"placeholder": {
+			"code": "Code",
+			"description": "Device Description",
+			"hostname": "Device Hostname",
+			"serialNumber": "Serial Number",
+			"tag": "Device Tag"
+		},
 		"selectCategory": "Select Category",
 		"serialNumber": "Serial Number",
-		"serialNumber.placeholder": "Serial Number",
-		"tag": "Tag",
-		"tag.placeholder": "Device Tag"
-	},
-	"deviceCategory": {
-		"name": "Name",
-		"name.placeholder": "Device category name"
+		"tag": "Tag"
 	},
 	"deviceComputer": {
 		"computer": "Computer",
 		"cpu": "Processor",
-		"description.placeholder": "Computer description",
 		"memory": "Memory",
+		"placeholder": {
+			"description": "Computer description",
+			"virtual": "Is a virtual machine?"
+		},
 		"server": "Server",
 		"software": "Software",
 		"storage": "Storage",
-		"virtual": "Virtual Machine",
-		"virtual.placeholder": "Is a virtual machine?"
+		"virtual": "Virtual Machine"
 	},
 	"deviceStaff": {
 		"addFeatures": "Add features",
-		"login": "Login",
-		"login.placeholder": "User login"
+		"placeholder": {
+			"login": "User login"
+		}
 	},
 	"forms": {
 		"email": "You must provide a valid email",
@@ -196,27 +196,30 @@
 			"only_numbers": "Only numbers",
 			"strong_password": "Weak password"
 		},
-		"invalidField": "Invalid field",
+		"invalid_field": "Invalid field",
 		"max": "Maximum allowed value is {{n}}",
-		"maxlength": "Maximum {{n}} characters allowed",
+		"max_length": "Maximum {{n}} characters allowed",
 		"min": "Minimum allowed value is {{n}}",
-		"minlength": "Minimum {{n}} characters required",
-		"passwordMatch": "Passwords do not match",
+		"min_length": "Minimum {{n}} characters required",
+		"password_match": "Passwords do not match",
 		"pattern": "Invalid pattern",
 		"required": "This field is required"
 	},
 	"login": {
 		"about": "Information technology service management",
-		"forgetPwd": "Forgot password? Recover Password",
-		"placeholder.password": "Your password",
-		"placeholder.username": "Your username"
+		"forget_pwd": "Forgot password? Recover Password",
+		"login": "Login",
+		"placeholder": {
+			"password": "Your password",
+			"username": "Your username"
+		}
 	},
 	"menu": {
-		"alldevices": "All devices",
+		"all_devices": "All devices",
 		"branches": "Branches",
 		"companies": "Companies",
 		"computer": "Computer",
-		"darkMode": "Dark Mode",
+		"darkmode": "Dark Mode",
 		"dashboard": "Dashboard",
 		"departments": "Departments",
 		"devices": "Devices",
@@ -225,70 +228,52 @@
 		"logout": " Logout",
 		"manage": "Manage",
 		"network": "Network",
-		"noNotification": "No notification",
 		"power": "Power",
 		"profile": " Profile",
 		"staff": "Staff",
-		"usersAccount": "Users Account"
+		"users_account": "Users Account"
 	},
 	"modal": {
-		"branch": {
-			"new": "New branch"
+		"delete_record": "Are you sure you want to delete <b>{{record}}</b>? This change cannot be reversed",
+		"disable_it": "Are you sure you want to disable it? This change cannot be reversed",
+		"new": {
+			"branch": "New branch",
+			"company": "New company",
+			"computer_category": "New computer category",
+			"computer_cpu": "New CPU",
+			"computer_memory": "New memory",
+			"computer_storage": "New storage",
+			"department": "New department",
+			"device": "New device",
+			"device_category": "New device category",
+			"device_computer": "New computer",
+			"device_staff": "New device user",
+			"occupation": "New occupation",
+			"staff": "Register employee"
 		},
-		"company": {
-			"new": "New company"
+		"remove": {
+			"computer_cpu": "Are you sure you want to remove the <b>{{record}}</b> processor ?",
+			"computer_memory": "Are you sure you want to remove the <b>{{record}}</b> memory ?",
+			"computer_storage": "Are you sure you want to remove the <b>{{record}}</b> storage ?"
 		},
-		"computerCategory": {
-			"new": "New computer category"
-		},
-		"computerCpu": {
-			"new": "New CPU",
-			"remove": "Are you sure you want to remove the <b>{{record}}</b> processor ?"
-		},
-		"computerMemory": {
-			"new": "New memory",
-			"remove": "Are you sure you want to remove the <b>{{record}}</b> memory ?"
-		},
-		"computerStorage": {
-			"new": "New storage",
-			"remove": "Are you sure you want to remove the <b>{{record}}</b> storage ?"
-		},
-		"delete": "Are you sure you want to delete <b>{{record}}</b>? This change cannot be reversed",
-		"department": {
-			"new": "New department"
-		},
-		"device": {
-			"new": "New device"
-		},
-		"deviceCategory": {
-			"new": "New device category"
-		},
-		"deviceComputer": {
-			"new": "New computer"
-		},
-		"deviceStaff": {
-			"new": "New device user"
-		},
-		"disable": "Are you sure you want to disable it? This change cannot be reversed",
-		"occupation": {
-			"new": "New occupation"
-		},
-		"remove": "Are you sure you want to remove the <b>{{record}}</b> feature?",
-		"staff": {
-			"new": "Register employee"
-		},
+		"remove_record": "Are you sure you want to remove the <b>{{record}}</b> feature?",
 		"update": "Update {{name}}",
 		"user": {
 			"disable": "Are you sure you want to disable the <b>{{record}}</b> user account?? This change cannot be reversed",
 			"lock": "Are you sure you want to lock the <b>{{record}}</b> account?",
 			"new": "New User",
-			"resetPassword": "Are you sure you want to reset the user's password?",
+			"reset_pwd": "Are you sure you want to reset the user's password?",
 			"update": "Update user <b>{{record}}</b>"
 		}
 	},
+	"notification": {
+		"empty": "No notification"
+	},
 	"occupation": {
-		"name.placeholder": "Occupation name",
 		"occupation": "Occupation",
+		"placeholder": {
+			"name": "Occupation name"
+		},
 		"role": "Role"
 	},
 	"paginator": {
@@ -296,53 +281,53 @@
 		"last": "Last"
 	},
 	"profile": {
-		"changePassword": "Change Password",
-		"editProfile": "Edit Profile",
+		"change_password": "Change Password",
+		"edit_profile": "Edit Profile",
 		"email": "Email:",
-		"fullname": "Full name: ",
-		"joinDate": "Join Date: ",
-		"lastLogin": "Last Login: ",
-		"oldPassword": "Old Password: ",
-		"oldPassword.placeholder": "Enter your current password, minimum 6 characters",
+		"join_date": "Join Date: ",
+		"last_login": "Last Login: ",
+		"old_password": "Old Password: ",
 		"password": "Password: ",
-		"password.placeholder": "Enter your new password, minimum 6 characters",
+		"placeholder": {
+			"old_password": "Enter your current password, minimum 6 characters",
+			"password": "Enter your new password, minimum 6 characters",
+			"repeat_password": "Repeat your new password"
+		},
 		"profile": "Profile",
-		"repeatPassword": "Repeat password: ",
-		"repeatPassword.placeholder": "Repeat your new password",
-		"saveProfile": "Save Profile",
-		"updateInfo": "Update User Info",
-		"updatePassword": "Update Password",
-		"userInfo": "User info",
+		"repeat_password": "Repeat password: ",
+		"save_profile": "Save Profile",
+		"update_Info": "Update User Info",
+		"update_password": "Update Password",
+		"user_Info": "User info",
 		"username": "Username: "
 	},
 	"staff": {
 		"fullname": "Full name",
-		"selectDepartment": "Select a Department",
-		"selectOccupation": "Select a Occupation",
+		"select_occupation": "Select a Occupation",
+		"select_staff": "Select a employee",
 		"staff": "Staff"
 	},
 	"users": {
-		"active": "Active",
-		"active.placeholder": "It's an active account ?",
-		"email.placeholder": "Enter a valid email",
-		"fullname": "Full name",
-		"fullname.placeholder": "Enter the user's full name.",
-		"lastLogin": "Last Login",
+		"last_login": "Last Login",
 		"lock": "Lock",
 		"locked": "Locked",
-		"neverLogged": "Never logged in",
-		"resetPassword": "Reset Password",
-		"selectRole": "Select a role",
-		"selectStaff": "Select a employee",
+		"never_logged": "Never logged in",
+		"placeholder": {
+			"active": "It's an active account ?",
+			"email": "Enter a valid email",
+			"fullname": "Enter the user's full name.",
+			"unlocked": "It's an unlocked account ?",
+			"username": "Enter a valid username, without spaces or symbols."
+		},
+		"reset_password": "Reset Password",
+		"select_role": "Select a role",
 		"show": "Show user",
 		"staff": "Staff",
 		"state": "State",
 		"unlock": "Unlock",
 		"unlocked": "Unlocked",
-		"unlocked.placeholder": "It's an unlocked account ?",
 		"user": "User",
 		"username": "Username",
-		"username.placeholder": "Enter a valid username, without spaces or symbols.",
 		"users": "Users"
 	}
 }

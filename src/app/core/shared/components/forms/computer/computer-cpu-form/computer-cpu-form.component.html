@@ -1,8 +1,8 @@
 <div class="modal-content">
     <div class="modal-header">
-        <h5 *ngIf="!computerCpu" class="modal-title" translate="modal.computerCpu.new"></h5>
+        <h5 *ngIf="!computerCpu" class="modal-title" [translate]="messages.MODAL_NEW_COMPUTER_CPU"></h5>
         <h5 *ngIf="computerCpu" class="modal-title" [translateParams]="{name: computerCpu.model}"
-            translate="modal.update">
+            [translate]="messages.MODAL_UPDATE">
         </h5>
     </div>
     <form [formGroup]="computerCpuForm" (ngSubmit)="save()">
@@ -17,57 +17,57 @@
 
             <app-input-group
             [form]="computerCpuForm"
-            translateLabel="commons.brand" 
-            translatePlaceholder="commons.placeholder.brand"
+            [translateLabel]="messages.BRAND" 
+            [translatePlaceholder]="messages.BRAND_PLACEHOLDER"
             id="brandName">
             </app-input-group>
 
             <app-input-group
             [form]="computerCpuForm"
-            translateLabel="commons.model" 
-            translatePlaceholder="commons.placeholder.model"
+            [translateLabel]="messages.MODEL" 
+            [translatePlaceholder]="messages.MODEL_PLACEHOLDER"
             id="model">
             </app-input-group>
 
             <app-input-group
             [form]="computerCpuForm"
-            translateLabel="computerCpu.generation" 
-            translatePlaceholder="computerCpu.generation.placeholder"
+            [translateLabel]="messages.COMPUTER_CPU_GENERATION" 
+            [translatePlaceholder]="messages.COMPUTER_CPU_GENERATION_PH"
             id="generation">
             </app-input-group>
 
             <app-input-group
             [form]="computerCpuForm"
-            translateLabel="computerCpu.socket" 
-            translatePlaceholder="computerCpu.socket.placeholder"
+            [translateLabel]="messages.COMPUTER_CPU_SOCKET" 
+            [translatePlaceholder]="messages.COMPUTER_CPU_SOCKET_PH"
             id="socket">
             </app-input-group>
 
             <app-input-group
             [form]="computerCpuForm"
-            translateLabel="computerCpu.core" 
-            translatePlaceholder="computerCpu.core.placeholder"
+            [translateLabel]="messages.COMPUTER_CPU_CORE" 
+            [translatePlaceholder]="messages.COMPUTER_CPU_CORE_PH"
             id="core">
             </app-input-group>
 
             <app-input-group
             [form]="computerCpuForm"
-            translateLabel="computerCpu.thread" 
-            translatePlaceholder="computerCpu.placeholder.thread"
+            [translateLabel]="messages.COMPUTER_CPU_THREAD" 
+            [translatePlaceholder]="messages.COMPUTER_CPU_THREAD_PH"
             id="thread">
             </app-input-group>
 
             <app-input-group
             [form]="computerCpuForm"
-            translateLabel="computerCpu.frequency" 
-            translatePlaceholder="computerCpu.frequency.placeholder"
+            [translateLabel]="messages.COMPUTER_CPU_FREQUENCY" 
+            [translatePlaceholder]="messages.COMPUTER_CPU_FREQUENCY_PH"
             id="frequency">
             </app-input-group>
 
             <app-input-group
             [form]="computerCpuForm"
-            translateLabel="computerCpu.fsb" 
-            translatePlaceholder="computerCpu.fsb.placeholder"
+            [translateLabel]="messages.COMPUTER_CPU_FSB" 
+            [translatePlaceholder]="messages.COMPUTER_CPU_FSB_PH"
             id="fsb">
             </app-input-group>
 
@@ -75,8 +75,8 @@
 
         <div class="modal-footer">
             <button [disabled]="loading" type="button" class="btn btn-outline-danger" (click)="closeModal()"
-                translate="commons.cancel"></button>
-            <button [disabled]="loading" type="submit" class="btn btn-success" translate="commons.save">
+                [translate]="messages.CANCEL"></button>
+            <button [disabled]="loading" type="submit" class="btn btn-success" [translate]="messages.SAVE">
                 <i *ngIf="loading" class="fas fa-spinner fa-pulse mx-1"></i>
             </button>
         </div>

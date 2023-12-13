@@ -5,6 +5,7 @@ import { Observable, finalize, of, pipe, take } from 'rxjs';
 import { IComputerCpu } from 'src/app/core/components/computer/model/computer-cpu';
 import { ComputerService } from 'src/app/core/components/computer/services/computer.service';
 import { IAbstractAutocomplete } from 'src/app/core/shared/abstracts/interface/abstract-autocomplete';
+import { TranslateMessages } from 'src/app/core/shared/commons/enum/translate-messages.enum';
 
 @Component({
   selector: 'app-computer-cpu-autocomplete',
@@ -13,6 +14,7 @@ import { IAbstractAutocomplete } from 'src/app/core/shared/abstracts/interface/a
 })
 export class ComputerCpuAutocompleteComponent implements OnInit, IAbstractAutocomplete<IComputerCpu> {
 
+  messages = TranslateMessages;
   @Input() control!: FormControl;
   register!: IComputerCpu;
   items!: Observable<IComputerCpu[]>;

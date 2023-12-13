@@ -17,25 +17,20 @@
 			"authenticated": "Autenticado con éxito",
 			"created": "Creado con éxito",
 			"deleted": "Eliminado con éxito",
-			"deviceDeleted": "Dispositivo fue inactivado",
+			"device_deleted": "Dispositivo fue inactivado",
 			"disabled": "Desactivado con éxito",
-			"passwordChanged": "Se ha cambiado la contraseña",
-			"passwordReseted": "Se ha generado una nueva contraseña y se ha enviado al correo del usuario",
-			"profileChanged": "El perfil ha sido cambiado",
-			"staffDeleted": "El funcionários ha sido eliminado",
-			"successfully": "Éxito",
+			"password_changed": "Se ha cambiado la contraseña",
+			"password_reseted": "Se ha generado una nueva contraseña y se ha enviado al correo del usuario",
+			"profile_changed": "El perfil ha sido cambiado",
+			"staff_deleted": "El funcionários ha sido eliminado",
+			"success": "Éxito",
 			"updated": "Alterado con éxito",
-			"userBlocked": "La cuenta ha sido bloqueada",
-			"userDisabled": "¡La cuenta de usuario ha sido deshabilitada!",
-			"userRoleUpdated": "Los roles de usuario han sido actualizados",
-			"userUnBlocked": "La cuenta ha sido desbloqueada",
+			"user_blocked": "La cuenta ha sido bloqueada",
+			"user_created": "La cuenta ha sido creada, los datos de inicio de sesión han sido enviados al correo electrónico del usuario",
+			"user_disabled": "¡La cuenta de usuario ha sido deshabilitada!",
+			"user_role_updated": "Los roles de usuario han sido actualizados",
+			"user_unlocked": "La cuenta ha sido desbloqueada",
 			"welcome": "Bienvenido"
-		},
-		"success": {
-			"created": "Creado con éxito",
-			"deleted": "Eliminado con éxito",
-			"updated": "Alterado con éxito",
-			"userCreated": "La cuenta ha sido creada, los datos de inicio de sesión han sido enviados al correo electrónico del usuario"
 		},
 		"warning": {
 			"ALL FIELDS ARE REQUIRED": "Todos los campos son obligatorios",
@@ -43,8 +38,8 @@
 			"BAD_REQUEST": "Datos inválidos",
 			"badRequest": "Datos inválidos",
 			"canActivatedDenied": "Acceso denegado, no tienes permiso para acceder a esta página",
+			"complete_required_fields": "Completa los campos obligatorios",
 			"DEVICE NOT FOUND": "Dispositivo no encontrado",
-			"fillFieldsRequired": "Completa los campos obligatorios",
 			"INVALID FORMAT EMAIL": "Formato de correo inválido",
 			"loginRequired": "Por favor, vuelva a iniciar sesión",
 			"No message available": "Error desconocido",
@@ -61,7 +56,9 @@
 	"branch": {
 		"branch": "Sucursal",
 		"branches": "Sucursales",
-		"name.placeholder": "Nombre de la sucursal"
+		"placeholder": {
+			"name": "Nombre de la sucursal"
+		}
 	},
 	"commons": {
 		"actions": "Acciones",
@@ -83,6 +80,7 @@
 		"email": "Correo",
 		"filterOnTheList": "Filtrar en la lista",
 		"filterResults": "Filtrar resultados",
+		"fullname": "Nombre completo",
 		"inactive": "Inactivo",
 		"model": "Modelo",
 		"name": "Nombre",
@@ -93,6 +91,7 @@
 		"optional": "Opcional",
 		"placeholder": {
 			"brand": "Marca",
+			"document": "Número de documento",
 			"model": "Modelo",
 			"type": "Tipo"
 		},
@@ -110,20 +109,19 @@
 	"company": {
 		"companies": "Empresas",
 		"company": "Empresa",
-		"document.placeholder": "Número de documento",
 		"name.placeholder": "Nombre de la empresa",
 		"selectCompany": "Selecciona una empresa"
 	},
 	"computerCpu": {
 		"core": "Núcleos",
 		"frequency": "Frecuencia (Mhz)",
-		"frequency.placeholder": "Frecuencia de CPU (Mhz)",
 		"fsb": "FSB (Mhz)",
 		"fsb.placeholder": "FSB (Bus frontal)",
 		"generation": "Generación",
 		"generation.placeholder": "Generación de CPU",
 		"placeholder": {
 			"core": "Números de núcleos",
+			"frequency": "Frecuencia de CPU (Mhz)",
 			"thread": "Números de threads"
 		},
 		"socket": "Socket",
@@ -149,44 +147,46 @@
 		"department": "Departamento",
 		"departments": "Departamentos",
 		"name.placeholder": "Nombre del departamento",
-		"selectBranch": "Selecciona una sucursal"
+		"select_branch": "Selecciona una sucursal",
+		"select_department": "Seleccione un Departamento"
 	},
 	"device": {
 		"category": "Categoria de dispositivo",
 		"code": "Código",
-		"code.placeholder": "Código del dispositivo",
-		"description.placeholder": "Descripción del dispositivo",
 		"details": "Detalles del dispositivo",
 		"device": "Dispositivo",
 		"devices": "Dispositivos",
 		"deviceUser": "Usuario del dispositivo",
 		"hostname": "Nombre de host",
-		"hostname.placeholder": "Nombre de host del dispositivo",
+		"placeholder": {
+			"code": "Código del dispositivo",
+			"description": "Descripción del dispositivo",
+			"hostname": "Nombre de host del dispositivo",
+			"serialNumber": "Número de serie",
+			"tag": "Etiqueta del dispositivo"
+		},
 		"selectCategory": "Selecciona una categoria",
 		"serialNumber": "Número de serie",
-		"serialNumber.placeholder": "Número de serie",
-		"tag": "Etiqueta",
-		"tag.placeholder": "Etiqueta del dispositivo"
-	},
-	"deviceCategory": {
-		"name": "Nombre",
-		"name.placeholder": "Nombre de la categoria"
+		"tag": "Etiqueta"
 	},
 	"deviceComputer": {
 		"computer": "Computadora",
 		"cpu": "Procesador",
-		"description.placeholder": "Descripción de la computadora",
 		"memory": "Memoria",
+		"placeholder": {
+			"description": "Descripción de la computadora",
+			"virtual": "¿Es una máquina virtual?"
+		},
 		"server": "Servidor",
 		"software": "Software",
 		"storage": "Almacenamiento",
-		"virtual": "Máquina virtual",
-		"virtual.placeholder": "¿Es una máquina virtual?"
+		"virtual": "Máquina virtual"
 	},
 	"deviceStaff": {
 		"addFeatures": "Agrega características",
-		"login": "Login",
-		"login.placeholder": "Login del usuario"
+		"placeholder": {
+			"login": "Login del usuario"
+		}
 	},
 	"forms": {
 		"email": "Debes ingresar un correo válido",
@@ -196,27 +196,30 @@
 			"only_numbers": "Solo números",
 			"strong_password": "Contraseña débil"
 		},
-		"invalidField": "Campo inválido",
+		"invalid_field": "Campo inválido",
 		"max": "El valor máximo permitido es {{n}}",
-		"maxlength": "Máximo de {{n}} caracteres permitidos",
+		"max_length": "Máximo de {{n}} caracteres permitidos",
 		"min": "El valor mínimo permitido es {{n}}",
-		"minlength": "Se requiere un mínimo de {{n}} caracteres",
-		"passwordMatch": "Las contraseñas no coinciden",
+		"min_length": "Se requiere un mínimo de {{n}} caracteres",
+		"password_match": "Las contraseñas no coinciden",
 		"pattern": "Patrón no válido",
 		"required": "Este campo es obligatorio"
 	},
 	"login": {
 		"about": "Gestión de servicios de tecnologías de la información",
-		"forgetPwd": "Olvido la contraseña? Recuperar contraseña",
-		"placeholder.password": "Su contraseña",
-		"placeholder.username": "Su nombre de usuario"
+		"forget_pwd": "Olvido la contraseña? Recuperar contraseña",
+		"login": "Login",
+		"placeholder": {
+			"password": "Su contraseña",
+			"username": "Su nombre de usuario"
+		}
 	},
 	"menu": {
-		"alldevices": "Todos los dispositivos",
+		"all_devices": "Todos los dispositivos",
 		"branches": "Sucursales",
 		"companies": "Empresas",
 		"computer": "Computador",
-		"darkMode": "Modo oscuro",
+		"darkmode": "Modo oscuro",
 		"dashboard": "Panel",
 		"departments": "Departamentos",
 		"devices": "Dispositivos",
@@ -225,70 +228,52 @@
 		"logout": " Salir",
 		"manage": "Administrar",
 		"network": "Red",
-		"noNotification": "No hay notificaciones",
 		"power": "Energia",
 		"profile": " Perfil",
 		"staff": "Funcionários",
-		"usersAccount": "Cuenta de usuarios"
+		"users_account": "Cuenta de usuarios"
 	},
 	"modal": {
-		"branch": {
-			"new": "Nuevo departamento"
+		"delete_record": "¿Estás seguro de que quieres eliminar <b>{{record}}</b>? Este cambio no se puede revertir",
+		"disable_it": "¿Estás seguro de que quieres desactivarlo? Este cambio no se puede revertir.",
+		"new": {
+			"branch": "Nuevo departamento",
+			"company": "Nueva empresa",
+			"computer_category": "Nueva categoría de computadoras",
+			"computer_cpu": "Nueva CPU",
+			"computer_memory": "Nueva memoria",
+			"computer_storage": "Nuevo almacenamiento",
+			"department": "Nuevo departamento",
+			"device": "Nuevo dispositivo",
+			"device_category": "Nueva categoria de dispositivo",
+			"device_computer": "Computadora nueva",
+			"device_staff": "Nuevo usuario de dispositivo",
+			"occupation": "Nuevo Puesto",
+			"staff": "Registrar funcionario"
 		},
-		"company": {
-			"new": "Nueva empresa"
+		"remove": {
+			"computer_cpu": "¿Está seguro de que desea quitar el procesador <b>{{record}}</b> ?",
+			"computer_memory": "¿Está seguro de que desea eliminar la memoria <b>{{record}}</b> ?",
+			"computer_storage": "¿Está seguro de que desea eliminar el almacenamiento <b>{{record}}</b> ?"
 		},
-		"computerCategory": {
-			"new": "Nueva categoría de computadoras"
-		},
-		"computerCpu": {
-			"new": "Nueva CPU",
-			"remove": "¿Está seguro de que desea quitar el procesador <b>{{record}}</b> ?"
-		},
-		"computerMemory": {
-			"new": "Nueva memoria",
-			"remove": "¿Está seguro de que desea eliminar la memoria <b>{{record}}</b> ?"
-		},
-		"computerStorage": {
-			"new": "Nuevo almacenamiento",
-			"remove": "¿Está seguro de que desea eliminar el almacenamiento <b>{{record}}</b> ?"
-		},
-		"delete": "¿Estás seguro de que quieres eliminar <b>{{record}}</b>? Este cambio no se puede revertir",
-		"department": {
-			"new": "Nuevo departamento"
-		},
-		"device": {
-			"new": "Nuevo dispositivo"
-		},
-		"deviceCategory": {
-			"new": "Nueva categoria de dispositivo"
-		},
-		"deviceComputer": {
-			"new": "Computadora nueva"
-		},
-		"deviceStaff": {
-			"new": "Nuevo usuario de dispositivo"
-		},
-		"disable": "¿Estás seguro de que quieres desactivarlo? Este cambio no se puede revertir.",
-		"occupation": {
-			"new": "Nuevo Puesto"
-		},
-		"remove": "¿Estás seguro de que quieres remover la característica <b>{{record}}</b>? ",
-		"staff": {
-			"new": "Registrar funcionario"
-		},
+		"remove_record": "¿Estás seguro de que quieres remover la característica <b>{{record}}</b>? ",
 		"update": "Alterar {{name}}",
 		"user": {
 			"disable": "¿Está seguro de que desea desactivar la cuenta de <b>{{record}}</b>? Este cambio no se puede revertir",
 			"lock": "¿Está seguro de que desea bloquear la cuenta de <b>{{record}}</b>?",
 			"new": "Nuevo Usuario",
-			"resetPassword": "¿Está seguro de que desea restablecer la contraseña del usuario?",
+			"reset_pwd": "¿Está seguro de que desea restablecer la contraseña del usuario?",
 			"update": "Actualizar usuario <b>{{record}}</b>"
 		}
 	},
+	"notification": {
+		"empty": "No hay notificaciones"
+	},
 	"occupation": {
-		"name.placeholder": "Nombre del puesto",
 		"occupation": "Puesto",
+		"placeholder": {
+			"name": "Nombre del puesto"
+		},
 		"role": "Puesto"
 	},
 	"paginator": {
@@ -296,53 +281,53 @@
 		"last": "Final"
 	},
 	"profile": {
-		"changePassword": "Alterar contraseña",
-		"editProfile": "Editar Perfil",
+		"change_password": "Alterar contraseña",
+		"edit_profile": "Editar Perfil",
 		"email": "Correo:",
-		"fullname": "Nombre completo: ",
-		"joinDate": "Fecha de inscripción: ",
-		"lastLogin": "Último Login: ",
-		"oldPassword": "Contraseña Antigua: ",
-		"oldPassword.placeholder": "Ingrese su contraseña actual, mínimo 6 caracteres",
+		"join_date": "Fecha de inscripción: ",
+		"last_login": "Último Login: ",
+		"old_password": "Contraseña Antigua: ",
 		"password": "Contraseña: ",
-		"password.placeholder": "Ingrese su nueva contraseña, mínimo 6 caracteres",
+		"placeholder": {
+			"old_password": "Ingrese su contraseña actual, mínimo 6 caracteres",
+			"password": "Ingrese su nueva contraseña, mínimo 6 caracteres",
+			"repeat_password": "Repite tu nueva contraseña"
+		},
 		"profile": "Perfil",
-		"repeatPassword": "Repite la contraseña: ",
-		"repeatPassword.placeholder": "Repite tu nueva contraseña",
-		"saveProfile": "Salvar perfil",
-		"updateInfo": "Actualizar información del usuario",
-		"updatePassword": "Actualizar contraseña",
-		"userInfo": "Informacion del usuario",
+		"repeat_password": "Repite la contraseña: ",
+		"save_profile": "Salvar perfil",
+		"update_Info": "Actualizar información del usuario",
+		"update_password": "Actualizar contraseña",
+		"user_Info": "Informacion del usuario",
 		"username": "Nombre de usuario: "
 	},
 	"staff": {
 		"fullname": "Nombre completo",
-		"selectDepartment": "Seleccione un Departamento",
-		"selectOccupation": "Seleccione un Puesto",
+		"select_occupation": "Seleccione un Puesto",
+		"select_staff": "Seleccione un funcionário",
 		"staff": "Funcionários"
 	},
 	"users": {
-		"active": "Activo",
-		"active.placeholder": "Es una cuenta activa?",
-		"email.placeholder": "Introduce un correo electrónico válido",
-		"fullname": "Nombre completo",
-		"fullname.placeholder": "Ingrese el nombre completo del usuario.",
-		"lastLogin": "Último Login",
+		"last_login": "Último Login",
 		"lock": "Bloquear",
 		"locked": "Bloqueado",
-		"neverLogged": "Nunca inició sesión",
-		"resetPassword": "Redefinir contraseña",
-		"selectRole": "Seleccione un rol",
-		"selectStaff": "Seleccione un funcionário",
+		"never_logged": "Nunca inició sesión",
+		"placeholder": {
+			"active": "Es una cuenta activa?",
+			"email": "Introduce un correo electrónico válido",
+			"fullname": "Ingrese el nombre completo del usuario.",
+			"unlocked": "Es una cuenta desbloqueada?",
+			"username": "Ingrese un nombre de usuario válido, sin espacios ni símbolos."
+		},
+		"reset_password": "Redefinir contraseña",
+		"select_role": "Seleccione un rol",
 		"show": "Mostrar usuario",
 		"staff": "Funcionários",
 		"state": "Situación",
 		"unlock": "Desbloquear",
 		"unlocked": "Desbloqueado",
-		"unlocked.placeholder": "Es una cuenta desbloqueada?",
 		"user": "Usuario",
 		"username": "Nombre de usuario",
-		"username.placeholder": "Ingrese un nombre de usuario válido, sin espacios ni símbolos.",
 		"users": "Usuarios"
 	}
 }

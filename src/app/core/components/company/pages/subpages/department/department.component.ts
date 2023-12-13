@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { IDepartment } from '../../../model/department';
 import { CompanyService } from '../../../services/company.service';
+import { TranslateMessages } from 'src/app/core/shared/commons/enum/translate-messages.enum';
 
 @Component({
   selector: 'app-department',
@@ -13,6 +14,7 @@ export class DepartmentComponent implements OnInit, OnDestroy {
   private sub: Subscription[] = [];
   departments: IDepartment[]=[];
   loading: boolean = true;
+  messages = TranslateMessages;
 
   constructor(private service: CompanyService) { }
 
@@ -58,7 +60,7 @@ export class DepartmentComponent implements OnInit, OnDestroy {
 
   confirmDelete(department: IDepartment): void {
     this.sub.push(
-      this.service.showConfirm('warning', 'delete', department.name).subscribe({
+      this.service.showConfirm(this.messages.WARNING, this.messages.MODAL_DELETE_RECORD, department.name).subscribe({
         next: (confirm) => { if(confirm) this.onDelete(department) }
       })
     );
@@ -68,7 +70,7 @@ export class DepartmentComponent implements OnInit, OnDestroy {
     this.sub.push(
       this.service.deleteDepartment(department).subscribe({
         next: (data) => {
-          this.service.onInfo('deleted', 'deleted');
+          this.service.onInfo(this.messages.INFO_DELETED, this.messages.INFO_DELETED);
           this.departments = this.departments.filter(d => d.id !== data.id);
         },
         error: (err) => this.service.onHttpError(err)

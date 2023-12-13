@@ -10,6 +10,7 @@ import { IDeviceCategory } from 'src/app/core/components/device/model/device-cat
 import { DeviceService } from 'src/app/core/components/device/services/device.service';
 import { AbstractDevice } from 'src/app/core/shared/abstracts/abstract-device';
 import { IAbstractModelForms } from 'src/app/core/shared/abstracts/interface/abstract-model-forms';
+import { TranslateMessages } from 'src/app/core/shared/commons/enum/translate-messages.enum';
 
 @Component({
   selector: 'app-device-form',
@@ -86,16 +87,16 @@ export class DeviceFormComponent extends AbstractDevice implements OnInit, OnDes
       }
     } else {
       this.deviceForm.markAllAsTouched();
-      this.service.onWarning("badRequest", "fillFieldsRequired");
+      this.service.onWarning(this.messages.WARNING_BAD_REQUEST, this.messages.WARNING_COMPLETE_REQUIRED_FIELDS);
     }
   }
 
   onSave(device: IDevice): void {
     this.result.next(device);
     if (this.device?.id) {
-      this.service.onSuccess("updated", "updated");
+      this.service.onSuccess(this.messages.INFO_SUCCESS, this.messages.INFO_UPDATED);
     } else {
-      this.service.onSuccess("created", "created");
+      this.service.onSuccess(this.messages.INFO_SUCCESS, this.messages.INFO_CREATED);
     }
     this.closeModal();
   }

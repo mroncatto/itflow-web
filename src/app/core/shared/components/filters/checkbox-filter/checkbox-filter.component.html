@@ -12,7 +12,7 @@
 
     <div class="input-group mb-2 mx-0">
         <input type="text" class="form-control form-control-sm focus-0" [maxLength]="30" [(ngModel)]="filterInput"
-            (keyup)="filter()" autofocus placeholder="{{'commons.filterOnTheList' | translate}}"
+            (keyup)="filter()" autofocus placeholder="{{messages.FILTER_ON_THE_LIST| translate}}"
             aria-describedby="basic-addon2">
         <div class="input-group-append">
             <button class="btn btn-sm btn-outline-danger focus-0" type="button" (click)="clearFilter()"
@@ -21,7 +21,7 @@
     </div>
     <div class="checkbox-filter-list">
         <span *ngIf="filterInput.length == 0; else filteredList">
-            <span *ngIf="itemList.length == 0" class="text-muted small" translate="commons.noData"></span>
+            <span *ngIf="itemList.length == 0" class="text-muted small" [translate]="messages.NO_DATA"></span>
             <li class="dropdown-item" *ngFor="let item of itemList">
                 <div class="form-check">
                     <input class="link form-check-input" type="checkbox" [(ngModel)]="item.checked"
@@ -35,7 +35,7 @@
         </span>
 
         <ng-template #filteredList>
-            <span *ngIf="filteredItemList.length == 0" class="text-muted small" translate="commons.noData"></span>
+            <span *ngIf="filteredItemList.length == 0" class="text-muted small" [translate]="messages.NO_DATA"></span>
             <li class="dropdown-item" *ngFor="let item of filteredItemList">
                 <div class="form-check">
                     <input class="link form-check-input" type="checkbox" [(ngModel)]="item.checked"
@@ -54,8 +54,8 @@
     </li>
     <div class="filter-footer d-flex justify-content-between">
         <span class="text-secondary link link-color-normal" (click)="clearSelection()"><small><strong
-                    translate="commons.clearSelection"></strong></small></span>
+                    [translate]="messages.CLEAR_SELECTION"></strong></small></span>
         <span class="text-secondary link link-color-normal" (click)="refresh()"><small><strong
-                    translate="commons.refreshList"></strong></small></span>
+                    [translate]="messages.REFRESH_LIST"></strong></small></span>
     </div>
 </ul>

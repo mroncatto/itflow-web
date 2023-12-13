@@ -62,6 +62,9 @@ export class AbstractService {
   }
 
   // ------------------ Modal Confirm --------------------------------
+  // TODO: Melhorar organizacao de mensagens i18n para o modal confirm ()
+  // - Estabelecer un padrao
+  // - Simplificar o uso: [confirm delete, confirm update, etc]
   showConfirm(title: string, message: string, param?: string): Subject<boolean> {
     const bsModalRef: BsModalRef = this.modalService.show(ConfirmComponent);
     bsModalRef.content.title = title;
@@ -80,19 +83,19 @@ export class AbstractService {
 
   // ------------------ Toast Alerts --------------------------------
   onSuccess(title: string, message: string): void {
-    this.alertService.showAlert(this.translate(`alert.success.${title}`), this.translate(`alert.success.${message}`), ToastType.SUCCESS);
+    this.alertService.showAlert(this.translate(title), this.translate(message), ToastType.SUCCESS);
   }
 
   onWarning(title: string, message: string): void {
-    this.alertService.showAlert(this.translate(`alert.warning.${title}`), this.translate(`alert.warning.${message}`), ToastType.WARNING);
+    this.alertService.showAlert(this.translate(title), this.translate(message), ToastType.WARNING);
   }
 
   onInfo(title: string, message: string): void {
-    this.alertService.showAlert(this.translate(`alert.info.${title}`), this.translate(`alert.info.${message}`), ToastType.INFO);
+    this.alertService.showAlert(this.translate(title), this.translate(message), ToastType.INFO);
   }
 
   onError(title: string, message: string): void {
-    this.alertService.showAlert(this.translate(`alert.error.${title}`), this.translate(`alert.error.${message}`), ToastType.ERROR);
+    this.alertService.showAlert(this.translate(title), this.translate(message), ToastType.ERROR);
   }
 
   onHttpError(err: HttpErrorResponse): void {
