@@ -68,9 +68,9 @@
                                 </div>
                                 <hr>
                                 <div class="user-properties d-flex flex-column align-self-start">
-                                    <span><span class="fw-bold" [translate]="messages.FULLNAME"></span> {{user.fullName}}</span>
-                                    <span><span class="fw-bold" [translate]="messages.PROFILE_USERNAME"></span> {{user.username}}</span>
-                                    <span><span class="fw-bold" [translate]="messages.PROFILE_EMAIL"></span> {{user.email}}</span>
+                                    <span><span class="fw-bold" [translate]="messages.FULLNAME"></span>: {{user.fullName}}</span>
+                                    <span><span class="fw-bold" [translate]="messages.PROFILE_USERNAME"></span>: {{user.username}}</span>
+                                    <span><span class="fw-bold" [translate]="messages.EMAIL"></span>: {{user.email}}</span>
                                 </div>
                                 
                                 <!-- Staff -->
@@ -123,7 +123,7 @@
                                         <div class="mb-2">
                                             <label for="oldPassword" [translate]="messages.PROFILE_OLD_PWD"></label>
                                             <input [type]="showPassword?'text':'password'" formControlName="oldPassword" id="oldPassword" class="form-control"
-                                            placeholder="{{messages.PROFILE_OLD_PWD | translate}}">
+                                            placeholder="{{messages.PROFILE_OLD_PWD_PH | translate}}">
                                             <app-validation-field [form]="passwordForm" [field]="'oldPassword'"></app-validation-field>
                                         </div>
                                         <div class="mb-2">

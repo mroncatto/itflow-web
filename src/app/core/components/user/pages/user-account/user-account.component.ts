@@ -199,7 +199,7 @@ export class UserAccountComponent implements OnInit, OnDestroy, IAbstractCompone
 
   confirmDisable(user: IUser): void {
     this.sub.push(
-      this.service.showConfirm(this.messages.WARNING, this.messages.INFO_USER_DISABLED, user.fullName).subscribe({
+      this.service.showConfirm(this.messages.WARNING, this.messages.MODAL_USER_DISABLE, user.fullName).subscribe({
         next: (confirm) => { if (confirm) this.onDisableUser(user) },
         error: (err) => this.service.onHttpError(err)
       })

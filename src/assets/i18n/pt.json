@@ -116,24 +116,26 @@
 		"core": "Núcleos",
 		"frequency": "Frequência (Mhz)",
 		"fsb": "FSB (Mhz)",
-		"fsb.placeholder": "FSB (Barramento Frontal)",
 		"generation": "Geração",
-		"generation.placeholder": "Geração de CPU",
 		"placeholder": {
 			"core": "Números de núcleos",
 			"frequency": "Frequência da CPU (Mhz)",
+			"fsb": "FSB (Barramento Frontal)",
+			"generation": "Geração de CPU",
+			"socket": "CPU Socket",
 			"thread": "Números de threads"
 		},
 		"socket": "Socket",
-		"socket.placeholder": "CPU Socket",
 		"thread": "Thread"
 	},
 	"computerMemory": {
 		"frequency": "Frequência (Mhz)",
-		"frequency.placeholder": "Frequência de memória",
 		"modules": "Módulos",
-		"size": "Tamanho (GB)",
-		"size.placeholder": "Tamanho da memória (GB)"
+		"placeholder": {
+			"frequency": "Frequência de memória",
+			"size": "Tamanho da memória (GB)"
+		},
+		"size": "Tamanho (GB)"
 	},
 	"computerStorage": {
 		"placeholder": {
@@ -146,7 +148,9 @@
 	"department": {
 		"department": "Departamento",
 		"departments": "Departamentos",
-		"name.placeholder": "Nome do departamento",
+		"placeholder": {
+			"name": "Nome do departamento"
+		},
 		"select_branch": "Selecione uma sucursal",
 		"select_department": "Selecione um departamento"
 	},
@@ -283,7 +287,6 @@
 	"profile": {
 		"change_password": "Mudar senha",
 		"edit_profile": "Editar Perfil",
-		"email": "Email:",
 		"join_date": "Data de inscrição: ",
 		"last_login": "Último Login: ",
 		"old_password": "Senha Antiga: ",
@@ -296,10 +299,10 @@
 		"profile": "Perfil",
 		"repeat_password": "Repita a senha: ",
 		"save_profile": "Salvar perfil",
-		"update_Info": "Atualizar informações do usuário",
+		"update_info": "Atualizar informações do usuário",
 		"update_password": "Atualizar senha",
-		"user_Info": "Informação de usuário",
-		"username": "Nome de usuário: "
+		"user_info": "Informação de usuário",
+		"username": "Nome de usuário"
 	},
 	"staff": {
 		"fullname": "Nome completo",
@@ -317,7 +320,7 @@
 			"email": "Entre com um email válido",
 			"fullname": "Digite o nome completo do usuário.",
 			"unlocked": "É uma conta desbloqueada?",
-			"username": "Digite um nome de usuário válido, sem espaços ou símbolos."
+			"username": "Digite um nome de usuário válido"
 		},
 		"reset_password": "Redefinir senha",
 		"select_role": "Selecione uma função",

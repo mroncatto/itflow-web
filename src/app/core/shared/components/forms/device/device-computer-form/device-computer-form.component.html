@@ -38,9 +38,10 @@
             <div class="modal-footer">
                 <button [disabled]="loading" type="button" class="btn btn-outline-danger" (click)="closeModal()"
                     [translate]="messages.CANCEL"></button>
-                <button [disabled]="loading || deviceComputerForm.invalid" type="submit" class="btn btn-success"
-                    (click)="save()" [translate]="messages.SAVE">
+                <button [disabled]="loading || deviceComputerForm.invalid" type="submit" 
+                class="btn btn-success" (click)="save()">
                     <i *ngIf="loading" class="fas fa-spinner fa-pulse mx-1"></i>
+                    <span [translate]="messages.SAVE"></span>
                 </button>
             </div>
 

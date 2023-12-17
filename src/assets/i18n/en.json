@@ -116,24 +116,26 @@
 		"core": "Cores",
 		"frequency": "Frequency (Mhz)",
 		"fsb": "FSB (Mhz)",
-		"fsb.placeholder": "FSB (Front Side Bus)",
 		"generation": "Generation",
-		"generation.placeholder": "Cpu generation",
 		"placeholder": {
 			"core": "Number of cores",
 			"frequency": "CPU frequency (Mhz)",
+			"fsb": "FSB (Front Side Bus)",
+			"generation": "Cpu generation",
+			"socket": "CPU Socket",
 			"thread": "Thread numbers"
 		},
 		"socket": "Socket",
-		"socket.placeholder": "CPU Socket",
 		"thread": "Thread"
 	},
 	"computerMemory": {
 		"frequency": "Frequency (Mhz)",
-		"frequency.placeholder": "Memory frequency",
 		"modules": "Modules",
-		"size": "Size (GB)",
-		"size.placeholder": "Memory size (GB)"
+		"placeholder": {
+			"frequency": "Memory frequency",
+			"size": "Memory size (GB)"
+		},
+		"size": "Size (GB)"
 	},
 	"computerStorage": {
 		"placeholder": {
@@ -146,7 +148,9 @@
 	"department": {
 		"department": "Department",
 		"departments": "Departments",
-		"name.placeholder": "Department name",
+		"placeholder": {
+			"name": "Department name"
+		},
 		"select_branch": "Select a branch",
 		"select_department": "Select a Department"
 	},
@@ -283,7 +287,6 @@
 	"profile": {
 		"change_password": "Change Password",
 		"edit_profile": "Edit Profile",
-		"email": "Email:",
 		"join_date": "Join Date: ",
 		"last_login": "Last Login: ",
 		"old_password": "Old Password: ",
@@ -296,10 +299,10 @@
 		"profile": "Profile",
 		"repeat_password": "Repeat password: ",
 		"save_profile": "Save Profile",
-		"update_Info": "Update User Info",
+		"update_info": "Update User Info",
 		"update_password": "Update Password",
-		"user_Info": "User info",
-		"username": "Username: "
+		"user_info": "User info",
+		"username": "Username"
 	},
 	"staff": {
 		"fullname": "Full name",
@@ -317,7 +320,7 @@
 			"email": "Enter a valid email",
 			"fullname": "Enter the user's full name.",
 			"unlocked": "It's an unlocked account ?",
-			"username": "Enter a valid username, without spaces or symbols."
+			"username": "Enter a valid username"
 		},
 		"reset_password": "Reset Password",
 		"select_role": "Select a role",

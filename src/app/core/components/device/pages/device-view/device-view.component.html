@@ -35,7 +35,7 @@
                                 <button class="btn btn-primary btn-sm dropdown-toggle" type="button"
                                     data-bs-toggle="dropdown" aria-expanded="false">
                                     <i class="fas fa-puzzle-piece"></i> <span class="mx-2"
-                                        [translate]="messages.UNDEFINED"></span>
+                                        [translate]="messages.DEVICE_STAFF_ADD_FEAT"></span>
                                 </button>
                                 <ul class="dropdown-menu">
                                     <li class="link" *ngIf="!device?.deviceStaff">
@@ -66,43 +66,44 @@
                                     </ng-template>
                                     <div class="py-2">
                                         <ul class="list-group list-group-flush">
-                                            <li class="list-group-item border-0"><span class="fw-bold">#</span>
-                                                {{ device.id }}
+                                            <li class="list-group-item border-0">
+                                                <span class="fw-bold">#</span>
+                                                <span>{{ device.id }}</span>
                                             </li>
-                                            <li class="list-group-item border-0"><span class="fw-bold"
-                                                    [translate]="device.code"></span>:
-                                                {{ device.code }}
+                                            <li class="list-group-item border-0">
+                                                <span class="fw-bold" [translate]="messages.DEVICE_CODE"></span>
+                                                <span>: {{ device.code }}</span>
                                             </li>
-                                            <li class="list-group-item border-0"><span class="fw-bold"
-                                                    [translate]="device.tag"></span>:
-                                                {{ device.tag }}
+                                            <li class="list-group-item border-0">
+                                                <span class="fw-bold" [translate]="messages.DEVICE_TAG"></span>
+                                                <span>: {{ device.tag }}</span>
                                             </li>
-                                            <li class="list-group-item border-0"><span class="fw-bold"
-                                                    [translate]="device.serialNumber"></span>:
-                                                {{ device.serialNumber }}
+                                            <li class="list-group-item border-0">
+                                                <span class="fw-bold" [translate]="messages.DEVICE_SERIALNUMBER"></span>
+                                                <span>: {{ device.serialNumber }}</span> 
                                             </li>
-                                            <li class="list-group-item border-0"><span class="fw-bold"
-                                                    [translate]="messages.DESCRIPTION"></span>:
-                                                {{ device.description }}
+                                            <li class="list-group-item border-0">
+                                                <span class="fw-bold" [translate]="messages.DESCRIPTION"></span>
+                                                <span>: {{ device.description }}</span>
                                             </li>
-                                            <li class="list-group-item border-0"><span class="fw-bold"
-                                                    [translate]="device.hostname"></span>:
-                                                {{ device.hostname }}
+                                            <li class="list-group-item border-0">
+                                                <span class="fw-bold" [translate]="messages.DEVICE_HOSTNAME"></span>
+                                                <span>: {{ device.hostname }}</span>
                                             </li>
-                                            <li class="list-group-item border-0"><span class="fw-bold"
-                                                    [translate]="messages.CATEGORY"></span>:
-                                                {{ device.deviceCategory.name }}
+                                            <li class="list-group-item border-0">
+                                                <span class="fw-bold" [translate]="messages.CATEGORY"></span>
+                                                <span>: {{ device.deviceCategory.name }}</span>
                                             </li>
-                                            <li class="list-group-item border-0"><span class="fw-bold"
-                                                    [translate]="messages.DEPARTMENT"></span>:
-                                                {{ device.department.name }}
+                                            <li class="list-group-item border-0">
+                                                <span class="fw-bold" [translate]="messages.DEPARTMENT"></span>
+                                                <span>: {{ device.department.name }}</span>
                                             </li>
-                                            <li *ngIf="device.active" class="list-group-item border-0"><span
-                                                    class="fw-bold" [translate]="messages.USER_STATE"></span>:
+                                            <li *ngIf="device.active" class="list-group-item border-0">
+                                                <span class="fw-bold" [translate]="messages.USER_STATE"></span>
                                                 <span class="badge bg-success mx-1" [translate]="messages.ACTIVE"></span>
                                             </li>
-                                            <li *ngIf="!device.active" class="list-group-item  border-0"><span
-                                                    class="fw-bold" [translate]="messages.USER_STATE"></span>:
+                                            <li *ngIf="!device.active" class="list-group-item  border-0">
+                                                <span class="fw-bold" [translate]="messages.USER_STATE"></span>:
                                                 <span class="badge bg-danger mx-1" [translate]="messages.INACTIVE"></span>
                                             </li>
                                         </ul>
