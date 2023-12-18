@@ -47,10 +47,12 @@
                                 <i class="fas fa-star text-warning"></i>
                                 <i class="fas fa-star text-warning"></i>
                             </div> -->
-                            <div class="join-date" *ngIf="user.joinDate" [translate]="messages.PROFILE_JOIN_DATE">
+                            <div class="join-date" *ngIf="user.joinDate">
+                                <span [translate]="messages.PROFILE_JOIN_DATE"></span>
                                 <span class="text-muted">{{user.joinDate | date}}</span>
                             </div>
-                            <div class="lastlogin-date" *ngIf="user.lastLoginDate" [translate]="messages.USER_LAST_LOGIN">
+                            <div class="lastlogin-date" *ngIf="user.lastLoginDate">
+                                <span [translate]="messages.PROFILE_LAST_LOGIN"></span>
                                 <span class="text-muted">{{user.lastLoginDate | date:'medium'}}</span>
                                 <!-- <hr class="my-2"> -->
                             </div>

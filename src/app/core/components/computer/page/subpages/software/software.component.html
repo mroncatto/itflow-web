@@ -1,0 +1,63 @@
+<div class="card">
+    <div class="card-header bg-primary fw-bold text-white flex-between">
+        <div>
+            <span [translate]="messages.DEVICE_COMPUTER_SOFTWARE"></span>
+            <div class="spinner-border spinner-border-sm mx-2" role="status" *ngIf="loading">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+        <div>
+            <button class="btn btn-success text-white" (click)="onCreate()">
+                <i class="fas fa-plus"></i>&nbsp;<span [translate]="messages.NEW"></span>
+            </button>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table table-stripped">
+            <thead>
+                <th>#</th>
+                <th [translate]="messages.NAME"></th>
+                <th [translate]="messages.DEVELOPER"></th>
+                <th [translate]="messages.COMPUTER_SOFTWARE_LICENSES"></th>
+                <th></th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let sw of softwares">
+                    <td>{{ sw.id}}</td>
+                    <td>{{ sw.name }}</td>
+                    <td>{{ sw.developer }}</td>
+                    <td class="d-flex gap-1">
+                        <span class="badge bg-info bg-rounded">{{ countActiveLicenses(sw.licenses) }}</span> 
+                        <span *ngIf="expiredLicense(sw.licenses)" class="small badge bg-danger" [translate]="messages.COMPUTER_SOFTWARE_LICENSE_EXPIRED">Clave Expirada!</span>
+                    </td>
+                    <td>
+                        <i title="{{messages.ACTIONS| translate}}" class="fas fa-chevron-circle-down link" [id]="sw.id"
+                            data-bs-toggle="dropdown"></i>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li class="link-spin">
+                                <a (click)="onUpdate(sw)" class="dropdown-item">
+                                    <i class="fas fa-pen"></i>&nbsp;
+                                    <span [translate]="messages.EDIT"></span>
+                                </a>
+                            </li>
+                            <div>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li class="link-spin">
+                                    <a (click)="confirmDelete(sw)" class="dropdown-item">
+                                        <i class="fas fa-trash text-danger"></i>&nbsp;<span
+                                            [translate]="messages.DELETE"></span>
+                                    </a>
+                                </li>
+                            </div>
+                        </ul>
+                    </td>
+                </tr>
+                <tr *ngIf="softwares.length === 0">
+                    <td colspan="3" [translate]="messages.NO_DATA"></td>
+                </tr>
+            </tbody>
+        </table> 
+    </div>
+</div>

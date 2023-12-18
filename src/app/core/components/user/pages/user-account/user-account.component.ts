@@ -163,7 +163,7 @@ export class UserAccountComponent implements OnInit, OnDestroy, IAbstractCompone
   confirmLockUnLockUser(user: IUser): void {
     if (user.nonLocked) {
       this.sub.push(
-        this.service.showConfirm(this.messages.WARNING, this.messages.INFO_USER_UNLOCKED, user.fullName).subscribe({
+        this.service.showConfirm(this.messages.WARNING, this.messages.MODAL_USER_LOCK, user.fullName).subscribe({
           next: (confirm) => { if (confirm) this.onLockUnLockUser(user) },
           error: (err) => this.service.onHttpError(err)
         })

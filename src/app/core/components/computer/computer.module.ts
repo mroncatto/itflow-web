@@ -8,6 +8,7 @@ import { CategoryComponent } from './page/subpages/category/category.component';
 import { CpuComponent } from './page/subpages/cpu/cpu.component';
 import { MemoryComponent } from './page/subpages/memory/memory.component';
 import { StorageComponent } from './page/subpages/storage/storage.component';
+import { SoftwareComponent } from './page/subpages/software/software.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { StorageComponent } from './page/subpages/storage/storage.component';
     CategoryComponent,
     CpuComponent,
     MemoryComponent,
-    StorageComponent
+    StorageComponent,
+    SoftwareComponent
   ],
   imports: [
     CommonModule,

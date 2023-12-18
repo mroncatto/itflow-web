@@ -23,6 +23,7 @@
                     <a [ngClass]="{ active: page == pages[1] }" [routerLink]="['/computer/register']" [queryParams]="{page: 'cpu'}" class="list-group-item link" [translate]="messages.DEVICE_COMPUTER_CPU"></a>
                     <a [ngClass]="{ active: page == pages[2] }" [routerLink]="['/computer/register']" [queryParams]="{page: 'memory'}" class="list-group-item link" [translate]="messages.DEVICE_COMPUTER_MEMORY"></a>
                     <a [ngClass]="{ active: page == pages[3] }" [routerLink]="['/computer/register']" [queryParams]="{page: 'storage'}" class="list-group-item link" [translate]="messages.DEVICE_COMPUTER_STORAGE"></a>
+                    <a [ngClass]="{ active: page == pages[4] }" [routerLink]="['/computer/register']" [queryParams]="{page: 'software'}" class="list-group-item link" [translate]="messages.DEVICE_COMPUTER_SOFTWARE"></a>
                 </div>
             </div>
             <div class="col-md-8 col-xl-10 col-12">
@@ -30,6 +31,7 @@
                 <app-cpu *ngIf="page==pages[1]"></app-cpu>
                 <app-memory *ngIf="page==pages[2]"></app-memory>
                 <app-storage *ngIf="page==pages[3]"></app-storage>
+                <app-software *ngIf="page==pages[4]"></app-software>
             </div>
         </div>
     </div>

@@ -74,6 +74,7 @@
 		"delete": "Eliminar",
 		"description": "Descripción",
 		"details": "Detalles",
+		"developer": "Desarrollador",
 		"disable": "Desactivar",
 		"document": "Documento",
 		"edit": "Editar",
@@ -136,6 +137,14 @@
 			"size": "Tamaño de memoria (GB)"
 		},
 		"size": "Tamaño (GB)"
+	},
+	"computerSoftware": {
+		"license_expired": "Licencia expirada",
+		"licenses": "Licencias",
+		"placeholder": {
+			"name": "Nombre del programa"
+		},
+		"software_license": "Licencias de software"
 	},
 	"computerStorage": {
 		"placeholder": {
@@ -246,6 +255,7 @@
 			"computer_category": "Nueva categoría de computadoras",
 			"computer_cpu": "Nueva CPU",
 			"computer_memory": "Nueva memoria",
+			"computer_software": "Nuevo software",
 			"computer_storage": "Nuevo almacenamiento",
 			"department": "Nuevo departamento",
 			"device": "Nuevo dispositivo",

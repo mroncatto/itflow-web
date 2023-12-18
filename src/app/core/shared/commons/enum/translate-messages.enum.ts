@@ -15,7 +15,7 @@ export enum TranslateMessages {
     INFO_USER_BLOCKED="alert.info.user_blocked",
     INFO_USER_DISABLED="alert.info.user_disabled",
     INFO_USER_ROLE_UPDATE="alert.info.user_role_updated",
-    INFO_USER_UNLOCKED="alert.info.user_Unlocked",
+    INFO_USER_UNLOCKED="alert.info.user_unlocked",
     INFO_WELCOME="alert.info.welcome",
 
     // WARNING
@@ -62,6 +62,7 @@ export enum TranslateMessages {
     DELETE="commons.delete",
     DESCRIPTION="commons.description",
     DETAILS="commons.details",
+    DEVELOPER="commons.developer",
     DISABLE="commons.disable",
     DOCUMENT="commons.document",
     DOCUMENT_PLACEHOLDER="commons.placeholder.document",
@@ -123,6 +124,12 @@ export enum TranslateMessages {
     COMPUTER_STORAGE_SIZE_TRANSFER_RATE_PH="computerStorage.placeholder.transferRate",
     COMPUTER_STORAGE_SIZE="computerStorage.size",
     COMPUTER_STORAGE_TRANSFER_RATE="computerStorage.transferRate",
+
+
+    // COMPUTER SOFTWARE
+    COMPUTER_SOFTWARE_NAME_PH="computerSoftware.placeholder.name",
+    COMPUTER_SOFTWARE_LICENSES="computerSoftware.licenses",
+    COMPUTER_SOFTWARE_LICENSE_EXPIRED="computerSoftware.license_expired",
 
     // DEPARTMENT
     DEPARTMENT="department.department",
@@ -212,6 +219,7 @@ export enum TranslateMessages {
     MODAL_NEW_COMPUTER_CATEGORY="modal.new.computer_category",
     MODAL_NEW_COMPUTER_CPU="modal.new.computer_cpu",
     MODAL_NEW_COMPUTER_MEMORY="modal.new.computer_memory",
+    MODAL_NEW_COMPUTER_SOFTWARE="modal.new.computer_software",
     MODAL_NEW_COMPUTER_STORAGE="modal.new.computer_storage",
     MODAL_NEW_DEPARTMENT="modal.new.department",
     MODAL_NEW_DEVICE="modal.new.device",

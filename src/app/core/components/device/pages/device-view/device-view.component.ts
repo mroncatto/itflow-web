@@ -188,11 +188,8 @@ export class DeviceViewComponent extends AbstractComponent implements OnInit {
   }
 
   canAddFeatures(): boolean {
-    if (this.device) {
-      return this.device.active
-        && (this.device.deviceStaff == null)
-        || (this.device.deviceComputer == null);
-    }
+    if (this.device)
+      return this.device.active && (this.device.deviceStaff == null || this.device.deviceComputer == null);
 
     return false;
   }

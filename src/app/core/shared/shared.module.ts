@@ -35,6 +35,7 @@ import { ComputerCpuAutocompleteComponent } from './components/commons/autocompl
 import { InputGroupComponent } from './components/commons/input-group/input-group.component';
 import { ComputerMemoryAutocompleteComponent } from './components/commons/autocomplete/computer-memory-autocomplete/computer-memory-autocomplete.component';
 import { ComputerStorageAutocompleteComponent } from './components/commons/autocomplete/computer-storage-autocomplete/computer-storage-autocomplete.component';
+import { ComputerSoftwareFormComponent } from './components/forms/computer/computer-software-form/computer-software-form.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import { ComputerStorageAutocompleteComponent } from './components/commons/autoc
     InputGroupComponent,
     ComputerMemoryAutocompleteComponent,
     ComputerStorageAutocompleteComponent,
+    ComputerSoftwareFormComponent,
   ],
   imports: [
     CommonModule,

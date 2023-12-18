@@ -32,7 +32,6 @@ export class MenuService extends AbstractService {
       new MenuItem().icon('fa-user').routerLink('').translate(this.messages.DEVICE_USER),
       new MenuItem().icon('fa-plug').routerLink('').translate(this.messages.MENU_POWER),
       new MenuItem().icon('fa-ethernet').routerLink('').translate(this.messages.MENU_NETWORK),
-      
     ),
   };
 
@@ -52,6 +51,7 @@ export class MenuService extends AbstractService {
         new TopbarSubMenuItem().setName(this.messages.DEVICE_COMPUTER_CPU).setRouter('computer/register').setPageParam('cpu'),
         new TopbarSubMenuItem().setName(this.messages.DEVICE_COMPUTER_MEMORY).setRouter('computer/register').setPageParam('memory'),
         new TopbarSubMenuItem().setName(this.messages.DEVICE_COMPUTER_STORAGE).setRouter('computer/register').setPageParam('storage'),
+        new TopbarSubMenuItem().setName(this.messages.DEVICE_COMPUTER_SOFTWARE).setRouter('computer/register').setPageParam('software'),
       )
     ),
   }

@@ -74,6 +74,7 @@
 		"delete": "Delete",
 		"description": "Description",
 		"details": "Details",
+		"developer": "Developer",
 		"disable": "Disable",
 		"document": "Document",
 		"edit": "Edit",
@@ -136,6 +137,14 @@
 			"size": "Memory size (GB)"
 		},
 		"size": "Size (GB)"
+	},
+	"computerSoftware": {
+		"license_expired": "License Expired",
+		"licenses": "Licenses",
+		"placeholder": {
+			"name": "Software name"
+		},
+		"software_license": "Software licenses"
 	},
 	"computerStorage": {
 		"placeholder": {
@@ -246,6 +255,7 @@
 			"computer_category": "New computer category",
 			"computer_cpu": "New CPU",
 			"computer_memory": "New memory",
+			"computer_software": "New Software",
 			"computer_storage": "New storage",
 			"department": "New department",
 			"device": "New device",

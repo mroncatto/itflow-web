@@ -21,6 +21,9 @@ import { DeviceComputerMemoryForm, IDeviceComputerMemory } from '../../device/mo
 import { DeviceComputerMemoryValidation } from '../../device/validation/device-computer-memory-validation';
 import { DeviceComputerStorageForm, IDeviceComputerStorage } from '../../device/model/device-computer-storage';
 import { DeviceComputerStorageValidation } from '../../device/validation/device-computer-storage-validation';
+import { ComputerSoftwareForm, IComputerSoftware } from '../model/computer-software';
+import { ComputerSoftwareFormComponent } from 'src/app/core/shared/components/forms/computer/computer-software-form/computer-software-form.component';
+import { ComputerSoftwareValidation } from '../validation/computer-software-validation';
 
 @Injectable({
   providedIn: 'root'
@@ -78,16 +81,32 @@ export class ComputerService extends AbstractService {
     return this.http.get<IComputerMemory[]>(`${this.API_URL}/computer/memory`);
   }
 
+  getComputerSoftware(): Observable<IComputerSoftware[]> {
+    return this.http.get<IComputerSoftware[]>(`${this.API_URL}/computer/software`);
+  }
+
   createComputerMemory(computerMemory: IComputerMemory): Observable<IComputerMemory> {
     return this.http.post<IComputerMemory>(`${this.API_URL}/computer/memory`, computerMemory);
+  }
+
+  createComputerSoftware(computerSoftware: IComputerSoftware): Observable<IComputerSoftware> {
+    return this.http.post<IComputerSoftware>(`${this.API_URL}/computer/software`, computerSoftware);
   }
 
   updateComputerMemory(computerMemory: IComputerMemory): Observable<IComputerMemory> {
     return this.http.put<IComputerMemory>(`${this.API_URL}/computer/memory`, computerMemory);
   }
 
+  updateComputerSoftware(computerSoftware: IComputerSoftware): Observable<IComputerSoftware> {
+    return this.http.put<IComputerSoftware>(`${this.API_URL}/computer/software`, computerSoftware);
+  }
+
   deleteComputerMemory(id: number): Observable<IComputerMemory> {
     return this.http.delete<IComputerMemory>(`${this.API_URL}/computer/memory/${id}`);
+  }
+
+  deleteComputerSoftware(id: number): Observable<IComputerSoftware> {
+    return this.http.delete<IComputerSoftware>(`${this.API_URL}/computer/software/${id}`);
   }
 
   getComputerStorage(): Observable<IComputerStorage[]> {
@@ -142,6 +161,15 @@ export class ComputerService extends AbstractService {
     })
   }
 
+  getComputerSoftwareForm(software?: IComputerSoftware): FormGroup<ComputerSoftwareForm> {
+    return this.formBuilder.group({
+      id: [software ? software.id : ''],
+      name: [software ? software.name : '', ComputerSoftwareValidation.software_name() ],
+      developer: [software ? software.developer : '', ComputerSoftwareValidation.developer()],
+      active: [true, Validators.required]
+    })
+  }
+
   getComputerStorageForm(storage?: IComputerStorage): FormGroup<ComputerStorageForm> {
     return this.formBuilder.group({
       id: [storage ? storage.id : ''],
@@ -187,6 +215,10 @@ export class ComputerService extends AbstractService {
 
   getComputerMemoryModal(memory?: IComputerMemory): Observable<IComputerMemory> {
     return this.callModal(ComputerMemoryFormComponent, memory);
+  }
+
+  getComputerSoftwareModal(software?: IComputerSoftware): Observable<IComputerSoftware> {
+    return this.callModal(ComputerSoftwareFormComponent, software);
   }
 
   getComputerStorageModal(storage?: IComputerStorage): Observable<IComputerStorage> {
