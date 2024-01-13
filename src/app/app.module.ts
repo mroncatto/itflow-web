@@ -18,6 +18,7 @@ import { registerLocaleData } from '@angular/common';
 import { ToastrModule } from 'ngx-toastr';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { FormsModule } from '@angular/forms';
+import { LOCALE_ID } from '@angular/core';
 
 registerLocaleData(localeEn, 'en-US');
 registerLocaleData(localeEs, 'es-PY');
@@ -45,7 +46,8 @@ registerLocaleData(localePt, 'pt-BR');
     SharedModule,
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true },
+    { provide: LOCALE_ID, useValue: 'en-US' }
   ],
   bootstrap: [AppComponent]
 })

@@ -13,6 +13,7 @@ export class InputGroupComponent {
   @Input() translateLabel: string = "";
   @Input() translatePlaceholder: string = "";
   @Input() type: string = "text";
+  @Input() datepicker: string = "";
 
   isRequired(): boolean {
     const control = this.form.get(this.id);
@@ -24,6 +25,10 @@ export class InputGroupComponent {
 
   getControl(): any {
     return this.form.get(this.id);
+  }
+
+  isDatePicker(): boolean {
+    return this.datepicker === "bsDatepicker";
   }
 
 }

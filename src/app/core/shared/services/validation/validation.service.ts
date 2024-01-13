@@ -28,6 +28,8 @@ export class ValidationService {
     if (form.hasError('maxlength')) return this.translateService.instant(this.messages.FORMS_MAX_LENGTH, {n: form.errors?.['maxlength'].requiredLength});
     if (form.hasError('min')) return this.translateService.instant(this.messages.FORMS_MIN, {n: form.errors?.['min'].min});
     if (form.hasError('max')) return this.translateService.instant(this.messages.FORMS_MAX, {n: form.errors?.['max'].max});
+    if (form.hasError('dateGreaterThanToday')) return this.translateService.instant(this.messages.FORMS_DATE_GREATER_THAN_TODAY);
+    if (form.hasError('dateLessThanToday')) return this.translateService.instant(this.messages.FORMS_DATE_LESS_THAN_TODAY);
     return this.translateService.instant(this.messages.FORMS_INVALID_FIELD);
   }
 

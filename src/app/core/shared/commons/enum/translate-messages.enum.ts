@@ -1,5 +1,11 @@
 export enum TranslateMessages {
 
+
+    //CONFIG
+    CONFIG_LOCALE="config.locale",
+
+
+    //INFO
     INFO_SUCCESS="alert.info.success",
     INFO_CREATED="alert.info.created",
     INFO_DELETED="alert.info.deleted",
@@ -51,6 +57,7 @@ export enum TranslateMessages {
     ACTIONS="commons.actions",
     ACTIVE="commons.active",
     ADD="commons.add",
+    ATTENTION="commons.attention",
     BRAND="commons.brand",
     BRAND_PLACEHOLDER="commons.placeholder.brand",
     CANCEL="commons.cancel",
@@ -59,6 +66,7 @@ export enum TranslateMessages {
     CLEAN_FILTER="commons.cleanFilter",
     CLEAR_SELECTION="commons.clearSelection",
     CLOSE="commons.close",
+    CODE="commons.code",
     DELETE="commons.delete",
     DESCRIPTION="commons.description",
     DETAILS="commons.details",
@@ -72,6 +80,7 @@ export enum TranslateMessages {
     FILTER_RESULTS="commons.filterResults",
     FULLNAME="commons.fullname",
     INACTIVE="commons.inactive",
+    LICENSES="commons.licenses",
     MODEL="commons.model",
     MODEL_PLACEHOLDER="commons.placeholder.model",
     NAME="commons.name",
@@ -128,8 +137,14 @@ export enum TranslateMessages {
 
     // COMPUTER SOFTWARE
     COMPUTER_SOFTWARE_NAME_PH="computerSoftware.placeholder.name",
-    COMPUTER_SOFTWARE_LICENSES="computerSoftware.licenses",
+    COMPUTER_SOFTWARE_LICENSES="computerSoftware.software_license",
     COMPUTER_SOFTWARE_LICENSE_EXPIRED="computerSoftware.license_expired",
+
+    // COMPUTER LICENSE
+    COMPUTER_LICENSE_EXPIRE_AT="computerLicense.expire_at",
+    COMPUTER_LICENSE_NO_EXPIRE="computerLicense.no_expire",
+    COMPUTER_LICENSE_KEYS="computerLicense.keys",
+    COMPUTER_LICENSE_MANAGE_KEYS="computerLicense.manage_keys",
 
     // DEPARTMENT
     DEPARTMENT="department.department",
@@ -137,6 +152,7 @@ export enum TranslateMessages {
     DEPARTMENT_NAME_PH="department.placeholder.name",
     SELECT_BRANCH="department.select_branch",
     SELECT_DEPARTMENT="department.select_department",
+    SELECT_SOFTWARE="computerSoftware.select_software",
 
     // DEVICE
     DEVICE="device.device",
@@ -185,6 +201,8 @@ export enum TranslateMessages {
     FORMS_PASSWORD_MATCH="forms.password_match",
     FORMS_PATTERN="forms.pattern",
     FORMS_REQUIRED="forms.required",
+    FORMS_DATE_GREATER_THAN_TODAY="forms.date_greater_than_today",
+    FORMS_DATE_LESS_THAN_TODAY="forms.date_less_than_today",
 
     // LOGIN
     LOGIN="login.login",
@@ -220,6 +238,7 @@ export enum TranslateMessages {
     MODAL_NEW_COMPUTER_CPU="modal.new.computer_cpu",
     MODAL_NEW_COMPUTER_MEMORY="modal.new.computer_memory",
     MODAL_NEW_COMPUTER_SOFTWARE="modal.new.computer_software",
+    MODAL_NEW_COMPUTER_LICENSE="modal.new.computer_license",
     MODAL_NEW_COMPUTER_STORAGE="modal.new.computer_storage",
     MODAL_NEW_DEPARTMENT="modal.new.department",
     MODAL_NEW_DEVICE="modal.new.device",
@@ -238,6 +257,8 @@ export enum TranslateMessages {
     MODAL_USER_NEW="modal.user.new",
     MODAL_USER_RESET_PWD="modal.user.reset_pwd",
     MODAL_USER_UPDATE="modal.user.update",
+    MODAL_DELETE_SOFTWARE_LICENSES="modal.software.warning_licenses",
+    MODAL_DELETE_LICENSE_KEYS="modal.software.warning_licenses_keys",
 
     // NOTIFICATIONS
     NOTIFICATION_EMPTY="notification.empty",

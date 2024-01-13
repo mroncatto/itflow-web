@@ -24,6 +24,9 @@ import { DeviceComputerStorageValidation } from '../../device/validation/device-
 import { ComputerSoftwareForm, IComputerSoftware } from '../model/computer-software';
 import { ComputerSoftwareFormComponent } from 'src/app/core/shared/components/forms/computer/computer-software-form/computer-software-form.component';
 import { ComputerSoftwareValidation } from '../validation/computer-software-validation';
+import { ISoftwareLicense, SoftwareLicenseForm } from '../model/software-license';
+import { SoftwareLicenseValidation } from '../validation/software-license-validation';
+import { ComputerLicenseFormComponent } from 'src/app/core/shared/components/forms/computer/computer-license-form/computer-license-form.component';
 
 @Injectable({
   providedIn: 'root'
@@ -85,12 +88,20 @@ export class ComputerService extends AbstractService {
     return this.http.get<IComputerSoftware[]>(`${this.API_URL}/computer/software`);
   }
 
+  getSoftwareLicense(): Observable<ISoftwareLicense[]> {
+    return this.http.get<ISoftwareLicense[]>(`${this.API_URL}/computer/license`);
+  }
+
   createComputerMemory(computerMemory: IComputerMemory): Observable<IComputerMemory> {
     return this.http.post<IComputerMemory>(`${this.API_URL}/computer/memory`, computerMemory);
   }
 
   createComputerSoftware(computerSoftware: IComputerSoftware): Observable<IComputerSoftware> {
     return this.http.post<IComputerSoftware>(`${this.API_URL}/computer/software`, computerSoftware);
+  }
+
+  createSoftwareLicense(softwareLicense: ISoftwareLicense): Observable<ISoftwareLicense> {
+    return this.http.post<ISoftwareLicense>(`${this.API_URL}/computer/license`, softwareLicense);
   }
 
   updateComputerMemory(computerMemory: IComputerMemory): Observable<IComputerMemory> {
@@ -101,12 +112,20 @@ export class ComputerService extends AbstractService {
     return this.http.put<IComputerSoftware>(`${this.API_URL}/computer/software`, computerSoftware);
   }
 
+  updateSoftwareLicense(softwareLicense: ISoftwareLicense): Observable<ISoftwareLicense> {
+    return this.http.put<ISoftwareLicense>(`${this.API_URL}/computer/license`, softwareLicense);
+  }
+
   deleteComputerMemory(id: number): Observable<IComputerMemory> {
     return this.http.delete<IComputerMemory>(`${this.API_URL}/computer/memory/${id}`);
   }
 
   deleteComputerSoftware(id: number): Observable<IComputerSoftware> {
     return this.http.delete<IComputerSoftware>(`${this.API_URL}/computer/software/${id}`);
+  }
+
+  deleteSoftwareLicense(id: number): Observable<ISoftwareLicense> {
+    return this.http.delete<ISoftwareLicense>(`${this.API_URL}/computer/license/${id}`);
   }
 
   getComputerStorage(): Observable<IComputerStorage[]> {
@@ -164,10 +183,23 @@ export class ComputerService extends AbstractService {
   getComputerSoftwareForm(software?: IComputerSoftware): FormGroup<ComputerSoftwareForm> {
     return this.formBuilder.group({
       id: [software ? software.id : ''],
-      name: [software ? software.name : '', ComputerSoftwareValidation.software_name() ],
+      name: [software ? software.name : '', ComputerSoftwareValidation.software_name()],
       developer: [software ? software.developer : '', ComputerSoftwareValidation.developer()],
       active: [true, Validators.required]
     })
+  }
+
+  getSoftwareLicenseForm(license?: ISoftwareLicense): FormGroup<SoftwareLicenseForm> {
+    const { id, description, code, expireAt, software } = license || {} as ISoftwareLicense;
+
+    return this.formBuilder.group({
+      id: [id || ''],
+      description: [description || '', SoftwareLicenseValidation.desc()],
+      code: [code || '', SoftwareLicenseValidation.code()],
+      expireAt: [expireAt ? new Date(expireAt) : '', SoftwareLicenseValidation.expireAt()],
+      software: [software || '', SoftwareLicenseValidation.software()],
+      active: [true, Validators.required]
+    });
   }
 
   getComputerStorageForm(storage?: IComputerStorage): FormGroup<ComputerStorageForm> {
@@ -182,7 +214,7 @@ export class ComputerService extends AbstractService {
 
   getDeviceComputerCpuForm(deviceComputer: IDeviceComputer, cpu?: IDeviceComputerCpu): FormGroup<DeviceComputerCpuForm> {
     return this.formBuilder.group({
-      deviceComputer: [ deviceComputer ],
+      deviceComputer: [deviceComputer],
       computerCpu: [cpu ? cpu.computerCpu : '', DeviceComputerCpuValidation.computerCpu()],
       core: [cpu ? cpu.core : '', DeviceComputerCpuValidation.core()],
     })
@@ -190,7 +222,7 @@ export class ComputerService extends AbstractService {
 
   getDeviceComputerMemoryForm(deviceComputer: IDeviceComputer, memory?: IDeviceComputerMemory): FormGroup<DeviceComputerMemoryForm> {
     return this.formBuilder.group({
-      deviceComputer: [ deviceComputer ],
+      deviceComputer: [deviceComputer],
       computerMemory: [memory ? memory.computerMemory : '', DeviceComputerMemoryValidation.computerMemory()],
       modules: [memory ? memory.modules : '', DeviceComputerMemoryValidation.modules()],
     })
@@ -198,7 +230,7 @@ export class ComputerService extends AbstractService {
 
   getDeviceComputerStorageForm(deviceComputer: IDeviceComputer, storage?: IDeviceComputerStorage): FormGroup<DeviceComputerStorageForm> {
     return this.formBuilder.group({
-      deviceComputer: [ deviceComputer ],
+      deviceComputer: [deviceComputer],
       computerStorage: [storage ? storage.computerStorage : '', DeviceComputerStorageValidation.computerStorage()],
       size: [storage ? storage.size : '', DeviceComputerStorageValidation.size()],
     })
@@ -223,6 +255,10 @@ export class ComputerService extends AbstractService {
 
   getComputerStorageModal(storage?: IComputerStorage): Observable<IComputerStorage> {
     return this.callModal(ComputerStorageFormComponent, storage);
+  }
+
+  getSoftwareLicenseModal(license?: ISoftwareLicense): Observable<ISoftwareLicense> {
+   return this.callModal(ComputerLicenseFormComponent, license);
   }
 
 }

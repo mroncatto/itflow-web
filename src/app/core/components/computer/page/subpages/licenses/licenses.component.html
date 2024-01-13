@@ -16,28 +16,36 @@
         <table class="table table-stripped">
             <thead>
                 <th>#</th>
-                <th [translate]="messages.NAME"></th>
-                <th [translate]="messages.DEVELOPER"></th>
-                <th [translate]="messages.COMPUTER_SOFTWARE_LICENSES"></th>
+                <th [translate]="messages.CODE"></th>
+                <th [translate]="messages.DESCRIPTION"></th>
+                <th [translate]="messages.COMPUTER_LICENSE_EXPIRE_AT"></th>
+                <th [translate]="messages.DEVICE_COMPUTER_SOFTWARE"></th>
+                <th [translate]="messages.COMPUTER_LICENSE_KEYS"></th>
                 <th></th>
             </thead>
             <tbody>
-                <tr *ngFor="let sw of softwares">
-                    <td>{{ sw.id}}</td>
-                    <td>{{ sw.name }}</td>
-                    <td>{{ sw.developer }}</td>
+                <tr *ngFor="let lic of licenses">
+                    <td>{{ lic.id}}</td>
+                    <td>{{ lic.code }}</td>
+                    <td>{{ lic.description }}</td>
+                    <td *ngIf="lic.expireAt">{{ lic.expireAt | date:'mediumDate':'':(messages.CONFIG_LOCALE | translate )}}</td>
+                    <td class="text-muted" *ngIf="!lic.expireAt" [translate]="messages.COMPUTER_LICENSE_NO_EXPIRE"></td>
+                    <td>{{ lic.software.name }}</td>
+                    <td>{{ getCountKeys(lic) }}</td>
                     <td>
-                        <span class="badge bg-info bg-rounded">{{ countActiveLicenses(sw.licenses) }}</span> 
-                        <span *ngIf="expiredLicense(sw.licenses)" class="small badge bg-danger m-1" [translate]="messages.COMPUTER_SOFTWARE_LICENSE_EXPIRED"></span>
-                    </td>
-                    <td>
-                        <i title="{{messages.ACTIONS| translate}}" class="fas fa-chevron-circle-down link" [id]="sw.id"
+                        <i title="{{messages.ACTIONS| translate}}" class="fas fa-chevron-circle-down link" [id]="lic.id"
                             data-bs-toggle="dropdown"></i>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li class="link-spin">
-                                <a (click)="onUpdate(sw)" class="dropdown-item">
+                                <a (click)="onUpdate(lic)" class="dropdown-item">
                                     <i class="fas fa-pen"></i>&nbsp;
                                     <span [translate]="messages.EDIT"></span>
+                                </a>
+                            </li>
+                            <li class="link-spin">
+                                <a class="dropdown-item">
+                                    <i class="fas fa-key"></i>&nbsp;
+                                    <span [translate]="messages.COMPUTER_LICENSE_MANAGE_KEYS"></span>
                                 </a>
                             </li>
                             <div>
@@ -45,7 +53,7 @@
                                     <hr class="dropdown-divider">
                                 </li>
                                 <li class="link-spin">
-                                    <a (click)="confirmDelete(sw)" class="dropdown-item">
+                                    <a (click)="confirmDelete(lic)" class="dropdown-item">
                                         <i class="fas fa-trash text-danger"></i>&nbsp;<span
                                             [translate]="messages.DELETE"></span>
                                     </a>
@@ -54,8 +62,8 @@
                         </ul>
                     </td>
                 </tr>
-                <tr *ngIf="softwares.length === 0">
-                    <td colspan="4" [translate]="messages.NO_DATA"></td>
+                <tr *ngIf="licenses.length === 0">
+                    <td colspan="5" [translate]="messages.NO_DATA"></td>
                 </tr>
             </tbody>
         </table> 

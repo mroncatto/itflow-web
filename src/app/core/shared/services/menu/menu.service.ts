@@ -52,6 +52,7 @@ export class MenuService extends AbstractService {
         new TopbarSubMenuItem().setName(this.messages.DEVICE_COMPUTER_MEMORY).setRouter('computer/register').setPageParam('memory'),
         new TopbarSubMenuItem().setName(this.messages.DEVICE_COMPUTER_STORAGE).setRouter('computer/register').setPageParam('storage'),
         new TopbarSubMenuItem().setName(this.messages.DEVICE_COMPUTER_SOFTWARE).setRouter('computer/register').setPageParam('software'),
+        new TopbarSubMenuItem().setName(this.messages.COMPUTER_SOFTWARE_LICENSES).setRouter('computer/register').setPageParam('license'),
       )
     ),
   }

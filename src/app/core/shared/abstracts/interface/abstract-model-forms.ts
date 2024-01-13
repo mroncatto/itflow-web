@@ -9,6 +9,5 @@ export interface IAbstractModelForms<T> {
     save(): void;
     onSave(entity: T): void;
     onError(err: HttpErrorResponse): void;
-    ngOnDestroy(): void;
     closeModal(): void;
 }

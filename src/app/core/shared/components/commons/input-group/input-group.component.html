@@ -1,6 +1,8 @@
 <div class="mb-3" *ngIf="form">
     <label [for]="id" [translate]="translateLabel" [ngClass]="{'validation-required': isRequired()}"></label>
-    <input autocomplete="off" [type]="type" [formControl]="getControl()" [id]="id" class="form-control"
+    <input *ngIf="!isDatePicker()" autocomplete="off" [type]="type" [formControl]="getControl()" [id]="id" class="form-control"
         placeholder="{{translatePlaceholder | translate}}">
+    <input *ngIf="isDatePicker()" autocomplete="off" type="text" [formControl]="getControl()" [id]="id" class="form-control"
+        placeholder="{{translatePlaceholder | translate}}" bsDatepicker>
     <app-validation-field [form]="form" [field]="id"></app-validation-field>
 </div>

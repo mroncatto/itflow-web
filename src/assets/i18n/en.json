@@ -64,6 +64,7 @@
 		"actions": "Actions",
 		"active": "Active",
 		"add": "Add",
+		"attention": "Attention",
 		"brand": "Brand",
 		"cancel": "Cancel",
 		"category": "Category",
@@ -71,6 +72,7 @@
 		"cleanFilter": "Clean Filter",
 		"clearSelection": "Clear selection",
 		"close": "Close",
+		"code": "Code",
 		"delete": "Delete",
 		"description": "Description",
 		"details": "Details",
@@ -83,6 +85,7 @@
 		"filterResults": "Filter results",
 		"fullname": "Full name",
 		"inactive": "Inactive",
+		"licenses": "Licenses",
 		"model": "Model",
 		"name": "Name",
 		"new": "New",
@@ -129,6 +132,12 @@
 		"socket": "Socket",
 		"thread": "Thread"
 	},
+	"computerLicense": {
+		"expire_at": "Expire at",
+		"keys": "Keys",
+		"manage_keys": "Manage keys",
+		"no_expire": "Does not expire"
+	},
 	"computerMemory": {
 		"frequency": "Frequency (Mhz)",
 		"modules": "Modules",
@@ -140,10 +149,10 @@
 	},
 	"computerSoftware": {
 		"license_expired": "License Expired",
-		"licenses": "Licenses",
 		"placeholder": {
 			"name": "Software name"
 		},
+		"select_software": "Select a software",
 		"software_license": "Software licenses"
 	},
 	"computerStorage": {
@@ -153,6 +162,10 @@
 		},
 		"size": "Size (GB)",
 		"transferRate": "Transfer Rate (MB/s)"
+	},
+	"config": {
+		"date_format": "MM/dd/yyy",
+		"locale": "en-US"
 	},
 	"department": {
 		"department": "Department",
@@ -202,6 +215,8 @@
 		}
 	},
 	"forms": {
+		"date_greater_than_today": "The date must be greater than the current date.",
+		"date_less_than_today": "The date must be less than the current date.",
 		"email": "You must provide a valid email",
 		"format": {
 			"invalid": "Invalid",
@@ -254,6 +269,7 @@
 			"company": "New company",
 			"computer_category": "New computer category",
 			"computer_cpu": "New CPU",
+			"computer_license": "New License",
 			"computer_memory": "New memory",
 			"computer_software": "New Software",
 			"computer_storage": "New storage",
@@ -271,6 +287,10 @@
 			"computer_storage": "Are you sure you want to remove the <b>{{record}}</b> storage ?"
 		},
 		"remove_record": "Are you sure you want to remove the <b>{{record}}</b> feature?",
+		"software": {
+			"warning_licenses": "This software has {{record}} licenses assigned. Are you sure you want to remove it? All licenses and keys will be deleted.",
+			"warning_licenses_keys": "This license has {{record}} keys. Are you sure you want to remove it? All keys and assignments will be deleted."
+		},
 		"update": "Update {{name}}",
 		"user": {
 			"disable": "Are you sure you want to disable the <b>{{record}}</b> user account?? This change cannot be reversed",

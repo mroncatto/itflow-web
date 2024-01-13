@@ -1,0 +1,49 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <h5 *ngIf="!softwareLicense" class="modal-title" [translate]="messages.MODAL_NEW_COMPUTER_LICENSE"></h5>
+        <h5 *ngIf="softwareLicense" class="modal-title" [translateParams]="{name: softwareLicense.description}"
+            [translate]="messages.MODAL_UPDATE">
+        </h5>
+    </div>
+    <form [formGroup]="softwareLicenseForm" (ngSubmit)="save()">
+        <div class="modal-body">
+
+            <app-input-group [form]="softwareLicenseForm" [translateLabel]="messages.DESCRIPTION"
+                [translatePlaceholder]="messages.DESCRIPTION" id="description">
+            </app-input-group>
+
+            <app-input-group [form]="softwareLicenseForm" [translateLabel]="messages.CODE"
+                [translatePlaceholder]="messages.CODE" id="code">
+            </app-input-group>
+
+            <div class="mb-3">
+                <label for="department" [translate]="messages.DEVICE_COMPUTER_SOFTWARE"></label>
+                <div class="d-flex gap-2">
+                    <select formControlName="software" id="software" [compareWith]="compareWith" class="form-select">
+                        <option [translate]="messages.SELECT_SOFTWARE" disabled selected value=""></option>
+                        <option *ngFor="let sw of softwares" [ngValue]="sw">{{sw.name}}</option>
+                    </select>
+                    <!-- <btn-new-department [loading]="loading" (onCreate)="onCreateDepartment($event)"></btn-new-department> -->
+                </div>
+                <app-validation-field [form]="softwareLicenseForm" [field]="'software'"></app-validation-field>
+            </div>
+
+            <app-input-group
+            [form]="softwareLicenseForm"
+            [translateLabel]="messages.COMPUTER_LICENSE_EXPIRE_AT" 
+            [translatePlaceholder]="messages.COMPUTER_LICENSE_EXPIRE_AT"
+            datepicker="bsDatepicker"
+            id="expireAt">
+            </app-input-group>
+
+        </div>
+        <div class="modal-footer">
+            <button [disabled]="loading" type="button" class="btn btn-outline-danger" (click)="closeModal()"
+                [translate]="messages.CANCEL"></button>
+            <button [disabled]="loading" type="submit" class="btn btn-success">
+                <i *ngIf="loading" class="fas fa-spinner fa-pulse mx-1"></i>
+                <span [translate]="messages.SAVE"></span>
+            </button>
+        </div>
+    </form>
+</div>

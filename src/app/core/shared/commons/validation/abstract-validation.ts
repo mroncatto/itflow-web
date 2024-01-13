@@ -1,5 +1,6 @@
 import { Validators } from "@angular/forms";
 import { Patterns } from "../enum/pattern.enum";
+import { dateGreaterThanToday, dateLessThanToday } from "./date-validations";
 
 export abstract class AbstractValidation {
 
@@ -16,10 +17,19 @@ export abstract class AbstractValidation {
     }
 
     protected static description(minLength: number, maxLength: number): Validators[] {
+        if (minLength > 0) return [Validators.minLength(minLength), Validators.maxLength(maxLength), Validators.required];
         return [Validators.minLength(minLength), Validators.maxLength(maxLength)];
     }
 
     protected static onlyNumbers(): Validators {
         return Validators.pattern(Patterns.ONLY_NUMBERS);
+    }
+
+    protected static dateGreaterThan(): Validators {
+        return dateGreaterThanToday();
+    }
+
+    protected static dateLessThan(): Validators {
+        return dateLessThanToday();
     }
 }

@@ -10,7 +10,7 @@ import { TranslateMessages } from 'src/app/core/shared/commons/enum/translate-me
 export class ComputerRegisterComponent implements OnInit, OnDestroy {
 
   private sub: Subscription[] = [];
-  readonly pages: string[] = ["category", "cpu", "memory", "storage", "software"];
+  readonly pages: string[] = ["category", "cpu", "memory", "storage", "software", "license"];
   page: string = '';
   messages = TranslateMessages;
 

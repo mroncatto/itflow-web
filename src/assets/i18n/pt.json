@@ -64,6 +64,7 @@
 		"actions": "Ações",
 		"active": "Ativo",
 		"add": "Adicionar",
+		"attention": "Atenção",
 		"brand": "Marca",
 		"cancel": "Cancelar",
 		"category": "Categoria",
@@ -71,6 +72,7 @@
 		"cleanFilter": "Limpar filtro",
 		"clearSelection": "Limpar seleção",
 		"close": "Fechar",
+		"code": "Código",
 		"delete": "Eliminar",
 		"description": "Descricão",
 		"details": "Detalhes",
@@ -83,6 +85,7 @@
 		"filterResults": "Filtrar resultados",
 		"fullname": "Nome completo",
 		"inactive": "Inativo",
+		"licenses": "Licenças",
 		"model": "Modelo",
 		"name": "Nome",
 		"new": "Novo",
@@ -129,6 +132,12 @@
 		"socket": "Socket",
 		"thread": "Thread"
 	},
+	"computerLicense": {
+		"expire_at": "Expira em",
+		"keys": "Chaves",
+		"manage_keys": "Gerenciar chaves",
+		"no_expire": "Não expira"
+	},
 	"computerMemory": {
 		"frequency": "Frequência (Mhz)",
 		"modules": "Módulos",
@@ -140,10 +149,10 @@
 	},
 	"computerSoftware": {
 		"license_expired": "Licença Expirada",
-		"licenses": "Licenças",
 		"placeholder": {
 			"name": "Nome do software"
 		},
+		"select_software": "Selecione um software",
 		"software_license": "Licenças de software"
 	},
 	"computerStorage": {
@@ -153,6 +162,10 @@
 		},
 		"size": "Tamanho (GB)",
 		"transferRate": "Taxa de transferência (MB/s)"
+	},
+	"config": {
+		"date_format": "dd/MM/yyyy",
+		"locale": "pt-BR"
 	},
 	"department": {
 		"department": "Departamento",
@@ -202,6 +215,8 @@
 		}
 	},
 	"forms": {
+		"date_greater_than_today": "A data deve ser posterior à data atual.",
+		"date_less_than_today": "A data deve ser menor que a data atual.",
 		"email": "Você deve inserir um e-mail valido",
 		"format": {
 			"invalid": "Inválido",
@@ -254,6 +269,7 @@
 			"company": "Nova empresa",
 			"computer_category": "Nova categoria de computador",
 			"computer_cpu": "Novo CPU",
+			"computer_license": "Nova Licença",
 			"computer_memory": "Nova memória",
 			"computer_software": "Novo Software",
 			"computer_storage": "Novo armazenamento",
@@ -271,6 +287,10 @@
 			"computer_storage": "Tem certeza de que deseja remover o armazenamento <b>{{record}}</b> ?"
 		},
 		"remove_record": "Tem certeza de que deseja remover a característica <b>{{record}}</b>? ",
+		"software": {
+			"warning_licenses": "Este software possui {{record}} licenças atribuídas. Você tem certeza que deseja remover ? Todas as licenças e chaves serão excluídas.",
+			"warning_licenses_keys": "Esta licença possui {{record}} chaves. Tem certeza de que deseja removê-lo? Todas as chaves e atribuições serão excluídas."
+		},
 		"update": "Alterar {{name}}",
 		"user": {
 			"disable": "Tem certeza de que deseja desativar a conta de <b>{{record}}</b>? Essa alteração não pode ser revertida",

@@ -49,11 +49,11 @@
                             </div> -->
                             <div class="join-date" *ngIf="user.joinDate">
                                 <span [translate]="messages.PROFILE_JOIN_DATE"></span>
-                                <span class="text-muted">{{user.joinDate | date}}</span>
+                                <span class="text-muted">{{user.joinDate | date:'mediumDate':'':(messages.CONFIG_LOCALE | translate )}}</span>
                             </div>
                             <div class="lastlogin-date" *ngIf="user.lastLoginDate">
                                 <span [translate]="messages.PROFILE_LAST_LOGIN"></span>
-                                <span class="text-muted">{{user.lastLoginDate | date:'medium'}}</span>
+                                <span class="text-muted">{{user.lastLoginDate | date:'medium':'':(messages.CONFIG_LOCALE | translate )}}</span>
                                 <!-- <hr class="my-2"> -->
                             </div>
                             <!-- <div class="info-agent d-flex flex-column align-self-start mx-4">

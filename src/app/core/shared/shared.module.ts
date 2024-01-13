@@ -36,6 +36,10 @@ import { InputGroupComponent } from './components/commons/input-group/input-grou
 import { ComputerMemoryAutocompleteComponent } from './components/commons/autocomplete/computer-memory-autocomplete/computer-memory-autocomplete.component';
 import { ComputerStorageAutocompleteComponent } from './components/commons/autocomplete/computer-storage-autocomplete/computer-storage-autocomplete.component';
 import { ComputerSoftwareFormComponent } from './components/forms/computer/computer-software-form/computer-software-form.component';
+import { ComputerLicenseFormComponent } from './components/forms/computer/computer-license-form/computer-license-form.component';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { LicenseKeyComponent } from './components/forms/license/license-key/license-key.component';
+import { LicenseKeyAssignComponent } from './components/forms/license/license-key-assign/license-key-assign.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +75,9 @@ import { ComputerSoftwareFormComponent } from './components/forms/computer/compu
     ComputerMemoryAutocompleteComponent,
     ComputerStorageAutocompleteComponent,
     ComputerSoftwareFormComponent,
+    ComputerLicenseFormComponent,
+    LicenseKeyComponent,
+    LicenseKeyAssignComponent
   ],
   imports: [
     CommonModule,
@@ -78,7 +85,8 @@ import { ComputerSoftwareFormComponent } from './components/forms/computer/compu
     ReactiveFormsModule,
     TranslateModule,
     MatAutocompleteModule,
-    TabsModule.forRoot(),    
+    TabsModule.forRoot(),  
+    BsDatepickerModule.forRoot(),  
   ],
   exports: [
     ValidationFieldComponent,
