@@ -4,6 +4,7 @@ import { Device } from "./device";
 import { IDeviceComputerCpu } from "./device-computer-cpu";
 import { IDeviceComputerMemory } from "./device-computer-memory";
 import { IDeviceComputerStorage } from "./device-computer-storage";
+import { IDeviceComputerSoftware } from "./device-computer-software";
 
 export interface IDeviceComputer {
     readonly id: number;
@@ -14,6 +15,7 @@ export interface IDeviceComputer {
     computerCpuList: IDeviceComputerCpu[];
     computerMemoryList: IDeviceComputerMemory[];
     computerStorageList: IDeviceComputerStorage[];
+    computerSoftwareList: IDeviceComputerSoftware[];
 }
 
 export class DeviceComputer implements IDeviceComputer {
@@ -25,6 +27,7 @@ export class DeviceComputer implements IDeviceComputer {
     computerCpuList: IDeviceComputerCpu[] = [];
     computerMemoryList: IDeviceComputerMemory[] = [];
     computerStorageList: IDeviceComputerStorage[] = [];
+    computerSoftwareList: IDeviceComputerSoftware[] = [];
 
     constructor(id: number, device: Device, computerCategory: IComputerCategory, description: string, 
         virtual: boolean) {
@@ -36,6 +39,7 @@ export class DeviceComputer implements IDeviceComputer {
         this.computerCpuList = [];
         this.computerMemoryList = [];
         this.computerStorageList = [];
+        this.computerSoftwareList = [];
     }
 }
 

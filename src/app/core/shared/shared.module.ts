@@ -40,6 +40,7 @@ import { ComputerLicenseFormComponent } from './components/forms/computer/comput
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { LicenseKeyComponent } from './components/forms/license/license-key/license-key.component';
 import { LicenseKeyAssignComponent } from './components/forms/license/license-key-assign/license-key-assign.component';
+import { ComputerSoftwareAutocompleteComponent } from './components/commons/autocomplete/computer-software-autocomplete/computer-software-autocomplete.component';
 
 @NgModule({
   declarations: [
@@ -77,7 +78,8 @@ import { LicenseKeyAssignComponent } from './components/forms/license/license-ke
     ComputerSoftwareFormComponent,
     ComputerLicenseFormComponent,
     LicenseKeyComponent,
-    LicenseKeyAssignComponent
+    LicenseKeyAssignComponent,
+    ComputerSoftwareAutocompleteComponent
   ],
   imports: [
     CommonModule,
@@ -116,6 +118,7 @@ import { LicenseKeyAssignComponent } from './components/forms/license/license-ke
     ComputerMemoryAutocompleteComponent,
     ComputerStorageAutocompleteComponent,
     InputGroupComponent,
+    ComputerSoftwareAutocompleteComponent
   ]
 })
 export class SharedModule { }

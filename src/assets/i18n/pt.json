@@ -10,19 +10,19 @@
 			"UNAUTHORIZED": "Não autorizado",
 			"undefined": "Erro interno do servidor",
 			"unknown": "Erro interno do servidor",
-			"UNSUCCESSFUL AUTHENTICATION": "Autenticação malsucedida",
+			"UNSUCCESSFUL AUTHENTICATION": "Falha na autenticação",
 			"USER ACCOUNT IS LOCKED": "Sua conta está bloqueada"
 		},
 		"info": {
 			"authenticated": "Autenticado com sucesso",
 			"created": "Criado com sucesso",
-			"deleted": "Eliminado com sucesso",
+			"deleted": "Excluído com sucesso",
 			"device_deleted": "Dispositivo foi inativado",
 			"disabled": "Desativado com sucesso",
 			"password_changed": "A senha foi alterada",
 			"password_reseted": "Uma nova senha foi gerada e enviada para o e-mail do usuário",
 			"profile_changed": "O perfil foi alterado",
-			"staff_deleted": "O funcionários foi elimiado",
+			"staff_deleted": "O funcionário foi excluído",
 			"success": "Sucesso",
 			"updated": "Alterado com sucesso",
 			"user_blocked": "A conta foi bloqueada",
@@ -36,7 +36,7 @@
 			"ALL FIELDS ARE REQUIRED": "Todos os campos são necessários",
 			"attention": "Atenção",
 			"BAD_REQUEST": "Dados inválidos",
-			"badRequest": "Dados inválidos",
+			"badRequest": "Requisição inválida",
 			"canActivatedDenied": "Acesso negado, você não tem permissão para acessar esta página",
 			"complete_required_fields": "Complete os campos obrigatórios",
 			"DEVICE NOT FOUND": "Dispositivo não encontrado",
@@ -64,6 +64,7 @@
 		"actions": "Ações",
 		"active": "Ativo",
 		"add": "Adicionar",
+		"assignment": "Atribuição",
 		"attention": "Atenção",
 		"brand": "Marca",
 		"cancel": "Cancelar",
@@ -84,15 +85,20 @@
 		"filterOnTheList": "Filtrar na lista",
 		"filterResults": "Filtrar resultados",
 		"fullname": "Nome completo",
+		"in_use": "Em uso",
 		"inactive": "Inativo",
+		"license": "Licença",
 		"licenses": "Licenças",
 		"model": "Modelo",
 		"name": "Nome",
 		"new": "Novo",
 		"no": "Não",
+		"no_license": "Sem licença",
+		"no_limit": "Sem limite",
 		"noData": "Sem registros",
 		"open": "Abrir",
 		"optional": "Opcional",
+		"owner": "Proprietário",
 		"placeholder": {
 			"brand": "Marca",
 			"document": "Número de documento",
@@ -107,6 +113,7 @@
 		"type": "Tipo",
 		"typeToSearch": "Digite para pesquisar",
 		"update": "Atualizar",
+		"volume": "Volume",
 		"warning": "Aviso",
 		"yes": "Sim"
 	},
@@ -134,7 +141,9 @@
 	},
 	"computerLicense": {
 		"expire_at": "Expira em",
+		"key": "Chave",
 		"keys": "Chaves",
+		"license_volume": "Volume de licença",
 		"manage_keys": "Gerenciar chaves",
 		"no_expire": "Não expira"
 	},
@@ -222,6 +231,7 @@
 			"invalid": "Inválido",
 			"only_letters": "Apenas letras",
 			"only_numbers": "Apenas números",
+			"only_positive_numbers": "Apenas números positivos",
 			"strong_password": "Senha fraca"
 		},
 		"invalid_field": "Campo inválido",
@@ -284,13 +294,13 @@
 		"remove": {
 			"computer_cpu": "Tem certeza de que deseja remover o processador <b>{{record}}</b> ?",
 			"computer_memory": "Tem certeza de que deseja remover a memória <b>{{record}}</b> ?",
-			"computer_storage": "Tem certeza de que deseja remover o armazenamento <b>{{record}}</b> ?"
+			"computer_storage": "Tem certeza de que deseja remover o armazenamento <b>{{record}}</b> ?",
+			"license": "Esta licença possui chaves. Tem certeza de que deseja removê-lo? Todas as chaves e atribuições serão excluídas.",
+			"license_key": "Tem certeza de que deseja remover a chave: </br><b>{{record}}</b> ?",
+			"license_key_assignment": "Esta chave contém atribuições. Tem certeza de que deseja removê-la? As atribuições serão excluídas.",
+			"software": "Este software possui licenças atribuídas. Você tem certeza que deseja remover ? Todas as licenças e chaves serão excluídas."
 		},
 		"remove_record": "Tem certeza de que deseja remover a característica <b>{{record}}</b>? ",
-		"software": {
-			"warning_licenses": "Este software possui {{record}} licenças atribuídas. Você tem certeza que deseja remover ? Todas as licenças e chaves serão excluídas.",
-			"warning_licenses_keys": "Esta licença possui {{record}} chaves. Tem certeza de que deseja removê-lo? Todas as chaves e atribuições serão excluídas."
-		},
 		"update": "Alterar {{name}}",
 		"user": {
 			"disable": "Tem certeza de que deseja desativar a conta de <b>{{record}}</b>? Essa alteração não pode ser revertida",

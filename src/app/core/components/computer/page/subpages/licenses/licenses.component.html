@@ -42,7 +42,7 @@
                                     <span [translate]="messages.EDIT"></span>
                                 </a>
                             </li>
-                            <li class="link-spin">
+                            <li (click)="onManageKeys(lic)" class="link-spin">
                                 <a class="dropdown-item">
                                     <i class="fas fa-key"></i>&nbsp;
                                     <span [translate]="messages.COMPUTER_LICENSE_MANAGE_KEYS"></span>

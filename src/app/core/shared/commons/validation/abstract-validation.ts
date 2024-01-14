@@ -25,6 +25,10 @@ export abstract class AbstractValidation {
         return Validators.pattern(Patterns.ONLY_NUMBERS);
     }
 
+    protected static onlyPositiveNumbers(): Validators {
+        return Validators.pattern(Patterns.ONLY_POSITIVE_NUMBERS);
+    }
+
     protected static dateGreaterThan(): Validators {
         return dateGreaterThanToday();
     }

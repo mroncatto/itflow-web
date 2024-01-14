@@ -58,6 +58,7 @@ export enum TranslateMessages {
     ACTIVE="commons.active",
     ADD="commons.add",
     ATTENTION="commons.attention",
+    ASSIGNMENT="commons.assignment",
     BRAND="commons.brand",
     BRAND_PLACEHOLDER="commons.placeholder.brand",
     CANCEL="commons.cancel",
@@ -80,6 +81,8 @@ export enum TranslateMessages {
     FILTER_RESULTS="commons.filterResults",
     FULLNAME="commons.fullname",
     INACTIVE="commons.inactive",
+    IN_USE="commons.in_use",
+    LICENSE="commons.license",
     LICENSES="commons.licenses",
     MODEL="commons.model",
     MODEL_PLACEHOLDER="commons.placeholder.model",
@@ -87,8 +90,11 @@ export enum TranslateMessages {
     NEW="commons.new",
     NO="commons.no",
     NO_DATA="commons.noData",
+    NO_LICENSE="commons.no_license",
+    NO_LIMIT="commons.no_limit",
     OPEN="commons.open",
     OPTIONAL="commons.optional",
+    OWNER="commons.owner",
     REFRESH_LIST="commons.refreshList",
     REGISTER="commons.register",
     REMOVE="commons.remove",
@@ -100,6 +106,7 @@ export enum TranslateMessages {
     UPDATE="commons.update",
     WARNING="commons.warning",
     YES="commons.yes",
+    VOLUME="commons.volume",
 
     //COMPANY
     COMPANIES="company.companies",
@@ -143,7 +150,9 @@ export enum TranslateMessages {
     // COMPUTER LICENSE
     COMPUTER_LICENSE_EXPIRE_AT="computerLicense.expire_at",
     COMPUTER_LICENSE_NO_EXPIRE="computerLicense.no_expire",
+    COMPUTER_LICENSE_KEY="computerLicense.key",
     COMPUTER_LICENSE_KEYS="computerLicense.keys",
+    COMPUTER_LICENSE_VOLUME="computerLicense.license_volume",
     COMPUTER_LICENSE_MANAGE_KEYS="computerLicense.manage_keys",
 
     // DEPARTMENT
@@ -192,6 +201,7 @@ export enum TranslateMessages {
     FORMS_FORMAT_INVALID="forms.format.invalid",
     FORMS_FORMAT_ONLY_LETTERS="forms.format.only_letters",
     FORMS_FORMAT_ONLY_NUMBERS="forms.format.only_numbers",
+    FORMS_FORMAT_ONLY_POSITIVE_NUMBERS="forms.format.only_positive_numbers",
     FORMS_FORMAT_STRONG_PASSWORD="forms.format.strong_password",
     FORMS_INVALID_FIELD="forms.invalid_field",
     FORMS_MAX="forms.max",
@@ -257,8 +267,11 @@ export enum TranslateMessages {
     MODAL_USER_NEW="modal.user.new",
     MODAL_USER_RESET_PWD="modal.user.reset_pwd",
     MODAL_USER_UPDATE="modal.user.update",
-    MODAL_DELETE_SOFTWARE_LICENSES="modal.software.warning_licenses",
-    MODAL_DELETE_LICENSE_KEYS="modal.software.warning_licenses_keys",
+    MODAL_DELETE_SOFTWARE_LICENSES="modal.remove.software",
+    MODAL_DELETE_LICENSE_KEYS="modal.remove.license",
+    MODAL_DELETE_KEY_ASSIGN="modal.remove.license_key_assignment",
+    MODAL_DELETE_KEY="modal.remove.license_key",
+    
 
     // NOTIFICATIONS
     NOTIFICATION_EMPTY="notification.empty",

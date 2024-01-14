@@ -37,8 +37,10 @@ export class ValidationService {
     switch(pattern) {
       case Patterns.ONLY_LETTERS:
         return this.translateService.instant(this.messages.FORMS_FORMAT_ONLY_LETTERS);
-      case Patterns.ONLY_NUMBERS:
-        return this.translateService.instant(this.messages.FORMS_FORMAT_ONLY_NUMBERS);
+      case Patterns.ONLY_POSITIVE_NUMBERS:
+        return this.translateService.instant(this.messages.FORMS_FORMAT_ONLY_POSITIVE_NUMBERS);
+        case Patterns.ONLY_NUMBERS:
+          return this.translateService.instant(this.messages.FORMS_FORMAT_ONLY_NUMBERS);
       case Patterns.STRONG_PASSWORD:
         return this.translateService.instant(this.messages.FORMS_FORMAT_STRONG_PASSWORD);
     }

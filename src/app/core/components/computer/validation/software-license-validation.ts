@@ -19,5 +19,9 @@ export class SoftwareLicenseValidation extends AbstractValidation {
         return [Validators.required];
     }
 
+    static volume(): Validators[] {
+        return [Validators.required, this.onlyPositiveNumbers()];
+    }
+
 
 }

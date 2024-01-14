@@ -18,6 +18,7 @@ import { DeviceComputerValidation } from '../validation/device-computer-validati
 import { IDeviceComputerCpu } from '../model/device-computer-cpu';
 import { IDeviceComputerMemory } from '../model/device-computer-memory';
 import { IDeviceComputerStorage } from '../model/device-computer-storage';
+import { IDeviceComputerSoftware } from '../model/device-computer-software';
 
 @Injectable({
   providedIn: 'root'
@@ -73,6 +74,10 @@ export class DeviceService extends AbstractService {
 
   updateDeviceComputerStorage(id: number, deviceComputerStorage: IDeviceComputerStorage): Observable<IDevice> {
     return this.http.put<IDevice>(`${this.API_URL}/device/computer/${id}/storage`, deviceComputerStorage);
+  }
+
+  updateDeviceComputerSoftware(id: number, deviceComputerSoftware: IDeviceComputerSoftware): Observable<IDevice> {
+    return this.http.put<IDevice>(`${this.API_URL}/device/computer/${id}/software`, deviceComputerSoftware);
   }
 
   deleteDeviceComputerStorage(id: number, storageId: number): Observable<any> {

@@ -69,7 +69,7 @@ export class LicensesComponent implements OnInit, OnDestroy, IAbstractRegisterSu
 
   onConfirmeKeys(license: ISoftwareLicense): void {
     if (license.keys && license.keys.length > 0) {
-      this.service.showConfirm(this.messages.ATTENTION, this.messages.MODAL_DELETE_LICENSE_KEYS, license.keys.length.toString()).subscribe({
+      this.service.showConfirm(this.messages.ATTENTION, this.messages.MODAL_DELETE_LICENSE_KEYS).subscribe({
         next: (confirm) => { if (confirm) this.onDelete(license) }
       });
     } else {
@@ -87,6 +87,21 @@ export class LicensesComponent implements OnInit, OnDestroy, IAbstractRegisterSu
         error: (err) => this.service.onHttpError(err)
       })
     );
+  }
+
+  onManageKeys(license: ISoftwareLicense): void {
+    this.sub.push(
+      this.service.getLicenseKeyModal(license).subscribe({
+        next: (data) => this.onUpdateLicenseKeys(data),
+        error: (err) => this.service.onHttpError(err)
+      })
+    )
+  }
+
+  onUpdateLicenseKeys(license: ISoftwareLicense): void {
+    this.licenses.forEach(b => {
+      if (b.id === license.id) b.keys = license.keys;
+    });
   }
 
   getCountKeys(softwareLicense: ISoftwareLicense): number {

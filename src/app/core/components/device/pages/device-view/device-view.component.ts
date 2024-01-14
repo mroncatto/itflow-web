@@ -13,6 +13,9 @@ import { IComputerMemory } from '../../../computer/model/computer-memory';
 import { DeviceComputerStorageForm, IDeviceComputerStorage } from '../../model/device-computer-storage';
 import { IComputerStorage } from '../../../computer/model/computer-storage';
 import { TranslateMessages } from 'src/app/core/shared/commons/enum/translate-messages.enum';
+import { DeviceComputerSoftwareForm, IDeviceComputerSoftware } from '../../model/device-computer-software';
+import { IComputerSoftware } from '../../../computer/model/computer-software';
+import { IDeviceComputerSoftwarePK } from '../../model/pk/device-computer-software-pk';
 
 @Component({
   templateUrl: './device-view.component.html',
@@ -26,10 +29,12 @@ export class DeviceViewComponent extends AbstractComponent implements OnInit {
   computerCpuAutoComplete = new FormControl('', Validators.required);
   computerMemoryAutoComplete = new FormControl('', Validators.required);
   computerStorageAutoComplete = new FormControl('', Validators.required);
+  computerSoftwareAutoComplete = new FormControl('', Validators.required);
 
   deviceComputerCpuForm!: FormGroup<DeviceComputerCpuForm>;
   deviceComputerMemoryForm!: FormGroup<DeviceComputerMemoryForm>;
   deviceComputerStorageForm!: FormGroup<DeviceComputerStorageForm>;
+  deviceComputerSoftwareForm!: FormGroup<DeviceComputerSoftwareForm>;
 
   @ViewChild('featuresTabs', { static: false }) featuresTabs?: TabsetComponent;
   @ViewChild('propertiesTabs', { static: false }) propertiesTabs?: TabsetComponent;
@@ -60,6 +65,7 @@ export class DeviceViewComponent extends AbstractComponent implements OnInit {
       this.deviceComputerCpuForm = this.computerService.getDeviceComputerCpuForm(this.device.deviceComputer);
       this.deviceComputerMemoryForm = this.computerService.getDeviceComputerMemoryForm(this.device.deviceComputer);
       this.deviceComputerStorageForm = this.computerService.getDeviceComputerStorageForm(this.device.deviceComputer);
+      this.deviceComputerSoftwareForm = this.computerService.getDeviceComputerSoftwareForm(this.device.deviceComputer);
     }
   }
 
@@ -77,8 +83,6 @@ export class DeviceViewComponent extends AbstractComponent implements OnInit {
         },
         complete: () => {
           this.loading = false;
-          console.log(this.device);
-
           this.startForms();
         }
       })
@@ -172,7 +176,6 @@ export class DeviceViewComponent extends AbstractComponent implements OnInit {
       this.sub.push(
         this.service.getDeviceComputerModal(this.device).subscribe({
           next: (data) => {
-            console.log(data);
             this.device = data; this.startFormComputer()
           },
           error: (err) => this.service.onHttpError(err)
@@ -219,6 +222,14 @@ export class DeviceViewComponent extends AbstractComponent implements OnInit {
       this.deviceComputerStorageForm.controls['size'].setValue(1);
     } else {
       this.deviceComputerStorageForm.controls['computerStorage'].reset();
+    }
+  }
+
+  onSelectSoftware(software: IComputerSoftware | null): void {
+    if (software) {
+      this.deviceComputerSoftwareForm.controls['software'].setValue(software);
+    } else {
+      this.deviceComputerSoftwareForm.controls['software'].reset();
     }
   }
 
@@ -329,6 +340,30 @@ export class DeviceViewComponent extends AbstractComponent implements OnInit {
     this.deviceComputerStorageForm.reset();
     this.service.onInfo(this.messages.INFO_SUCCESS, this.messages.INFO_UPDATED);
   }
+
+  saveDeviceComputerSoftware(): void {
+    if (this.device && this.deviceComputerSoftwareForm.controls.software.valid) {
+      this.deviceComputerSoftwareForm.controls.deviceComputer.setValue(this.device.deviceComputer);
+      this.sub.push(
+        this.service.updateDeviceComputerSoftware(this.device.id, this.deviceComputerSoftwareForm.value as IDeviceComputerSoftware).subscribe({
+          next: (data) => this.onDeviceComputerSoftwareSave(data),
+          error: (err) => this.service.onHttpError(err)
+        })
+      );
+    } else {
+      console.error(this.deviceComputerSoftwareForm.errors);
+    }
+
+  }
+
+  onDeviceComputerSoftwareSave(data: Device): void {
+    this.device = data;
+    this.computerSoftwareAutoComplete.reset();
+    this.deviceComputerSoftwareForm.reset();
+    this.service.onInfo(this.messages.INFO_SUCCESS, this.messages.INFO_UPDATED);
+  }
+
+
 
   onConfirmDeleteComputerStorage(storage: IComputerStorage): void {
     this.sub.push(

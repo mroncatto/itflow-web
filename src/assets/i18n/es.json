@@ -64,6 +64,7 @@
 		"actions": "Acciones",
 		"active": "Activo",
 		"add": "Adicionar",
+		"assignment": "Asignación",
 		"attention": "Atención",
 		"brand": "Marca",
 		"cancel": "Cancelar",
@@ -84,15 +85,20 @@
 		"filterOnTheList": "Filtrar en la lista",
 		"filterResults": "Filtrar resultados",
 		"fullname": "Nombre completo",
+		"in_use": "En uso",
 		"inactive": "Inactivo",
+		"license": "Licencia",
 		"licenses": "Licencias",
 		"model": "Modelo",
 		"name": "Nombre",
 		"new": "Nuevo",
 		"no": "No",
+		"no_license": "Sin licencia",
+		"no_limit": "Sin límite",
 		"noData": "Sin registros",
 		"open": "Abrir",
 		"optional": "Opcional",
+		"owner": "Propietario",
 		"placeholder": {
 			"brand": "Marca",
 			"document": "Número de documento",
@@ -107,6 +113,7 @@
 		"type": "Tipo",
 		"typeToSearch": "Escribe para buscar",
 		"update": "Actualizar",
+		"volume": "Volumen",
 		"warning": "Aviso",
 		"yes": "Si"
 	},
@@ -134,7 +141,9 @@
 	},
 	"computerLicense": {
 		"expire_at": "Caducar en",
+		"key": "Llave",
 		"keys": "Llaves",
+		"license_volume": "Volumen de licencia",
 		"manage_keys": "Administrar claves",
 		"no_expire": "No caduca"
 	},
@@ -222,6 +231,7 @@
 			"invalid": "Inválido",
 			"only_letters": "Solo letras",
 			"only_numbers": "Solo números",
+			"only_positive_numbers": "Solo números positivos",
 			"strong_password": "Contraseña débil"
 		},
 		"invalid_field": "Campo inválido",
@@ -284,13 +294,13 @@
 		"remove": {
 			"computer_cpu": "¿Está seguro de que desea quitar el procesador <b>{{record}}</b> ?",
 			"computer_memory": "¿Está seguro de que desea eliminar la memoria <b>{{record}}</b> ?",
-			"computer_storage": "¿Está seguro de que desea eliminar el almacenamiento <b>{{record}}</b> ?"
+			"computer_storage": "¿Está seguro de que desea eliminar el almacenamiento <b>{{record}}</b> ?",
+			"license": "Esta licencia tiene claves. ¿Estás seguro de que quieres eliminarlo? Se eliminarán todas las claves y asignaciones.",
+			"license_key": "¿Está seguro de que desea eliminar la clave: </br><b>{{record}}</b> ?",
+			"license_key_assignment": "Esta clave contiene asignaciones. ¿Estás seguro de que quieres eliminarla? Las asignaciones serán eliminadas.",
+			"software": "Este software tiene licencias asignadas. ¿Estás seguro de que quieres eliminarlo? Se eliminarán todas las licencias y claves."
 		},
 		"remove_record": "¿Estás seguro de que quieres remover la característica <b>{{record}}</b>? ",
-		"software": {
-			"warning_licenses": "Este software tiene {{record}} licencias asignadas. ¿Estás seguro de que quieres eliminarlo? Se eliminarán todas las licencias y claves.",
-			"warning_licenses_keys": "Esta licencia tiene {{record}} claves. ¿Estás seguro de que quieres eliminarlo? Se eliminarán todas las claves y asignaciones."
-		},
 		"update": "Alterar {{name}}",
 		"user": {
 			"disable": "¿Está seguro de que desea desactivar la cuenta de <b>{{record}}</b>? Este cambio no se puede revertir",

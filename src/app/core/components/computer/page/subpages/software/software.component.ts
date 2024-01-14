@@ -71,7 +71,7 @@ export class SoftwareComponent implements OnInit, OnDestroy, IAbstractRegisterSu
 
   onConfirmeLicenses(software: IComputerSoftware): void {
     if (software.licenses && software.licenses.length > 0) {
-      this.service.showConfirm(this.messages.ATTENTION, this.messages.MODAL_DELETE_SOFTWARE_LICENSES, software.licenses.length.toString()).subscribe({
+      this.service.showConfirm(this.messages.ATTENTION, this.messages.MODAL_DELETE_SOFTWARE_LICENSES).subscribe({
         next: (confirm) => { if (confirm) this.onDelete(software) }
       });
     } else {

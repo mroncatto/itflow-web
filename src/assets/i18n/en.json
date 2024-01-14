@@ -64,6 +64,7 @@
 		"actions": "Actions",
 		"active": "Active",
 		"add": "Add",
+		"assignment": "Assignment",
 		"attention": "Attention",
 		"brand": "Brand",
 		"cancel": "Cancel",
@@ -84,15 +85,20 @@
 		"filterOnTheList": "Filter on the list",
 		"filterResults": "Filter results",
 		"fullname": "Full name",
+		"in_use": "In use",
 		"inactive": "Inactive",
+		"license": "Licenses",
 		"licenses": "Licenses",
 		"model": "Model",
 		"name": "Name",
 		"new": "New",
 		"no": "No",
+		"no_license": "No license",
+		"no_limit": "No limit",
 		"noData": "No records",
 		"open": "Open",
 		"optional": "Optional",
+		"owner": "Owner",
 		"placeholder": {
 			"brand": "Brand",
 			"document": "Document number",
@@ -107,6 +113,7 @@
 		"type": "Type",
 		"typeToSearch": "Type to search",
 		"update": "Update",
+		"volume": "Volume",
 		"warning": "Warning",
 		"yes": "Yes"
 	},
@@ -134,7 +141,9 @@
 	},
 	"computerLicense": {
 		"expire_at": "Expire at",
+		"key": "Key",
 		"keys": "Keys",
+		"license_volume": "License volume",
 		"manage_keys": "Manage keys",
 		"no_expire": "Does not expire"
 	},
@@ -222,6 +231,7 @@
 			"invalid": "Invalid",
 			"only_letters": "Only Letters",
 			"only_numbers": "Only numbers",
+			"only_positive_numbers": "Only positive numbers",
 			"strong_password": "Weak password"
 		},
 		"invalid_field": "Invalid field",
@@ -284,13 +294,13 @@
 		"remove": {
 			"computer_cpu": "Are you sure you want to remove the <b>{{record}}</b> processor ?",
 			"computer_memory": "Are you sure you want to remove the <b>{{record}}</b> memory ?",
-			"computer_storage": "Are you sure you want to remove the <b>{{record}}</b> storage ?"
+			"computer_storage": "Are you sure you want to remove the <b>{{record}}</b> storage ?",
+			"license": "This license has keys. Are you sure you want to remove it? All keys and assignments will be deleted.",
+			"license_key": "Are you sure you want to remove the key: </br><b>{{record}}</b> ?",
+			"license_key_assignment": "This key contains assignments. Are you sure you want to remove it? The assignments will be deleted.",
+			"software": "This software has licenses assigned. Are you sure you want to remove it? All licenses and keys will be deleted."
 		},
 		"remove_record": "Are you sure you want to remove the <b>{{record}}</b> feature?",
-		"software": {
-			"warning_licenses": "This software has {{record}} licenses assigned. Are you sure you want to remove it? All licenses and keys will be deleted.",
-			"warning_licenses_keys": "This license has {{record}} keys. Are you sure you want to remove it? All keys and assignments will be deleted."
-		},
 		"update": "Update {{name}}",
 		"user": {
 			"disable": "Are you sure you want to disable the <b>{{record}}</b> user account?? This change cannot be reversed",
