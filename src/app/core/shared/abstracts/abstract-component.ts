@@ -1,4 +1,5 @@
 import { Subscription } from "rxjs";
+import { LoadingState } from "../commons/enum/loading-state.enum";
 
 export abstract class AbstractComponent {
     public loading: boolean = false;
@@ -14,5 +15,17 @@ export abstract class AbstractComponent {
         } else {
             document.getElementById(component)?.focus();
         }    
+    }
+
+    isDone(state: LoadingState): boolean {
+        return state === LoadingState.Done;
+    }
+    
+    isLoading(state: LoadingState): boolean {
+        return state === LoadingState.Loading;
+    }
+
+    isError(state: LoadingState): boolean {
+        return state === LoadingState.Error;
     }
 }

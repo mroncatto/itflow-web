@@ -20,7 +20,7 @@
                 </app-input-group>
 
                 <div class="mt-4">
-                    <button class="btn btn-success btn-md" [translate]="messages.ADD"></button>
+                    <button class="btn btn-success btn-md" [disabled]="loading" [translate]="messages.ADD"></button>
                 </div>
             </form>
 
@@ -31,25 +31,33 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>KEY</th>
+                        <th [translate]="messages.KEY"></th>
                         <th class="text-center" [translate]="messages.VOLUME"></th>
                         <th class="text-center" [translate]="messages.IN_USE"></th>
                         <th class="text-center" [translate]="messages.ASSIGNMENT"></th>
                         <th class="text-center" [translate]="messages.DELETE"></th>
                     </tr>
                 </thead>
-                <tbody *ngIf="license && license.keys">
+                <tbody *ngIf="license">
                     <tr *ngFor="let key of license.keys">
                         <td>{{key.id}}</td>
                         <td>{{key.key}}</td>
                         <td class="text-center">{{key.volume != 0 ? key.volume : (messages.NO_LIMIT | translate)}}</td>
-                        
-                        <td class="text-center">{{key.assignedLicenses.length}}</td> 
-                        <td class="link-spin text-center"><i class="far fa-share-square"></i></td>
+
+                        <td class="text-center">{{key.assignedLicenses ? key.assignedLicenses.length : 0}}</td>
+                        <td class="link-spin text-center"><i (click)="assignLicenseKey(key)"
+                                class="far fa-share-square"></i></td>
                         <td class="link-spin text-center"><i (click)="onConfirmDelete(key)"
                                 class="fas fa-trash text-danger"></i></td>
                     </tr>
                 </tbody>
+                <tfoot *ngIf="loading">
+                    <tr>
+                        <td colspan="6">
+                            <app-loadind-widget [show]="loading" [type]="'grow'"></app-loadind-widget>
+                        </td>
+                    </tr>
+                </tfoot>
             </table>
         </div>
     </div>

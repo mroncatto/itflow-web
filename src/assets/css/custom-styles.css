@@ -107,6 +107,10 @@ body[data-theme='dark'] {
   --custom-success: #067328;
   --custom-warning: #df8c17;
   --custom-danger: #be322d;
+
+  /* Alerts */
+  --alert-bg-danger: rgba(190, 50, 45, 0.5);
+  --alert-text-danger: #ffffff;
 }
 
 body[data-theme='light'] {
@@ -129,6 +133,8 @@ body[data-theme='light'] {
   --custom-success: #5BB75B;
   --custom-warning: #FAA732;
   --custom-danger: #DA4F49;
+  --alert-bg-danger: #F8D7DA;
+  --alert-text-danger: #520000;
 }
 
 
@@ -179,6 +185,10 @@ input.form-control:disabled {
   color: var(--normal-text-disabled) !important;
 }
 
+select.form-select:disabled {
+  color: var(--normal-text-disabled) !important;
+}
+
 h2, p {
   color: var(--normal-text);
 }
@@ -190,12 +200,15 @@ h2, p {
 
 
 /*================== ANGULAR MATERIAL OVERRIDE ====================*/
-#cdk-overlay-0 {
+.cdk-overlay-pane {
   background-color: var(--bg-color) !important;
   color: var(--normal-text) !important;
+  z-index: 9999 !important;
 }
 
-
+.cdk-overlay-container,.cdk-global-overlay-wrapper,.cdk-overlay-connected-position-bounding-box {
+  z-index: 9999 !important;
+}
 
 /*================== LAYOUT STYLES ====================*/
 body {
@@ -464,9 +477,9 @@ body {
 }
 
 .alert-danger {
-  background-color: #f2dede;
-  border-color: #e0b1b8;
-  color: #b94a48 !important;
+  background-color: var(--alert-bg-danger) !important;
+  /* border-color: #e0b1b8; */
+  color: var(--alert-text-danger) !important;
 }
 
 .alert-white.alert-danger .icon,

@@ -38,7 +38,20 @@ export class LicenseKeyComponent extends AbstractComponent implements OnInit, On
 
 
   payload(license: ISoftwareLicense): void {
-    if (license) this.license = license;
+    if (license) {
+      this.loading = true;
+      this.sub.push(
+        this.service.getSoftwareLicenseById(license.id).subscribe({
+          next: (data) => this.onLoadLicense(data),
+          error: (err) => this.onError(err)
+        })
+      )
+    };
+  }
+
+  private onLoadLicense(data: ISoftwareLicense) : void {
+    this.license = data;
+    this.loading = false;
   }
 
 
@@ -59,7 +72,7 @@ export class LicenseKeyComponent extends AbstractComponent implements OnInit, On
 
 
   onSave(license: ISoftwareLicense): void {
-    this.licenseKeyForm.reset();
+    this.licenseKeyForm = this.service.getLicenseKeyForm();
     this.service.onSuccess(this.messages.INFO_SUCCESS, this.messages.INFO_CREATED);
     this.license.keys = license.keys;
     this.loading = false;
@@ -68,7 +81,7 @@ export class LicenseKeyComponent extends AbstractComponent implements OnInit, On
 
   onError(err: HttpErrorResponse): void {
     this.service.onHttpError(err);
-    this.loading = true;
+    this.loading = false;
   }
 
 
@@ -111,6 +124,15 @@ export class LicenseKeyComponent extends AbstractComponent implements OnInit, On
   validateKeyInUse(key: ISoftwareLicenseKey): boolean {
     return false;
     // TODO: validar
+  }
+
+  assignLicenseKey(key: ISoftwareLicenseKey): void {
+    this.sub.push(
+      this.service.getKeyAssignModal(key).subscribe({
+        next: (data) => key = data,
+        error: (err) => this.service.onHttpError(err)
+      })
+    );
   }
 
 }

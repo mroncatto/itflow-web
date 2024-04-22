@@ -33,6 +33,7 @@ export enum TranslateMessages {
     WARNING_PASSWORD_EXPIRED="alert.warning.passwordExpired",
     WARNING_SESSION_EXPIRED="alert.warning.sessionExpired",
     WARNING_COMPLETE_REQUIRED_FIELDS="alert.warning.complete_required_fields",
+    WARNING_REGISTER_IN_THE_LIST="alert.warning.register_in_the_list",
 
     // ERROR
     ERROR_BAD_CREDENTIALS="alert.error.BAD CREDENTIALS",
@@ -46,6 +47,7 @@ export enum TranslateMessages {
     ERROR_UNKNOWN="alert.error.unknown",
     ERROR_UNSUCCESSFUL_AUTHENTICATION="alert.error.UNSUCCESSFUL AUTHENTICATION",
     ERROR_USER_ACCOUNT_IS_LOCKED="alert.error.USER ACCOUNT IS LOCKED",
+    ERROR_LOADING_FEATURE="alert.error.loading_feature",
 
 
     //BRANCH
@@ -82,6 +84,7 @@ export enum TranslateMessages {
     FULLNAME="commons.fullname",
     INACTIVE="commons.inactive",
     IN_USE="commons.in_use",
+    KEY="commons.key",
     LICENSE="commons.license",
     LICENSES="commons.licenses",
     MODEL="commons.model",
@@ -154,6 +157,7 @@ export enum TranslateMessages {
     COMPUTER_LICENSE_KEYS="computerLicense.keys",
     COMPUTER_LICENSE_VOLUME="computerLicense.license_volume",
     COMPUTER_LICENSE_MANAGE_KEYS="computerLicense.manage_keys",
+    COMPUTER_LICENSE_ASSIGN_KEYS="computerLicense.assign_keys",
 
     // DEPARTMENT
     DEPARTMENT="department.department",

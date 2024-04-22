@@ -9,7 +9,7 @@ import { DepartmentCheckboxFilterComponent } from 'src/app/core/shared/component
 import { DeviceCategoryCheckboxFilterComponent } from 'src/app/core/shared/components/filters/device-category-checkbox-filter/device-category-checkbox-filter.component';
 import { SearchInputComponent } from 'src/app/core/shared/components/filters/search-input/search-input.component';
 import { DeviceFilter } from '../../filter/device-filter';
-import { IDevice } from '../../model/device';
+import { IDeviceView } from '../../model/device';
 import { DeviceService } from '../../services/device.service';
 import { TranslateMessages } from 'src/app/core/shared/commons/enum/translate-messages.enum';
 
@@ -20,7 +20,7 @@ import { TranslateMessages } from 'src/app/core/shared/commons/enum/translate-me
 export class DeviceComponent implements OnInit, OnDestroy, IAbstractComponentFilter {
 
   loading: boolean = true;
-  devices: IDevice[] = [];
+  devices: IDeviceView[] = [];
   errorResponse!: HttpErrorResponse;
   private sub: Subscription[] = [];
   paginator!: IPaginator;
@@ -81,7 +81,7 @@ export class DeviceComponent implements OnInit, OnDestroy, IAbstractComponentFil
     );
   }
 
-  onUpdate(device: IDevice): void {
+  onUpdate(device: IDeviceView): void {
     this.sub.push(
       this.service.getDeviceModal(device).subscribe({
         next: (data) => this.afterUpdate(data),
@@ -90,13 +90,13 @@ export class DeviceComponent implements OnInit, OnDestroy, IAbstractComponentFil
     );
   }
 
-  private afterUpdate(device: IDevice): void {
+  private afterUpdate(device: IDeviceView): void {
     this.devices.forEach(d => {
       if (d.id === device.id) Object.assign(d, device);
     });
   }
 
-  confirmDelete(device: IDevice): void {
+  confirmDelete(device: IDeviceView): void {
     this.sub.push(
       this.service.showConfirm(this.messages.WARNING, this.messages.MODAL_DELETE_RECORD, device.hostname).subscribe({
         next: (confirm) => {
@@ -107,7 +107,7 @@ export class DeviceComponent implements OnInit, OnDestroy, IAbstractComponentFil
     )
   }
 
-  private onDelete(device: IDevice): void {
+  private onDelete(device: IDeviceView): void {
     this.sub.push(
       this.service.deleteDevice(device.id).subscribe({
         next: () => this.afterDelete(device),
@@ -116,7 +116,7 @@ export class DeviceComponent implements OnInit, OnDestroy, IAbstractComponentFil
     )
   }
 
-  private afterDelete(device: IDevice): void {
+  private afterDelete(device: IDeviceView): void {
     this.devices.forEach(d => {
       if (d.id === device.id) d.active = false;
     });

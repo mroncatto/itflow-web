@@ -116,12 +116,12 @@
                                                 [translate]="messages.UPDATE"></span></button>
                                     </div>
                                 </tab>
-                                <tab *ngIf="device.deviceStaff">
+                                <tab *ngIf="device.hasStaff">
                                     <ng-template tabHeading>
-                                        <i class="fa fa-user"></i> <span class="mx-1"
-                                            [translate]="messages.USER"></span>
+                                        <i class="fa fa-user"></i>
+                                        <span class="mx-1" [translate]="messages.USER"></span>
                                     </ng-template>
-                                    <div class="py-2">
+                                    <div class="py-2" *ngIf="device.deviceStaff">
                                         <ul class="list-group list-group-">
                                             <li class="list-group-item border-0"><span class="fw-bold"
                                                     [translate]="messages.FULLNAME"></span>:
@@ -162,7 +162,7 @@
                                         </ul>
                                     </div>
 
-                                    <div class="py-2 flex-gap">
+                                    <div class="py-2 flex-gap" *ngIf="device.deviceStaff">
                                         <button class="btn btn-sm btn-warning" (click)="onAddOrChangeStaff()"><i
                                                 class="fas fa-pen"></i> <span class="mx-1"
                                                 [translate]="messages.UPDATE"></span></button>
@@ -170,13 +170,18 @@
                                                 class="fas fa-trash"></i> <span class="mx-1"
                                                 [translate]="messages.DELETE"></span></button>
                                     </div>
+
+                                    <div *ngIf="isLoading(staffLoading)" class="spinner-border m-5" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+
                                 </tab>
-                                <tab *ngIf="device.deviceComputer">
+                                <tab *ngIf="device.hasComputer">
                                     <ng-template tabHeading>
                                         <i class="fa fa-desktop"></i> <span class="mx-1"
                                             [translate]="messages.DEVICE_COMPUTER"></span>
                                     </ng-template>
-                                    <div class="py-2">
+                                    <div class="py-2" *ngIf="device.deviceComputer">
                                         <tabset #propertiesTabs>
                                             <tab>
                                                 <ng-template tabHeading>
@@ -432,15 +437,19 @@
                                                     <table class="table table-striped">
                                                         <thead>
                                                             <tr>
-                                                                <th [translate]="messages.DEVICE_COMPUTER_SOFTWARE"></th>
+                                                                <th [translate]="messages.DEVICE_COMPUTER_SOFTWARE">
+                                                                </th>
                                                                 <th [translate]="messages.OWNER"></th>
+                                                                <th [translate]="messages.LICENSE"></th>
                                                                 <th></th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr *ngFor="let lic of device.deviceComputer.computerSoftwareList">
+                                                            <tr
+                                                                *ngFor="let lic of device.deviceComputer.computerSoftwareList">
                                                                 <td>{{ lic.software.name }}</td>
                                                                 <td>{{ lic.software.developer }}</td>
+                                                                <td>{{ lic.license }}</td>
                                                                 <td><i title="{{messages.REMOVE | translate}}"
                                                                         class="fas fa-trash text-danger link link-animation"></i>
                                                                 </td>
@@ -488,6 +497,13 @@
                                                 </div>
                                             </tab>
                                         </tabset>
+                                    </div>
+                                    <div *ngIf="isLoading(computerLoading)" class="spinner-border m-5" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                    <div *ngIf="isError(computerLoading)" class="alert alert-danger" role="alert">
+                                        <span><i class="fas fa-exclamation-triangle mx-2"></i></span>
+                                        <span [translate]="messages.ERROR_LOADING_FEATURE"></span>
                                     </div>
                                 </tab>
                             </tabset>

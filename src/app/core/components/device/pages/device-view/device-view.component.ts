@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TabsetComponent } from 'ngx-bootstrap/tabs';
 import { AbstractComponent } from 'src/app/core/shared/abstracts/abstract-component';
-import { Device, IDevice } from '../../model/device';
+import { IDeviceView } from '../../model/device';
 import { DeviceService } from '../../services/device.service';
 import { ComputerService } from '../../../computer/services/computer.service';
 import { IComputerCpu } from '../../../computer/model/computer-cpu';
@@ -14,8 +14,8 @@ import { DeviceComputerStorageForm, IDeviceComputerStorage } from '../../model/d
 import { IComputerStorage } from '../../../computer/model/computer-storage';
 import { TranslateMessages } from 'src/app/core/shared/commons/enum/translate-messages.enum';
 import { DeviceComputerSoftwareForm, IDeviceComputerSoftware } from '../../model/device-computer-software';
-import { IComputerSoftware } from '../../../computer/model/computer-software';
-import { IDeviceComputerSoftwarePK } from '../../model/pk/device-computer-software-pk';
+import { IComputerSoftware, IComputerSoftwareList } from '../../../computer/model/computer-software';
+import { LoadingState } from 'src/app/core/shared/commons/enum/loading-state.enum';
 
 @Component({
   templateUrl: './device-view.component.html',
@@ -25,7 +25,7 @@ export class DeviceViewComponent extends AbstractComponent implements OnInit {
 
   messages = TranslateMessages;
 
-  device!: IDevice | null;
+  device!: IDeviceView | null;
   computerCpuAutoComplete = new FormControl('', Validators.required);
   computerMemoryAutoComplete = new FormControl('', Validators.required);
   computerStorageAutoComplete = new FormControl('', Validators.required);
@@ -35,6 +35,9 @@ export class DeviceViewComponent extends AbstractComponent implements OnInit {
   deviceComputerMemoryForm!: FormGroup<DeviceComputerMemoryForm>;
   deviceComputerStorageForm!: FormGroup<DeviceComputerStorageForm>;
   deviceComputerSoftwareForm!: FormGroup<DeviceComputerSoftwareForm>;
+
+  staffLoading: LoadingState = LoadingState.Done;
+  computerLoading: LoadingState = LoadingState.Done;
 
   @ViewChild('featuresTabs', { static: false }) featuresTabs?: TabsetComponent;
   @ViewChild('propertiesTabs', { static: false }) propertiesTabs?: TabsetComponent;
@@ -56,16 +59,51 @@ export class DeviceViewComponent extends AbstractComponent implements OnInit {
     });
   }
 
-  startForms(): void {
+  private startForms(): void {
     this.startFormComputer();
   }
 
-  startFormComputer(): void {
-    if (this.device?.deviceComputer) {
+
+  private startFormComputer(): void {
+    if (this.device?.hasComputer) {
       this.deviceComputerCpuForm = this.computerService.getDeviceComputerCpuForm(this.device.deviceComputer);
       this.deviceComputerMemoryForm = this.computerService.getDeviceComputerMemoryForm(this.device.deviceComputer);
       this.deviceComputerStorageForm = this.computerService.getDeviceComputerStorageForm(this.device.deviceComputer);
       this.deviceComputerSoftwareForm = this.computerService.getDeviceComputerSoftwareForm(this.device.deviceComputer);
+    }
+  }
+
+  private loadFeatures(): void {
+    if (this.device?.hasStaff) this.loadStaff();
+    if (this.device?.hasComputer) this.loadComputer();
+  }
+
+  private loadStaff(): void {
+    this.staffLoading = LoadingState.Loading;
+    if (this.device) {
+      this.sub.push(
+        this.service.getDeviceStaff(this.device.id).subscribe({
+          next: (data) => { if (this.device) this.device.deviceStaff = data },
+          error: (err) => console.error(err.message),
+          complete: () => this.staffLoading = LoadingState.Done
+        })
+      );
+    }
+  }
+
+  private loadComputer(): void {
+    this.computerLoading = LoadingState.Done;
+    if (this.device) {
+      this.sub.push(
+        this.service.getDeviceComputer(this.device.id).subscribe({
+          next: (data) => { if (this.device) this.device.deviceComputer = data },
+          error: (err) => {
+            console.error(err.message);
+            this.computerLoading = LoadingState.Error;
+          },
+          complete: () => this.computerLoading = LoadingState.Done
+        })
+      );
     }
   }
 
@@ -84,6 +122,7 @@ export class DeviceViewComponent extends AbstractComponent implements OnInit {
         complete: () => {
           this.loading = false;
           this.startForms();
+          this.loadFeatures();
         }
       })
     )
@@ -104,7 +143,7 @@ export class DeviceViewComponent extends AbstractComponent implements OnInit {
     return list == null || list == undefined || list.length == 0
   }
 
-  private afterUpdate(device: IDevice): void {
+  private afterUpdate(device: IDeviceView): void {
     if (this.device != null) {
       Object.assign(this.device, device);
     }
@@ -154,9 +193,12 @@ export class DeviceViewComponent extends AbstractComponent implements OnInit {
     }
   }
 
-  private afterDeleteDeviceFeatures(device: IDevice): void {
+  private afterDeleteDeviceFeatures(device: IDeviceView): void {
     this.selectTab(0);
-    this.device = device;
+    if(this.device != null) {
+      this.device.hasStaff = device.hasStaff;
+      this.device.deviceStaff = device.deviceStaff;
+    }
     this.service.onSuccess(this.messages.INFO_SUCCESS, this.messages.INFO_DELETED);
   }
 
@@ -192,8 +234,8 @@ export class DeviceViewComponent extends AbstractComponent implements OnInit {
 
   canAddFeatures(): boolean {
     if (this.device)
-      return this.device.active && (this.device.deviceStaff == null || this.device.deviceComputer == null);
-
+      return this.device.active && (!this.device.hasStaff || !this.device.hasComputer);
+    //TODO:
     return false;
   }
 
@@ -244,7 +286,7 @@ export class DeviceViewComponent extends AbstractComponent implements OnInit {
     }
   }
 
-  onDeviceComputerCpuSave(data: Device): void {
+  onDeviceComputerCpuSave(data: IDeviceView): void {
     this.device = data;
     this.computerCpuAutoComplete.reset();
     this.deviceComputerCpuForm.reset();
@@ -289,7 +331,7 @@ export class DeviceViewComponent extends AbstractComponent implements OnInit {
     }
   }
 
-  onDeviceComputerMemorySave(data: Device): void {
+  onDeviceComputerMemorySave(data: IDeviceView): void {
     this.device = data;
     this.computerMemoryAutoComplete.reset();
     this.deviceComputerMemoryForm.reset();
@@ -334,7 +376,7 @@ export class DeviceViewComponent extends AbstractComponent implements OnInit {
     }
   }
 
-  onDeviceComputerStorageSave(data: Device): void {
+  onDeviceComputerStorageSave(data: IDeviceView): void {
     this.device = data;
     this.computerStorageAutoComplete.reset();
     this.deviceComputerStorageForm.reset();
@@ -356,7 +398,7 @@ export class DeviceViewComponent extends AbstractComponent implements OnInit {
 
   }
 
-  onDeviceComputerSoftwareSave(data: Device): void {
+  onDeviceComputerSoftwareSave(data: IDeviceView): void {
     this.device = data;
     this.computerSoftwareAutoComplete.reset();
     this.deviceComputerSoftwareForm.reset();

@@ -41,6 +41,8 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { LicenseKeyComponent } from './components/forms/license/license-key/license-key.component';
 import { LicenseKeyAssignComponent } from './components/forms/license/license-key-assign/license-key-assign.component';
 import { ComputerSoftwareAutocompleteComponent } from './components/commons/autocomplete/computer-software-autocomplete/computer-software-autocomplete.component';
+import { LoadindWidgetComponent } from './components/commons/loadind-widget/loadind-widget.component';
+import { DeviceComputerAutocompleteComponent } from './components/commons/autocomplete/device-computer-autocomplete/device-computer-autocomplete.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +81,9 @@ import { ComputerSoftwareAutocompleteComponent } from './components/commons/auto
     ComputerLicenseFormComponent,
     LicenseKeyComponent,
     LicenseKeyAssignComponent,
-    ComputerSoftwareAutocompleteComponent
+    ComputerSoftwareAutocompleteComponent,
+    LoadindWidgetComponent,
+    DeviceComputerAutocompleteComponent
   ],
   imports: [
     CommonModule,
@@ -118,7 +122,8 @@ import { ComputerSoftwareAutocompleteComponent } from './components/commons/auto
     ComputerMemoryAutocompleteComponent,
     ComputerStorageAutocompleteComponent,
     InputGroupComponent,
-    ComputerSoftwareAutocompleteComponent
+    ComputerSoftwareAutocompleteComponent,
+    LoadindWidgetComponent
   ]
 })
 export class SharedModule { }

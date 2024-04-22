@@ -53,6 +53,7 @@ export class ComputerLicenseFormComponent extends AbstractComponent implements O
   payload(softwareLicense: ISoftwareLicense): void {
     if (softwareLicense) {
       this.softwareLicenseForm = this.service.getSoftwareLicenseForm(softwareLicense);
+      this.softwareLicenseForm.controls['software'].disable();
       this.softwareLicense = softwareLicense;
     }
   }
@@ -62,7 +63,7 @@ export class ComputerLicenseFormComponent extends AbstractComponent implements O
       this.loading = true;
       if (this.softwareLicense && this.softwareLicense?.id) {
         this.sub.push(
-          this.service.updateSoftwareLicense(this.softwareLicenseForm.value as ISoftwareLicense).subscribe({
+          this.service.updateSoftwareLicense(this.softwareLicenseForm.getRawValue() as ISoftwareLicense).subscribe({
             next: (data) => this.onSave(data),
             error: (err) => this.onError(err)
           })

@@ -21,7 +21,7 @@ import { DeviceComputerMemoryForm, IDeviceComputerMemory } from '../../device/mo
 import { DeviceComputerMemoryValidation } from '../../device/validation/device-computer-memory-validation';
 import { DeviceComputerStorageForm, IDeviceComputerStorage } from '../../device/model/device-computer-storage';
 import { DeviceComputerStorageValidation } from '../../device/validation/device-computer-storage-validation';
-import { ComputerSoftwareForm, IComputerSoftware } from '../model/computer-software';
+import { ComputerSoftwareForm, IComputerSoftware, IComputerSoftwareList } from '../model/computer-software';
 import { ComputerSoftwareFormComponent } from 'src/app/core/shared/components/forms/computer/computer-software-form/computer-software-form.component';
 import { ComputerSoftwareValidation } from '../validation/computer-software-validation';
 import { ISoftwareLicense, SoftwareLicenseForm } from '../model/software-license';
@@ -30,6 +30,7 @@ import { ComputerLicenseFormComponent } from 'src/app/core/shared/components/for
 import { LicenseKeyComponent } from 'src/app/core/shared/components/forms/license/license-key/license-key.component';
 import { ISoftwareLicenseKey, SoftwareLicenseKeyForm } from '../model/software-license-keys';
 import { DeviceComputerSoftwareForm, IDeviceComputerSoftware } from '../../device/model/device-computer-software';
+import { LicenseKeyAssignComponent } from 'src/app/core/shared/components/forms/license/license-key-assign/license-key-assign.component';
 
 @Injectable({
   providedIn: 'root'
@@ -75,6 +76,10 @@ export class ComputerService extends AbstractService {
     return this.http.get<IComputerSoftware[]>(`${this.API_URL}/computer/software/autocomplete?filter=${filter}`);
   }
 
+  getDeviceComputerAutoComplete(filter: string): Observable<IDeviceComputer[]> {
+    return this.http.get<IDeviceComputer[]>(`${this.API_URL}/device/computer/autocomplete?filter=${filter}`);
+  }
+
   createComputerCPU(computerCPU: IComputerCpu): Observable<IComputerCpu> {
     return this.http.post<IComputerCpu>(`${this.API_URL}/computer/cpu`, computerCPU);
   }
@@ -99,6 +104,14 @@ export class ComputerService extends AbstractService {
     return this.http.get<ISoftwareLicense[]>(`${this.API_URL}/computer/license`);
   }
 
+  getSoftwareLicenseById(id: number): Observable<ISoftwareLicense> {
+    return this.http.get<ISoftwareLicense>(`${this.API_URL}/computer/license/${id}`);
+  }
+
+  getSoftwareLicenseKey(id: number): Observable<ISoftwareLicenseKey> {
+    return this.http.get<ISoftwareLicenseKey>(`${this.API_URL}/computer/license/key/${id}`);
+  }
+
   createComputerMemory(computerMemory: IComputerMemory): Observable<IComputerMemory> {
     return this.http.post<IComputerMemory>(`${this.API_URL}/computer/memory`, computerMemory);
   }
@@ -113,6 +126,10 @@ export class ComputerService extends AbstractService {
 
   addLicenseKey(id: number, key: ISoftwareLicenseKey): Observable<ISoftwareLicense> {
     return this.http.post<ISoftwareLicense>(`${this.API_URL}/computer/license/${id}/key`, key);
+  }
+
+  addLicenseKeyAssign(id: number, deviceComputerSoftware: IDeviceComputerSoftware): Observable<IDeviceComputerSoftware> {
+    return this.http.post<IDeviceComputerSoftware>(`${this.API_URL}/computer/license/key/${id}/assign`, deviceComputerSoftware);
   }
 
   updateComputerMemory(computerMemory: IComputerMemory): Observable<IComputerMemory> {
@@ -224,6 +241,14 @@ export class ComputerService extends AbstractService {
     });
   }
 
+  getLicenseKeyAssignForm(): FormGroup<DeviceComputerSoftwareForm> {
+    return this.formBuilder.group({
+      deviceComputer: ['', Validators.required],
+      software: ['', Validators.required],
+      softwareLicenseKey: ['', Validators.required],
+    });
+  }
+
   getComputerStorageForm(storage?: IComputerStorage): FormGroup<ComputerStorageForm> {
     return this.formBuilder.group({
       id: [storage ? storage.id : ''],
@@ -293,6 +318,10 @@ export class ComputerService extends AbstractService {
 
   getLicenseKeyModal(license?: ISoftwareLicense): Observable<ISoftwareLicense> {
     return this.callModal(LicenseKeyComponent, license, { backdrop: 'static', class: 'modal-lg' });
+  }
+
+  getKeyAssignModal(key: ISoftwareLicenseKey): Observable<ISoftwareLicenseKey> {
+    return this.callModal(LicenseKeyAssignComponent, key, { class: 'modal-lg' });
   }
 
 }

@@ -9,6 +9,13 @@ export interface IComputerSoftware {
     active: boolean;
 }
 
+export interface IComputerSoftwareList {
+    readonly id: number;
+    name: string;
+    developer: string;
+    active: boolean;
+}
+
 export interface ComputerSoftwareForm {
     name: FormControl<string>;
     developer: FormControl<string>;

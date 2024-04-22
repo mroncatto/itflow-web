@@ -51,7 +51,7 @@
                                     <th [translate]="messages.DEVICE_HOSTNAME"></th>
                                     <th [translate]="messages.CATEGORY"></th>
                                     <th [translate]="messages.BRANCH"></th>
-                                    <th [translate]="messages.DEPARTMENT"></th>                                
+                                    <th [translate]="messages.DEPARTMENT"></th>
                                     <th [translate]="messages.STATUS"></th>
                                     <th></th>
                                 </tr>
@@ -61,8 +61,14 @@
                                     <td>{{device.id}}</td>
                                     <td>{{device.code}}</td>
                                     <td>{{device.tag}}</td>
-                                    <td class="link fw-bold"><a class="link"
-                                            [routerLink]="[device.id + '/view']">{{device.hostname}}</a></td>
+                                    <td class="fw-bold">
+                                        <div class="widgets d-flex gap-1 align-center">
+                                            <a class="link" [routerLink]="[device.id + '/view']">{{device.hostname}}
+                                            </a>
+                                            <!-- <i *ngIf="device.hasStaff" class="fas fa-user text-secondary"></i>
+                                            <i *ngIf="device.hasComputer" class="fas fa-desktop text-secondary"></i> -->
+                                        </div>
+                                    </td>
                                     <td>{{device.deviceCategory.name}}</td>
                                     <td>{{device.department.branch.name}}</td>
                                     <td>{{device.department.name}}</td>

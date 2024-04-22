@@ -7,7 +7,7 @@ import { DeviceFormComponent } from 'src/app/core/shared/components/forms/device
 import { DeviceStaffFormComponent } from 'src/app/core/shared/components/forms/device/device-staff-form/device-staff-form.component';
 import { AbstractService } from 'src/app/core/shared/services/abstract/abstract.service';
 import { DeviceFilter } from '../filter/device-filter';
-import { DeviceForm, IDevice } from '../model/device';
+import { DeviceForm, IDevice, IDeviceView } from '../model/device';
 import { DeviceCategoryForm, IDeviceCategory } from '../model/device-category';
 import { DeviceStaffForm, IDeviceStaff } from '../model/device-staff';
 import { DeviceCategoryValidation } from '../validation/device-category-validation';
@@ -32,8 +32,8 @@ export class DeviceService extends AbstractService {
     return this.http.get<IPaginator>(`${this.API_URL}/device${this.filterDevice(filter, page)}`);
   }
 
-  getDeviceById(id: number): Observable<IDevice> {
-    return this.http.get<IDevice>(`${this.API_URL}/device/${id}`);
+  getDeviceById(id: number): Observable<IDeviceView> {
+    return this.http.get<IDeviceView>(`${this.API_URL}/device/${id}`);
   }
 
   getDeviceCategories(): Observable<IDeviceCategory[]> {
@@ -44,48 +44,56 @@ export class DeviceService extends AbstractService {
     return this.http.get<IDeviceCategory[]>(`${this.API_URL}/device/category/filter/device`);
   }
 
-  createDevice(device: IDevice): Observable<IDevice> {
-    return this.http.post<IDevice>(`${this.API_URL}/device`, device);
+  getDeviceStaff(id: number): Observable<IDeviceStaff> {
+    return this.http.get<IDeviceStaff>(`${this.API_URL}/device/staff/${id}`);
   }
 
-  updateDeviceStaff(id: number, deviceStaff: IDeviceStaff): Observable<IDevice> {
-    return this.http.put<IDevice>(`${this.API_URL}/device/staff/${id}`, deviceStaff);
+  getDeviceComputer(id: number): Observable<IDeviceComputer> {
+    return this.http.get<IDeviceComputer>(`${this.API_URL}/device/computer/${id}`);
   }
 
-  updateDeviceComputer(id: number, deviceComputer: IDeviceComputer): Observable<IDevice> {
-    return this.http.put<IDevice>(`${this.API_URL}/device/computer/${id}`, deviceComputer);
+  createDevice(device: IDeviceView): Observable<IDeviceView> {
+    return this.http.post<IDeviceView>(`${this.API_URL}/device`, device);
   }
 
-  updateDeviceComputerCpu(id: number, deviceComputerCpu: IDeviceComputerCpu): Observable<IDevice> {
-    return this.http.put<IDevice>(`${this.API_URL}/device/computer/${id}/cpu`, deviceComputerCpu);
+  updateDeviceStaff(id: number, deviceStaff: IDeviceStaff): Observable<IDeviceStaff> {
+    return this.http.put<IDeviceStaff>(`${this.API_URL}/device/staff/${id}`, deviceStaff);
+  }
+
+  updateDeviceComputer(id: number, deviceComputer: IDeviceComputer): Observable<IDeviceComputer> {
+    return this.http.put<IDeviceComputer>(`${this.API_URL}/device/computer/${id}`, deviceComputer);
+  }
+
+  updateDeviceComputerCpu(id: number, deviceComputerCpu: IDeviceComputerCpu): Observable<IDeviceView> {
+    return this.http.put<IDeviceView>(`${this.API_URL}/device/computer/${id}/cpu`, deviceComputerCpu);
   }
 
   deleteDeviceComputerCpu(id: number, cpuId: number): Observable<any> {
     return this.http.delete(`${this.API_URL}/device/computer/${id}/cpu/${cpuId}`);
   }
 
-  updateDeviceComputerMemory(id: number, deviceComputerMemory: IDeviceComputerMemory): Observable<IDevice> {
-    return this.http.put<IDevice>(`${this.API_URL}/device/computer/${id}/memory`, deviceComputerMemory);
+  updateDeviceComputerMemory(id: number, deviceComputerMemory: IDeviceComputerMemory): Observable<IDeviceView> {
+    return this.http.put<IDeviceView>(`${this.API_URL}/device/computer/${id}/memory`, deviceComputerMemory);
   }
 
   deleteDeviceComputerMemory(id: number, memoryId: number): Observable<any> {
     return this.http.delete(`${this.API_URL}/device/computer/${id}/memory/${memoryId}`);
   }
 
-  updateDeviceComputerStorage(id: number, deviceComputerStorage: IDeviceComputerStorage): Observable<IDevice> {
-    return this.http.put<IDevice>(`${this.API_URL}/device/computer/${id}/storage`, deviceComputerStorage);
+  updateDeviceComputerStorage(id: number, deviceComputerStorage: IDeviceComputerStorage): Observable<IDeviceView> {
+    return this.http.put<IDeviceView>(`${this.API_URL}/device/computer/${id}/storage`, deviceComputerStorage);
   }
 
-  updateDeviceComputerSoftware(id: number, deviceComputerSoftware: IDeviceComputerSoftware): Observable<IDevice> {
-    return this.http.put<IDevice>(`${this.API_URL}/device/computer/${id}/software`, deviceComputerSoftware);
+  updateDeviceComputerSoftware(id: number, deviceComputerSoftware: IDeviceComputerSoftware): Observable<IDeviceView> {
+    return this.http.put<IDeviceView>(`${this.API_URL}/device/computer/${id}/software`, deviceComputerSoftware);
   }
 
   deleteDeviceComputerStorage(id: number, storageId: number): Observable<any> {
     return this.http.delete(`${this.API_URL}/device/computer/${id}/storage/${storageId}`);
   }
 
-  updateDevice(device: IDevice): Observable<IDevice> {
-    return this.http.put<IDevice>(`${this.API_URL}/device`, device);
+  updateDevice(device: IDeviceView): Observable<IDeviceView> {
+    return this.http.put<IDeviceView>(`${this.API_URL}/device`, device);
   }
 
   createDeviceCategory(deviceCategory: IDeviceCategory): Observable<IDeviceCategory> {
@@ -104,25 +112,25 @@ export class DeviceService extends AbstractService {
     return this.http.delete<IDeviceCategory>(`${this.API_URL}/device/category/${id}`);
   }
 
-  deleteDeviceStaff(id: number): Observable<IDevice> {
-    return this.http.delete<IDevice>(`${this.API_URL}/device/staff/${id}`);
+  deleteDeviceStaff(id: number): Observable<IDeviceView> {
+    return this.http.delete<IDeviceView>(`${this.API_URL}/device/staff/${id}`);
   }
 
-  deleteDeviceComputer(id: number): Observable<IDevice> {
-    return this.http.delete<IDevice>(`${this.API_URL}/device/computer/${id}`);
+  deleteDeviceComputer(id: number): Observable<IDeviceView> {
+    return this.http.delete<IDeviceView>(`${this.API_URL}/device/computer/${id}`);
   }
 
 
   // ===================== Modals =========================
-  getDeviceModal(device?: IDevice): Subject<IDevice> {
+  getDeviceModal(device?: IDeviceView): Subject<IDeviceView> {
     return this.callModal(DeviceFormComponent, device);
   }
 
-  getDeviceStaffModal(device?: IDevice): Subject<IDevice> {
+  getDeviceStaffModal(device?: IDeviceView): Subject<IDeviceView> {
     return this.callModal(DeviceStaffFormComponent, device);
   }
 
-  getDeviceComputerModal(device?: IDevice): Subject<IDevice> {
+  getDeviceComputerModal(device?: IDeviceView): Subject<IDeviceView> {
     return this.callModal(DeviceComputerFormComponent, device, { backdrop: 'static', class: 'modal-xl' });
   }
 
@@ -131,7 +139,7 @@ export class DeviceService extends AbstractService {
   }
 
   // ===================== FormGroups ======================
-  getDeviceForm(device?: IDevice): FormGroup<DeviceForm> {
+  getDeviceForm(device?: IDeviceView): FormGroup<DeviceForm> {
     return this.formBuilder.group({
       id: [device ? device.id : ''],
       code: [device ? device.code : ''],

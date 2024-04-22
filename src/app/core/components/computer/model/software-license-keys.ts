@@ -1,6 +1,5 @@
 import { FormControl } from "@angular/forms";
 import { ISoftwareLicense } from "./software-license";
-import { IDeviceComputerSoftwarePK } from "../../device/model/pk/device-computer-software-pk";
 import { IDeviceComputerSoftware } from "../../device/model/device-computer-software";
 
 export interface ISoftwareLicenseKey {

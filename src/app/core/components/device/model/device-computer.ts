@@ -1,35 +1,43 @@
 import { FormControl } from "@angular/forms";
 import { IComputerCategory } from "../../computer/model/computer-category";
-import { Device } from "./device";
 import { IDeviceComputerCpu } from "./device-computer-cpu";
 import { IDeviceComputerMemory } from "./device-computer-memory";
 import { IDeviceComputerStorage } from "./device-computer-storage";
-import { IDeviceComputerSoftware } from "./device-computer-software";
+import { IComputerSoftwareView, IDeviceComputerSoftware } from "./device-computer-software";
+import { IDevice } from "./device";
+
+export interface IDeviceComputerSample {
+    readonly id: number;
+    hostname: string;
+    computerCategory: IComputerCategory;
+    description: string;
+    virtual: boolean;
+}
 
 export interface IDeviceComputer {
     readonly id: number;
-    device: Device;
+    device: IDevice;
     computerCategory: IComputerCategory;
     description: string;
     virtual: boolean;
     computerCpuList: IDeviceComputerCpu[];
     computerMemoryList: IDeviceComputerMemory[];
     computerStorageList: IDeviceComputerStorage[];
-    computerSoftwareList: IDeviceComputerSoftware[];
+    computerSoftwareList: IComputerSoftwareView[];
 }
 
 export class DeviceComputer implements IDeviceComputer {
     readonly id: number;
-    device: Device;
+    device: IDevice;
     computerCategory: IComputerCategory;
     description: string;
     virtual: boolean;
     computerCpuList: IDeviceComputerCpu[] = [];
     computerMemoryList: IDeviceComputerMemory[] = [];
     computerStorageList: IDeviceComputerStorage[] = [];
-    computerSoftwareList: IDeviceComputerSoftware[] = [];
+    computerSoftwareList: IComputerSoftwareView[] = [];
 
-    constructor(id: number, device: Device, computerCategory: IComputerCategory, description: string, 
+    constructor(id: number, device: IDevice, computerCategory: IComputerCategory, description: string, 
         virtual: boolean) {
         this.id = id;
         this.device = device;

@@ -5,22 +5,21 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 import { Subject } from 'rxjs';
 import { IDepartment } from 'src/app/core/components/company/model/department';
 import { CompanyService } from 'src/app/core/components/company/services/company.service';
-import { DeviceForm, IDevice } from 'src/app/core/components/device/model/device';
+import { DeviceForm, IDeviceView } from 'src/app/core/components/device/model/device';
 import { IDeviceCategory } from 'src/app/core/components/device/model/device-category';
 import { DeviceService } from 'src/app/core/components/device/services/device.service';
 import { AbstractDevice } from 'src/app/core/shared/abstracts/abstract-device';
 import { IAbstractModelForms } from 'src/app/core/shared/abstracts/interface/abstract-model-forms';
-import { TranslateMessages } from 'src/app/core/shared/commons/enum/translate-messages.enum';
 
 @Component({
   selector: 'app-device-form',
   templateUrl: './device-form.component.html',
   styleUrls: ['./device-form.component.css']
 })
-export class DeviceFormComponent extends AbstractDevice implements OnInit, OnDestroy, IAbstractModelForms<IDevice> {
+export class DeviceFormComponent extends AbstractDevice implements OnInit, OnDestroy, IAbstractModelForms<IDeviceView> {
 
-  result!: Subject<IDevice>;
-  device!: IDevice;
+  result!: Subject<IDeviceView>;
+  device!: IDeviceView;
   deviceForm!: FormGroup<DeviceForm>;
   departments: IDepartment[] = [];
   categories: IDeviceCategory[] = [];
@@ -60,7 +59,7 @@ export class DeviceFormComponent extends AbstractDevice implements OnInit, OnDes
     );
   }
 
-  payload(device: IDevice): void {
+  payload(device: IDeviceView): void {
     if (device) {
       this.deviceForm = this.service.getDeviceForm(device);
       this.device = device;
@@ -72,14 +71,14 @@ export class DeviceFormComponent extends AbstractDevice implements OnInit, OnDes
       this.loading = true;
       if (this.device && this.device?.id) {
         this.sub.push(
-          this.service.updateDevice(this.deviceForm.value as IDevice).subscribe({
+          this.service.updateDevice(this.deviceForm.value as IDeviceView).subscribe({
             next: (data) => this.onSave(data),
             error: (err) => this.onError(err)
           })
         )
       } else {
         this.sub.push(
-          this.service.createDevice(this.deviceForm.value as IDevice).subscribe({
+          this.service.createDevice(this.deviceForm.value as IDeviceView).subscribe({
             next: (data) => this.onSave(data),
             error: (err) => this.onError(err)
           })
@@ -91,7 +90,7 @@ export class DeviceFormComponent extends AbstractDevice implements OnInit, OnDes
     }
   }
 
-  onSave(device: IDevice): void {
+  onSave(device: IDeviceView): void {
     this.result.next(device);
     if (this.device?.id) {
       this.service.onSuccess(this.messages.INFO_SUCCESS, this.messages.INFO_UPDATED);

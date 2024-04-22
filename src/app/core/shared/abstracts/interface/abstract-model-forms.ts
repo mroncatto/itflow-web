@@ -7,7 +7,7 @@ export interface IAbstractModelForms<T> {
 
     payload(entity: T): void;
     save(): void;
-    onSave(entity: T): void;
+    onSave(entity: any): void;
     onError(err: HttpErrorResponse): void;
     closeModal(): void;
 }

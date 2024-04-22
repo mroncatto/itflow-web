@@ -6,6 +6,7 @@
 			"FORBIDDEN": "No permitido",
 			"INTERNAL SERVER ERROR": "Error interno del servidor",
 			"INVALID PASSWORD": "Contraseña invalida",
+			"loading_feature": "No se pudo cargar la característica",
 			"METHOD NOT ALLOWED": "Método no permitido",
 			"UNAUTHORIZED": "No autorizado",
 			"undefined": "Error interno del servidor",
@@ -46,6 +47,7 @@
 			"Not Found": "No encontrado",
 			"NOT_FOUND": "No encontrado",
 			"passwordExpired": "Su contraseña ha caducado, ¡establezca una nueva contraseña!",
+			"register_in_the_list": "El registro ya está en la lista",
 			"sessionExpired": "Sesión expirada",
 			"THE USERNAME FIELD IS REQUIRED": "O campo nome de usuário é obrigatório",
 			"USER ALREADY EXISTS WITH THIS EMAIL": "Ya hay un usuario con este correo",
@@ -87,6 +89,7 @@
 		"fullname": "Nombre completo",
 		"in_use": "En uso",
 		"inactive": "Inactivo",
+		"key": "Llave",
 		"license": "Licencia",
 		"licenses": "Licencias",
 		"model": "Modelo",
@@ -140,6 +143,7 @@
 		"thread": "Thread"
 	},
 	"computerLicense": {
+		"assign_keys": "Asignar clave",
 		"expire_at": "Caducar en",
 		"key": "Llave",
 		"keys": "Llaves",

@@ -6,6 +6,7 @@
 			"FORBIDDEN": "Forbidden",
 			"INTERNAL SERVER ERROR": "Internal Server Error",
 			"INVALID PASSWORD": "Invalid Password",
+			"loading_feature": "Failed to load feature",
 			"METHOD NOT ALLOWED": "Method not allowed",
 			"UNAUTHORIZED": "Unauthorized",
 			"undefined": "Internal Server Error",
@@ -46,6 +47,7 @@
 			"Not Found": "Not Found",
 			"NOT_FOUND": "Not Found",
 			"passwordExpired": "Your password has expired, please set a new password!",
+			"register_in_the_list": "The record is already in the list",
 			"sessionExpired": "Session expired",
 			"THE USERNAME FIELD IS REQUIRED": "The username field is required",
 			"USER ALREADY EXISTS WITH THIS EMAIL": "User already exists with this email",
@@ -87,6 +89,7 @@
 		"fullname": "Full name",
 		"in_use": "In use",
 		"inactive": "Inactive",
+		"key": "Key",
 		"license": "Licenses",
 		"licenses": "Licenses",
 		"model": "Model",
@@ -140,6 +143,7 @@
 		"thread": "Thread"
 	},
 	"computerLicense": {
+		"assign_keys": "Assign key",
 		"expire_at": "Expire at",
 		"key": "Key",
 		"keys": "Keys",

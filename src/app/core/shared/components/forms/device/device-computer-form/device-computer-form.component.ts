@@ -8,7 +8,7 @@ import { IComputerCpu } from 'src/app/core/components/computer/model/computer-cp
 import { IComputerMemory } from 'src/app/core/components/computer/model/computer-memory';
 import { IComputerStorage } from 'src/app/core/components/computer/model/computer-storage';
 import { ComputerService } from 'src/app/core/components/computer/services/computer.service';
-import { IDevice } from 'src/app/core/components/device/model/device';
+import { IDeviceView } from 'src/app/core/components/device/model/device';
 import { DeviceComputerForm, IDeviceComputer } from 'src/app/core/components/device/model/device-computer';
 import { DeviceService } from 'src/app/core/components/device/services/device.service';
 import { AbstractDeviceComputer } from 'src/app/core/shared/abstracts/abstract-device-computer';
@@ -20,10 +20,10 @@ import { TranslateMessages } from 'src/app/core/shared/commons/enum/translate-me
   templateUrl: './device-computer-form.component.html',
   styleUrls: ['./device-computer-form.component.css']
 })
-export class DeviceComputerFormComponent extends AbstractDeviceComputer implements OnInit, OnDestroy, IAbstractModelForms<IDevice> {
+export class DeviceComputerFormComponent extends AbstractDeviceComputer implements OnInit, OnDestroy, IAbstractModelForms<IDeviceView> {
 
-  result!: Subject<IDevice>;
-  device!: IDevice;
+  result!: Subject<IDeviceView>;
+  device!: IDeviceView;
   deviceComputer!: IDeviceComputer;
   deviceComputerForm!: FormGroup<DeviceComputerForm>;
   computerCategories: IComputerCategory[] = [];
@@ -59,7 +59,7 @@ export class DeviceComputerFormComponent extends AbstractDeviceComputer implemen
     );
   }
 
-  payload(device: IDevice): void {
+  payload(device: IDeviceView): void {
     if (device) {
       this.device = device;
       if (device.deviceComputer) {
@@ -84,8 +84,10 @@ export class DeviceComputerFormComponent extends AbstractDeviceComputer implemen
     }
   }
 
-  onSave(device: IDevice): void {
-    this.result.next(device);
+  onSave(deviceComputer: IDeviceComputer): void {
+    this.device.deviceComputer = deviceComputer;
+    this.device.hasComputer = (deviceComputer != null)
+    this.result.next(this.device);
     if (this.deviceComputer) {
       this.service.onSuccess(this.messages.INFO_SUCCESS, this.messages.INFO_UPDATED);
     } else {

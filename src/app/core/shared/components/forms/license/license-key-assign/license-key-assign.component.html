@@ -1,1 +1,50 @@
-<p>license-key-assign works!</p>
+<div class="modal-content">
+    <div class="modal-header">
+        <h5 *ngIf="licenseKey" class="modal-title">
+            <span [translate]="messages.COMPUTER_LICENSE_ASSIGN_KEYS"></span>
+            <span *ngIf="licenseKey.key"> - {{licenseKey.softwareLicense.description}} [ {{licenseKey.key}} ]</span>
+            
+        </h5>
+        <p *ngIf="licenseKey"><span [translate]="messages.VOLUME"></span>: {{licenseKey.volume != 0 ? licenseKey.volume : (messages.NO_LIMIT | translate)}} </p>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <form class="d-flex d-inline-flex gap-1" [formGroup]="licenseKeyAssignForm" (ngSubmit)="save()">
+                <app-device-computer-autocomplete id="deviceComputer"
+                [control]="deviceComputerAutoComplete"
+                (onSelect)="onSelectComputer($event)">
+                </app-device-computer-autocomplete>
+
+                <div class="mt-4">
+                    <button type="submit" class="btn btn-success btn-md" [disabled]="loading" [translate]="messages.ADD"></button>
+                </div>
+            </form>
+        </div>
+
+        <div class="row">
+            <table class="table table-stripped">
+                <thead>
+                    <tr>
+                        <th [translate]="messages.DEVICE_HOSTNAME"></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody *ngIf="licenseKey">
+                    <tr *ngFor="let assign of licenseKey.assignedLicenses">
+                        <td>{{assign.deviceComputer.device.hostname}}</td>
+                        <td class="link-spin text-center"><i (click)="onConfirmDelete(assign)"
+                                class="fas fa-trash text-danger"></i></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    <div class="modal-footer">
+        <button [disabled]="loading" type="button" class="btn btn-primary" (click)="closeModal()"
+            [translate]="messages.CLOSE"></button>
+    </div>
+
+
+</div>

@@ -3,7 +3,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { Subject } from 'rxjs';
-import { IDevice } from 'src/app/core/components/device/model/device';
+import { IDeviceView } from 'src/app/core/components/device/model/device';
 import { DeviceStaffForm, IDeviceStaff } from 'src/app/core/components/device/model/device-staff';
 import { DeviceService } from 'src/app/core/components/device/services/device.service';
 import { IStaff } from 'src/app/core/components/staff/model/staff';
@@ -17,10 +17,10 @@ import { IAbstractModelForms } from 'src/app/core/shared/abstracts/interface/abs
   styleUrls: ['./device-staff-form.component.css'],
 })
 
-export class DeviceStaffFormComponent extends AbstractDeviceStaff implements OnInit, OnDestroy, IAbstractModelForms<IDevice> {
+export class DeviceStaffFormComponent extends AbstractDeviceStaff implements OnInit, OnDestroy, IAbstractModelForms<IDeviceView> {
 
-  result!: Subject<IDevice>;
-  device!: IDevice;
+  result!: Subject<IDeviceView>;
+  device!: IDeviceView;
   deviceStaff!: IDeviceStaff;
   deviceStaffForm!: FormGroup<DeviceStaffForm>;
   staff: IStaff[] = [];
@@ -37,6 +37,7 @@ export class DeviceStaffFormComponent extends AbstractDeviceStaff implements OnI
     this.result = new Subject();
     this.deviceStaffForm = this.service.getDeviceStaffForm();
     this.getStaff();
+    //TODO: Refresh do device ?
   }
 
   ngOnDestroy(): void {
@@ -52,7 +53,7 @@ export class DeviceStaffFormComponent extends AbstractDeviceStaff implements OnI
     )
   }
 
-  payload(device: IDevice): void {
+  payload(device: IDeviceView): void {
     if (device) {
       this.device = device;
       if (device.deviceStaff) {
@@ -63,7 +64,7 @@ export class DeviceStaffFormComponent extends AbstractDeviceStaff implements OnI
   }
 
   save(): void {
-    if (this.deviceStaffForm.valid) {
+    if (this.deviceStaffForm.valid && this.device) {
       this.loading = true;
       this.sub.push(
         this.service.updateDeviceStaff(this.device.id, this.deviceStaffForm.value as IDeviceStaff).subscribe({
@@ -77,8 +78,10 @@ export class DeviceStaffFormComponent extends AbstractDeviceStaff implements OnI
     }
   }
 
-  onSave(device: IDevice): void {
-    this.result.next(device);
+  onSave(deviceStaff: IDeviceStaff): void {
+    this.device.deviceStaff = deviceStaff;
+    this.device.hasStaff = (deviceStaff != null);
+    this.result.next(this.device);
     if (this.deviceStaff) {
       this.service.onSuccess(this.messages.INFO_SUCCESS, this.messages.INFO_UPDATED);
     } else {
