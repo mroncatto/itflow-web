@@ -1,0 +1,59 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <h5 *ngIf="!staff" class="modal-title" [translate]="messages.MODAL_NEW_STAFF"></h5>
+        <h5 *ngIf="staff" class="modal-title" [translateParams]="{name: staff.fullName}" [translate]="messages.MODAL_UPDATE"></h5>
+    </div>
+    <form [formGroup]="staffForm" (ngSubmit)="save()">
+        <div class="modal-body">
+
+            <app-input-group
+            [form]="staffForm"
+            [translateLabel]="messages.FULLNAME" 
+            [translatePlaceholder]="messages.USER_FULLNAME_PH"
+            id="fullName">
+            </app-input-group>
+
+            <app-input-group
+            [form]="staffForm"
+            [translateLabel]="messages.EMAIL" 
+            [translatePlaceholder]="messages.USER_EMAIL_PH"
+            id="email">
+            </app-input-group>
+
+            <div class="mb-3">
+                <label for="department" [translate]="messages.DEPARTMENT"></label>
+                <div class="d-flex gap-2">
+                    <select formControlName="department" id="department" [compareWith]="compareWith"
+                        class="form-select">
+                        <option [translate]="messages.SELECT_DEPARTMENT" disabled selected value=""></option>
+                        <option *ngFor="let d of departments" [ngValue]="d">{{d.branch.name}}-{{d.name}}</option>
+                    </select>
+                    <btn-new-department [loading]="loading" (onCreate)="onCreateDepartment($event)"></btn-new-department>
+                </div>
+                <app-validation-field [form]="staffForm" [field]="'department'"></app-validation-field>
+            </div>
+
+            <div class="mb-3">
+                <label for="occupation" [translate]="messages.OCCUPATION"></label>
+                <div class="d-flex gap-2">
+                    <select formControlName="occupation" id="occupation" [compareWith]="compareWith"
+                        class="form-select">
+                        <option [translate]="messages.SELECT_OCCUPATION" disabled selected value=""></option>
+                        <option *ngFor="let o of occupations" [ngValue]="o">{{o.name}}</option>
+                    </select>
+                    <btn-new-occupation [loading]="loading" (onCreate)="onCreateOccupation($event)"></btn-new-occupation>
+                </div>
+                <app-validation-field [form]="staffForm" [field]="'occupation'"></app-validation-field>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+            <button [disabled]="loading" type="button" class="btn btn-outline-danger" (click)="closeModal()"
+                [translate]="messages.CANCEL"></button>
+            <button [disabled]="loading" type="submit" class="btn btn-success">
+                <i *ngIf="loading" class="fas fa-spinner fa-pulse mx-1"></i>
+                <span [translate]="messages.SAVE"></span>
+            </button>
+        </div>
+    </form>
+</div>

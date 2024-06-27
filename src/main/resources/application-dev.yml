@@ -1,0 +1,42 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/itflow?useSSL=false
+    username: postgres
+    password: postgres
+  mail:
+    username: mailtrap_username
+    password: mailtrap_password
+    host: sandbox.smtp.mailtrap.io
+    port: 25
+    protocol: smtp
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+          ssl:
+            enable: false
+            protocols: 'TLSv1.2'
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+  data:
+    redis:
+      host: localhost
+      port: 6379
+logging:
+  level:
+    root: DEBUG
+    org:
+      hibernate:
+        SQL: DEBUG
+      springframework:
+        boot:
+          autoconfigure: INFO
+jwt:
+  secret: "A2DAF8D98E959FB4F47FA167146A37736EB4227FD6996FB72A19E2B65E"
+  expire: 720

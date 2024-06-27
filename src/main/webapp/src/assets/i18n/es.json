@@ -1,0 +1,380 @@
+{
+	"alert": {
+		"error": {
+			"BAD CREDENTIALS": "Credenciales no válidas",
+			"DATABASE ERROR": "Error de base de datos",
+			"FORBIDDEN": "No permitido",
+			"INTERNAL SERVER ERROR": "Error interno del servidor",
+			"INVALID PASSWORD": "Contraseña invalida",
+			"loading_feature": "No se pudo cargar la característica",
+			"METHOD NOT ALLOWED": "Método no permitido",
+			"UNAUTHORIZED": "No autorizado",
+			"undefined": "Error interno del servidor",
+			"unknown": "Error interno del servidor",
+			"UNSUCCESSFUL AUTHENTICATION": "La autenticación falló",
+			"USER ACCOUNT IS LOCKED": "Tu cuenta está bloqueada"
+		},
+		"info": {
+			"authenticated": "Autenticado con éxito",
+			"created": "Creado con éxito",
+			"deleted": "Eliminado con éxito",
+			"device_deleted": "Dispositivo fue inactivado",
+			"disabled": "Desactivado con éxito",
+			"password_changed": "Se ha cambiado la contraseña",
+			"password_reseted": "Se ha generado una nueva contraseña y se ha enviado al correo del usuario",
+			"profile_changed": "El perfil ha sido cambiado",
+			"staff_deleted": "El funcionários ha sido eliminado",
+			"success": "Éxito",
+			"updated": "Alterado con éxito",
+			"user_blocked": "La cuenta ha sido bloqueada",
+			"user_created": "La cuenta ha sido creada, los datos de inicio de sesión han sido enviados al correo electrónico del usuario",
+			"user_disabled": "¡La cuenta de usuario ha sido deshabilitada!",
+			"user_role_updated": "Los roles de usuario han sido actualizados",
+			"user_unlocked": "La cuenta ha sido desbloqueada",
+			"welcome": "Bienvenido"
+		},
+		"warning": {
+			"ALL FIELDS ARE REQUIRED": "Todos los campos son obligatorios",
+			"attention": "Atención",
+			"BAD_REQUEST": "Datos inválidos",
+			"badRequest": "Datos inválidos",
+			"canActivatedDenied": "Acceso denegado, no tienes permiso para acceder a esta página",
+			"complete_required_fields": "Completa los campos obligatorios",
+			"DEVICE NOT FOUND": "Dispositivo no encontrado",
+			"INVALID FORMAT EMAIL": "Formato de correo inválido",
+			"loginRequired": "Por favor, vuelva a iniciar sesión",
+			"No message available": "Error desconocido",
+			"Not Found": "No encontrado",
+			"NOT_FOUND": "No encontrado",
+			"passwordExpired": "Su contraseña ha caducado, ¡establezca una nueva contraseña!",
+			"register_in_the_list": "El registro ya está en la lista",
+			"sessionExpired": "Sesión expirada",
+			"THE USERNAME FIELD IS REQUIRED": "O campo nome de usuário é obrigatório",
+			"USER ALREADY EXISTS WITH THIS EMAIL": "Ya hay un usuario con este correo",
+			"USER ALREADY EXISTS WITH THIS USERNAME": "Ya existe un usuario con este nombre de usuario",
+			"USER NOT FOUND": "Usuario no encontrado"
+		}
+	},
+	"branch": {
+		"branch": "Sucursal",
+		"branches": "Sucursales",
+		"placeholder": {
+			"name": "Nombre de la sucursal"
+		}
+	},
+	"commons": {
+		"actions": "Acciones",
+		"active": "Activo",
+		"add": "Adicionar",
+		"assignment": "Asignación",
+		"attention": "Atención",
+		"brand": "Marca",
+		"cancel": "Cancelar",
+		"category": "Categoria",
+		"clean": "Limpiar",
+		"cleanFilter": "Limpiar filtro",
+		"clearSelection": "Limpiar selección",
+		"close": "Cerrar",
+		"code": "Código",
+		"delete": "Eliminar",
+		"description": "Descripción",
+		"details": "Detalles",
+		"developer": "Desarrollador",
+		"disable": "Desactivar",
+		"document": "Documento",
+		"edit": "Editar",
+		"email": "Correo",
+		"filterOnTheList": "Filtrar en la lista",
+		"filterResults": "Filtrar resultados",
+		"fullname": "Nombre completo",
+		"in_use": "En uso",
+		"inactive": "Inactivo",
+		"key": "Llave",
+		"license": "Licencia",
+		"licenses": "Licencias",
+		"model": "Modelo",
+		"name": "Nombre",
+		"new": "Nuevo",
+		"no": "No",
+		"no_license": "Sin licencia",
+		"no_limit": "Sin límite",
+		"noData": "Sin registros",
+		"open": "Abrir",
+		"optional": "Opcional",
+		"owner": "Propietario",
+		"placeholder": {
+			"brand": "Marca",
+			"document": "Número de documento",
+			"model": "Modelo",
+			"type": "Tipo"
+		},
+		"refreshList": "Actualizar lista",
+		"register": "Registro",
+		"remove": "Remover",
+		"save": "Salvar",
+		"status": "Situación",
+		"type": "Tipo",
+		"typeToSearch": "Escribe para buscar",
+		"update": "Actualizar",
+		"volume": "Volumen",
+		"warning": "Aviso",
+		"yes": "Si"
+	},
+	"company": {
+		"companies": "Empresas",
+		"company": "Empresa",
+		"name.placeholder": "Nombre de la empresa",
+		"selectCompany": "Selecciona una empresa"
+	},
+	"computerCpu": {
+		"core": "Núcleos",
+		"frequency": "Frecuencia (Mhz)",
+		"fsb": "FSB (Mhz)",
+		"generation": "Generación",
+		"placeholder": {
+			"core": "Números de núcleos",
+			"frequency": "Frecuencia de CPU (Mhz)",
+			"fsb": "FSB (Bus frontal)",
+			"generation": "Generación de CPU",
+			"socket": "CPU Socket",
+			"thread": "Números de threads"
+		},
+		"socket": "Socket",
+		"thread": "Thread"
+	},
+	"computerLicense": {
+		"assign_keys": "Asignar clave",
+		"expire_at": "Caducar en",
+		"key": "Llave",
+		"keys": "Llaves",
+		"license_volume": "Volumen de licencia",
+		"manage_keys": "Administrar claves",
+		"no_expire": "No caduca"
+	},
+	"computerMemory": {
+		"frequency": "Frecuencia (Mhz)",
+		"modules": "Módulos",
+		"placeholder": {
+			"frequency": "Frecuencia de memoria",
+			"size": "Tamaño de memoria (GB)"
+		},
+		"size": "Tamaño (GB)"
+	},
+	"computerSoftware": {
+		"license_expired": "Licencia expirada",
+		"placeholder": {
+			"name": "Nombre del programa"
+		},
+		"select_software": "Seleccione un software",
+		"software_license": "Licencias de software"
+	},
+	"computerStorage": {
+		"placeholder": {
+			"size": "Tamaño de la unidad en GB",
+			"transferRate": "Storage transfer Rate (MB/s)"
+		},
+		"size": "Tamaño (GB)",
+		"transferRate": "Velocidad de transferencia (MB/s)"
+	},
+	"config": {
+		"date_format": "dd/MM/yyyy",
+		"locale": "es-PY"
+	},
+	"department": {
+		"department": "Departamento",
+		"departments": "Departamentos",
+		"placeholder": {
+			"name": "Nombre del departamento"
+		},
+		"select_branch": "Selecciona una sucursal",
+		"select_department": "Seleccione un Departamento"
+	},
+	"device": {
+		"category": "Categoria de dispositivo",
+		"code": "Código",
+		"details": "Detalles del dispositivo",
+		"device": "Dispositivo",
+		"devices": "Dispositivos",
+		"deviceUser": "Usuario del dispositivo",
+		"hostname": "Nombre de host",
+		"placeholder": {
+			"code": "Código del dispositivo",
+			"description": "Descripción del dispositivo",
+			"hostname": "Nombre de host del dispositivo",
+			"serialNumber": "Número de serie",
+			"tag": "Etiqueta del dispositivo"
+		},
+		"selectCategory": "Selecciona una categoria",
+		"serialNumber": "Número de serie",
+		"tag": "Etiqueta"
+	},
+	"deviceComputer": {
+		"computer": "Computadora",
+		"cpu": "Procesador",
+		"memory": "Memoria",
+		"placeholder": {
+			"description": "Descripción de la computadora",
+			"virtual": "¿Es una máquina virtual?"
+		},
+		"server": "Servidor",
+		"software": "Software",
+		"storage": "Almacenamiento",
+		"virtual": "Máquina virtual"
+	},
+	"deviceStaff": {
+		"addFeatures": "Agrega características",
+		"placeholder": {
+			"login": "Login del usuario"
+		}
+	},
+	"forms": {
+		"date_greater_than_today": "La fecha debe ser mayor que la fecha actual.",
+		"date_less_than_today": "La fecha debe ser menor que la fecha actual.",
+		"email": "Debes ingresar un correo válido",
+		"format": {
+			"invalid": "Inválido",
+			"only_letters": "Solo letras",
+			"only_numbers": "Solo números",
+			"only_positive_numbers": "Solo números positivos",
+			"strong_password": "Contraseña débil"
+		},
+		"invalid_field": "Campo inválido",
+		"max": "El valor máximo permitido es {{n}}",
+		"max_length": "Máximo de {{n}} caracteres permitidos",
+		"min": "El valor mínimo permitido es {{n}}",
+		"min_length": "Se requiere un mínimo de {{n}} caracteres",
+		"password_match": "Las contraseñas no coinciden",
+		"pattern": "Patrón no válido",
+		"required": "Este campo es obligatorio"
+	},
+	"login": {
+		"about": "Gestión de servicios de tecnologías de la información",
+		"forget_pwd": "Olvido la contraseña? Recuperar contraseña",
+		"login": "Login",
+		"placeholder": {
+			"password": "Su contraseña",
+			"username": "Su nombre de usuario"
+		}
+	},
+	"menu": {
+		"all_devices": "Todos los dispositivos",
+		"branches": "Sucursales",
+		"companies": "Empresas",
+		"computer": "Computador",
+		"darkmode": "Modo oscuro",
+		"dashboard": "Panel",
+		"departments": "Departamentos",
+		"devices": "Dispositivos",
+		"helpdesk": "Helpdesk",
+		"interface": "Interfaz",
+		"logout": " Salir",
+		"manage": "Administrar",
+		"network": "Red",
+		"power": "Energia",
+		"profile": " Perfil",
+		"staff": "Funcionários",
+		"users_account": "Cuenta de usuarios"
+	},
+	"modal": {
+		"delete_record": "¿Estás seguro de que quieres eliminar <b>{{record}}</b>? Este cambio no se puede revertir",
+		"disable_it": "¿Estás seguro de que quieres desactivarlo? Este cambio no se puede revertir.",
+		"new": {
+			"branch": "Nuevo departamento",
+			"company": "Nueva empresa",
+			"computer_category": "Nueva categoría de computadoras",
+			"computer_cpu": "Nueva CPU",
+			"computer_license": "Nueva licencia",
+			"computer_memory": "Nueva memoria",
+			"computer_software": "Nuevo software",
+			"computer_storage": "Nuevo almacenamiento",
+			"department": "Nuevo departamento",
+			"device": "Nuevo dispositivo",
+			"device_category": "Nueva categoria de dispositivo",
+			"device_computer": "Computadora nueva",
+			"device_staff": "Nuevo usuario de dispositivo",
+			"occupation": "Nuevo Puesto",
+			"staff": "Registrar funcionario"
+		},
+		"remove": {
+			"computer_cpu": "¿Está seguro de que desea quitar el procesador <b>{{record}}</b> ?",
+			"computer_memory": "¿Está seguro de que desea eliminar la memoria <b>{{record}}</b> ?",
+			"computer_storage": "¿Está seguro de que desea eliminar el almacenamiento <b>{{record}}</b> ?",
+			"license": "Esta licencia tiene claves. ¿Estás seguro de que quieres eliminarlo? Se eliminarán todas las claves y asignaciones.",
+			"license_key": "¿Está seguro de que desea eliminar la clave: </br><b>{{record}}</b> ?",
+			"license_key_assignment": "Esta clave contiene asignaciones. ¿Estás seguro de que quieres eliminarla? Las asignaciones serán eliminadas.",
+			"software": "Este software tiene licencias asignadas. ¿Estás seguro de que quieres eliminarlo? Se eliminarán todas las licencias y claves."
+		},
+		"remove_record": "¿Estás seguro de que quieres remover la característica <b>{{record}}</b>? ",
+		"update": "Alterar {{name}}",
+		"user": {
+			"disable": "¿Está seguro de que desea desactivar la cuenta de <b>{{record}}</b>? Este cambio no se puede revertir",
+			"lock": "¿Está seguro de que desea bloquear la cuenta de <b>{{record}}</b>?",
+			"new": "Nuevo Usuario",
+			"reset_pwd": "¿Está seguro de que desea restablecer la contraseña del usuario?",
+			"update": "Actualizar usuario <b>{{record}}</b>"
+		}
+	},
+	"notification": {
+		"empty": "No hay notificaciones"
+	},
+	"occupation": {
+		"occupation": "Puesto",
+		"placeholder": {
+			"name": "Nombre del puesto"
+		},
+		"role": "Puesto"
+	},
+	"paginator": {
+		"first": "Inicio",
+		"last": "Final"
+	},
+	"profile": {
+		"change_password": "Alterar contraseña",
+		"edit_profile": "Editar Perfil",
+		"join_date": "Fecha de inscripción: ",
+		"last_login": "Último Login: ",
+		"old_password": "Contraseña Antigua: ",
+		"password": "Contraseña: ",
+		"placeholder": {
+			"old_password": "Ingrese su contraseña actual, mínimo 6 caracteres",
+			"password": "Ingrese su nueva contraseña, mínimo 6 caracteres",
+			"repeat_password": "Repite tu nueva contraseña"
+		},
+		"profile": "Perfil",
+		"repeat_password": "Repite la contraseña: ",
+		"save_profile": "Salvar perfil",
+		"update_info": "Actualizar información del usuario",
+		"update_password": "Actualizar contraseña",
+		"user_info": "Informacion del usuario",
+		"username": "Nombre de usuario"
+	},
+	"staff": {
+		"fullname": "Nombre completo",
+		"select_occupation": "Seleccione un Puesto",
+		"select_staff": "Seleccione un funcionário",
+		"staff": "Funcionários"
+	},
+	"users": {
+		"last_login": "Último Login",
+		"lock": "Bloquear",
+		"locked": "Bloqueado",
+		"never_logged": "Nunca inició sesión",
+		"placeholder": {
+			"active": "Es una cuenta activa?",
+			"email": "Introduce un correo electrónico válido",
+			"fullname": "Ingrese el nombre completo del usuario.",
+			"unlocked": "Es una cuenta desbloqueada?",
+			"username": "Ingrese un nombre de usuario válido"
+		},
+		"reset_password": "Redefinir contraseña",
+		"select_role": "Seleccione un rol",
+		"show": "Mostrar usuario",
+		"staff": "Funcionários",
+		"state": "Situación",
+		"unlock": "Desbloquear",
+		"unlocked": "Desbloqueado",
+		"user": "Usuario",
+		"username": "Nombre de usuario",
+		"users": "Usuarios"
+	}
+}

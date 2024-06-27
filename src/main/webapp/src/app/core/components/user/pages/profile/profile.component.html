@@ -1,0 +1,178 @@
+<main class="mt-5 pt-3">
+    <div class="container-fluid">
+        <!-- Top Bar -->
+        <div class="d-flex justify-content-between mt-2">
+            <div class="row">
+                <div class="title-page col-md-12 fw-bold fs-3">
+                    <i class="fa fa-address-card"></i> <span class="mx-2" [translate]="messages.PROFILE"></span>
+                </div>
+            </div>
+
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item active" aria-current="page" [translate]="messages.PROFILE"></li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-xl-8 col-sm-10 mx-auto">
+            <div class="card" *ngIf="user; else onload">
+                <div class="card-header bg-primary fw-bold text-white">{{user.fullName}}</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4 user-detail flex-center">
+                            <h5>{{getFirstName()}}</h5>
+                            <div class="user-img">
+                                <img width="200" [src]="'https://robohash.org/' + user.username + '?size=200x200'"
+                                    class="img-thumbnail rounded-circle img-avatar" alt="User Avatar">
+                            </div>
+                            <div class="upload-img">
+                                <div class="input-group" *ngIf="false">
+                                    <input type="file" class="form-control" id="inputGroupFile04"
+                                        aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                                    <button class="btn btn-outline-secondary" type="button"
+                                        id="inputGroupFileAddon04">Upload</button>
+                                </div>
+                            </div>
+                            <div class="roles" *ngIf="user.role.length > 0">
+                                <span class="badge bg-info">{{getUserRole()}}</span>
+                            </div>
+                            <!-- <div class="calification">
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                            </div> -->
+                            <div class="join-date" *ngIf="user.joinDate">
+                                <span [translate]="messages.PROFILE_JOIN_DATE"></span>
+                                <span class="text-muted">{{user.joinDate | date:'mediumDate':'':(messages.CONFIG_LOCALE | translate )}}</span>
+                            </div>
+                            <div class="lastlogin-date" *ngIf="user.lastLoginDate">
+                                <span [translate]="messages.PROFILE_LAST_LOGIN"></span>
+                                <span class="text-muted">{{user.lastLoginDate | date:'medium':'':(messages.CONFIG_LOCALE | translate )}}</span>
+                                <!-- <hr class="my-2"> -->
+                            </div>
+                            <!-- <div class="info-agent d-flex flex-column align-self-start mx-4">
+                                <span><i class="fas fa-comment"></i> Tickets: <span class="text-muted text-info">7</span></span>
+                                <span><i class="fas fa-tasks"></i> Tasks: <span class="text-muted text-info">2</span></span>
+                            </div> -->
+                        </div>
+                        <div class="col-md-8 user-info h-100">
+                            <div class="data-user-content" *ngIf="!updateMode; else updating">
+                                <div class="info-header d-flex justify-content-between">
+                                    <h5 [translate]="messages.PROFILE_USER_INFO"></h5>
+                                    <button class="btn btn-info" (click)="updateMode = true"><i
+                                            class="fas fa-pen-square"></i><span class="mx-1" [translate]="messages.PROFILE_EDIT"></span></button>
+                                </div>
+                                <hr>
+                                <div class="user-properties d-flex flex-column align-self-start">
+                                    <span><span class="fw-bold" [translate]="messages.FULLNAME"></span>: {{user.fullName}}</span>
+                                    <span><span class="fw-bold" [translate]="messages.PROFILE_USERNAME"></span>: {{user.username}}</span>
+                                    <span><span class="fw-bold" [translate]="messages.EMAIL"></span>: {{user.email}}</span>
+                                </div>
+                                
+                                <!-- Staff -->
+                                <div *ngIf="user.staff" class="user-properties d-flex flex-column align-self-start">
+                                    <span><span class="fw-bold" [translate]="messages.OCCUPATION"></span>: {{user.staff.occupation.name}}</span>
+                                    <span><span class="fw-bold" [translate]="messages.DEPARTMENT"></span>: {{user.staff.department.name}}</span>
+                                </div>
+                            </div>
+                            <ng-template #updating>
+                                <div class="form-cancel flex-end mb-2">
+                                    <button class="btn btn-outline-secondary"
+                                        (click)="updateMode = false" [translate]="messages.CANCEL"></button>
+                                </div>
+                                <hr>
+                                <h5 [translate]="messages.PROFILE_UPDATE_INFO"></h5>
+
+                                <!-- Profile Form -->
+                                <form [formGroup]="userForm" (ngSubmit)="onProfileUpdate()">
+                                    <div class="data-user-form row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="fullName" [translate]="messages.FULLNAME"></label>
+                                                <input type="text" formControlName="fullName" id="fullName" class="form-control">
+                                                <app-validation-field [form]="userForm" [field]="'fullName'"></app-validation-field>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="Fullname" [translate]="messages.EMAIL"></label>
+                                                <input type="text" formControlName="email" id="email" class="form-control">
+                                                <app-validation-field [form]="userForm" [field]="'email'"></app-validation-field>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 flex-end">
+                                            <button type="submit" [disabled]="userForm.invalid || loadingMode" class="btn btn-success">
+                                            <i *ngIf="!loadingMode" class="fas fa-save"></i>
+                                            <i *ngIf="loadingMode" class="fas fa-spinner fa-pulse"></i>
+                                            <span class="mx-1" [translate]="messages.PROFILE_SAVE"></span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                                <hr>
+                                <h5><span [translate]="messages.PROFILE_UPDATE_PWD"></span> <i class="mx-2 text-info fas link" (click)="showPasswordChange()" [ngClass]="{'fa-eye-slash':!showPassword, 'fa-eye':showPassword}"></i></h5>
+                                <div class="data-user-form">
+
+
+                                    <!-- Password form -->
+                                    <form [formGroup]="passwordForm" (ngSubmit)="onPasswordUpdate()">
+                                        <div class="mb-2">
+                                            <label for="oldPassword" [translate]="messages.PROFILE_OLD_PWD"></label>
+                                            <input [type]="showPassword?'text':'password'" formControlName="oldPassword" id="oldPassword" class="form-control"
+                                            placeholder="{{messages.PROFILE_OLD_PWD_PH | translate}}">
+                                            <app-validation-field [form]="passwordForm" [field]="'oldPassword'"></app-validation-field>
+                                        </div>
+                                        <div class="mb-2">
+                                            <label for="newPassword" [translate]="messages.PROFILE_PWD"></label>
+                                            <input [type]="showPassword?'text':'password'" formControlName="newPassword" id="newPassword" class="form-control"
+                                            placeholder="{{messages.PROFILE_PWD_PH | translate}}">
+                                            <app-validation-field [form]="passwordForm" [field]="'newPassword'"></app-validation-field>
+                                        </div>
+                                        <div class="mb-2">
+                                            <label for="repeatpassword" [translate]="messages.PROFILE_REPEAT_PWD"></label>
+                                            <input [type]="showPassword?'text':'password'" formControlName="repeatpassword" id="repeatpassword" class="form-control bg-danger"
+                                            placeholder="{{messages.PROFILE_REPEAT_PWD_PH | translate}}">
+                                            <app-validation-field [form]="passwordForm" [field]="'repeatpassword'"></app-validation-field>
+                                        </div>
+                                        <div class="mb-1">
+                                            <div *ngIf="passwordForm.controls['repeatpassword'].valid && passwordForm.hasError('notSame')" class="form-text text-danger">
+                                                {{messages.FORMS_PASSWORD_MATCH | translate}}
+                                            </div>
+                                        </div>
+                                        <div class="flex-end">
+                                            <button type="submit" [disabled]="loadingMode" class="btn btn-warning">
+                                            <i *ngIf="!loadingMode" class="fas fa-key"></i>
+                                            <i *ngIf="loadingMode" class="fas fa-spinner fa-pulse"></i>
+                                            <span class="mx-1" [translate]="messages.PROFILE_CHANGE_PWD"></span>
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </ng-template>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Error Handling -->
+            <ng-template #onload class="h-100">
+                <div class="d-flex justify-content-center" *ngIf="!errorResponse">
+                    <div class="spinner-grow text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+                <p>Page Not found</p>
+                <!-- <app-error-page [response]="errorResponse" *ngIf="errorResponse"></app-error-page> -->
+            </ng-template>
+
+
+        </div>
+    </div>
+</main>

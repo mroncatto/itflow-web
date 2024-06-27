@@ -1,0 +1,40 @@
+<main class="mt-5 pt-3">
+    <div class="container-fluid">
+
+        <!-- Top Bar -->
+        <div class="d-flex justify-content-between mt-2">
+            <div class="row">
+                <div class="title-page col-md-12 fw-bold fs-3">
+                    <i class="fa fa-desktop"></i> <span class="mx-1" [translate]="messages.DEVICE_COMPUTER"></span>
+                </div>
+            </div>
+
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item active" aria-current="page" [translate]="messages.DEVICE_COMPUTER"></li>
+                </ol>
+            </nav>
+        </div>
+
+        <div class="row m-5">
+            <div class="col-md-4 col-xl-2 col-12">
+                <div id="list-example" class="list-group p-1">
+                    <a [ngClass]="{ active: page == pages[0] }" [routerLink]="['/computer/register']" [queryParams]="{page: 'category'}" class="list-group-item link" [translate]="messages.CATEGORY"></a>
+                    <a [ngClass]="{ active: page == pages[1] }" [routerLink]="['/computer/register']" [queryParams]="{page: 'cpu'}" class="list-group-item link" [translate]="messages.DEVICE_COMPUTER_CPU"></a>
+                    <a [ngClass]="{ active: page == pages[2] }" [routerLink]="['/computer/register']" [queryParams]="{page: 'memory'}" class="list-group-item link" [translate]="messages.DEVICE_COMPUTER_MEMORY"></a>
+                    <a [ngClass]="{ active: page == pages[3] }" [routerLink]="['/computer/register']" [queryParams]="{page: 'storage'}" class="list-group-item link" [translate]="messages.DEVICE_COMPUTER_STORAGE"></a>
+                    <a [ngClass]="{ active: page == pages[4] }" [routerLink]="['/computer/register']" [queryParams]="{page: 'software'}" class="list-group-item link" [translate]="messages.DEVICE_COMPUTER_SOFTWARE"></a>
+                    <a [ngClass]="{ active: page == pages[5] }" [routerLink]="['/computer/register']" [queryParams]="{page: 'license'}" class="list-group-item link" [translate]="messages.COMPUTER_SOFTWARE_LICENSES"></a>
+                </div>
+            </div>
+            <div class="col-md-8 col-xl-10 col-12">
+                <app-category *ngIf="page==pages[0]"></app-category>
+                <app-cpu *ngIf="page==pages[1]"></app-cpu>
+                <app-memory *ngIf="page==pages[2]"></app-memory>
+                <app-storage *ngIf="page==pages[3]"></app-storage>
+                <app-software *ngIf="page==pages[4]"></app-software>
+                <app-licenses *ngIf="page==pages[5]"></app-licenses>
+            </div>
+        </div>
+    </div>
+</main>

@@ -1,0 +1,40 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <h5 *ngIf="!deviceStaff" class="modal-title" [translate]="messages.MODAL_NEW_DEVICE_STAFF"></h5>
+        <h5 *ngIf="deviceStaff" class="modal-title" [translateParams]="{name: deviceStaff.staff.fullName}" [translate]="messages.MODAL_UPDATE">
+        </h5>
+    </div>
+    <form [formGroup]="deviceStaffForm" (ngSubmit)="save()">
+        <div class="modal-body">
+
+            <app-input-group
+            [form]="deviceStaffForm"
+            [translateLabel]="messages.LOGIN" 
+            [translatePlaceholder]="messages.DEVICE_STAFF_LOGIN_PH"
+            id="login">
+            </app-input-group>
+
+            <div class="mb-3">
+                <label for="staff" [translate]="messages.STAFF"></label>
+                <div class="d-flex gap-2">
+                    <select formControlName="staff" id="staff" [compareWith]="compareWith" class="form-select">
+                        <option [translate]="messages.SELECT_STAFF" disabled selected value=""></option>
+                        <option *ngFor="let s of staff" [ngValue]="s">{{s.fullName}}</option>
+                    </select>
+                    <btn-new-staff [loading]="loading" (onCreate)="onCreateStaff($event)"></btn-new-staff>
+                </div>
+                <app-validation-field [form]="deviceStaffForm" [field]="'staff'"></app-validation-field>
+            </div>
+
+
+        </div>
+        <div class="modal-footer">
+            <button [disabled]="loading" type="button" class="btn btn-outline-danger" (click)="closeModal()"
+                [translate]="messages.CANCEL"></button>
+            <button [disabled]="loading" type="submit" class="btn btn-success">
+                <i *ngIf="loading" class="fas fa-spinner fa-pulse mx-1"></i>
+                <span [translate]="messages.SAVE"></span>
+            </button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,71 @@
+<div class="card">
+    <div class="card-header bg-primary fw-bold text-white flex-between">
+        <div>
+            <span [translate]="messages.DEVICE_COMPUTER_SOFTWARE"></span>
+            <div class="spinner-border spinner-border-sm mx-2" role="status" *ngIf="loading">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+        <div>
+            <button class="btn btn-success text-white" (click)="onCreate()">
+                <i class="fas fa-plus"></i>&nbsp;<span [translate]="messages.NEW"></span>
+            </button>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table table-stripped">
+            <thead>
+                <th>#</th>
+                <th [translate]="messages.CODE"></th>
+                <th [translate]="messages.DESCRIPTION"></th>
+                <th [translate]="messages.COMPUTER_LICENSE_EXPIRE_AT"></th>
+                <th [translate]="messages.DEVICE_COMPUTER_SOFTWARE"></th>
+                <th [translate]="messages.COMPUTER_LICENSE_KEYS"></th>
+                <th></th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let lic of licenses">
+                    <td>{{ lic.id}}</td>
+                    <td>{{ lic.code }}</td>
+                    <td>{{ lic.description }}</td>
+                    <td *ngIf="lic.expireAt">{{ lic.expireAt | date:'mediumDate':'':(messages.CONFIG_LOCALE | translate )}}</td>
+                    <td class="text-muted" *ngIf="!lic.expireAt" [translate]="messages.COMPUTER_LICENSE_NO_EXPIRE"></td>
+                    <td>{{ lic.software.name }}</td>
+                    <td>{{ getCountKeys(lic) }}</td>
+                    <td>
+                        <i title="{{messages.ACTIONS| translate}}" class="fas fa-chevron-circle-down link" [id]="lic.id"
+                            data-bs-toggle="dropdown"></i>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li class="link-spin">
+                                <a (click)="onUpdate(lic)" class="dropdown-item">
+                                    <i class="fas fa-pen"></i>&nbsp;
+                                    <span [translate]="messages.EDIT"></span>
+                                </a>
+                            </li>
+                            <li (click)="onManageKeys(lic)" class="link-spin">
+                                <a class="dropdown-item">
+                                    <i class="fas fa-key"></i>&nbsp;
+                                    <span [translate]="messages.COMPUTER_LICENSE_MANAGE_KEYS"></span>
+                                </a>
+                            </li>
+                            <div>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li class="link-spin">
+                                    <a (click)="confirmDelete(lic)" class="dropdown-item">
+                                        <i class="fas fa-trash text-danger"></i>&nbsp;<span
+                                            [translate]="messages.DELETE"></span>
+                                    </a>
+                                </li>
+                            </div>
+                        </ul>
+                    </td>
+                </tr>
+                <tr *ngIf="licenses.length === 0">
+                    <td colspan="5" [translate]="messages.NO_DATA"></td>
+                </tr>
+            </tbody>
+        </table> 
+    </div>
+</div>

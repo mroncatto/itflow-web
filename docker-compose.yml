@@ -1,0 +1,41 @@
+version: '3.7'
+
+services:
+  db:
+    image: cgr.dev/chainguard/postgres:latest
+    container_name: postgres-itflow
+    restart: unless-stopped
+    ports:
+    - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: itflow
+    volumes:
+      - type: volume
+        source: itflow-db-data
+        target: /var/lib/postgresql/data
+  redis:
+    image: cgr.dev/chainguard/redis:latest
+    container_name: redis-itflow
+    hostname: redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+  redis-commander:
+    container_name: redis-commander-itflow
+    hostname: redis-commander
+    image: rediscommander/redis-commander:latest
+    restart: unless-stopped
+    environment:
+      - REDIS_HOSTS=local:redis:6379
+    ports:
+         - "8000:8081"
+  adminer:
+    image: adminer
+    container_name: adminer-itflow
+    restart: unless-stopped
+    ports:
+      - "8090:8080"
+volumes:
+  itflow-db-data:

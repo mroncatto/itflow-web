@@ -1,0 +1,14 @@
+<ng-template ngIf="control">
+    <div class="mb-3">
+        <label class="validation-required" [for]="id" [translate]="messages.DEVICE_COMPUTER_STORAGE"></label>
+        <input type="text" class="form-control" [id]="id" placeholder="{{messages.TYPE_TO_SEARCH | translate }}"
+            [formControl]="control" [matAutocomplete]="auto">
+        <app-validation-field [control]="control"></app-validation-field>
+        <mat-autocomplete autoActiveFirstOption [displayWith]="displayWith" #auto="matAutocomplete"
+            (optionSelected)="onSelectItem($event)">
+            <mat-option *ngFor="let item of items | async" [value]="item">
+                {{ displayWith(item) }}
+            </mat-option>
+        </mat-autocomplete>
+    </div>
+</ng-template>

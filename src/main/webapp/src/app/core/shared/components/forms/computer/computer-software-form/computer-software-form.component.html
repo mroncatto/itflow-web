@@ -1,0 +1,34 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <h5 *ngIf="!computerSoftware" class="modal-title" [translate]="messages.MODAL_NEW_COMPUTER_SOFTWARE"></h5>
+        <h5 *ngIf="computerSoftware" class="modal-title" [translateParams]="{name: computerSoftware.name}" [translate]="messages.MODAL_UPDATE">
+        </h5>
+    </div>
+    <form [formGroup]="computerSoftwareForm" (ngSubmit)="save()">
+        <div class="modal-body">
+
+            <app-input-group
+            [form]="computerSoftwareForm"
+            [translateLabel]="messages.NAME" 
+            [translatePlaceholder]="messages.COMPUTER_SOFTWARE_NAME_PH"
+            id="name">
+            </app-input-group>
+
+            <app-input-group
+            [form]="computerSoftwareForm"
+            [translateLabel]="messages.OWNER" 
+            [translatePlaceholder]="messages.OWNER"
+            id="developer">
+            </app-input-group>
+
+        </div>
+        <div class="modal-footer">
+            <button [disabled]="loading" type="button" class="btn btn-outline-danger" (click)="closeModal()"
+                [translate]="messages.CANCEL"></button>
+            <button [disabled]="loading" type="submit" class="btn btn-success">
+                <i *ngIf="loading" class="fas fa-spinner fa-pulse mx-1"></i>
+                <span [translate]="messages.SAVE"></span>
+            </button>
+        </div>
+    </form>
+</div>

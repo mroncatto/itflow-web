@@ -1,0 +1,85 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <h5 *ngIf="!computerCpu" class="modal-title" [translate]="messages.MODAL_NEW_COMPUTER_CPU"></h5>
+        <h5 *ngIf="computerCpu" class="modal-title" [translateParams]="{name: computerCpu.model}"
+            [translate]="messages.MODAL_UPDATE">
+        </h5>
+    </div>
+    <form [formGroup]="computerCpuForm" (ngSubmit)="save()">
+
+        <div class="modal-body">
+            <!-- <div class="mb-3">
+                <label for="brandName" translate="commons.brand" [ngClass]="{'validation-required': isInvalidControl('brandName')}"></label>
+                <input autocomplete="off" type="text" formControlName="brandName" id="brandName" class="form-control"
+                    placeholder="{{'commons.placeholder.brand' | translate}}">
+                <app-validation-field [form]="computerCpuForm" [field]="'brandName'"></app-validation-field>
+            </div> -->
+
+            <app-input-group
+            [form]="computerCpuForm"
+            [translateLabel]="messages.BRAND" 
+            [translatePlaceholder]="messages.BRAND_PLACEHOLDER"
+            id="brandName">
+            </app-input-group>
+
+            <app-input-group
+            [form]="computerCpuForm"
+            [translateLabel]="messages.MODEL" 
+            [translatePlaceholder]="messages.MODEL_PLACEHOLDER"
+            id="model">
+            </app-input-group>
+
+            <app-input-group
+            [form]="computerCpuForm"
+            [translateLabel]="messages.COMPUTER_CPU_GENERATION" 
+            [translatePlaceholder]="messages.COMPUTER_CPU_GENERATION_PH"
+            id="generation">
+            </app-input-group>
+
+            <app-input-group
+            [form]="computerCpuForm"
+            [translateLabel]="messages.COMPUTER_CPU_SOCKET" 
+            [translatePlaceholder]="messages.COMPUTER_CPU_SOCKET_PH"
+            id="socket">
+            </app-input-group>
+
+            <app-input-group
+            [form]="computerCpuForm"
+            [translateLabel]="messages.COMPUTER_CPU_CORE" 
+            [translatePlaceholder]="messages.COMPUTER_CPU_CORE_PH"
+            id="core">
+            </app-input-group>
+
+            <app-input-group
+            [form]="computerCpuForm"
+            [translateLabel]="messages.COMPUTER_CPU_THREAD" 
+            [translatePlaceholder]="messages.COMPUTER_CPU_THREAD_PH"
+            id="thread">
+            </app-input-group>
+
+            <app-input-group
+            [form]="computerCpuForm"
+            [translateLabel]="messages.COMPUTER_CPU_FREQUENCY" 
+            [translatePlaceholder]="messages.COMPUTER_CPU_FREQUENCY_PH"
+            id="frequency">
+            </app-input-group>
+
+            <app-input-group
+            [form]="computerCpuForm"
+            [translateLabel]="messages.COMPUTER_CPU_FSB" 
+            [translatePlaceholder]="messages.COMPUTER_CPU_FSB_PH"
+            id="fsb">
+            </app-input-group>
+
+        </div>
+
+        <div class="modal-footer">
+            <button [disabled]="loading" type="button" class="btn btn-outline-danger" (click)="closeModal()"
+                [translate]="messages.CANCEL"></button>
+            <button [disabled]="loading" type="submit" class="btn btn-success">
+                <i *ngIf="loading" class="fas fa-spinner fa-pulse mx-1"></i>
+                <span [translate]="messages.SAVE"></span>
+            </button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,518 @@
+<main class="mt-5 pt-3">
+    <div class="container-fluid">
+
+        <!-- Top Bar -->
+        <div class="d-flex justify-content-between mt-2">
+            <div class="row">
+                <div class="title-page col-md-12 fw-bold fs-3">
+                    <i class="fa fa-info-circle"></i> <span class="mx-1" [translate]="messages.DETAILS"></span>
+                </div>
+            </div>
+
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item link" [routerLink]="['/device']" [translate]="messages.DEVICE"></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{device?.hostname}}</li>
+                </ol>
+            </nav>
+        </div>
+
+
+        <div class="row">
+            <div class="col-12 mx-auto">
+                <div class="card">
+                    <div class="card-header bg-info fw-bold text-white flex-between">
+                        <div>
+                            <span *ngIf="device">{{ device.hostname }}
+                                <span *ngIf="device.description"> - {{ device.description }}</span>
+                            </span>
+                            <div class="spinner-border spinner-border-sm mx-2" role="status" *ngIf="loading">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </div>
+                        <div *ngIf="canAddFeatures()">
+                            <div class="btn-group">
+                                <button class="btn btn-primary btn-sm dropdown-toggle" type="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-puzzle-piece"></i> <span class="mx-2"
+                                        [translate]="messages.DEVICE_STAFF_ADD_FEAT"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li class="link" *ngIf="!device?.deviceStaff">
+                                        <a class="dropdown-item" (click)="onAddOrChangeStaff()"><i
+                                                class="fas fa-user"></i> Usuario</a>
+                                    </li>
+                                    <li class="link" *ngIf="!device?.deviceComputer">
+                                        <a class="dropdown-item" (click)="onAddOrChangeComputer()"><i
+                                                class="fas fa-desktop"></i> Computador</a>
+                                    </li>
+                                    <!-- <li><a class="dropdown-item" href="#"><i class="fas fa-ethernet"></i> Red</a></li>
+                                    <li><a class="dropdown-item" href="#"><i class="fas fa-plug"></i> Energia</a></li> -->
+                                    <!-- <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="#">Separated link</a></li> -->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div>
+                            <tabset *ngIf="device" #featuresTabs>
+                                <tab>
+                                    <ng-template tabHeading>
+                                        <i class="fa fa-info-circle"></i> <span class="mx-1"
+                                            [translate]="messages.DETAILS"></span>
+                                    </ng-template>
+                                    <div class="py-2">
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item border-0">
+                                                <span class="fw-bold">#</span>
+                                                <span>{{ device.id }}</span>
+                                            </li>
+                                            <li class="list-group-item border-0">
+                                                <span class="fw-bold" [translate]="messages.DEVICE_CODE"></span>
+                                                <span>: {{ device.code }}</span>
+                                            </li>
+                                            <li class="list-group-item border-0">
+                                                <span class="fw-bold" [translate]="messages.DEVICE_TAG"></span>
+                                                <span>: {{ device.tag }}</span>
+                                            </li>
+                                            <li class="list-group-item border-0">
+                                                <span class="fw-bold" [translate]="messages.DEVICE_SERIALNUMBER"></span>
+                                                <span>: {{ device.serialNumber }}</span>
+                                            </li>
+                                            <li class="list-group-item border-0">
+                                                <span class="fw-bold" [translate]="messages.DESCRIPTION"></span>
+                                                <span>: {{ device.description }}</span>
+                                            </li>
+                                            <li class="list-group-item border-0">
+                                                <span class="fw-bold" [translate]="messages.DEVICE_HOSTNAME"></span>
+                                                <span>: {{ device.hostname }}</span>
+                                            </li>
+                                            <li class="list-group-item border-0">
+                                                <span class="fw-bold" [translate]="messages.CATEGORY"></span>
+                                                <span>: {{ device.deviceCategory.name }}</span>
+                                            </li>
+                                            <li class="list-group-item border-0">
+                                                <span class="fw-bold" [translate]="messages.DEPARTMENT"></span>
+                                                <span>: {{ device.department.name }}</span>
+                                            </li>
+                                            <li *ngIf="device.active" class="list-group-item border-0">
+                                                <span class="fw-bold" [translate]="messages.USER_STATE"></span>
+                                                <span class="badge bg-success mx-1"
+                                                    [translate]="messages.ACTIVE"></span>
+                                            </li>
+                                            <li *ngIf="!device.active" class="list-group-item  border-0">
+                                                <span class="fw-bold" [translate]="messages.USER_STATE"></span>:
+                                                <span class="badge bg-danger mx-1"
+                                                    [translate]="messages.INACTIVE"></span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="py-2" *ngIf="device.active">
+                                        <button class="btn btn-sm btn-warning" (click)="onUpdate()"><i
+                                                class="fas fa-pen"></i> <span class="mx-1"
+                                                [translate]="messages.UPDATE"></span></button>
+                                    </div>
+                                </tab>
+                                <tab *ngIf="device.hasStaff">
+                                    <ng-template tabHeading>
+                                        <i class="fa fa-user"></i>
+                                        <span class="mx-1" [translate]="messages.USER"></span>
+                                    </ng-template>
+                                    <div class="py-2" *ngIf="device.deviceStaff">
+                                        <ul class="list-group list-group-">
+                                            <li class="list-group-item border-0"><span class="fw-bold"
+                                                    [translate]="messages.FULLNAME"></span>:
+                                                {{ device.deviceStaff.staff.fullName }}
+                                            </li>
+                                            <li class="list-group-item border-0"><span class="fw-bold"
+                                                    [translate]="messages.EMAIL"></span>:
+                                                {{ device.deviceStaff.staff.email }}
+                                            </li>
+                                            <li class="list-group-item border-0"><span class="fw-bold"
+                                                    [translate]="messages.BRANCH"></span>:
+                                                {{ device.deviceStaff.staff.department.branch.name }}
+                                            </li>
+                                            <li class="list-group-item border-0"><span class="fw-bold"
+                                                    [translate]="messages.DEPARTMENT"></span>:
+                                                {{ device.deviceStaff.staff.department.name }}
+                                            </li>
+                                            <li class="list-group-item border-0"><span class="fw-bold"
+                                                    [translate]="messages.OCCUPATION"></span>:
+                                                {{ device.deviceStaff.staff.occupation.name }}
+                                            </li>
+                                            <li class="list-group-item border-0"><span class="fw-bold"
+                                                    [translate]="messages.LOGIN"></span>:
+                                                {{ device.deviceStaff.login }}
+                                            </li>
+                                            <li *ngIf="device.deviceStaff.staff.active"
+                                                class="list-group-item border-0"><span class="fw-bold"
+                                                    [translate]="messages.USER_STATE"></span>:
+                                                <span class="badge bg-success mx-1"
+                                                    [translate]="messages.ACTIVE"></span>
+                                            </li>
+                                            <li *ngIf="!device.deviceStaff.staff.active"
+                                                class="list-group-item border-0"><span class="fw-bold"
+                                                    [translate]="messages.USER_STATE"></span>:
+                                                <span class="badge bg-danger mx-1"
+                                                    [translate]="messages.INACTIVE"></span>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="py-2 flex-gap" *ngIf="device.deviceStaff">
+                                        <button class="btn btn-sm btn-warning" (click)="onAddOrChangeStaff()"><i
+                                                class="fas fa-pen"></i> <span class="mx-1"
+                                                [translate]="messages.UPDATE"></span></button>
+                                        <button class="btn btn-sm btn-danger" (click)="confirmDeleteDeviceStaff()"><i
+                                                class="fas fa-trash"></i> <span class="mx-1"
+                                                [translate]="messages.DELETE"></span></button>
+                                    </div>
+
+                                    <div *ngIf="isLoading(staffLoading)" class="spinner-border m-5" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+
+                                </tab>
+                                <tab *ngIf="device.hasComputer">
+                                    <ng-template tabHeading>
+                                        <i class="fa fa-desktop"></i> <span class="mx-1"
+                                            [translate]="messages.DEVICE_COMPUTER"></span>
+                                    </ng-template>
+                                    <div class="py-2" *ngIf="device.deviceComputer">
+                                        <tabset #propertiesTabs>
+                                            <tab>
+                                                <ng-template tabHeading>
+                                                    <span class="mx-1" [translate]="messages.DESCRIPTION"></span>
+                                                </ng-template>
+                                                <div>
+                                                    <ul class="list-group list-group-">
+                                                        <li class="list-group-item border-0"><span class="fw-bold"
+                                                                [translate]="messages.CATEGORY"></span>:
+                                                            {{ device.deviceComputer.computerCategory.name }}
+                                                        </li>
+                                                        <li class="list-group-item border-0"><span class="fw-bold"
+                                                                [translate]="messages.DESCRIPTION"></span>:
+                                                            {{ device.deviceComputer.description }}
+                                                        </li>
+                                                        <li *ngIf="device.deviceComputer.virtual"
+                                                            class="list-group-item border-0"><span class="fw-bold"
+                                                                [translate]="messages.DEVICE_COMPUTER_VIRTUAL"></span>:
+                                                            <span class="badge bg-success mx-1"
+                                                                [translate]="messages.YES"></span>
+                                                        </li>
+                                                        <li *ngIf="!device.deviceComputer.virtual"
+                                                            class="list-group-item  border-0"><span class="fw-bold"
+                                                                [translate]="messages.DEVICE_COMPUTER_VIRTUAL"></span>:
+                                                            <span class="badge bg-danger mx-1"
+                                                                [translate]="messages.NO"></span>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="py-2 flex-gap">
+                                                        <button class="btn btn-sm btn-warning"
+                                                            (click)="onAddOrChangeComputer()"><i class="fas fa-pen"></i>
+                                                            <span class="mx-1"
+                                                                [translate]="messages.UPDATE"></span></button>
+                                                        <button class="btn btn-sm btn-danger"
+                                                            (click)="confirmDeleteDeviceComputer()"><i
+                                                                class="fas fa-trash"></i> <span class="mx-1"
+                                                                [translate]="messages.DELETE"></span></button>
+                                                    </div>
+                                                </div>
+                                            </tab>
+                                            <tab>
+                                                <ng-template tabHeading>
+                                                    <i class="fas fa-microchip"></i>
+                                                    <span class="mx-1"
+                                                        [translate]="messages.DEVICE_COMPUTER_CPU"></span>
+                                                </ng-template>
+                                                <div class="computer-tab-content m-3" *ngIf="deviceComputerCpuForm">
+                                                    <form class="my-3 d-flex gap-1" [formGroup]="deviceComputerCpuForm"
+                                                        (ngSubmit)="saveDeviceComputerCpu()">
+
+                                                        <app-computer-cpu-autocomplete id="computerCpu"
+                                                            [control]="computerCpuAutoComplete"
+                                                            (onSelect)="onSelectCpu($event)">
+                                                        </app-computer-cpu-autocomplete>
+
+                                                        <app-input-group [form]="deviceComputerCpuForm"
+                                                            [translateLabel]="messages.COMPUTER_CPU_CORE"
+                                                            [translatePlaceholder]="messages.COMPUTER_CPU_CORE_PH"
+                                                            id="core">
+                                                        </app-input-group>
+
+                                                        <div class="mb-3">
+                                                            <label for="save-computer-cpu"
+                                                                class="sr-only">computer-cpu</label><br>
+                                                            <button id="save-computer-cpu" type="submit"
+                                                                class="btn btn-primary"
+                                                                [disabled]="deviceComputerCpuForm.invalid"
+                                                                [translate]="messages.ADD"></button>
+                                                        </div>
+                                                    </form>
+                                                    <table class="table table-striped">
+                                                        <thead>
+                                                            <tr>
+                                                                <th [translate]="messages.DEVICE_COMPUTER_CPU"></th>
+                                                                <th [translate]="messages.COMPUTER_CPU_CORE"></th>
+                                                                <th [translate]="messages.COMPUTER_CPU_FREQUENCY"></th>
+                                                                <th [translate]="messages.COMPUTER_CPU_SOCKET"></th>
+                                                                <th></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr
+                                                                *ngFor="let cpus of device.deviceComputer.computerCpuList">
+                                                                <td>{{ cpus.computerCpu.brandName }} - {{
+                                                                    cpus.computerCpu.model }} </td>
+                                                                <td>{{ cpus.core }} </td>
+                                                                <td>{{ cpus.computerCpu.frequency }} </td>
+                                                                <td>{{ cpus.computerCpu.socket }}</td>
+                                                                <td><i title="{{messages.REMOVE | translate}}"
+                                                                        class="fas fa-trash text-danger link link-animation"
+                                                                        (click)="onConfirmDeleteComputerCpu(cpus.computerCpu)"></i>
+                                                                </td>
+                                                            </tr>
+                                                            <tr
+                                                                *ngIf="isEmptyOrNull(device.deviceComputer.computerCpuList)">
+                                                                <td colspan="6" [translate]="messages.NO_DATA"></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </tab>
+                                            <tab>
+                                                <ng-template tabHeading>
+                                                    <i class="fas fa-memory"></i>
+                                                    <span class="mx-1"
+                                                        [translate]="messages.DEVICE_COMPUTER_MEMORY"></span>
+                                                </ng-template>
+                                                <div class="computer-tab-content m-3" *ngIf="deviceComputerMemoryForm">
+
+                                                    <form class="my-3 d-flex gap-1"
+                                                        [formGroup]="deviceComputerMemoryForm"
+                                                        (ngSubmit)="saveDeviceComputerMemory()">
+
+                                                        <app-computer-memory-autocomplete id="computerCpu"
+                                                            [control]="computerMemoryAutoComplete"
+                                                            (onSelect)="onSelectMemory($event)">
+                                                        </app-computer-memory-autocomplete>
+
+                                                        <app-input-group [form]="deviceComputerMemoryForm"
+                                                            [translateLabel]="messages.COMPUTER_MEMORY_MODULES"
+                                                            [translatePlaceholder]="messages.COMPUTER_MEMORY_MODULES"
+                                                            id="modules">
+                                                        </app-input-group>
+
+                                                        <div class="mb-3">
+                                                            <label for="save-computer-memory"
+                                                                class="sr-only">computer-memory</label><br>
+                                                            <button id="save-computer-memory" type="submit"
+                                                                class="btn btn-primary"
+                                                                [disabled]="deviceComputerMemoryForm.invalid"
+                                                                [translate]="messages.ADD"></button>
+                                                        </div>
+
+                                                    </form>
+
+                                                    <table class="table table-striped">
+                                                        <thead>
+                                                            <tr>
+                                                                <th [translate]="messages.DEVICE_COMPUTER_MEMORY"></th>
+                                                                <th [translate]="messages.COMPUTER_MEMORY_MODULES"></th>
+                                                                <th></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr
+                                                                *ngFor="let mem of device.deviceComputer.computerMemoryList">
+                                                                <td>{{mem.computerMemory.brandName}}
+                                                                    {{mem.computerMemory.type}}
+                                                                    {{mem.computerMemory.size}}GB
+                                                                </td>
+                                                                <td>{{mem.modules}}</td>
+                                                                <td><i title="{{messages.REMOVE | translate}}"
+                                                                        class="fas fa-trash text-danger link link-animation"
+                                                                        (click)="onConfirmDeleteComputerMemory(mem.computerMemory)"></i>
+                                                                </td>
+                                                            </tr>
+                                                            <tr
+                                                                *ngIf="isEmptyOrNull(device.deviceComputer.computerMemoryList)">
+                                                                <td colspan="6" [translate]="messages.NO_DATA"></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </tab>
+                                            <tab>
+                                                <ng-template tabHeading>
+                                                    <i class="fas fa-database"></i>
+                                                    <span class="mx-1"
+                                                        [translate]="messages.DEVICE_COMPUTER_STORAGE"></span>
+                                                </ng-template>
+                                                <div class="computer-tab-content m-3" *ngIf="deviceComputerStorageForm">
+                                                    <form class="my-3 d-flex gap-1"
+                                                        [formGroup]="deviceComputerStorageForm"
+                                                        (ngSubmit)="saveDeviceComputerStorage()">
+
+                                                        <app-computer-storage-autocomplete id="computerStorage"
+                                                            [control]="computerStorageAutoComplete"
+                                                            (onSelect)="onSelectStorage($event)">
+                                                        </app-computer-storage-autocomplete>
+
+                                                        <app-input-group [form]="deviceComputerStorageForm"
+                                                            [translateLabel]="messages.COMPUTER_STORAGE_SIZE"
+                                                            [translatePlaceholder]="messages.COMPUTER_STORAGE_SIZE_PH"
+                                                            id="size">
+                                                        </app-input-group>
+
+                                                        <div class="mb-3">
+                                                            <label for="save-computer-storage"
+                                                                class="sr-only">computer-storage</label><br>
+                                                            <button id="save-computer-storage" type="submit"
+                                                                class="btn btn-primary"
+                                                                [disabled]="deviceComputerStorageForm.invalid"
+                                                                [translate]="messages.ADD"></button>
+                                                        </div>
+
+                                                    </form>
+                                                    <table class="table table-striped">
+                                                        <thead>
+                                                            <tr>
+                                                                <th [translate]="messages.BRAND"></th>
+                                                                <th [translate]="messages.TYPE"></th>
+                                                                <th [translate]="messages.COMPUTER_STORAGE_SIZE"></th>
+                                                                <th></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr
+                                                                *ngFor="let storages of device.deviceComputer.computerStorageList">
+                                                                <td>{{storages.computerStorage.brandName}}</td>
+                                                                <td>{{storages.computerStorage.type}}</td>
+                                                                <td>{{storages.size}}</td>
+                                                                <td><i title="{{messages.REMOVE | translate}}"
+                                                                        class="fas fa-trash text-danger link link-animation"
+                                                                        (click)="onConfirmDeleteComputerStorage(storages.computerStorage)"></i>
+                                                                </td>
+                                                            </tr>
+                                                            <tr
+                                                                *ngIf="isEmptyOrNull(device.deviceComputer.computerStorageList)">
+                                                                <td colspan="6" [translate]="messages.NO_DATA"></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </tab>
+                                            <tab>
+                                                <ng-template tabHeading="">
+                                                    <i class="fas fa-window-restore"></i>
+                                                    <span class="mx-1"
+                                                        [translate]="messages.DEVICE_COMPUTER_SOFTWARE"></span>
+                                                </ng-template>
+                                                <div class="computer-tab-content m-3"
+                                                    *ngIf="deviceComputerSoftwareForm">
+
+                                                    <form class="my-3 d-flex gap-1"
+                                                        [formGroup]="deviceComputerSoftwareForm"
+                                                        (ngSubmit)="saveDeviceComputerSoftware()">
+
+                                                        <app-computer-software-autocomplete id="software"
+                                                            [control]="computerSoftwareAutoComplete"
+                                                            (onSelect)="onSelectSoftware($event)">
+                                                        </app-computer-software-autocomplete>
+
+                                                        <div class="mb-3">
+                                                            <label for="save-computer-storage"
+                                                                class="sr-only">software</label><br>
+                                                            <button id="save-computer-software" type="submit"
+                                                                class="btn btn-primary"
+                                                                [disabled]="deviceComputerSoftwareForm.controls['software'].invalid"
+                                                                [translate]="messages.ADD"></button>
+                                                        </div>
+                                                    </form>
+
+                                                    <table class="table table-striped">
+                                                        <thead>
+                                                            <tr>
+                                                                <th [translate]="messages.DEVICE_COMPUTER_SOFTWARE">
+                                                                </th>
+                                                                <th [translate]="messages.OWNER"></th>
+                                                                <th [translate]="messages.LICENSE"></th>
+                                                                <th></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr
+                                                                *ngFor="let lic of device.deviceComputer.computerSoftwareList">
+                                                                <td>{{ lic.software.name }}</td>
+                                                                <td>{{ lic.software.developer }}</td>
+                                                                <td>{{ lic.license }}</td>
+                                                                <td><i title="{{messages.REMOVE | translate}}"
+                                                                        class="fas fa-trash text-danger link link-animation"></i>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </tab>
+                                            <tab *ngIf="false">
+                                                <ng-template tabHeading>
+                                                    <i class="fas fa-server"></i>
+                                                    <span class="mx-1"
+                                                        [translate]="messages.DEVICE_COMPUTER_SERVER"></span>
+                                                </ng-template>
+                                                <div class="computer-tab-content m-3">
+                                                    <div class="my-3 d-flex gap-1">
+                                                        <input type="text" placeholder="Services" class="form-control">
+                                                        <button class="btn btn-sm btn-primary">Agregar</button>
+                                                    </div>
+                                                    <table class="table table-striped">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>SERVICE</th>
+                                                                <th>PORT</th>
+                                                                <th></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>Oracle Database 11G</td>
+                                                                <td>1521</td>
+                                                                <td><i title="{{messages.REMOVE | translate}}"
+                                                                        class="fas fa-trash text-danger link link-animation"></i>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>ERP API</td>
+                                                                <td>8080</td>
+                                                                <td><i title="{{messages.REMOVE | translate}}"
+                                                                        class="fas fa-trash text-danger link link-animation"></i>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </tab>
+                                        </tabset>
+                                    </div>
+                                    <div *ngIf="isLoading(computerLoading)" class="spinner-border m-5" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                    <div *ngIf="isError(computerLoading)" class="alert alert-danger" role="alert">
+                                        <span><i class="fas fa-exclamation-triangle mx-2"></i></span>
+                                        <span [translate]="messages.ERROR_LOADING_FEATURE"></span>
+                                    </div>
+                                </tab>
+                            </tabset>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</main>

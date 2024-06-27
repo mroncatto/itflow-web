@@ -1,0 +1,125 @@
+<main class="mt-5 pt-3">
+    <div class="container-fluid">
+
+        <!-- Top Bar -->
+        <div class="d-flex justify-content-between mt-2">
+            <div class="row">
+                <div class="title-page col-md-12 fw-bold fs-3">
+                    <i class="fa fa-desktop"></i> <span class="mx-1" [translate]="messages.DEVICES"></span>
+                </div>
+            </div>
+
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item active" aria-current="page" [translate]="messages.DEVICE"></li>
+                </ol>
+            </nav>
+        </div>
+
+        <div class="row">
+            <div class="col-xl-10 col-sm-12 mx-auto">
+                <div class="card">
+                    <div class="card-header bg-primary fw-bold text-white flex-between">
+                        <div>
+                            <span [translate]="messages.DEVICES"></span>
+                            <div class="spinner-border spinner-border-sm mx-2" role="status" *ngIf="loading">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </div>
+                        <div>
+                            <button class="btn btn-success text-white" (click)="onCreate()">
+                                <i class="fas fa-plus"></i>&nbsp;<span [translate]="messages.NEW"></span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="filter-list d-flex gap-2 mb-2">
+                            <app-search-input (onEnter)="filterInput($event)"></app-search-input>
+                            <app-department-checkbox-filter
+                                (onSelect)="filterDepartment($event)"></app-department-checkbox-filter>
+                            <app-device-category-checkbox-filter
+                                (onSelect)="filterDeviceCategory($event)"></app-device-category-checkbox-filter>
+                            <button [disabled]="loading" class="btn btn-sm btn-primary focus-0" (click)="cleanFilter()"
+                                [translate]="messages.CLEAN_FILTER"></button>
+                        </div>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th [translate]="messages.DEVICE_CODE"></th>
+                                    <th [translate]="messages.DEVICE_TAG"></th>
+                                    <th [translate]="messages.DEVICE_HOSTNAME"></th>
+                                    <th [translate]="messages.CATEGORY"></th>
+                                    <th [translate]="messages.BRANCH"></th>
+                                    <th [translate]="messages.DEPARTMENT"></th>
+                                    <th [translate]="messages.STATUS"></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let device of devices">
+                                    <td>{{device.id}}</td>
+                                    <td>{{device.code}}</td>
+                                    <td>{{device.tag}}</td>
+                                    <td class="fw-bold">
+                                        <div class="widgets d-flex gap-1 align-center">
+                                            <a class="link" [routerLink]="[device.id + '/view']">{{device.hostname}}
+                                            </a>
+                                            <!-- <i *ngIf="device.hasStaff" class="fas fa-user text-secondary"></i>
+                                            <i *ngIf="device.hasComputer" class="fas fa-desktop text-secondary"></i> -->
+                                        </div>
+                                    </td>
+                                    <td>{{device.deviceCategory.name}}</td>
+                                    <td>{{device.department.branch.name}}</td>
+                                    <td>{{device.department.name}}</td>
+                                    <td>
+                                        <span *ngIf="device.active" class="badge bg-success"
+                                            [translate]="messages.ACTIVE"></span>
+                                        <span *ngIf="!device.active" class="badge bg-danger"
+                                            [translate]="messages.INACTIVE"></span>
+                                    </td>
+                                    <td>
+                                        <i title="{{messages.ACTIONS | translate}}"
+                                            class="fas fa-chevron-circle-down link" [id]="device.id"
+                                            data-bs-toggle="dropdown"></i>
+                                        <ul class="dropdown-menu dropdown-menu-end">
+                                            <li class="link-spin">
+                                                <a class="dropdown-item" [routerLink]="[device.id + '/view']">
+                                                    <i class="fas fa-eye"></i>&nbsp;
+                                                    <span [translate]="messages.OPEN"></span>
+                                                </a>
+                                            </li>
+                                            <li *ngIf="device.active" (click)="onUpdate(device)" class="link-spin">
+                                                <a class="dropdown-item">
+                                                    <i class="fas fa-pen"></i>&nbsp;
+                                                    <span [translate]="messages.EDIT"></span>
+                                                </a>
+                                            </li>
+                                            <div *ngIf="device.active">
+                                                <li>
+                                                    <hr class="dropdown-divider">
+                                                </li>
+                                                <li (click)="confirmDelete(device)" class="link-spin">
+                                                    <a class="dropdown-item">
+                                                        <i class="fas fa-trash text-danger"></i>&nbsp;<span
+                                                            [translate]="messages.DELETE"></span>
+                                                    </a>
+                                                </li>
+                                            </div>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr *ngIf="devices.length === 0 && !loading">
+                                    <td class="text-center" colspan="9" [translate]="messages.NO_DATA"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <app-paginator *ngIf="paginator" [route]="'device'" [paginator]="paginator"></app-paginator>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</main>
