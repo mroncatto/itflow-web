@@ -5,8 +5,8 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 import { Subject } from 'rxjs';
 import { ISoftwareLicenseKey, SoftwareLicenseKeyForm } from 'src/app/core/components/computer/model/software-license-keys';
 import { ComputerService } from 'src/app/core/components/computer/services/computer.service';
-import { IDeviceComputer } from 'src/app/core/components/device/model/device-computer';
-import { DeviceComputerSoftwareForm, IDeviceComputerSoftware } from 'src/app/core/components/device/model/device-computer-software';
+import { IDeviceComputer, IDeviceComputerDto } from 'src/app/core/components/device/model/device-computer';
+import { DeviceComputerSoftwareForm, DeviceComputerSoftwareAssignForm, IDeviceComputerSoftware } from 'src/app/core/components/device/model/device-computer-software';
 import { AbstractComponent } from 'src/app/core/shared/abstracts/abstract-component';
 import { IAbstractModelForms } from 'src/app/core/shared/abstracts/interface/abstract-model-forms';
 import { TranslateMessages } from 'src/app/core/shared/commons/enum/translate-messages.enum';
@@ -21,7 +21,7 @@ export class LicenseKeyAssignComponent extends AbstractComponent implements OnIn
 
   result!: Subject<ISoftwareLicenseKey>;
   licenseKey!: ISoftwareLicenseKey;
-  licenseKeyAssignForm!: FormGroup<DeviceComputerSoftwareForm>;
+  licenseKeyAssignForm!: FormGroup<DeviceComputerSoftwareAssignForm>;
   messages = TranslateMessages;
   deviceComputerAutoComplete = new FormControl('', Validators.required);
 
@@ -61,14 +61,14 @@ export class LicenseKeyAssignComponent extends AbstractComponent implements OnIn
     if (this.licenseKeyAssignForm.valid && this.validateNotExistsDeviceAssigned()) {
       this.loading = true;
       const deviceComputerSoftware = this.licenseKeyAssignForm.value as IDeviceComputerSoftware;
-      console.log(deviceComputerSoftware);
       this.sub.push(
         this.service.addLicenseKeyAssign(this.licenseKey.id, deviceComputerSoftware).subscribe({
           next: (data) => this.onAddKeyAssignments(data),
           error: (err) => this.onError(err)
         })
       );
-
+    } else {
+      this.service.onWarning(this.messages.WARNING_ATTENTION, this.messages.WARNING_COMPLETE_REQUIRED_FIELDS);
     }
   }
 

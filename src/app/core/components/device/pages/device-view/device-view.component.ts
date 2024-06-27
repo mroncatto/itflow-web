@@ -16,6 +16,7 @@ import { TranslateMessages } from 'src/app/core/shared/commons/enum/translate-me
 import { DeviceComputerSoftwareForm, IDeviceComputerSoftware } from '../../model/device-computer-software';
 import { IComputerSoftware, IComputerSoftwareList } from '../../../computer/model/computer-software';
 import { LoadingState } from 'src/app/core/shared/commons/enum/loading-state.enum';
+import { DeviceComputer } from '../../model/device-computer';
 
 @Component({
   templateUrl: './device-view.component.html',
@@ -385,7 +386,8 @@ export class DeviceViewComponent extends AbstractComponent implements OnInit {
 
   saveDeviceComputerSoftware(): void {
     if (this.device && this.deviceComputerSoftwareForm.controls.software.valid) {
-      this.deviceComputerSoftwareForm.controls.deviceComputer.setValue(this.device.deviceComputer);
+      const device = new DeviceComputer(this.device);
+      this.deviceComputerSoftwareForm.controls.deviceComputer.setValue(device.convertDto());
       this.sub.push(
         this.service.updateDeviceComputerSoftware(this.device.id, this.deviceComputerSoftwareForm.value as IDeviceComputerSoftware).subscribe({
           next: (data) => this.onDeviceComputerSoftwareSave(data),
@@ -395,7 +397,6 @@ export class DeviceViewComponent extends AbstractComponent implements OnInit {
     } else {
       console.error(this.deviceComputerSoftwareForm.errors);
     }
-
   }
 
   onDeviceComputerSoftwareSave(data: IDeviceView): void {

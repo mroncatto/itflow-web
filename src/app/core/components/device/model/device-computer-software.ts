@@ -1,12 +1,12 @@
 import { FormControl } from "@angular/forms";
-import { IDeviceComputer, IDeviceComputerSample } from "./device-computer";
+import { IDeviceComputer, IDeviceComputerDto } from "./device-computer";
 import { IDeviceComputerSoftwarePK } from "./pk/device-computer-software-pk";
 import { IComputerSoftware, IComputerSoftwareList } from "../../computer/model/computer-software";
 import { ISoftwareLicenseKey } from "../../computer/model/software-license-keys";
 
 export interface IDeviceComputerSoftware {
     id: IDeviceComputerSoftwarePK;
-    deviceComputer: IDeviceComputer;
+    deviceComputer: IDeviceComputerDto;
     software: IComputerSoftware;
     softwareLicenseKey: ISoftwareLicenseKey;
 }
@@ -18,7 +18,11 @@ export interface IComputerSoftwareView {
 
 
 export interface DeviceComputerSoftwareForm {
-    deviceComputer: FormControl<IDeviceComputer>;
+    deviceComputer: FormControl<IDeviceComputerDto>;
     software: FormControl<IComputerSoftware>;
     softwareLicenseKey: FormControl<ISoftwareLicenseKey>;
+}
+
+export interface DeviceComputerSoftwareAssignForm {
+    deviceComputerSoftware: FormControl<IComputerSoftware>;
 }

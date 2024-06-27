@@ -15,7 +15,7 @@ import { ComputerCpuFormComponent } from 'src/app/core/shared/components/forms/c
 import { ComputerMemoryFormComponent } from 'src/app/core/shared/components/forms/computer/computer-memory-form/computer-memory-form.component';
 import { ComputerStorageFormComponent } from 'src/app/core/shared/components/forms/computer/computer-storage-form/computer-storage-form.component';
 import { DeviceComputerCpuForm, IDeviceComputerCpu } from '../../device/model/device-computer-cpu';
-import { DeviceComputerForm, IDeviceComputer } from '../../device/model/device-computer';
+import { DeviceComputerForm, IDeviceComputer, IDeviceComputerDto } from '../../device/model/device-computer';
 import { DeviceComputerCpuValidation } from '../../device/validation/device-computer-cpu-validation';
 import { DeviceComputerMemoryForm, IDeviceComputerMemory } from '../../device/model/device-computer-memory';
 import { DeviceComputerMemoryValidation } from '../../device/validation/device-computer-memory-validation';
@@ -29,7 +29,7 @@ import { SoftwareLicenseValidation } from '../validation/software-license-valida
 import { ComputerLicenseFormComponent } from 'src/app/core/shared/components/forms/computer/computer-license-form/computer-license-form.component';
 import { LicenseKeyComponent } from 'src/app/core/shared/components/forms/license/license-key/license-key.component';
 import { ISoftwareLicenseKey, SoftwareLicenseKeyForm } from '../model/software-license-keys';
-import { DeviceComputerSoftwareForm, IDeviceComputerSoftware } from '../../device/model/device-computer-software';
+import { DeviceComputerSoftwareAssignForm, DeviceComputerSoftwareForm, IDeviceComputerSoftware } from '../../device/model/device-computer-software';
 import { LicenseKeyAssignComponent } from 'src/app/core/shared/components/forms/license/license-key-assign/license-key-assign.component';
 
 @Injectable({
@@ -76,8 +76,8 @@ export class ComputerService extends AbstractService {
     return this.http.get<IComputerSoftware[]>(`${this.API_URL}/computer/software/autocomplete?filter=${filter}`);
   }
 
-  getDeviceComputerAutoComplete(filter: string): Observable<IDeviceComputer[]> {
-    return this.http.get<IDeviceComputer[]>(`${this.API_URL}/device/computer/autocomplete?filter=${filter}`);
+  getDeviceComputerAutoComplete(filter: string): Observable<IDeviceComputerDto[]> {
+    return this.http.get<IDeviceComputerDto[]>(`${this.API_URL}/device/computer/autocomplete?filter=${filter}`);
   }
 
   createComputerCPU(computerCPU: IComputerCpu): Observable<IComputerCpu> {
@@ -241,11 +241,9 @@ export class ComputerService extends AbstractService {
     });
   }
 
-  getLicenseKeyAssignForm(): FormGroup<DeviceComputerSoftwareForm> {
+  getLicenseKeyAssignForm(): FormGroup<DeviceComputerSoftwareAssignForm> {
     return this.formBuilder.group({
-      deviceComputer: ['', Validators.required],
-      software: ['', Validators.required],
-      softwareLicenseKey: ['', Validators.required],
+      deviceComputer: ['', Validators.required]
     });
   }
 

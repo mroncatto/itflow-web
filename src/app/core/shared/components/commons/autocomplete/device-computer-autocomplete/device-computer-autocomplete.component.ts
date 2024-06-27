@@ -3,7 +3,7 @@ import { FormControl } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { Observable, finalize, of, pipe, take } from 'rxjs';
 import { ComputerService } from 'src/app/core/components/computer/services/computer.service';
-import { IDeviceComputer } from 'src/app/core/components/device/model/device-computer';
+import { IDeviceComputerDto } from 'src/app/core/components/device/model/device-computer';
 import { IAbstractAutocomplete } from 'src/app/core/shared/abstracts/interface/abstract-autocomplete';
 import { TranslateMessages } from 'src/app/core/shared/commons/enum/translate-messages.enum';
 
@@ -12,15 +12,15 @@ import { TranslateMessages } from 'src/app/core/shared/commons/enum/translate-me
   templateUrl: './device-computer-autocomplete.component.html',
   styleUrls: ['./device-computer-autocomplete.component.css']
 })
-export class DeviceComputerAutocompleteComponent implements OnInit, IAbstractAutocomplete<IDeviceComputer>  {
+export class DeviceComputerAutocompleteComponent implements OnInit, IAbstractAutocomplete<IDeviceComputerDto>  {
 
   messages = TranslateMessages;
   @Input() control!: FormControl;
-  register!: IDeviceComputer;
-  items!: Observable<IDeviceComputer[]>;
+  register!: IDeviceComputerDto;
+  items!: Observable<IDeviceComputerDto[]>;
   loading: boolean = false;
   @Input() id: string = "";
-  @Output() onSelect: EventEmitter<IDeviceComputer | null> = new EventEmitter();
+  @Output() onSelect: EventEmitter<IDeviceComputerDto | null> = new EventEmitter();
 
 
   constructor(private service: ComputerService) { }
@@ -52,8 +52,8 @@ export class DeviceComputerAutocompleteComponent implements OnInit, IAbstractAut
     }
   }
 
-  displayWith(computer: IDeviceComputer): string {
-    let desc: string = computer ? `${computer.id} - ${computer.device.hostname}` : '';
+  displayWith(computer: IDeviceComputerDto): string {
+    let desc: string = computer ? `${computer.id} - ${computer.hostname}` : '';
     return desc;
   }
 }
