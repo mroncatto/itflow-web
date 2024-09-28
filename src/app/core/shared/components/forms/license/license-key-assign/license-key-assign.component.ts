@@ -100,20 +100,20 @@ export class LicenseKeyAssignComponent extends AbstractComponent implements OnIn
 
   onSelectComputer(computer: IDeviceComputer | null): void {
     if (computer) {
-      this.licenseKeyAssignForm.controls['deviceComputer'].setValue(computer);
-      this.licenseKeyAssignForm.controls['software'].setValue(this.licenseKey.softwareLicense.software);
+      //this.licenseKeyAssignForm.controls['deviceComputer'].setValue(computer);
+      //this.licenseKeyAssignForm.controls['software'].setValue(this.licenseKey.softwareLicense.software);
     } else {
-      this.licenseKeyAssignForm.controls['software'].reset();
+      //this.licenseKeyAssignForm.controls['software'].reset();
     }
   }
 
   private validateNotExistsDeviceAssigned(): boolean {
     const computer = this.licenseKeyAssignForm.get('deviceComputer')?.value;
     if (computer == null) return false;
-    if (this.licenseKey.assignedLicenses.filter(assig => assig.deviceComputer.id == computer.id).length > 0) {
+    /*if (this.licenseKey.assignedLicenses.filter(assig => assig.deviceComputer.id == computer.id).length > 0) {
       this.service.onWarning(this.messages.WARNING, this.messages.WARNING_REGISTER_IN_THE_LIST);
       return false;
-    }
+    }*/
     return true;
   }
 

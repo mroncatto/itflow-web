@@ -11,8 +11,7 @@
         <div class="row">
             <form class="d-flex d-inline-flex gap-1" [formGroup]="licenseKeyAssignForm" (ngSubmit)="save()">
                 <app-device-computer-autocomplete id="deviceComputer"
-                [control]="deviceComputerAutoComplete"
-                (onSelect)="onSelectComputer($event)">
+                [control]="deviceComputerAutoComplete">
                 </app-device-computer-autocomplete>
 
                 <div class="mt-4">
